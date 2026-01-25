@@ -12,6 +12,7 @@ import { Layout } from '@/components/layout/Layout';
 import { useYouTubeVideos } from '@/hooks/useYouTubeVideos';
 import { Skeleton } from '@/components/ui/skeleton';
 import { VideoLightbox } from '@/components/VideoLightbox';
+import { SEOHead } from '@/components/seo/SEOHead';
 
 const latestMarketUpdates = [
   {
@@ -105,6 +106,12 @@ const Index = () => {
 
   return (
     <Layout>
+      <SEOHead
+        title="Fawad Ahmed | GTA Real Estate Expert"
+        description="Real insights for GTA homeowners. Honest market updates, data-driven analysis, and practical real estate advice for families across the Greater Toronto Area."
+        canonicalUrl="https://gta-insight-hub.lovable.app"
+      />
+      
       {/* Hero Section - Cinematic Background */}
       <section className="relative min-h-[600px] lg:min-h-[700px] overflow-hidden">
         {/* Background Image */}

@@ -1,15 +1,93 @@
+import { useState } from 'react';
 import { Layout } from '@/components/layout/Layout';
 import { SectionWrapper } from '@/components/sections/SectionHeader';
-import { CTABlock } from '@/components/sections/CTABlock';
+import { SEOHead } from '@/components/seo/SEOHead';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
-import { Phone, Mail, MapPin, Clock, Youtube, Instagram, Facebook } from 'lucide-react';
+import { Phone, Mail, MapPin, Clock, Youtube, Instagram, Facebook, Loader2, CheckCircle } from 'lucide-react';
+import { supabase } from '@/integrations/supabase/client';
+import { useToast } from '@/hooks/use-toast';
+import { z } from 'zod';
+
+const contactSchema = z.object({
+  firstName: z.string().trim().min(1, 'First name is required').max(50),
+  lastName: z.string().trim().max(50).optional(),
+  email: z.string().trim().email('Please enter a valid email').max(255),
+  phone: z.string().trim().max(20).optional(),
+  subject: z.string().trim().max(200).optional(),
+  message: z.string().trim().min(1, 'Message is required').max(2000),
+});
 
 export default function Contact() {
+  const [isLoading, setIsLoading] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+  const { toast } = useToast();
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    
+    const data = {
+      firstName: formData.get('firstName') as string,
+      lastName: formData.get('lastName') as string,
+      email: formData.get('email') as string,
+      phone: formData.get('phone') as string,
+      subject: formData.get('subject') as string,
+      message: formData.get('message') as string,
+    };
+
+    const result = contactSchema.safeParse(data);
+    if (!result.success) {
+      toast({
+        title: 'Please check your form',
+        description: result.error.errors[0].message,
+        variant: 'destructive',
+      });
+      return;
+    }
+
+    setIsLoading(true);
+
+    try {
+      const { error } = await supabase.from('leads').insert({
+        first_name: data.firstName.trim(),
+        last_name: data.lastName?.trim() || null,
+        email: data.email.trim().toLowerCase(),
+        phone: data.phone?.trim() || null,
+        subject: data.subject?.trim() || null,
+        message: data.message.trim(),
+        source: 'contact',
+      });
+
+      if (error) throw error;
+
+      setIsSuccess(true);
+      toast({
+        title: 'Message sent!',
+        description: "Thanks for reaching out. I'll get back to you soon.",
+      });
+    } catch (error) {
+      console.error('Contact form error:', error);
+      toast({
+        title: 'Something went wrong',
+        description: 'Please try again or call directly.',
+        variant: 'destructive',
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
     <Layout>
+      <SEOHead
+        title="Contact Fawad Ahmed"
+        description="Get in touch with Fawad Ahmed for expert GTA real estate advice. No pressure, just honest guidance on selling your home in the Greater Toronto Area."
+        canonicalUrl="https://gta-insight-hub.lovable.app/contact"
+      />
+      
       {/* Header */}
       <section className="bg-gradient-warm section-padding py-16">
         <div className="container-wide mx-auto">
@@ -31,42 +109,65 @@ export default function Contact() {
         <div className="grid lg:grid-cols-2 gap-12">
           {/* Form */}
           <div className="bg-card p-8 rounded-2xl border border-border">
-            <h2 className="font-serif text-2xl font-bold mb-6">Send a Message</h2>
-            <form className="space-y-6">
-              <div className="grid sm:grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <Label htmlFor="firstName">First Name</Label>
-                  <Input id="firstName" placeholder="John" />
+            {!isSuccess ? (
+              <>
+                <h2 className="font-serif text-2xl font-bold mb-6">Send a Message</h2>
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  <div className="grid sm:grid-cols-2 gap-4">
+                    <div className="space-y-2">
+                      <Label htmlFor="firstName">First Name</Label>
+                      <Input id="firstName" name="firstName" placeholder="John" required />
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="lastName">Last Name</Label>
+                      <Input id="lastName" name="lastName" placeholder="Smith" />
+                    </div>
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="email">Email</Label>
+                    <Input id="email" name="email" type="email" placeholder="john@example.com" required />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="phone">Phone (Optional)</Label>
+                    <Input id="phone" name="phone" type="tel" placeholder="(647) 555-0123" />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="subject">What can I help with?</Label>
+                    <Input id="subject" name="subject" placeholder="e.g., Thinking about selling my home" />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="message">Message</Label>
+                    <Textarea 
+                      id="message"
+                      name="message"
+                      placeholder="Tell me more about your situation..."
+                      rows={5}
+                      required
+                    />
+                  </div>
+                  <Button variant="gold" size="lg" type="submit" className="w-full" disabled={isLoading}>
+                    {isLoading ? (
+                      <>
+                        <Loader2 className="w-4 h-4 animate-spin" />
+                        Sending...
+                      </>
+                    ) : (
+                      'Send Message'
+                    )}
+                  </Button>
+                </form>
+              </>
+            ) : (
+              <div className="text-center py-12">
+                <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
+                  <CheckCircle className="w-8 h-8 text-primary" />
                 </div>
-                <div className="space-y-2">
-                  <Label htmlFor="lastName">Last Name</Label>
-                  <Input id="lastName" placeholder="Smith" />
-                </div>
+                <h2 className="font-serif text-2xl font-bold mb-2">Message Sent!</h2>
+                <p className="text-muted-foreground">
+                  Thanks for reaching out. I'll get back to you within 24 hours.
+                </p>
               </div>
-              <div className="space-y-2">
-                <Label htmlFor="email">Email</Label>
-                <Input id="email" type="email" placeholder="john@example.com" />
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="phone">Phone (Optional)</Label>
-                <Input id="phone" type="tel" placeholder="(647) 555-0123" />
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="subject">What can I help with?</Label>
-                <Input id="subject" placeholder="e.g., Thinking about selling my home" />
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="message">Message</Label>
-                <Textarea 
-                  id="message" 
-                  placeholder="Tell me more about your situation..."
-                  rows={5}
-                />
-              </div>
-              <Button variant="gold" size="lg" type="submit" className="w-full">
-                Send Message
-              </Button>
-            </form>
+            )}
           </div>
 
           {/* Contact Info */}

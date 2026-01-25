@@ -4,11 +4,18 @@ import { Layout } from '@/components/layout/Layout';
 import { SectionWrapper } from '@/components/sections/SectionHeader';
 import { CTABlock } from '@/components/sections/CTABlock';
 import { Button } from '@/components/ui/button';
+import { SEOHead } from '@/components/seo/SEOHead';
 import fawadPortrait from '@/assets/fawad-portrait.jpg';
 
 export default function About() {
   return (
     <Layout>
+      <SEOHead
+        title="About Fawad Ahmed"
+        description="Learn about Fawad Ahmed, a GTA real estate broker with over a decade of experience helping families in Mississauga, Milton, Oakville, Burlington, and beyond."
+        canonicalUrl="https://gta-insight-hub.lovable.app/about"
+      />
+      
       {/* Hero */}
       <section className="bg-gradient-warm section-padding py-16 lg:py-24">
         <div className="container-wide mx-auto">
