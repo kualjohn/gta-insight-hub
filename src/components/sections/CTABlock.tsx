@@ -51,7 +51,7 @@ export function CTABlock({
             size="lg"
             asChild
             className={cn(
-              (variant === 'primary' || isDark) && "border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-foreground"
+              (variant === 'primary' || isDark) && "border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-foreground bg-transparent"
             )}
           >
             <Link to={primaryCta.href}>
@@ -117,7 +117,7 @@ export function VideoCTA({ className }: { className?: string }) {
       <p className="text-primary-foreground/70 mb-4">
         Subscribe for weekly market updates and real estate advice.
       </p>
-      <Button variant="outline" asChild className="border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-charcoal">
+      <Button variant="outline" asChild className="border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-charcoal bg-transparent">
         <Link to="/youtube">
           Visit YouTube Channel
         </Link>
