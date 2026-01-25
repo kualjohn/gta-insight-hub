@@ -4,6 +4,18 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
+import MarketUpdates from "./pages/MarketUpdates";
+import YouTubeHub from "./pages/YouTubeHub";
+import Blog from "./pages/Blog";
+import SellerServices from "./pages/SellerServices";
+import SellerGuide from "./pages/SellerGuide";
+import HomeEvaluation from "./pages/HomeEvaluation";
+import Areas from "./pages/Areas";
+import About from "./pages/About";
+import Testimonials from "./pages/Testimonials";
+import Staging from "./pages/Staging";
+import FAQ from "./pages/FAQ";
+import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -16,6 +28,18 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
+          <Route path="/market-updates" element={<MarketUpdates />} />
+          <Route path="/youtube" element={<YouTubeHub />} />
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/seller-services" element={<SellerServices />} />
+          <Route path="/seller-guide" element={<SellerGuide />} />
+          <Route path="/home-evaluation" element={<HomeEvaluation />} />
+          <Route path="/areas" element={<Areas />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/testimonials" element={<Testimonials />} />
+          <Route path="/staging" element={<Staging />} />
+          <Route path="/faq" element={<FAQ />} />
+          <Route path="/contact" element={<Contact />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
