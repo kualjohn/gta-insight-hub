@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { ArrowRight, Download, Phone, Youtube, AlertCircle, ExternalLink } from 'lucide-react';
+import { ArrowRight, Download, Phone, AlertCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { VideoCard } from '@/components/cards/VideoCard';
 import { BlogCard } from '@/components/cards/BlogCard';
@@ -11,6 +11,7 @@ import { CTABlock } from '@/components/sections/CTABlock';
 import { Layout } from '@/components/layout/Layout';
 import { useYouTubeVideos } from '@/hooks/useYouTubeVideos';
 import { Skeleton } from '@/components/ui/skeleton';
+import { VideoLightbox } from '@/components/VideoLightbox';
 
 const latestMarketUpdates = [
   {
@@ -96,6 +97,7 @@ function VideoSkeleton() {
 }
 
 const FEATURED_VIDEO_ID = 'Mh6UJ08iSkA';
+const FEATURED_VIDEO_THUMBNAIL = `https://i.ytimg.com/vi/${FEATURED_VIDEO_ID}/maxresdefault.jpg`;
 const CHANNEL_URL = 'https://www.youtube.com/channel/UCNiL5jVJ7uM89e2S69FrUxQ';
 
 const Index = () => {
@@ -103,20 +105,31 @@ const Index = () => {
 
   return (
     <Layout>
-      {/* Hero Section */}
-      <section className="relative bg-gradient-warm overflow-hidden">
-        <div className="container-wide mx-auto section-padding py-16 lg:py-24">
-          <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+      {/* Hero Section - Cinematic Background */}
+      <section className="relative min-h-[600px] lg:min-h-[700px] overflow-hidden">
+        {/* Background Image */}
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{ backgroundImage: `url(${FEATURED_VIDEO_THUMBNAIL})` }}
+        />
+        
+        {/* Dark Gradient Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/70 to-black/40" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/30" />
+        
+        {/* Content */}
+        <div className="relative z-10 container-wide mx-auto section-padding h-full">
+          <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center min-h-[600px] lg:min-h-[700px] py-16 lg:py-24">
             {/* Left: Text Content */}
             <div>
               <span className="inline-block text-sm font-medium text-primary mb-4 tracking-wide uppercase">
                 GTA Real Estate Authority
               </span>
-              <h1 className="font-serif text-4xl sm:text-5xl lg:text-5xl xl:text-6xl font-bold mb-6 leading-tight">
+              <h1 className="font-serif text-4xl sm:text-5xl lg:text-5xl xl:text-6xl font-bold mb-6 leading-tight text-white">
                 Real Insights for<br />
-                <span className="text-gradient-gold">GTA Homeowners.</span>
+                <span className="text-primary">GTA Homeowners.</span>
               </h1>
-              <p className="text-lg lg:text-xl text-muted-foreground mb-8 max-w-xl">
+              <p className="text-lg lg:text-xl text-white/80 mb-8 max-w-xl">
                 Honest market updates, data-driven analysis, and practical real estate 
                 advice for families across the Greater Toronto Area.
               </p>
@@ -127,7 +140,12 @@ const Index = () => {
                     Book a Call
                   </Link>
                 </Button>
-                <Button variant="outline-dark" size="lg" asChild>
+                <Button 
+                  variant="outline" 
+                  size="lg" 
+                  className="border-white/30 text-white hover:bg-white/10 hover:text-white"
+                  asChild
+                >
                   <Link to="/seller-guide">
                     <Download className="w-5 h-5" />
                     Seller Guide
@@ -136,41 +154,13 @@ const Index = () => {
               </div>
             </div>
 
-            {/* Right: Featured Video */}
-            <div className="w-full">
-              <span className="inline-block text-sm font-semibold text-primary mb-3 tracking-wide uppercase">
-                Watch This First
-              </span>
-              <div className="relative aspect-video rounded-xl overflow-hidden shadow-xl ring-1 ring-border/50">
-                <iframe
-                  src={`https://www.youtube.com/embed/${FEATURED_VIDEO_ID}?rel=0`}
-                  title="Featured Video"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                  className="absolute inset-0 w-full h-full"
-                />
-              </div>
-              <div className="flex items-center gap-4 mt-3">
-                <a
-                  href={`https://www.youtube.com/watch?v=${FEATURED_VIDEO_ID}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
-                >
-                  <ExternalLink className="w-3.5 h-3.5" />
-                  Watch on YouTube
-                </a>
-                <span className="text-muted-foreground/50">•</span>
-                <a
-                  href={CHANNEL_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
-                >
-                  <Youtube className="w-3.5 h-3.5" />
-                  Subscribe
-                </a>
-              </div>
+            {/* Right: Play Button */}
+            <div className="flex items-center justify-center lg:justify-end">
+              <VideoLightbox
+                videoId={FEATURED_VIDEO_ID}
+                thumbnailUrl={FEATURED_VIDEO_THUMBNAIL}
+                channelUrl={CHANNEL_URL}
+              />
             </div>
           </div>
         </div>
