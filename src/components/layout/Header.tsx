@@ -1,28 +1,43 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Phone } from 'lucide-react';
+import { Menu, X, Phone, ChevronDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
 
-const navigation = [
+const mainNavigation = [
   { name: 'Home', href: '/' },
-  { name: 'Market Updates', href: '/market-updates' },
   { name: 'YouTube', href: '/youtube' },
-  { name: 'Blog', href: '/blog' },
+  { name: 'Market Updates', href: '/market-updates' },
+];
+
+const sellersDropdown = [
   { name: 'Seller Services', href: '/seller-services' },
   { name: 'First-Time Seller Guide', href: '/seller-guide' },
   { name: 'Home Evaluation', href: '/home-evaluation' },
-  { name: 'Areas', href: '/areas' },
+  { name: 'Staging', href: '/staging' },
+  { name: 'Success Stories', href: '/testimonials' },
+];
+
+const aboutDropdown = [
   { name: 'About', href: '/about' },
   { name: 'Testimonials', href: '/testimonials' },
-  { name: 'Staging', href: '/staging' },
   { name: 'FAQ', href: '/faq' },
-  { name: 'Contact', href: '/contact' },
 ];
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [mobileDropdown, setMobileDropdown] = useState<string | null>(null);
   const location = useLocation();
+
+  const isActiveDropdown = (items: { href: string }[]) => {
+    return items.some(item => location.pathname === item.href);
+  };
 
   return (
     <header className="sticky top-0 z-50 bg-background/95 backdrop-blur-md border-b border-border">
@@ -35,14 +50,14 @@ export function Header() {
             </span>
           </Link>
 
-          {/* Desktop Navigation */}
+          {/* Desktop Navigation - Centered */}
           <div className="hidden lg:flex items-center gap-1">
-            {navigation.map((item) => (
+            {mainNavigation.map((item) => (
               <Link
                 key={item.name}
                 to={item.href}
                 className={cn(
-                  "px-3 py-2 text-sm font-medium transition-colors rounded-md",
+                  "px-4 py-2 text-sm font-medium transition-colors rounded-md",
                   location.pathname === item.href
                     ? "text-primary bg-primary/5"
                     : "text-muted-foreground hover:text-foreground hover:bg-muted"
@@ -51,6 +66,66 @@ export function Header() {
                 {item.name}
               </Link>
             ))}
+
+            {/* Sellers Dropdown */}
+            <DropdownMenu>
+              <DropdownMenuTrigger
+                className={cn(
+                  "flex items-center gap-1 px-4 py-2 text-sm font-medium transition-colors rounded-md outline-none",
+                  isActiveDropdown(sellersDropdown)
+                    ? "text-primary bg-primary/5"
+                    : "text-muted-foreground hover:text-foreground hover:bg-muted"
+                )}
+              >
+                Sellers
+                <ChevronDown className="h-4 w-4" />
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="center" className="w-48 bg-background border border-border shadow-lg">
+                {sellersDropdown.map((item) => (
+                  <DropdownMenuItem key={item.name} asChild>
+                    <Link
+                      to={item.href}
+                      className={cn(
+                        "w-full cursor-pointer",
+                        location.pathname === item.href && "text-primary"
+                      )}
+                    >
+                      {item.name}
+                    </Link>
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
+
+            {/* About Dropdown */}
+            <DropdownMenu>
+              <DropdownMenuTrigger
+                className={cn(
+                  "flex items-center gap-1 px-4 py-2 text-sm font-medium transition-colors rounded-md outline-none",
+                  isActiveDropdown(aboutDropdown)
+                    ? "text-primary bg-primary/5"
+                    : "text-muted-foreground hover:text-foreground hover:bg-muted"
+                )}
+              >
+                About
+                <ChevronDown className="h-4 w-4" />
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="center" className="w-40 bg-background border border-border shadow-lg">
+                {aboutDropdown.map((item) => (
+                  <DropdownMenuItem key={item.name} asChild>
+                    <Link
+                      to={item.href}
+                      className={cn(
+                        "w-full cursor-pointer",
+                        location.pathname === item.href && "text-primary"
+                      )}
+                    >
+                      {item.name}
+                    </Link>
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
           </div>
 
           {/* CTA Button */}
@@ -77,7 +152,7 @@ export function Header() {
         {mobileMenuOpen && (
           <div className="lg:hidden py-4 border-t border-border animate-fade-in">
             <div className="flex flex-col gap-1">
-              {navigation.map((item) => (
+              {mainNavigation.map((item) => (
                 <Link
                   key={item.name}
                   to={item.href}
@@ -92,9 +167,80 @@ export function Header() {
                   {item.name}
                 </Link>
               ))}
+
+              {/* Mobile Sellers Dropdown */}
+              <div>
+                <button
+                  onClick={() => setMobileDropdown(mobileDropdown === 'sellers' ? null : 'sellers')}
+                  className={cn(
+                    "w-full flex items-center justify-between px-4 py-3 text-base font-medium transition-colors rounded-md",
+                    isActiveDropdown(sellersDropdown)
+                      ? "text-primary bg-primary/5"
+                      : "text-muted-foreground hover:text-foreground hover:bg-muted"
+                  )}
+                >
+                  Sellers
+                  <ChevronDown className={cn("h-4 w-4 transition-transform", mobileDropdown === 'sellers' && "rotate-180")} />
+                </button>
+                {mobileDropdown === 'sellers' && (
+                  <div className="ml-4 border-l border-border">
+                    {sellersDropdown.map((item) => (
+                      <Link
+                        key={item.name}
+                        to={item.href}
+                        onClick={() => setMobileMenuOpen(false)}
+                        className={cn(
+                          "block px-4 py-2 text-sm font-medium transition-colors",
+                          location.pathname === item.href
+                            ? "text-primary"
+                            : "text-muted-foreground hover:text-foreground"
+                        )}
+                      >
+                        {item.name}
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              {/* Mobile About Dropdown */}
+              <div>
+                <button
+                  onClick={() => setMobileDropdown(mobileDropdown === 'about' ? null : 'about')}
+                  className={cn(
+                    "w-full flex items-center justify-between px-4 py-3 text-base font-medium transition-colors rounded-md",
+                    isActiveDropdown(aboutDropdown)
+                      ? "text-primary bg-primary/5"
+                      : "text-muted-foreground hover:text-foreground hover:bg-muted"
+                  )}
+                >
+                  About
+                  <ChevronDown className={cn("h-4 w-4 transition-transform", mobileDropdown === 'about' && "rotate-180")} />
+                </button>
+                {mobileDropdown === 'about' && (
+                  <div className="ml-4 border-l border-border">
+                    {aboutDropdown.map((item) => (
+                      <Link
+                        key={item.name}
+                        to={item.href}
+                        onClick={() => setMobileMenuOpen(false)}
+                        className={cn(
+                          "block px-4 py-2 text-sm font-medium transition-colors",
+                          location.pathname === item.href
+                            ? "text-primary"
+                            : "text-muted-foreground hover:text-foreground"
+                        )}
+                      >
+                        {item.name}
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
+
               <div className="pt-4 px-4">
                 <Button variant="gold" className="w-full" asChild>
-                  <Link to="/contact">
+                  <Link to="/contact" onClick={() => setMobileMenuOpen(false)}>
                     <Phone className="w-4 h-4" />
                     Book a Call
                   </Link>
