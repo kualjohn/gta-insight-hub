@@ -1,10 +1,13 @@
 import { useState } from 'react';
-import { Download, Check } from 'lucide-react';
+import { Download, Check, Loader2 } from 'lucide-react';
 import { Layout } from '@/components/layout/Layout';
-import { SectionWrapper } from '@/components/sections/SectionHeader';
+import { SEOHead } from '@/components/seo/SEOHead';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { supabase } from '@/integrations/supabase/client';
+import { useToast } from '@/hooks/use-toast';
+import { z } from 'zod';
 
 const guideContents = [
   'How to price your home competitively',
@@ -15,16 +18,71 @@ const guideContents = [
   'Common first-time seller mistakes to avoid',
 ];
 
-export default function SellerGuide() {
-  const [submitted, setSubmitted] = useState(false);
+const formSchema = z.object({
+  name: z.string().trim().min(1, 'Name is required').max(100),
+  email: z.string().trim().email('Please enter a valid email').max(255),
+});
 
-  const handleSubmit = (e: React.FormEvent) => {
+export default function SellerGuide() {
+  const [isLoading, setIsLoading] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+  const { toast } = useToast();
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setSubmitted(true);
+    const formData = new FormData(e.currentTarget);
+    
+    const data = {
+      name: formData.get('name') as string,
+      email: formData.get('email') as string,
+    };
+
+    const result = formSchema.safeParse(data);
+    if (!result.success) {
+      toast({
+        title: 'Please check your form',
+        description: result.error.errors[0].message,
+        variant: 'destructive',
+      });
+      return;
+    }
+
+    setIsLoading(true);
+
+    try {
+      const { error } = await supabase.from('leads').insert({
+        first_name: data.name.trim(),
+        email: data.email.trim().toLowerCase(),
+        source: 'seller-guide',
+      });
+
+      if (error) throw error;
+
+      setSubmitted(true);
+      toast({
+        title: 'Guide on its way!',
+        description: 'Check your email for the download link.',
+      });
+    } catch (error) {
+      console.error('Seller guide form error:', error);
+      toast({
+        title: 'Something went wrong',
+        description: 'Please try again.',
+        variant: 'destructive',
+      });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
     <Layout>
+      <SEOHead
+        title="Free First-Time Seller Guide"
+        description="Download the free GTA home seller guide. Learn pricing strategies, staging tips, and avoid common mistakes when selling your home in the Greater Toronto Area."
+        canonicalUrl="https://gta-insight-hub.lovable.app/seller-guide"
+      />
+      
       <section className="bg-gradient-warm min-h-[80vh] flex items-center">
         <div className="container-wide mx-auto section-padding">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -74,15 +132,24 @@ export default function SellerGuide() {
                   <form onSubmit={handleSubmit} className="space-y-4">
                     <div className="space-y-2">
                       <Label htmlFor="name">Your Name</Label>
-                      <Input id="name" placeholder="John Smith" required />
+                      <Input id="name" name="name" placeholder="John Smith" required />
                     </div>
                     <div className="space-y-2">
                       <Label htmlFor="email">Email Address</Label>
-                      <Input id="email" type="email" placeholder="john@example.com" required />
+                      <Input id="email" name="email" type="email" placeholder="john@example.com" required />
                     </div>
-                    <Button variant="gold" size="lg" type="submit" className="w-full">
-                      <Download className="w-4 h-4" />
-                      Download Free Guide
+                    <Button variant="gold" size="lg" type="submit" className="w-full" disabled={isLoading}>
+                      {isLoading ? (
+                        <>
+                          <Loader2 className="w-4 h-4 animate-spin" />
+                          Sending...
+                        </>
+                      ) : (
+                        <>
+                          <Download className="w-4 h-4" />
+                          Download Free Guide
+                        </>
+                      )}
                     </Button>
                     <p className="text-xs text-muted-foreground text-center">
                       By downloading, you agree to receive occasional market updates. 

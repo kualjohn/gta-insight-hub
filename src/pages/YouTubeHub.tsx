@@ -8,6 +8,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Skeleton } from '@/components/ui/skeleton';
 import { useYouTubeVideos } from '@/hooks/useYouTubeVideos';
+import { SEOHead } from '@/components/seo/SEOHead';
 
 const CHANNEL_URL = 'https://www.youtube.com/channel/UCNiL5jVJ7uM89e2S69FrUxQ';
 
@@ -49,6 +50,13 @@ export default function YouTubeHub() {
 
   return (
     <Layout>
+      <SEOHead
+        title="YouTube Channel | GTA Real Estate Videos"
+        description="Watch free GTA real estate videos covering market updates, selling tips, and neighborhood guides. New videos every week from Fawad Ahmed."
+        canonicalUrl="https://gta-insight-hub.lovable.app/youtube"
+      />
+      
+      {/* Header */}
       {/* Header */}
       <section className="bg-charcoal text-primary-foreground section-padding py-16">
         <div className="container-wide mx-auto">
