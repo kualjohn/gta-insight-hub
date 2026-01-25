@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import { ExternalLink, Search, AlertCircle, Youtube } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { ExternalLink, Search, AlertCircle, Youtube, ArrowRight } from 'lucide-react';
 import { Layout } from '@/components/layout/Layout';
 import { SectionWrapper } from '@/components/sections/SectionHeader';
 import { VideoCard } from '@/components/cards/VideoCard';
-import { CTABlock } from '@/components/sections/CTABlock';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Skeleton } from '@/components/ui/skeleton';
@@ -141,13 +141,38 @@ export default function YouTubeHub() {
 
       {/* Bottom CTA */}
       <SectionWrapper variant="muted">
-        <CTABlock
-          variant="primary"
-          title="Never Miss an Update"
-          subtitle="Subscribe to get weekly market updates and real estate advice delivered to your feed."
-          primaryCta={{ text: "Subscribe on YouTube", href: CHANNEL_URL }}
-          secondaryCta={{ text: "Book a Call", href: "/contact" }}
-        />
+        <div className="rounded-2xl p-8 lg:p-12 text-center bg-gradient-to-r from-primary to-primary/90">
+          <h3 className="font-serif text-2xl lg:text-3xl font-bold mb-3 text-primary-foreground">
+            Never Miss an Update
+          </h3>
+          <p className="text-lg mb-6 max-w-xl mx-auto text-primary-foreground/80">
+            Subscribe to get weekly market updates and real estate advice delivered to your feed.
+          </p>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <Button
+              variant="outline"
+              size="lg"
+              asChild
+              className="border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-foreground bg-transparent"
+            >
+              <a href={CHANNEL_URL} target="_blank" rel="noopener noreferrer">
+                <Youtube className="w-4 h-4" />
+                Subscribe on YouTube
+              </a>
+            </Button>
+            <Button
+              variant="ghost"
+              size="lg"
+              asChild
+              className="text-primary-foreground hover:bg-primary-foreground/10"
+            >
+              <Link to="/contact">
+                Book a Call
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+            </Button>
+          </div>
+        </div>
       </SectionWrapper>
     </Layout>
   );
