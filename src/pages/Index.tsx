@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { ArrowRight, Download, Phone, Play, Youtube } from 'lucide-react';
+import { ArrowRight, Download, Phone, Youtube, AlertCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { VideoCard } from '@/components/cards/VideoCard';
 import { BlogCard } from '@/components/cards/BlogCard';
@@ -9,34 +9,8 @@ import { TrustIndicators } from '@/components/sections/TrustIndicators';
 import { SellerUSPBlock } from '@/components/sections/SellerUSPBlock';
 import { CTABlock } from '@/components/sections/CTABlock';
 import { Layout } from '@/components/layout/Layout';
-
-// Mock data
-const latestVideos = [
-  {
-    id: 1,
-    title: 'GTA Market Update January 2024: What Sellers Need to Know',
-    thumbnail: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&h=450&fit=crop',
-    duration: '12:45',
-    category: 'Market Update',
-    date: 'Jan 15, 2024',
-  },
-  {
-    id: 2,
-    title: 'Should You Sell in Winter? GTA Real Estate Analysis',
-    thumbnail: 'https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=800&h=450&fit=crop',
-    duration: '8:32',
-    category: 'Selling Advice',
-    date: 'Jan 10, 2024',
-  },
-  {
-    id: 3,
-    title: 'First-Time Seller Mistakes to Avoid in 2024',
-    thumbnail: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&h=450&fit=crop',
-    duration: '15:20',
-    category: 'Tips',
-    date: 'Jan 5, 2024',
-  },
-];
+import { useYouTubeVideos } from '@/hooks/useYouTubeVideos';
+import { Skeleton } from '@/components/ui/skeleton';
 
 const latestMarketUpdates = [
   {
@@ -101,7 +75,29 @@ const latestBlogs = [
   },
 ];
 
+function formatDate(dateString: string): string {
+  const date = new Date(dateString);
+  return date.toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric',
+  });
+}
+
+function VideoSkeleton() {
+  return (
+    <div className="space-y-4">
+      <Skeleton className="aspect-video rounded-lg" />
+      <Skeleton className="h-4 w-20" />
+      <Skeleton className="h-6 w-full" />
+      <Skeleton className="h-4 w-32" />
+    </div>
+  );
+}
+
 const Index = () => {
+  const { videos, isLoading, error, channelUrl } = useYouTubeVideos(6);
+
   return (
     <Layout>
       {/* Hero Section */}
@@ -148,16 +144,44 @@ const Index = () => {
       {/* Latest Videos Section */}
       <SectionWrapper>
         <SectionHeader
-          title="Latest GTA Market Updates & Advice"
-          subtitle="Weekly videos covering market trends, selling strategies, and practical real estate advice."
+          title="Latest Videos"
+          subtitle="Automatically updated from my YouTube channel."
           ctaText="Watch More Videos"
           ctaHref="/youtube"
         />
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {latestVideos.map((video) => (
-            <VideoCard key={video.id} {...video} />
-          ))}
-        </div>
+        
+        {isLoading ? (
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[1, 2, 3].map((i) => (
+              <VideoSkeleton key={i} />
+            ))}
+          </div>
+        ) : error ? (
+          <div className="text-center py-12 bg-muted/50 rounded-lg">
+            <AlertCircle className="w-12 h-12 text-muted-foreground mx-auto mb-4" />
+            <h3 className="font-semibold text-lg mb-2">Unable to load videos</h3>
+            <p className="text-muted-foreground mb-4">
+              We couldn't fetch the latest videos. Please try again later.
+            </p>
+            <Button variant="outline" asChild>
+              <a href={channelUrl} target="_blank" rel="noopener noreferrer">
+                Visit YouTube Channel
+              </a>
+            </Button>
+          </div>
+        ) : (
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {videos.slice(0, 6).map((video) => (
+              <VideoCard
+                key={video.videoId}
+                title={video.title}
+                thumbnail={video.thumbnail}
+                videoUrl={video.link}
+                date={formatDate(video.published)}
+              />
+            ))}
+          </div>
+        )}
       </SectionWrapper>
 
       {/* Market Updates Section */}
