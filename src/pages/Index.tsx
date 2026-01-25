@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { ArrowRight, Download, Phone, Youtube, AlertCircle } from 'lucide-react';
+import { ArrowRight, Download, Phone, Youtube, AlertCircle, ExternalLink } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { VideoCard } from '@/components/cards/VideoCard';
 import { BlogCard } from '@/components/cards/BlogCard';
@@ -95,6 +95,9 @@ function VideoSkeleton() {
   );
 }
 
+const FEATURED_VIDEO_ID = 'Mh6UJ08iSkA';
+const CHANNEL_URL = 'https://www.youtube.com/channel/UCNiL5jVJ7uM89e2S69FrUxQ';
+
 const Index = () => {
   const { videos, isLoading, error, channelUrl } = useYouTubeVideos(6);
 
@@ -102,43 +105,75 @@ const Index = () => {
     <Layout>
       {/* Hero Section */}
       <section className="relative bg-gradient-warm overflow-hidden">
-        <div className="container-wide mx-auto section-padding py-20 lg:py-32">
-          <div className="max-w-3xl">
-            <span className="inline-block text-sm font-medium text-primary mb-4 tracking-wide uppercase">
-              GTA Real Estate Authority
-            </span>
-            <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-              Real Insights for<br />
-              <span className="text-gradient-gold">GTA Homeowners.</span>
-            </h1>
-            <p className="text-lg lg:text-xl text-muted-foreground mb-8 max-w-2xl">
-              Honest market updates, data-driven analysis, and practical real estate 
-              advice for families across the Greater Toronto Area.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Button variant="gold" size="xl" asChild>
-                <Link to="/contact">
-                  <Phone className="w-5 h-5" />
-                  Book a Call
-                </Link>
-              </Button>
-              <Button variant="outline-dark" size="xl" asChild>
-                <Link to="/seller-guide">
-                  <Download className="w-5 h-5" />
-                  First-Time Seller Guide
-                </Link>
-              </Button>
-              <Button variant="ghost" size="xl" asChild>
-                <Link to="/youtube" className="text-foreground">
-                  <Youtube className="w-5 h-5" />
-                  Watch My Videos
-                </Link>
-              </Button>
+        <div className="container-wide mx-auto section-padding py-16 lg:py-24">
+          <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+            {/* Left: Text Content */}
+            <div>
+              <span className="inline-block text-sm font-medium text-primary mb-4 tracking-wide uppercase">
+                GTA Real Estate Authority
+              </span>
+              <h1 className="font-serif text-4xl sm:text-5xl lg:text-5xl xl:text-6xl font-bold mb-6 leading-tight">
+                Real Insights for<br />
+                <span className="text-gradient-gold">GTA Homeowners.</span>
+              </h1>
+              <p className="text-lg lg:text-xl text-muted-foreground mb-8 max-w-xl">
+                Honest market updates, data-driven analysis, and practical real estate 
+                advice for families across the Greater Toronto Area.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Button variant="gold" size="lg" asChild>
+                  <Link to="/contact">
+                    <Phone className="w-5 h-5" />
+                    Book a Call
+                  </Link>
+                </Button>
+                <Button variant="outline-dark" size="lg" asChild>
+                  <Link to="/seller-guide">
+                    <Download className="w-5 h-5" />
+                    Seller Guide
+                  </Link>
+                </Button>
+              </div>
+            </div>
+
+            {/* Right: Featured Video */}
+            <div className="w-full">
+              <span className="inline-block text-sm font-semibold text-primary mb-3 tracking-wide uppercase">
+                Watch This First
+              </span>
+              <div className="relative aspect-video rounded-xl overflow-hidden shadow-xl ring-1 ring-border/50">
+                <iframe
+                  src={`https://www.youtube.com/embed/${FEATURED_VIDEO_ID}?rel=0`}
+                  title="Featured Video"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  className="absolute inset-0 w-full h-full"
+                />
+              </div>
+              <div className="flex items-center gap-4 mt-3">
+                <a
+                  href={`https://www.youtube.com/watch?v=${FEATURED_VIDEO_ID}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
+                >
+                  <ExternalLink className="w-3.5 h-3.5" />
+                  Watch on YouTube
+                </a>
+                <span className="text-muted-foreground/50">•</span>
+                <a
+                  href={CHANNEL_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
+                >
+                  <Youtube className="w-3.5 h-3.5" />
+                  Subscribe
+                </a>
+              </div>
             </div>
           </div>
         </div>
-        {/* Decorative element */}
-        <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-primary/5 to-transparent pointer-events-none" />
       </section>
 
       {/* Latest Videos Section */}
