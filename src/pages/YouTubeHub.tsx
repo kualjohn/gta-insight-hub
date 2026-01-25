@@ -1,94 +1,51 @@
 import { useState } from 'react';
-import { ExternalLink } from 'lucide-react';
+import { ExternalLink, Search, AlertCircle, Youtube } from 'lucide-react';
 import { Layout } from '@/components/layout/Layout';
 import { SectionWrapper } from '@/components/sections/SectionHeader';
 import { VideoCard } from '@/components/cards/VideoCard';
 import { CTABlock } from '@/components/sections/CTABlock';
 import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Skeleton } from '@/components/ui/skeleton';
+import { useYouTubeVideos } from '@/hooks/useYouTubeVideos';
 
-const categories = ['All', 'Market Updates', 'Selling Advice', 'First-Time Seller Tips', 'GTA Analysis'];
+const CHANNEL_URL = 'https://www.youtube.com/channel/UCNiL5jVJ7uM89e2S69FrUxQ';
 
-const videos = [
-  {
-    id: 1,
-    title: 'GTA Market Update January 2024: What Sellers Need to Know',
-    thumbnail: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&h=450&fit=crop',
-    duration: '12:45',
-    category: 'Market Updates',
-    date: 'Jan 15, 2024',
-  },
-  {
-    id: 2,
-    title: 'Should You Sell in Winter? GTA Real Estate Analysis',
-    thumbnail: 'https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=800&h=450&fit=crop',
-    duration: '8:32',
-    category: 'Selling Advice',
-    date: 'Jan 10, 2024',
-  },
-  {
-    id: 3,
-    title: 'First-Time Seller Mistakes to Avoid in 2024',
-    thumbnail: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&h=450&fit=crop',
-    duration: '15:20',
-    category: 'First-Time Seller Tips',
-    date: 'Jan 5, 2024',
-  },
-  {
-    id: 4,
-    title: 'Mississauga vs Milton: Where Should You Buy?',
-    thumbnail: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&h=450&fit=crop',
-    duration: '18:45',
-    category: 'GTA Analysis',
-    date: 'Dec 28, 2023',
-  },
-  {
-    id: 5,
-    title: 'How to Price Your Home Right: A Data-Driven Approach',
-    thumbnail: 'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800&h=450&fit=crop',
-    duration: '11:30',
-    category: 'Selling Advice',
-    date: 'Dec 22, 2023',
-  },
-  {
-    id: 6,
-    title: 'December 2023 GTA Market Recap',
-    thumbnail: 'https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=800&h=450&fit=crop',
-    duration: '14:15',
-    category: 'Market Updates',
-    date: 'Dec 18, 2023',
-  },
-  {
-    id: 7,
-    title: 'Understanding Home Inspections: A Seller\'s Guide',
-    thumbnail: 'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&h=500&fit=crop',
-    duration: '9:45',
-    category: 'First-Time Seller Tips',
-    date: 'Dec 14, 2023',
-  },
-  {
-    id: 8,
-    title: 'The Truth About Real Estate Agent Commissions',
-    thumbnail: 'https://images.unsplash.com/photo-1600573472591-ee6981cf35b6?w=800&h=450&fit=crop',
-    duration: '13:20',
-    category: 'Selling Advice',
-    date: 'Dec 10, 2023',
-  },
-  {
-    id: 9,
-    title: 'Oakville Real Estate: 2024 Outlook',
-    thumbnail: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&h=450&fit=crop',
-    duration: '16:00',
-    category: 'GTA Analysis',
-    date: 'Dec 5, 2023',
-  },
-];
+function formatDate(dateString: string): string {
+  const date = new Date(dateString);
+  return date.toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric',
+  });
+}
+
+function VideoSkeleton() {
+  return (
+    <div className="space-y-4">
+      <Skeleton className="aspect-video rounded-lg" />
+      <Skeleton className="h-4 w-20" />
+      <Skeleton className="h-6 w-full" />
+      <Skeleton className="h-4 w-32" />
+    </div>
+  );
+}
 
 export default function YouTubeHub() {
-  const [selectedCategory, setSelectedCategory] = useState('All');
+  const { videos, isLoading, error, channelUrl } = useYouTubeVideos();
+  const [searchQuery, setSearchQuery] = useState('');
+  const [visibleCount, setVisibleCount] = useState(9);
 
-  const filteredVideos = selectedCategory === 'All'
-    ? videos
-    : videos.filter(video => video.category === selectedCategory);
+  const filteredVideos = videos.filter((video) =>
+    video.title.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
+  const displayedVideos = filteredVideos.slice(0, visibleCount);
+  const hasMore = filteredVideos.length > visibleCount;
+
+  const loadMore = () => {
+    setVisibleCount((prev) => prev + 6);
+  };
 
   return (
     <Layout>
@@ -106,35 +63,80 @@ export default function YouTubeHub() {
             Subscribe for the latest real estate insights.
           </p>
           <Button variant="gold" size="lg" asChild>
-            <a href="https://youtube.com" target="_blank" rel="noopener noreferrer">
-              <ExternalLink className="w-4 h-4" />
+            <a href={CHANNEL_URL} target="_blank" rel="noopener noreferrer">
+              <Youtube className="w-5 h-5" />
               Subscribe on YouTube
             </a>
           </Button>
         </div>
       </section>
 
-      {/* Filter */}
       <SectionWrapper>
-        <div className="flex flex-wrap gap-2 mb-10">
-          {categories.map((category) => (
-            <Button
-              key={category}
-              variant={selectedCategory === category ? 'gold' : 'outline'}
-              size="sm"
-              onClick={() => setSelectedCategory(category)}
-            >
-              {category}
-            </Button>
-          ))}
+        {/* Search */}
+        <div className="mb-8">
+          <div className="relative max-w-md">
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+            <Input
+              type="text"
+              placeholder="Search videos..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="pl-10"
+            />
+          </div>
         </div>
 
         {/* Videos Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredVideos.map((video) => (
-            <VideoCard key={video.id} {...video} />
-          ))}
-        </div>
+        {isLoading ? (
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[1, 2, 3, 4, 5, 6].map((i) => (
+              <VideoSkeleton key={i} />
+            ))}
+          </div>
+        ) : error ? (
+          <div className="text-center py-16 bg-muted/50 rounded-lg">
+            <AlertCircle className="w-16 h-16 text-muted-foreground mx-auto mb-4" />
+            <h3 className="font-serif font-semibold text-xl mb-2">Unable to load videos</h3>
+            <p className="text-muted-foreground mb-6 max-w-md mx-auto">
+              We couldn't fetch the latest videos from YouTube. Please try again later or visit the channel directly.
+            </p>
+            <Button variant="gold" asChild>
+              <a href={channelUrl} target="_blank" rel="noopener noreferrer">
+                <ExternalLink className="w-4 h-4" />
+                Visit YouTube Channel
+              </a>
+            </Button>
+          </div>
+        ) : filteredVideos.length === 0 ? (
+          <div className="text-center py-16">
+            <p className="text-muted-foreground text-lg">
+              {searchQuery ? `No videos found for "${searchQuery}"` : 'No videos available'}
+            </p>
+          </div>
+        ) : (
+          <>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {displayedVideos.map((video) => (
+                <VideoCard
+                  key={video.videoId}
+                  title={video.title}
+                  thumbnail={video.thumbnail}
+                  videoUrl={video.link}
+                  date={formatDate(video.published)}
+                />
+              ))}
+            </div>
+
+            {/* Load More */}
+            {hasMore && (
+              <div className="text-center mt-10">
+                <Button variant="outline" size="lg" onClick={loadMore}>
+                  Load More Videos
+                </Button>
+              </div>
+            )}
+          </>
+        )}
       </SectionWrapper>
 
       {/* Bottom CTA */}
@@ -143,7 +145,7 @@ export default function YouTubeHub() {
           variant="primary"
           title="Never Miss an Update"
           subtitle="Subscribe to get weekly market updates and real estate advice delivered to your feed."
-          primaryCta={{ text: "Subscribe on YouTube", href: "https://youtube.com" }}
+          primaryCta={{ text: "Subscribe on YouTube", href: CHANNEL_URL }}
           secondaryCta={{ text: "Book a Call", href: "/contact" }}
         />
       </SectionWrapper>
