@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Play, Youtube } from 'lucide-react';
+import { Play, Youtube, Phone, Video } from 'lucide-react';
 import { Layout } from '@/components/layout/Layout';
 import { SectionWrapper } from '@/components/sections/SectionHeader';
 import { CTABlock } from '@/components/sections/CTABlock';
@@ -7,12 +7,27 @@ import { Button } from '@/components/ui/button';
 import { SEOHead } from '@/components/seo/SEOHead';
 import fawadPortrait from '@/assets/fawad-portrait.jpg';
 
+const missionPoints = [
+  {
+    title: 'Why I Create Weekly Insights',
+    description: 'When I started in real estate, I noticed most homeowners didn\'t have access to honest, unbiased market information. Everything was filtered through agents with something to sell. So I started creating videos — weekly market updates, educational content, honest analysis. No sales pitches, just real information.',
+  },
+  {
+    title: 'How I Help Homeowners Make Smarter Decisions',
+    description: 'Whether you\'re selling your first home or your fifth, my goal is to give you the information you need to make confident decisions. Through my videos, guides, and personalized consultations, I help you understand the market and your options — with zero pressure.',
+  },
+  {
+    title: 'Data Over Hype',
+    description: 'No sensational predictions or fear tactics. Just real numbers, honest analysis, and practical advice. I believe informed homeowners make better decisions, and that\'s why I create free content every week.',
+  },
+];
+
 export default function About() {
   return (
     <Layout>
       <SEOHead
-        title="About Fawad Ahmed"
-        description="Learn about Fawad Ahmed, a GTA real estate broker with over a decade of experience helping families in Mississauga, Milton, Oakville, Burlington, and beyond."
+        title="About Fawad | Real Estate Market Expert"
+        description="Learn about Fawad, a GTA real estate expert with over a decade of experience. Weekly insights, data-backed advice, and a commitment to helping homeowners make smarter decisions."
         canonicalUrl="https://gta-insight-hub.lovable.app/about"
       />
       
@@ -25,11 +40,11 @@ export default function About() {
                 About Fawad
               </span>
               <h1 className="font-serif text-4xl lg:text-5xl font-bold mb-6">
-                Real Estate Through<br />
-                <span className="text-gradient-gold">Education & Trust</span>
+                Real Estate Market<br />
+                <span className="text-primary">Expert & Advisor</span>
               </h1>
               <p className="text-lg text-muted-foreground mb-6">
-                I believe the best real estate decisions come from understanding the market—not 
+                I believe the best real estate decisions come from understanding the market — not 
                 from sales pressure. That's why I create weekly content to help GTA homeowners 
                 make informed choices.
               </p>
@@ -44,26 +59,27 @@ export default function About() {
                     Watch My Videos
                   </Link>
                 </Button>
-                <Button variant="outline-dark" size="lg" asChild>
+                <Button variant="outline" size="lg" asChild>
                   <Link to="/contact">
+                    <Phone className="w-4 h-4" />
                     Book a Call
                   </Link>
                 </Button>
               </div>
             </div>
 
-            {/* Photo/Video placeholder */}
+            {/* Photo/Video */}
             <div className="relative">
-              <div className="aspect-[4/5] rounded-2xl overflow-hidden bg-muted">
-              <img
+              <div className="aspect-[4/5] rounded-2xl overflow-hidden bg-muted shadow-xl">
+                <img
                   src={fawadPortrait}
-                  alt="Fawad - GTA Real Estate Broker"
+                  alt="Fawad - GTA Real Estate Expert"
                   className="w-full h-full object-cover"
                 />
               </div>
               {/* Video overlay button */}
-              <button className="absolute bottom-6 left-6 flex items-center gap-3 bg-background/95 backdrop-blur-sm px-6 py-3 rounded-full shadow-lg hover:bg-background transition-colors">
-                <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center">
+              <button className="absolute bottom-6 left-6 flex items-center gap-3 bg-background/95 backdrop-blur-sm px-6 py-3 rounded-full shadow-lg hover:bg-background transition-colors group">
+                <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center group-hover:scale-110 transition-transform">
                   <Play className="w-4 h-4 text-primary-foreground fill-current ml-0.5" />
                 </div>
                 <span className="font-medium">Watch Intro Video</span>
@@ -73,71 +89,97 @@ export default function About() {
         </div>
       </section>
 
-      {/* Philosophy */}
+      {/* Mission & Philosophy */}
       <SectionWrapper>
-        <div className="max-w-3xl mx-auto text-center">
-          <h2 className="font-serif text-3xl lg:text-4xl font-bold mb-6">
-            Why I Make Content
-          </h2>
-          <p className="text-lg text-muted-foreground mb-6">
-            When I started in real estate, I noticed something: most homeowners didn't have 
-            access to honest, unbiased market information. Everything was filtered through 
-            agents with something to sell.
-          </p>
-          <p className="text-lg text-muted-foreground mb-6">
-            So I started creating videos—weekly market updates, educational content, honest 
-            analysis. No sales pitches, just real information that helps people understand 
-            what's happening in their community.
-          </p>
-          <p className="text-lg text-muted-foreground">
-            Today, hundreds of GTA families follow my content. And when they're ready to buy 
-            or sell, they already trust me—because I've been helping them for free all along.
-          </p>
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="font-serif text-3xl lg:text-4xl font-bold mb-4">
+              My Approach to Real Estate
+            </h2>
+            <p className="text-lg text-muted-foreground">
+              Education first. Data-driven insights. Zero pressure.
+            </p>
+          </div>
+
+          <div className="space-y-8">
+            {missionPoints.map((point, index) => (
+              <div key={index} className="flex gap-6">
+                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+                  <span className="font-serif text-xl font-bold text-primary">{index + 1}</span>
+                </div>
+                <div>
+                  <h3 className="font-serif text-xl font-semibold mb-2">{point.title}</h3>
+                  <p className="text-muted-foreground leading-relaxed">{point.description}</p>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </SectionWrapper>
 
-      {/* Values */}
+      {/* Stats */}
       <SectionWrapper variant="muted">
-        <div className="text-center mb-12">
-          <h2 className="font-serif text-3xl lg:text-4xl font-bold mb-4">
-            What I Stand For
-          </h2>
-        </div>
-
-        <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto text-center">
           {[
-            {
-              title: 'Education First',
-              description: 'I believe informed homeowners make better decisions. That\'s why I create free content every week.',
-            },
-            {
-              title: 'Data Over Hype',
-              description: 'No sensational predictions or fear tactics. Just real numbers and honest analysis.',
-            },
-            {
-              title: 'Client Success',
-              description: 'When you work with me, your success is my success. Full staging, marketing, and flexibility—included.',
-            },
-          ].map((value, index) => (
-            <div key={index} className="text-center p-6">
-              <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
-                <span className="font-serif text-xl font-bold text-primary">{index + 1}</span>
-              </div>
-              <h3 className="font-serif text-xl font-semibold mb-2">{value.title}</h3>
-              <p className="text-muted-foreground">{value.description}</p>
+            { stat: '10+', label: 'Years Experience' },
+            { stat: '500+', label: 'Videos Published' },
+            { stat: '1000+', label: 'Families Helped' },
+            { stat: '100%', label: 'Cancel Anytime' },
+          ].map((item, index) => (
+            <div key={index}>
+              <p className="text-4xl lg:text-5xl font-serif font-bold text-primary mb-2">{item.stat}</p>
+              <p className="text-sm text-muted-foreground">{item.label}</p>
             </div>
           ))}
         </div>
       </SectionWrapper>
 
-      {/* CTA */}
+      {/* Content Preview */}
       <SectionWrapper>
+        <div className="text-center mb-10">
+          <h2 className="font-serif text-3xl lg:text-4xl font-bold mb-4">
+            Weekly Content
+          </h2>
+          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+            Every week I publish new videos covering market updates, seller tips, buyer advice, 
+            and honest analysis of the GTA real estate market.
+          </p>
+        </div>
+
+        <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+          {[
+            { icon: Video, title: 'Market Updates', desc: 'Weekly analysis of what\'s happening in GTA communities' },
+            { icon: Youtube, title: 'Seller Tips', desc: 'Strategies to maximize your home\'s value and sell faster' },
+            { icon: Play, title: 'Buyer Advice', desc: 'Guidance for navigating the buying process confidently' },
+          ].map((item, index) => (
+            <div key={index} className="text-center p-6 bg-card rounded-xl border border-border">
+              <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
+                <item.icon className="w-6 h-6 text-primary" />
+              </div>
+              <h3 className="font-serif text-lg font-semibold mb-2">{item.title}</h3>
+              <p className="text-sm text-muted-foreground">{item.desc}</p>
+            </div>
+          ))}
+        </div>
+
+        <div className="text-center mt-8">
+          <Button variant="gold" size="lg" asChild>
+            <Link to="/youtube">
+              <Youtube className="w-4 h-4" />
+              Visit My YouTube Channel
+            </Link>
+          </Button>
+        </div>
+      </SectionWrapper>
+
+      {/* CTA */}
+      <SectionWrapper variant="muted">
         <CTABlock
           variant="dark"
           title="Let's Connect"
-          subtitle="Whether you have questions about the market or are thinking about selling, I'm here to help."
+          subtitle="Whether you have questions about the market or are thinking about selling, I'm here to help — no pressure, just honest advice."
           primaryCta={{ text: "Book a Call", href: "/contact" }}
-          secondaryCta={{ text: "Watch My Videos", href: "/youtube" }}
+          secondaryCta={{ text: "Download Seller Guide", href: "/seller-guide" }}
         />
       </SectionWrapper>
     </Layout>

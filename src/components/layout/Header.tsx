@@ -13,7 +13,7 @@ import {
 const mainNavigation = [
   { name: 'Home', href: '/' },
   { name: 'YouTube', href: '/youtube' },
-  { name: 'Market Updates', href: '/market-updates' },
+  { name: 'Insights', href: '/insights' },
 ];
 
 const sellersDropdown = [
@@ -21,7 +21,6 @@ const sellersDropdown = [
   { name: 'First-Time Seller Guide', href: '/seller-guide' },
   { name: 'Home Evaluation', href: '/home-evaluation' },
   { name: 'Staging', href: '/staging' },
-  { name: 'Success Stories', href: '/testimonials' },
 ];
 
 const aboutDropdown = [

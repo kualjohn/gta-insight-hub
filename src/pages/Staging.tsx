@@ -3,6 +3,8 @@ import { Layout } from '@/components/layout/Layout';
 import { SectionWrapper } from '@/components/sections/SectionHeader';
 import { CTABlock } from '@/components/sections/CTABlock';
 import { Button } from '@/components/ui/button';
+import { SEOHead } from '@/components/seo/SEOHead';
+import { Heart, ArrowRight } from 'lucide-react';
 
 const stagingExamples = [
   {
@@ -28,19 +30,41 @@ const stagingExamples = [
 export default function Staging() {
   return (
     <Layout>
+      <SEOHead
+        title="Free Home Staging | Professional Staging Included"
+        description="Professional staging is included FREE when you list with us. See before and after transformations that helped our clients sell faster and for more money."
+        canonicalUrl="https://gta-insight-hub.lovable.app/staging"
+      />
+
       {/* Header */}
       <section className="bg-gradient-warm section-padding py-16">
         <div className="container-wide mx-auto">
-          <span className="inline-block text-sm font-medium text-primary mb-4 tracking-wide uppercase">
-            Professional Staging
-          </span>
+          <div className="flex items-center gap-3 mb-4">
+            <Heart className="w-5 h-5 text-primary" />
+            <span className="text-sm font-medium text-primary tracking-wide uppercase">
+              Free When You List With Us
+            </span>
+          </div>
           <h1 className="font-serif text-4xl lg:text-5xl font-bold mb-4">
-            Staging That Sells
+            Professional Staging That Sells
           </h1>
-          <p className="text-lg text-muted-foreground max-w-2xl">
-            Professional staging isn't just about furniture—it's about helping buyers 
-            envision their future home. And it's included free when you list with me.
+          <p className="text-lg text-muted-foreground max-w-2xl mb-8">
+            My wife runs a professional staging company, and we include full home staging 
+            at no additional cost for all our sellers. It's one of the many ways we go above and beyond.
           </p>
+          <div className="flex flex-col sm:flex-row gap-4">
+            <Button variant="gold" size="lg" asChild>
+              <Link to="/contact">
+                Book a Staging Consultation
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+            </Button>
+            <Button variant="outline" size="lg" asChild>
+              <Link to="/seller-services">
+                View All Seller Services
+              </Link>
+            </Button>
+          </div>
         </div>
       </section>
 
@@ -59,18 +83,16 @@ export default function Staging() {
               </p>
               <p>
                 When buyers walk into a professionally staged home, they don't just see 
-                empty rooms—they see possibilities. They imagine family dinners, quiet 
+                empty rooms — they see possibilities. They imagine family dinners, quiet 
                 Sunday mornings, and memories waiting to be made.
               </p>
-              <p>
-                My wife runs a professional staging company, and we include full home 
-                staging at no additional cost for all our sellers. It's one of the many 
-                ways we go above and beyond.
+              <p className="font-medium text-foreground">
+                That emotional connection translates to faster sales and better offers.
               </p>
             </div>
           </div>
           <div className="bg-muted rounded-2xl p-8">
-            <h3 className="font-serif text-2xl font-bold mb-6 text-center">Staging Statistics</h3>
+            <h3 className="font-serif text-2xl font-bold mb-6 text-center">Staging by the Numbers</h3>
             <div className="grid grid-cols-2 gap-6">
               {[
                 { stat: '73%', label: 'Faster Sales' },
@@ -88,8 +110,32 @@ export default function Staging() {
         </div>
       </SectionWrapper>
 
-      {/* Before/After Gallery */}
+      {/* Free Staging Highlight */}
       <SectionWrapper variant="muted">
+        <div className="max-w-3xl mx-auto text-center">
+          <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full mb-6">
+            <Heart className="w-4 h-4" />
+            <span className="font-medium">A Family Business</span>
+          </div>
+          <h2 className="font-serif text-3xl lg:text-4xl font-bold mb-4">
+            Free Full Staging Is Included<br />When You List With Us
+          </h2>
+          <p className="text-lg text-muted-foreground mb-8">
+            My wife is a professional stager with years of experience transforming homes. 
+            When you list with me, her full staging services are included at absolutely 
+            no extra cost. It's our way of ensuring every home we sell looks its absolute best.
+          </p>
+          <Button variant="gold" size="lg" asChild>
+            <Link to="/contact">
+              Book a Consultation
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          </Button>
+        </div>
+      </SectionWrapper>
+
+      {/* Before/After Gallery */}
+      <SectionWrapper>
         <div className="text-center mb-12">
           <h2 className="font-serif text-3xl lg:text-4xl font-bold mb-4">
             Before & After Transformations
@@ -109,7 +155,7 @@ export default function Staging() {
                   <div className="aspect-video rounded-lg overflow-hidden bg-muted">
                     <img
                       src={example.before}
-                      alt={`${example.title} - Before`}
+                      alt={`${example.title} - Before staging`}
                       className="w-full h-full object-cover"
                     />
                   </div>
@@ -119,7 +165,7 @@ export default function Staging() {
                   <div className="aspect-video rounded-lg overflow-hidden bg-muted">
                     <img
                       src={example.after}
-                      alt={`${example.title} - After`}
+                      alt={`${example.title} - After staging`}
                       className="w-full h-full object-cover"
                     />
                   </div>
@@ -134,12 +180,12 @@ export default function Staging() {
       </SectionWrapper>
 
       {/* CTA */}
-      <SectionWrapper>
+      <SectionWrapper variant="muted">
         <CTABlock
           variant="dark"
           title="Ready to Transform Your Home?"
-          subtitle="Free professional staging is included when you list with me. Let's talk."
-          primaryCta={{ text: "Book a Call", href: "/contact" }}
+          subtitle="Free professional staging is included when you list with me. Let's talk about how we can showcase your home at its best."
+          primaryCta={{ text: "Book a Staging Consultation", href: "/contact" }}
           secondaryCta={{ text: "View Seller Services", href: "/seller-services" }}
         />
       </SectionWrapper>
