@@ -3,51 +3,67 @@ import { Layout } from '@/components/layout/Layout';
 import { SectionWrapper } from '@/components/sections/SectionHeader';
 import { CTABlock } from '@/components/sections/CTABlock';
 import { Button } from '@/components/ui/button';
+import { SEOHead } from '@/components/seo/SEOHead';
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from '@/components/ui/accordion';
+import { ArrowRight, Phone, Download } from 'lucide-react';
 
 const faqs = [
   {
-    question: 'How does the GTA selling process work?',
-    answer: 'The selling process typically takes 2-4 months from listing to closing. We start with a consultation to understand your goals, then prepare your home with staging and professional photography. Once listed, we actively market your property, handle showings and offers, negotiate on your behalf, and guide you through closing. I\'ll be with you every step of the way.',
+    question: 'How does the selling process work?',
+    answer: 'The selling process typically takes 2-4 months from listing to closing. We start with a consultation to understand your goals, then prepare your home with staging and professional photography. Once listed, we actively market your property, handle showings and offers, negotiate on your behalf, and guide you through closing. I\'ll be with you every step of the way — no surprises.',
+    cta: { text: 'Book a Consultation', href: '/contact' },
   },
   {
-    question: 'How long does it take to sell a home in the GTA?',
-    answer: 'It varies by area and market conditions, but properly priced and staged homes typically sell within 2-4 weeks in the GTA. Some sell in days with multiple offers, while others may take longer. During our consultation, I\'ll give you realistic expectations based on current market data for your specific neighborhood.',
+    question: 'Do you work with first-time sellers?',
+    answer: 'Absolutely! First-time sellers are actually my specialty. I know how overwhelming it can feel to sell your first home. That\'s why I created a free First-Time Seller Guide and why I take extra time to explain every step of the process. No question is too basic.',
+    cta: { text: 'Download First-Time Seller Guide', href: '/seller-guide' },
   },
   {
-    question: 'What are your fees and commission structure?',
-    answer: 'I offer flexible commission options based on the services you need. Unlike many agents, I include full staging, 4K video, drone photography, and paid advertising at no extra cost. During our consultation, I\'ll explain all options transparently so you can choose what works best for your situation.',
+    question: 'What happens on a call?',
+    answer: 'Our initial call is all about understanding your situation and goals. We\'ll discuss your timeline, what your home means to you, and what success looks like for your sale. I\'ll answer any questions you have about the market or the selling process. There\'s no pressure and no obligation — just honest conversation.',
+    cta: { text: 'Book Your Call', href: '/contact' },
   },
   {
-    question: 'Can I cancel the listing if my home doesn\'t sell?',
-    answer: 'Yes, absolutely. I believe in earning your business every day. If at any point you\'re unhappy or decide not to sell, you can cancel. No penalties, no hard feelings. My goal is to help you succeed, not to lock you into a contract.',
+    question: 'What if I\'m not ready to sell yet?',
+    answer: 'That\'s completely fine! Many of my clients follow my content for months or even years before they\'re ready to sell. I\'m happy to provide a free home evaluation and market analysis whenever you\'re curious about your home\'s value. When you\'re ready, I\'ll be here.',
+    cta: { text: 'Get a Home Evaluation', href: '/home-evaluation' },
   },
   {
-    question: 'What if my home doesn\'t sell?',
-    answer: 'If your home doesn\'t sell, we\'ll analyze why and adjust our strategy. This might mean a price adjustment, additional marketing, or timing considerations. I\'ll be honest with you about what\'s working and what isn\'t. Remember, you can cancel anytime—but most of my listings sell successfully with the right approach.',
+    question: 'What makes your marketing different?',
+    answer: 'Unlike traditional agents, I include comprehensive marketing at no extra cost: 4K video tours, drone photography, professional staging, dedicated property websites, and daily paid advertising across Facebook, Instagram, YouTube, and Google. Your home gets maximum exposure to qualified buyers.',
+    cta: { text: 'View Seller Services', href: '/seller-services' },
   },
   {
-    question: 'Do I really need staging?',
-    answer: 'Data shows staged homes sell 73% faster and for up to 20% more. But beyond statistics, staging helps buyers emotionally connect with your home. That\'s why I include full professional staging at no additional cost. It\'s one of the best investments in a successful sale.',
+    question: 'Can I cancel anytime?',
+    answer: 'Yes, absolutely. I believe in earning your business every day. If at any point you\'re unhappy with my service or decide not to sell, you can cancel with no penalties or hard feelings. My goal is to help you succeed, not to lock you into a contract.',
+    cta: { text: 'Learn More About My Services', href: '/seller-services' },
   },
   {
-    question: 'Should I make repairs before selling?',
-    answer: 'It depends on the repairs. Some improvements offer great ROI, while others don\'t. During our consultation, I\'ll walk through your home and recommend which repairs make sense and which ones you can skip. The goal is to maximize your return, not spend unnecessarily.',
+    question: 'Is staging really included for free?',
+    answer: 'Yes! My wife runs a professional staging company, and we include full home staging at no additional cost for all our sellers. Studies show staged homes sell 73% faster and for up to 20% more. It\'s one of the many ways we go above and beyond.',
+    cta: { text: 'Learn About Staging', href: '/staging' },
   },
   {
     question: 'How do you determine the right listing price?',
-    answer: 'I use a data-driven approach: analyzing recent comparable sales, current market conditions, your home\'s unique features, and buyer demand in your area. Pricing right from the start is crucial—overpricing leads to longer days on market and ultimately lower offers. I\'ll explain my reasoning and we\'ll decide together.',
+    answer: 'I use a data-driven approach: analyzing recent comparable sales, current market conditions, your home\'s unique features, and buyer demand in your area. Pricing right from the start is crucial — overpricing leads to longer days on market and ultimately lower offers. I\'ll explain my reasoning and we\'ll decide together.',
+    cta: { text: 'Request a Home Evaluation', href: '/home-evaluation' },
   },
 ];
 
 export default function FAQ() {
   return (
     <Layout>
+      <SEOHead
+        title="Frequently Asked Questions | GTA Real Estate"
+        description="Answers to common questions about selling your home in the GTA. Learn about the process, pricing, staging, and what makes our approach different."
+        canonicalUrl="https://gta-insight-hub.lovable.app/faq"
+      />
+
       {/* Header */}
       <section className="bg-gradient-warm section-padding py-16">
         <div className="container-wide mx-auto">
@@ -58,8 +74,8 @@ export default function FAQ() {
             Frequently Asked Questions
           </h1>
           <p className="text-lg text-muted-foreground max-w-2xl">
-            Answers to the most common questions from GTA home sellers. Can't find 
-            what you're looking for? Book a call and I'll be happy to help.
+            Answers to the questions I hear most from GTA homeowners. Can't find 
+            what you're looking for? Book a call and let's chat.
           </p>
         </div>
       </section>
@@ -77,8 +93,15 @@ export default function FAQ() {
                 <AccordionTrigger className="text-left font-serif text-lg font-semibold hover:no-underline py-6">
                   {faq.question}
                 </AccordionTrigger>
-                <AccordionContent className="text-muted-foreground pb-6">
-                  {faq.answer}
+                <AccordionContent className="pb-6">
+                  <p className="text-muted-foreground mb-4">{faq.answer}</p>
+                  <Link 
+                    to={faq.cta.href}
+                    className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline"
+                  >
+                    {faq.cta.text}
+                    <ArrowRight className="w-4 h-4" />
+                  </Link>
                 </AccordionContent>
               </AccordionItem>
             ))}
@@ -86,12 +109,50 @@ export default function FAQ() {
         </div>
       </SectionWrapper>
 
-      {/* CTA */}
+      {/* Quick Actions */}
       <SectionWrapper variant="muted">
+        <div className="max-w-3xl mx-auto">
+          <div className="text-center mb-8">
+            <h2 className="font-serif text-2xl font-bold mb-2">Ready to Take the Next Step?</h2>
+            <p className="text-muted-foreground">Choose what's right for you:</p>
+          </div>
+          
+          <div className="grid md:grid-cols-2 gap-4">
+            <Link 
+              to="/contact"
+              className="flex items-center gap-4 p-6 bg-card rounded-xl border border-border hover:border-primary transition-colors group"
+            >
+              <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+                <Phone className="w-5 h-5 text-primary" />
+              </div>
+              <div>
+                <h3 className="font-semibold">Book a Call</h3>
+                <p className="text-sm text-muted-foreground">Free, no-pressure consultation</p>
+              </div>
+            </Link>
+            
+            <Link 
+              to="/seller-guide"
+              className="flex items-center gap-4 p-6 bg-card rounded-xl border border-border hover:border-primary transition-colors group"
+            >
+              <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+                <Download className="w-5 h-5 text-primary" />
+              </div>
+              <div>
+                <h3 className="font-semibold">Download Seller Guide</h3>
+                <p className="text-sm text-muted-foreground">Free guide for first-time sellers</p>
+              </div>
+            </Link>
+          </div>
+        </div>
+      </SectionWrapper>
+
+      {/* CTA */}
+      <SectionWrapper>
         <CTABlock
           variant="dark"
           title="Still Have Questions?"
-          subtitle="I'm here to help. Book a free consultation and let's discuss your situation."
+          subtitle="I'm here to help. Book a free consultation and let's discuss your situation — no pressure, just honest advice."
           primaryCta={{ text: "Book a Call", href: "/contact" }}
           secondaryCta={{ text: "Watch My Videos", href: "/youtube" }}
         />

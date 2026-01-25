@@ -1,9 +1,7 @@
 import { Link } from 'react-router-dom';
-import { ArrowRight, Download, Phone, AlertCircle } from 'lucide-react';
+import { ArrowRight, Download, Phone, AlertCircle, Check, Play } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { VideoCard } from '@/components/cards/VideoCard';
-import { BlogCard } from '@/components/cards/BlogCard';
-import { MarketUpdateCard } from '@/components/cards/MarketUpdateCard';
 import { SectionHeader, SectionWrapper } from '@/components/sections/SectionHeader';
 import { TrustIndicators } from '@/components/sections/TrustIndicators';
 import { SellerUSPBlock } from '@/components/sections/SellerUSPBlock';
@@ -13,69 +11,7 @@ import { useYouTubeVideos } from '@/hooks/useYouTubeVideos';
 import { Skeleton } from '@/components/ui/skeleton';
 import { VideoLightbox } from '@/components/VideoLightbox';
 import { SEOHead } from '@/components/seo/SEOHead';
-
-const latestMarketUpdates = [
-  {
-    id: 1,
-    title: 'Mississauga Condo Market Shows Signs of Recovery',
-    area: 'Mississauga',
-    date: 'Jan 18, 2024',
-    excerpt: 'After months of slow activity, Mississauga condos are seeing renewed interest from first-time buyers looking to enter the market.',
-    trend: 'up' as const,
-    priceChange: '+2.3%',
-    slug: 'mississauga-condo-recovery',
-  },
-  {
-    id: 2,
-    title: 'Milton Single Family Homes Remain Stable',
-    area: 'Milton',
-    date: 'Jan 16, 2024',
-    excerpt: 'Milton continues to attract young families with stable pricing and strong community amenities.',
-    trend: 'stable' as const,
-    priceChange: '0%',
-    slug: 'milton-single-family-stable',
-  },
-  {
-    id: 3,
-    title: 'Burlington Luxury Market Sees Price Adjustment',
-    area: 'Burlington',
-    date: 'Jan 14, 2024',
-    excerpt: 'High-end properties in Burlington are adjusting to new market conditions with competitive pricing.',
-    trend: 'down' as const,
-    priceChange: '-1.8%',
-    slug: 'burlington-luxury-adjustment',
-  },
-];
-
-const latestBlogs = [
-  {
-    id: 1,
-    title: 'The Complete Guide to Selling Your First Home in the GTA',
-    excerpt: 'Everything first-time sellers need to know about the GTA real estate market, from pricing to closing.',
-    image: 'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&h=500&fit=crop',
-    category: 'Seller Tips',
-    date: 'Jan 12, 2024',
-    slug: 'guide-selling-first-home-gta',
-  },
-  {
-    id: 2,
-    title: 'Why Staging Matters: Before and After Transformations',
-    excerpt: 'Real examples of how professional staging helped our clients sell faster and for more money.',
-    image: 'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800&h=500&fit=crop',
-    category: 'Staging',
-    date: 'Jan 8, 2024',
-    slug: 'why-staging-matters',
-  },
-  {
-    id: 3,
-    title: 'Understanding the 2024 GTA Real Estate Forecast',
-    excerpt: 'A data-driven look at what sellers and buyers can expect in the Greater Toronto Area this year.',
-    image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&h=500&fit=crop',
-    category: 'Market Analysis',
-    date: 'Jan 3, 2024',
-    slug: '2024-gta-forecast',
-  },
-];
+import { NewsletterSignup } from '@/components/forms/NewsletterSignup';
 
 function formatDate(dateString: string): string {
   const date = new Date(dateString);
@@ -101,19 +37,26 @@ const FEATURED_VIDEO_ID = 'Mh6UJ08iSkA';
 const FEATURED_VIDEO_THUMBNAIL = `https://i.ytimg.com/vi/${FEATURED_VIDEO_ID}/maxresdefault.jpg`;
 const CHANNEL_URL = 'https://www.youtube.com/channel/UCNiL5jVJ7uM89e2S69FrUxQ';
 
+const firstTimeSellerPoints = [
+  'Understand the true value of your home in today\'s market',
+  'Avoid the 5 most common mistakes first-time sellers make',
+  'Learn what staging and marketing can do for your sale',
+  'Get honest answers without any sales pressure',
+];
+
 const Index = () => {
   const { videos, isLoading, error, channelUrl } = useYouTubeVideos(6);
 
   return (
     <Layout>
       <SEOHead
-        title="Fawad Ahmed | GTA Real Estate Expert"
-        description="Real insights for GTA homeowners. Honest market updates, data-driven analysis, and practical real estate advice for families across the Greater Toronto Area."
+        title="Real Estate Market Expert & Advisor | GTA"
+        description="Weekly videos, data-backed insights, and proven strategies to help you sell, buy, or invest with confidence in the Greater Toronto Area."
         canonicalUrl="https://gta-insight-hub.lovable.app"
       />
       
       {/* Hero Section - Cinematic Background */}
-      <section className="relative min-h-[600px] lg:min-h-[700px] overflow-hidden">
+      <section className="relative min-h-[650px] lg:min-h-[750px] overflow-hidden">
         {/* Background Image */}
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
@@ -121,26 +64,26 @@ const Index = () => {
         />
         
         {/* Dark Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/70 to-black/40" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/30" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/95 via-black/80 to-black/50" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/40" />
         
         {/* Content */}
         <div className="relative z-10 container-wide mx-auto section-padding h-full">
-          <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center min-h-[600px] lg:min-h-[700px] py-16 lg:py-24">
+          <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center min-h-[650px] lg:min-h-[750px] py-16 lg:py-24">
             {/* Left: Text Content */}
-            <div>
+            <div className="animate-fade-in">
               <span className="inline-block text-sm font-medium text-primary mb-4 tracking-wide uppercase">
                 GTA Real Estate Authority
               </span>
               <h1 className="font-serif text-4xl sm:text-5xl lg:text-5xl xl:text-6xl font-bold mb-6 leading-tight text-white">
-                Real Insights for<br />
-                <span className="text-primary">GTA Homeowners.</span>
+                Real Estate Market<br />
+                <span className="text-primary">Expert & Advisor</span>
               </h1>
               <p className="text-lg lg:text-xl text-white/80 mb-8 max-w-xl">
-                Honest market updates, data-driven analysis, and practical real estate 
-                advice for families across the Greater Toronto Area.
+                Weekly videos, data-backed insights, and proven strategies to help you sell, 
+                buy, or invest with confidence.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4">
+              <div className="flex flex-col sm:flex-row gap-4 mb-6">
                 <Button variant="gold" size="lg" asChild>
                   <Link to="/contact">
                     <Phone className="w-5 h-5" />
@@ -155,10 +98,18 @@ const Index = () => {
                 >
                   <Link to="/seller-guide">
                     <Download className="w-5 h-5" />
-                    Seller Guide
+                    Download Seller Guide
                   </Link>
                 </Button>
               </div>
+              <Link 
+                to="/youtube"
+                className="inline-flex items-center gap-2 text-white/70 hover:text-primary transition-colors text-sm font-medium"
+              >
+                <Play className="w-4 h-4" />
+                Watch More Videos
+                <ArrowRight className="w-4 h-4" />
+              </Link>
             </div>
 
             {/* Right: Play Button */}
@@ -176,8 +127,8 @@ const Index = () => {
       {/* Latest Videos Section */}
       <SectionWrapper>
         <SectionHeader
-          title="Latest Videos"
-          subtitle="Automatically updated from my YouTube channel."
+          title="Latest Videos — Weekly Insights & Advice"
+          subtitle="Automatically updated from my YouTube channel. Includes market updates, seller tips, and buyer tips."
           ctaText="Watch More Videos"
           ctaHref="/youtube"
         />
@@ -214,40 +165,64 @@ const Index = () => {
             ))}
           </div>
         )}
-      </SectionWrapper>
 
-      {/* Market Updates Section */}
-      <SectionWrapper variant="muted">
-        <SectionHeader
-          title="GTA Real Estate Market Updates"
-          subtitle="Stay informed with the latest trends and data from communities across the GTA."
-          ctaText="View All Updates"
-          ctaHref="/market-updates"
-        />
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {latestMarketUpdates.map((update) => (
-            <MarketUpdateCard key={update.id} {...update} />
-          ))}
+        {/* Newsletter after videos */}
+        <div className="mt-12">
+          <NewsletterSignup variant="inline" />
         </div>
       </SectionWrapper>
 
-      {/* Blog Section */}
-      <SectionWrapper>
-        <SectionHeader
-          title="Recent Articles & Deep Dives"
-          subtitle="In-depth guides and analysis to help you make informed real estate decisions."
-          ctaText="Read All Blogs"
-          ctaHref="/blog"
-        />
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {latestBlogs.map((blog) => (
-            <BlogCard key={blog.id} {...blog} />
-          ))}
+      {/* First-Time Seller Section */}
+      <SectionWrapper variant="muted">
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div>
+            <span className="inline-block text-sm font-medium text-primary mb-4 tracking-wide uppercase">
+              New to Selling?
+            </span>
+            <h2 className="font-serif text-3xl lg:text-4xl font-bold mb-4">
+              Are You a First-Time Seller?
+            </h2>
+            <p className="text-lg text-muted-foreground mb-6">
+              Here's what you must know before you list — simple, honest, and pressure-free.
+            </p>
+            
+            <ul className="space-y-3 mb-8">
+              {firstTimeSellerPoints.map((point, index) => (
+                <li key={index} className="flex items-start gap-3">
+                  <div className="w-5 h-5 rounded-full bg-primary/10 flex items-center justify-center shrink-0 mt-0.5">
+                    <Check className="w-3 h-3 text-primary" />
+                  </div>
+                  <span className="text-muted-foreground">{point}</span>
+                </li>
+              ))}
+            </ul>
+
+            <Button variant="gold" size="lg" asChild>
+              <Link to="/seller-guide">
+                <Download className="w-5 h-5" />
+                Download Your First-Time Seller Guide
+              </Link>
+            </Button>
+          </div>
+
+          <div className="relative">
+            <div className="aspect-[4/3] rounded-2xl overflow-hidden bg-gradient-to-br from-primary/20 to-primary/5 border border-primary/10">
+              <img 
+                src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&h=600&fit=crop"
+                alt="Beautiful staged home"
+                className="w-full h-full object-cover"
+              />
+            </div>
+            <div className="absolute -bottom-4 -right-4 bg-primary text-primary-foreground px-6 py-3 rounded-lg shadow-lg">
+              <p className="font-semibold text-sm">Free Guide</p>
+              <p className="text-xs opacity-80">No pressure, just value</p>
+            </div>
+          </div>
         </div>
       </SectionWrapper>
 
       {/* Trust Indicators */}
-      <SectionWrapper variant="muted">
+      <SectionWrapper>
         <div className="text-center mb-12">
           <h2 className="font-serif text-3xl lg:text-4xl font-bold mb-4">
             Why GTA Families Trust Us
@@ -261,7 +236,7 @@ const Index = () => {
       </SectionWrapper>
 
       {/* Seller Value Section */}
-      <SectionWrapper>
+      <SectionWrapper variant="muted">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div>
             <span className="inline-block text-sm font-medium text-primary mb-4 tracking-wide uppercase">
@@ -293,7 +268,7 @@ const Index = () => {
       </SectionWrapper>
 
       {/* CTA Section */}
-      <SectionWrapper variant="muted">
+      <SectionWrapper>
         <CTABlock
           variant="dark"
           title="Ready to Have a Conversation?"

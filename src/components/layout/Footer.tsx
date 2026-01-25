@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom';
-import { Youtube, Mail, Phone, MapPin, Instagram, Facebook } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
+import { Youtube, Mail, Phone, MapPin, Instagram } from 'lucide-react';
+import { NewsletterSignup } from '@/components/forms/NewsletterSignup';
 
 const areas = [
   'Mississauga',
@@ -13,13 +12,15 @@ const areas = [
 ];
 
 const quickLinks = [
-  { name: 'Market Updates', href: '/market-updates' },
+  { name: 'Insights', href: '/insights' },
   { name: 'YouTube Channel', href: '/youtube' },
-  { name: 'Blog', href: '/blog' },
   { name: 'Seller Services', href: '/seller-services' },
   { name: 'First-Time Seller Guide', href: '/seller-guide' },
   { name: 'Home Evaluation', href: '/home-evaluation' },
+  { name: 'Staging', href: '/staging' },
 ];
+
+const YOUTUBE_CHANNEL = 'https://www.youtube.com/channel/UCNiL5jVJ7uM89e2S69FrUxQ';
 
 export function Footer() {
   return (
@@ -28,20 +29,11 @@ export function Footer() {
       <div className="border-b border-charcoal-light">
         <div className="container-wide mx-auto section-padding py-12">
           <div className="max-w-2xl mx-auto text-center">
-            <h3 className="font-serif text-2xl lg:text-3xl mb-3">Stay Updated</h3>
+            <h3 className="font-serif text-2xl lg:text-3xl mb-3">Get Weekly Insights</h3>
             <p className="text-primary-foreground/70 mb-6">
-              Get weekly GTA market updates and real estate insights delivered to your inbox.
+              Market trends, seller tips, and buyer guidance delivered every Friday.
             </p>
-            <form className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
-              <Input
-                type="email"
-                placeholder="Enter your email"
-                className="bg-charcoal-light border-charcoal-light text-primary-foreground placeholder:text-primary-foreground/50"
-              />
-              <Button variant="gold" type="submit">
-                Subscribe
-              </Button>
-            </form>
+            <NewsletterSignup variant="dark" />
           </div>
         </div>
       </div>
@@ -57,15 +49,16 @@ export function Footer() {
               </span>
             </Link>
             <p className="text-primary-foreground/70 text-sm leading-relaxed mb-6">
-              Real insights for GTA homeowners. Honest market updates, data-driven analysis, 
-              and practical real estate advice.
+              Real Estate Market Expert & Advisor. Weekly videos, data-backed insights, 
+              and proven strategies for GTA homeowners.
             </p>
             <div className="flex items-center gap-3">
               <a
-                href="https://youtube.com"
+                href={YOUTUBE_CHANNEL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 rounded-full bg-charcoal-light flex items-center justify-center hover:bg-primary transition-colors"
+                aria-label="YouTube"
               >
                 <Youtube className="w-5 h-5" />
               </a>
@@ -74,16 +67,20 @@ export function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 rounded-full bg-charcoal-light flex items-center justify-center hover:bg-primary transition-colors"
+                aria-label="Instagram"
               >
                 <Instagram className="w-5 h-5" />
               </a>
               <a
-                href="https://facebook.com"
+                href="https://tiktok.com"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 rounded-full bg-charcoal-light flex items-center justify-center hover:bg-primary transition-colors"
+                aria-label="TikTok"
               >
-                <Facebook className="w-5 h-5" />
+                <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
+                </svg>
               </a>
             </div>
           </div>
@@ -141,11 +138,6 @@ export function Footer() {
                 </span>
               </li>
             </ul>
-            <div className="mt-6">
-              <Button variant="outline-gold" size="sm" asChild>
-                <Link to="/contact">Book a Call</Link>
-              </Button>
-            </div>
           </div>
         </div>
       </div>

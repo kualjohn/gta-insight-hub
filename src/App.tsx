@@ -8,6 +8,7 @@ import Index from "./pages/Index";
 import MarketUpdates from "./pages/MarketUpdates";
 import YouTubeHub from "./pages/YouTubeHub";
 import Blog from "./pages/Blog";
+import Insights from "./pages/Insights";
 import SellerServices from "./pages/SellerServices";
 import SellerGuide from "./pages/SellerGuide";
 import HomeEvaluation from "./pages/HomeEvaluation";
@@ -33,6 +34,7 @@ const App = () => (
             <Route path="/market-updates" element={<MarketUpdates />} />
             <Route path="/youtube" element={<YouTubeHub />} />
             <Route path="/blog" element={<Blog />} />
+            <Route path="/insights" element={<Insights />} />
             <Route path="/seller-services" element={<SellerServices />} />
             <Route path="/seller-guide" element={<SellerGuide />} />
             <Route path="/home-evaluation" element={<HomeEvaluation />} />
