@@ -55,35 +55,53 @@ const Index = () => {
         canonicalUrl="https://gta-insight-hub.lovable.app"
       />
       
-      {/* Hero Section - Cinematic Background */}
-      <section className="relative min-h-[650px] lg:min-h-[750px] overflow-hidden">
-        {/* Background Image */}
-        <div 
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: `url(${FEATURED_VIDEO_THUMBNAIL})` }}
-        />
+      {/* Hero Section - Full-Width Video Background */}
+      <section className="relative min-h-[600px] lg:min-h-[700px] overflow-hidden">
+        {/* Background Video/Image - Replace src with MP4 when available */}
+        <div className="absolute inset-0">
+          {/* Poster image fallback - YouTube videos require MP4 conversion for HTML5 video */}
+          <img 
+            src={FEATURED_VIDEO_THUMBNAIL}
+            alt="Real Estate Market Expert"
+            className="absolute inset-0 w-full h-full object-cover"
+          />
+          {/* 
+            To use HTML5 video, replace the img above with:
+            <video
+              autoPlay
+              muted
+              loop
+              playsInline
+              disablePictureInPicture
+              preload="auto"
+              poster={FEATURED_VIDEO_THUMBNAIL}
+              className="absolute inset-0 w-full h-full object-cover"
+            >
+              <source src="YOUR_MP4_VIDEO_URL.mp4" type="video/mp4" />
+            </video>
+          */}
+        </div>
         
-        {/* Dark Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-r from-black/95 via-black/80 to-black/50" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/40" />
+        {/* Dark Overlay (35-40%) */}
+        <div className="absolute inset-0 bg-black/40" />
         
         {/* Content */}
-        <div className="relative z-10 container-wide mx-auto section-padding h-full">
-          <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center min-h-[650px] lg:min-h-[750px] py-16 lg:py-24">
+        <div className="relative z-10 container-wide mx-auto px-4 sm:px-6 lg:px-8 h-full">
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center min-h-[600px] lg:min-h-[700px] py-12 lg:py-16">
             {/* Left: Text Content */}
             <div className="animate-fade-in">
-              <span className="inline-block text-sm font-medium text-primary mb-4 tracking-wide uppercase">
+              <span className="inline-block text-sm font-medium text-primary mb-3 tracking-wide uppercase">
                 GTA Real Estate Authority
               </span>
-              <h1 className="font-serif text-4xl sm:text-5xl lg:text-5xl xl:text-6xl font-bold mb-6 leading-tight text-white">
+              <h1 className="font-serif text-4xl sm:text-5xl lg:text-5xl xl:text-6xl font-bold mb-5 leading-tight text-white">
                 Real Estate Market<br />
                 <span className="text-primary">Expert & Advisor</span>
               </h1>
-              <p className="text-lg lg:text-xl text-white/80 mb-8 max-w-xl">
+              <p className="text-lg lg:text-xl text-white/85 mb-6 max-w-xl">
                 Weekly videos, data-backed insights, and proven strategies to help you sell, 
                 buy, or invest with confidence.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 mb-6">
+              <div className="flex flex-col sm:flex-row gap-3 mb-5">
                 <Button variant="gold" size="lg" asChild>
                   <Link to="/contact">
                     <Phone className="w-5 h-5" />
@@ -125,23 +143,21 @@ const Index = () => {
       </section>
 
       {/* Latest Videos Section */}
-      <SectionWrapper>
+      <SectionWrapper className="py-12 lg:py-16">
         <SectionHeader
-          title="Latest Videos — Weekly Insights & Advice"
-          subtitle="Automatically updated from my YouTube channel. Includes market updates, seller tips, and buyer tips."
-          ctaText="Watch More Videos"
-          ctaHref="/youtube"
+          title="Latest Videos"
+          subtitle="Automatically updated from my YouTube channel."
         />
         
         {isLoading ? (
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
             {[1, 2, 3].map((i) => (
               <VideoSkeleton key={i} />
             ))}
           </div>
         ) : error ? (
-          <div className="text-center py-12 bg-muted/50 rounded-lg">
-            <AlertCircle className="w-12 h-12 text-muted-foreground mx-auto mb-4" />
+          <div className="text-center py-10 bg-muted/50 rounded-lg">
+            <AlertCircle className="w-10 h-10 text-muted-foreground mx-auto mb-3" />
             <h3 className="font-semibold text-lg mb-2">Unable to load videos</h3>
             <p className="text-muted-foreground mb-4">
               We couldn't fetch the latest videos. Please try again later.
@@ -153,7 +169,7 @@ const Index = () => {
             </Button>
           </div>
         ) : (
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
             {videos.slice(0, 6).map((video) => (
               <VideoCard
                 key={video.videoId}
@@ -166,27 +182,37 @@ const Index = () => {
           </div>
         )}
 
+        {/* Watch More Videos Button */}
+        <div className="text-center mt-8">
+          <Button variant="gold" size="lg" asChild>
+            <Link to="/youtube">
+              <Play className="w-5 h-5" />
+              Watch More Videos
+            </Link>
+          </Button>
+        </div>
+
         {/* Newsletter after videos */}
-        <div className="mt-12">
+        <div className="mt-10">
           <NewsletterSignup variant="inline" />
         </div>
       </SectionWrapper>
 
       {/* First-Time Seller Section */}
-      <SectionWrapper variant="muted">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+      <SectionWrapper variant="muted" className="py-12 lg:py-16">
+        <div className="grid lg:grid-cols-2 gap-10 items-center">
           <div>
-            <span className="inline-block text-sm font-medium text-primary mb-4 tracking-wide uppercase">
+            <span className="inline-block text-sm font-medium text-primary mb-3 tracking-wide uppercase">
               New to Selling?
             </span>
             <h2 className="font-serif text-3xl lg:text-4xl font-bold mb-4">
               Are You a First-Time Seller?
             </h2>
-            <p className="text-lg text-muted-foreground mb-6">
+            <p className="text-lg text-muted-foreground mb-5">
               Here's what you must know before you list — simple, honest, and pressure-free.
             </p>
             
-            <ul className="space-y-3 mb-8">
+            <ul className="space-y-2.5 mb-6">
               {firstTimeSellerPoints.map((point, index) => (
                 <li key={index} className="flex items-start gap-3">
                   <div className="w-5 h-5 rounded-full bg-primary/10 flex items-center justify-center shrink-0 mt-0.5">
@@ -206,14 +232,14 @@ const Index = () => {
           </div>
 
           <div className="relative">
-            <div className="aspect-[4/3] rounded-2xl overflow-hidden bg-gradient-to-br from-primary/20 to-primary/5 border border-primary/10">
+            <div className="aspect-[4/3] rounded-2xl overflow-hidden bg-gradient-to-br from-primary/20 to-primary/5 border border-primary/10 shadow-lg">
               <img 
                 src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&h=600&fit=crop"
                 alt="Beautiful staged home"
                 className="w-full h-full object-cover"
               />
             </div>
-            <div className="absolute -bottom-4 -right-4 bg-primary text-primary-foreground px-6 py-3 rounded-lg shadow-lg">
+            <div className="absolute -bottom-3 -right-3 bg-primary text-primary-foreground px-5 py-2.5 rounded-lg shadow-lg">
               <p className="font-semibold text-sm">Free Guide</p>
               <p className="text-xs opacity-80">No pressure, just value</p>
             </div>
@@ -222,9 +248,9 @@ const Index = () => {
       </SectionWrapper>
 
       {/* Trust Indicators */}
-      <SectionWrapper>
-        <div className="text-center mb-12">
-          <h2 className="font-serif text-3xl lg:text-4xl font-bold mb-4">
+      <SectionWrapper className="py-12 lg:py-16">
+        <div className="text-center mb-10">
+          <h2 className="font-serif text-3xl lg:text-4xl font-bold mb-3">
             Why GTA Families Trust Us
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
@@ -236,20 +262,20 @@ const Index = () => {
       </SectionWrapper>
 
       {/* Seller Value Section */}
-      <SectionWrapper variant="muted">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+      <SectionWrapper variant="muted" className="py-12 lg:py-16">
+        <div className="grid lg:grid-cols-2 gap-10 items-center">
           <div>
-            <span className="inline-block text-sm font-medium text-primary mb-4 tracking-wide uppercase">
+            <span className="inline-block text-sm font-medium text-primary mb-3 tracking-wide uppercase">
               When You're Ready
             </span>
-            <h2 className="font-serif text-3xl lg:text-4xl font-bold mb-6">
+            <h2 className="font-serif text-3xl lg:text-4xl font-bold mb-5">
               Here's How We Help<br />You Sell Your Home
             </h2>
-            <p className="text-muted-foreground text-lg mb-8">
+            <p className="text-muted-foreground text-lg mb-6">
               When the time comes to sell, we bring everything you need for a successful sale—staging, 
               marketing, photography, and strategic pricing—all included.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4">
+            <div className="flex flex-col sm:flex-row gap-3">
               <Button variant="gold" size="lg" asChild>
                 <Link to="/seller-services">
                   Learn About Our Services
@@ -268,7 +294,7 @@ const Index = () => {
       </SectionWrapper>
 
       {/* CTA Section */}
-      <SectionWrapper>
+      <SectionWrapper className="py-12 lg:py-16">
         <CTABlock
           variant="dark"
           title="Ready to Have a Conversation?"

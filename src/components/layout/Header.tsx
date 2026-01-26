@@ -13,14 +13,17 @@ import {
 const mainNavigation = [
   { name: 'Home', href: '/' },
   { name: 'YouTube', href: '/youtube' },
-  { name: 'Insights', href: '/insights' },
+  { name: 'Market Updates', href: '/market-updates' },
 ];
 
 const sellersDropdown = [
-  { name: 'Seller Services', href: '/seller-services' },
   { name: 'First-Time Seller Guide', href: '/seller-guide' },
-  { name: 'Home Evaluation', href: '/home-evaluation' },
-  { name: 'Staging', href: '/staging' },
+  { name: 'Seller Services', href: '/seller-services' },
+];
+
+const buyersDropdown = [
+  { name: 'First-Time Buyer Guide', href: '/buyer-guide' },
+  { name: 'Buyer Tips', href: '/buyer-tips' },
 ];
 
 const aboutDropdown = [
@@ -37,6 +40,8 @@ export function Header() {
   const isActiveDropdown = (items: { href: string }[]) => {
     return items.some(item => location.pathname === item.href);
   };
+
+  const isActiveBuyersDropdown = () => isActiveDropdown(buyersDropdown);
 
   return (
     <header className="sticky top-0 z-50 bg-background/95 backdrop-blur-md border-b border-border">
@@ -81,6 +86,36 @@ export function Header() {
               </DropdownMenuTrigger>
               <DropdownMenuContent align="center" className="w-48 bg-background border border-border shadow-lg">
                 {sellersDropdown.map((item) => (
+                  <DropdownMenuItem key={item.name} asChild>
+                    <Link
+                      to={item.href}
+                      className={cn(
+                        "w-full cursor-pointer",
+                        location.pathname === item.href && "text-primary"
+                      )}
+                    >
+                      {item.name}
+                    </Link>
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
+
+            {/* Buyers Dropdown */}
+            <DropdownMenu>
+              <DropdownMenuTrigger
+                className={cn(
+                  "flex items-center gap-1 px-4 py-2 text-sm font-medium transition-colors rounded-md outline-none",
+                  isActiveDropdown(buyersDropdown)
+                    ? "text-primary bg-primary/5"
+                    : "text-muted-foreground hover:text-foreground hover:bg-muted"
+                )}
+              >
+                Buyers
+                <ChevronDown className="h-4 w-4" />
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="center" className="w-48 bg-background border border-border shadow-lg">
+                {buyersDropdown.map((item) => (
                   <DropdownMenuItem key={item.name} asChild>
                     <Link
                       to={item.href}
@@ -184,6 +219,41 @@ export function Header() {
                 {mobileDropdown === 'sellers' && (
                   <div className="ml-4 border-l border-border">
                     {sellersDropdown.map((item) => (
+                      <Link
+                        key={item.name}
+                        to={item.href}
+                        onClick={() => setMobileMenuOpen(false)}
+                        className={cn(
+                          "block px-4 py-2 text-sm font-medium transition-colors",
+                          location.pathname === item.href
+                            ? "text-primary"
+                            : "text-muted-foreground hover:text-foreground"
+                        )}
+                      >
+                        {item.name}
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              {/* Mobile Buyers Dropdown */}
+              <div>
+                <button
+                  onClick={() => setMobileDropdown(mobileDropdown === 'buyers' ? null : 'buyers')}
+                  className={cn(
+                    "w-full flex items-center justify-between px-4 py-3 text-base font-medium transition-colors rounded-md",
+                    isActiveDropdown(buyersDropdown)
+                      ? "text-primary bg-primary/5"
+                      : "text-muted-foreground hover:text-foreground hover:bg-muted"
+                  )}
+                >
+                  Buyers
+                  <ChevronDown className={cn("h-4 w-4 transition-transform", mobileDropdown === 'buyers' && "rotate-180")} />
+                </button>
+                {mobileDropdown === 'buyers' && (
+                  <div className="ml-4 border-l border-border">
+                    {buyersDropdown.map((item) => (
                       <Link
                         key={item.name}
                         to={item.href}
