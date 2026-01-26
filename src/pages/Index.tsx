@@ -57,29 +57,24 @@ const Index = () => {
       
       {/* Hero Section - Full-Width Video Background */}
       <section className="relative min-h-[600px] lg:min-h-[700px] overflow-hidden">
-        {/* Background Video/Image - Replace src with MP4 when available */}
+        {/* Background Video - YouTube Embed with Autoplay */}
         <div className="absolute inset-0">
-          {/* Poster image fallback - YouTube videos require MP4 conversion for HTML5 video */}
+          {/* YouTube iframe as background - autoplay, muted, loop */}
+          <div className="absolute inset-0 pointer-events-none overflow-hidden">
+            <iframe
+              src={`https://www.youtube.com/embed/${FEATURED_VIDEO_ID}?autoplay=1&mute=1&loop=1&playlist=${FEATURED_VIDEO_ID}&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&enablejsapi=1&origin=${window.location.origin}`}
+              title="Background Video"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[177.78vh] min-w-full h-[56.25vw] min-h-full"
+              style={{ border: 'none' }}
+            />
+          </div>
+          {/* Fallback poster image while video loads */}
           <img 
             src={FEATURED_VIDEO_THUMBNAIL}
             alt="Real Estate Market Expert"
-            className="absolute inset-0 w-full h-full object-cover"
+            className="absolute inset-0 w-full h-full object-cover -z-10"
           />
-          {/* 
-            To use HTML5 video, replace the img above with:
-            <video
-              autoPlay
-              muted
-              loop
-              playsInline
-              disablePictureInPicture
-              preload="auto"
-              poster={FEATURED_VIDEO_THUMBNAIL}
-              className="absolute inset-0 w-full h-full object-cover"
-            >
-              <source src="YOUR_MP4_VIDEO_URL.mp4" type="video/mp4" />
-            </video>
-          */}
         </div>
         
         {/* Dark Overlay (35-40%) */}
