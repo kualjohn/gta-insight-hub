@@ -12,6 +12,7 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { VideoLightbox } from '@/components/VideoLightbox';
 import { SEOHead } from '@/components/seo/SEOHead';
 import { NewsletterSignup } from '@/components/forms/NewsletterSignup';
+import { SellerGuideSignup } from '@/components/forms/SellerGuideSignup';
 
 function formatDate(dateString: string): string {
   const date = new Date(dateString);
@@ -181,6 +182,11 @@ const Index = () => {
         {/* Newsletter after videos */}
         <div className="mt-10">
           <NewsletterSignup variant="inline" />
+        </div>
+
+        {/* Seller Guide Opt-in */}
+        <div className="mt-6">
+          <SellerGuideSignup />
         </div>
       </SectionWrapper>
 
