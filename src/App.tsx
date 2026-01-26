@@ -18,6 +18,8 @@ import Testimonials from "./pages/Testimonials";
 import Staging from "./pages/Staging";
 import FAQ from "./pages/FAQ";
 import Contact from "./pages/Contact";
+import BuyerGuide from "./pages/BuyerGuide";
+import BuyerTips from "./pages/BuyerTips";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -44,6 +46,8 @@ const App = () => (
             <Route path="/staging" element={<Staging />} />
             <Route path="/faq" element={<FAQ />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/buyer-guide" element={<BuyerGuide />} />
+            <Route path="/buyer-tips" element={<BuyerTips />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

@@ -46,7 +46,7 @@ export function VideoCard({
       onKeyDown={(e) => e.key === 'Enter' && handleClick()}
     >
       {/* Thumbnail */}
-      <div className="relative aspect-video rounded-lg overflow-hidden mb-4 bg-muted">
+      <div className="relative aspect-video rounded-lg overflow-hidden mb-4 bg-muted shadow-md group-hover:shadow-lg transition-shadow">
         <img
           src={thumbnail}
           alt={title}
