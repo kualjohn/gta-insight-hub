@@ -124,15 +124,6 @@ const Index = () => {
                 <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
-
-            {/* Right: Play Button */}
-            <div className="flex items-center justify-center lg:justify-end">
-              <VideoLightbox
-                videoId={FEATURED_VIDEO_ID}
-                thumbnailUrl={FEATURED_VIDEO_THUMBNAIL}
-                channelUrl={CHANNEL_URL}
-              />
-            </div>
           </div>
         </div>
       </section>
