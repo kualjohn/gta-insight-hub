@@ -53,7 +53,7 @@ const Index = () => {
       <SEOHead
         title="Real Estate Market Expert & Advisor | GTA"
         description="Weekly videos, data-backed insights, and proven strategies to help you sell, buy, or invest with confidence in the Greater Toronto Area."
-        canonicalUrl="https://gta-insight-hub.lovable.app"
+        canonicalUrl="https://fawadnissari.ca"
       />
       
       {/* Hero Section - Full-Width Video Background */}

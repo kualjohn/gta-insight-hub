@@ -2,7 +2,7 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://gta-insight-hub.lovable.app/sitemap.xml
+Sitemap: https://fawadnissari.ca/sitemap.xml
 
 # Specific bot permissions
 User-agent: Googlebot
