@@ -34,6 +34,30 @@ serve(async (req) => {
   const action = url.searchParams.get("action");
 
   try {
+    // ---- Upload image ----
+    if (req.method === "POST" && action === "upload") {
+      const formData = await req.formData();
+      const file = formData.get("file") as File;
+      const folder = formData.get("folder") as string || "general";
+      if (!file) throw new Error("No file provided");
+
+      const ext = file.name.split(".").pop() || "jpg";
+      const fileName = `${folder}/${crypto.randomUUID()}.${ext}`;
+
+      const { data, error } = await supabase.storage
+        .from("property-images")
+        .upload(fileName, file, { contentType: file.type, upsert: false });
+      if (error) throw error;
+
+      const { data: urlData } = supabase.storage
+        .from("property-images")
+        .getPublicUrl(data.path);
+
+      return new Response(JSON.stringify({ url: urlData.publicUrl }), {
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+
     if (req.method === "GET" && action === "list") {
       const { data, error } = await supabase.from("property_websites").select("*").order("sort_order", { ascending: true });
       if (error) throw error;

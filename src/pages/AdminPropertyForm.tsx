@@ -1,8 +1,8 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useNavigate, useParams, Link } from 'react-router-dom';
 import { useAdmin } from '@/hooks/useAdmin';
-import { adminCreateProperty, adminUpdateProperty, adminGetProperty, adminCheckSlug, toSlug } from '@/lib/adminApi';
-import { ArrowLeft, GripVertical, X, Plus } from 'lucide-react';
+import { adminCreateProperty, adminUpdateProperty, adminGetProperty, adminCheckSlug, adminUploadImage, toSlug } from '@/lib/adminApi';
+import { ArrowLeft, GripVertical, X, Plus, Upload, Loader2 } from 'lucide-react';
 
 const emptyForm = {
   title: '', slug: '', status: 'for_sale', city: '', neighbourhood: '', property_type: '',
@@ -11,6 +11,60 @@ const emptyForm = {
   video_url: '', tour_3d_url: '', floorplan_url: '', brochure_url: '',
   is_featured: false, published: true, sort_order: '0',
 };
+
+function ImageUploadField({ label, value, onChange, token, folder }: {
+  label: string; value: string; onChange: (url: string) => void; token: string; folder: string;
+}) {
+  const [uploading, setUploading] = useState(false);
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  const handleFile = async (file: File) => {
+    setUploading(true);
+    try {
+      const url = await adminUploadImage(token, file, folder);
+      onChange(url);
+    } catch (e: any) {
+      alert(e.message || 'Upload failed');
+    }
+    setUploading(false);
+  };
+
+  const labelClass = "font-body text-[10px] tracking-[0.15em] uppercase text-muted-foreground mb-1 block";
+
+  return (
+    <div>
+      <label className={labelClass}>{label}</label>
+      <div
+        onClick={() => !uploading && inputRef.current?.click()}
+        className="mt-1 border-2 border-dashed border-border hover:border-accent rounded-sm p-4 cursor-pointer transition-colors text-center"
+      >
+        {uploading ? (
+          <div className="flex items-center justify-center gap-2 py-4">
+            <Loader2 className="w-5 h-5 animate-spin text-accent" />
+            <span className="font-body text-sm text-muted-foreground">Uploading...</span>
+          </div>
+        ) : value ? (
+          <div className="relative group">
+            <img src={value} alt="" className="w-full h-32 object-cover rounded-sm" />
+            <div className="absolute inset-0 bg-background/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+              <span className="font-body text-xs text-foreground">Click to replace</span>
+            </div>
+          </div>
+        ) : (
+          <div className="py-6 flex flex-col items-center gap-2">
+            <Upload className="w-6 h-6 text-muted-foreground" />
+            <span className="font-body text-xs text-muted-foreground">Click to upload</span>
+          </div>
+        )}
+      </div>
+      <input ref={inputRef} type="file" accept="image/*" className="hidden" onChange={e => {
+        const file = e.target.files?.[0];
+        if (file) handleFile(file);
+        e.target.value = '';
+      }} />
+    </div>
+  );
+}
 
 export default function AdminPropertyForm() {
   const { id } = useParams<{ id: string }>();
@@ -22,8 +76,9 @@ export default function AdminPropertyForm() {
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState('');
   const [slugManual, setSlugManual] = useState(false);
-  const [newGalleryUrl, setNewGalleryUrl] = useState('');
+  const [galleryUploading, setGalleryUploading] = useState(false);
   const [dragIndex, setDragIndex] = useState<number | null>(null);
+  const galleryInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     if (!isAuthenticated) { navigate('/admin/login'); return; }
@@ -55,11 +110,20 @@ export default function AdminPropertyForm() {
     });
   };
 
-  const addGalleryImage = () => {
-    if (newGalleryUrl.trim()) {
-      setForm(f => ({ ...f, gallery_images: [...f.gallery_images, newGalleryUrl.trim()] }));
-      setNewGalleryUrl('');
+  const handleGalleryUpload = async (files: FileList) => {
+    if (!token) return;
+    setGalleryUploading(true);
+    const newUrls: string[] = [];
+    for (const file of Array.from(files)) {
+      try {
+        const url = await adminUploadImage(token, file, `gallery/${form.slug || 'property'}`);
+        newUrls.push(url);
+      } catch (e: any) {
+        console.error('Gallery upload failed:', e);
+      }
     }
+    setForm(f => ({ ...f, gallery_images: [...f.gallery_images, ...newUrls] }));
+    setGalleryUploading(false);
   };
 
   const removeGalleryImage = (index: number) => setForm(f => ({ ...f, gallery_images: f.gallery_images.filter((_, i) => i !== index) }));
@@ -162,25 +226,40 @@ export default function AdminPropertyForm() {
           <div className="mb-12">
             <h2 className="font-display text-lg text-foreground mb-6 border-b border-border pb-3">Media</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6 mb-8">
-              <div><label className={labelClass}>Thumbnail Image URL</label><input type="url" value={form.thumbnail_image} onChange={e => set('thumbnail_image', e.target.value)} className={inputClass} />{form.thumbnail_image && <img src={form.thumbnail_image} alt="thumb" className="mt-2 w-32 h-20 object-cover" />}</div>
-              <div><label className={labelClass}>Hero Image URL</label><input type="url" value={form.hero_image} onChange={e => set('hero_image', e.target.value)} className={inputClass} />{form.hero_image && <img src={form.hero_image} alt="hero" className="mt-2 w-32 h-20 object-cover" />}</div>
+              <ImageUploadField label="Thumbnail Image" value={form.thumbnail_image} onChange={url => set('thumbnail_image', url)} token={token!} folder={`thumbnails/${form.slug || 'property'}`} />
+              <ImageUploadField label="Hero Image" value={form.hero_image} onChange={url => set('hero_image', url)} token={token!} folder={`heroes/${form.slug || 'property'}`} />
             </div>
             <div>
               <label className={labelClass}>Gallery Images (drag to reorder)</label>
-              <div className="space-y-2 mt-3">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mt-3">
                 {form.gallery_images.map((img, i) => (
-                  <div key={i} draggable onDragStart={() => handleDragStart(i)} onDragOver={e => handleDragOver(e, i)} onDragEnd={handleDragEnd} className={`flex items-center gap-3 p-2 border border-border/50 ${dragIndex === i ? 'bg-accent/10' : 'bg-secondary/30'}`}>
-                    <GripVertical className="w-4 h-4 text-muted-foreground cursor-grab flex-shrink-0" />
-                    <img src={img} alt="" className="w-16 h-10 object-cover flex-shrink-0" />
-                    <span className="font-body text-xs text-muted-foreground truncate flex-1">{img}</span>
-                    <button type="button" onClick={() => removeGalleryImage(i)} className="text-muted-foreground hover:text-destructive flex-shrink-0"><X className="w-4 h-4" /></button>
+                  <div key={i} draggable onDragStart={() => handleDragStart(i)} onDragOver={e => handleDragOver(e, i)} onDragEnd={handleDragEnd} className={`relative group aspect-square overflow-hidden rounded-sm border ${dragIndex === i ? 'border-accent' : 'border-border/50'}`}>
+                    <img src={img} alt="" className="w-full h-full object-cover" />
+                    <div className="absolute inset-0 bg-background/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
+                      <GripVertical className="w-5 h-5 text-foreground cursor-grab" />
+                      <button type="button" onClick={() => removeGalleryImage(i)} className="text-destructive hover:text-destructive/80"><X className="w-5 h-5" /></button>
+                    </div>
+                    <span className="absolute top-1 left-1 bg-background/80 text-foreground font-body text-[10px] px-1.5 py-0.5 rounded-sm">{i + 1}</span>
                   </div>
                 ))}
+                <div
+                  onClick={() => !galleryUploading && galleryInputRef.current?.click()}
+                  className="aspect-square border-2 border-dashed border-border hover:border-accent rounded-sm flex flex-col items-center justify-center cursor-pointer transition-colors"
+                >
+                  {galleryUploading ? (
+                    <Loader2 className="w-6 h-6 animate-spin text-accent" />
+                  ) : (
+                    <>
+                      <Plus className="w-6 h-6 text-muted-foreground mb-1" />
+                      <span className="font-body text-[10px] text-muted-foreground">Upload Photos</span>
+                    </>
+                  )}
+                </div>
               </div>
-              <div className="flex gap-2 mt-3">
-                <input type="url" value={newGalleryUrl} onChange={e => setNewGalleryUrl(e.target.value)} className={`${inputClass} flex-1`} placeholder="Paste gallery image URL..." onKeyDown={e => { if (e.key === 'Enter') { e.preventDefault(); addGalleryImage(); } }} />
-                <button type="button" onClick={addGalleryImage} className="text-accent hover:text-accent/80 transition-colors"><Plus className="w-5 h-5" /></button>
-              </div>
+              <input ref={galleryInputRef} type="file" accept="image/*" multiple className="hidden" onChange={e => {
+                if (e.target.files?.length) handleGalleryUpload(e.target.files);
+                e.target.value = '';
+              }} />
             </div>
           </div>
 
