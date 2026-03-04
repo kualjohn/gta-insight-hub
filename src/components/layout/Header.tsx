@@ -14,6 +14,7 @@ const mainNavigation = [
   { name: 'Home', href: '/' },
   { name: 'YouTube', href: '/youtube' },
   { name: 'Market Updates', href: '/market-updates' },
+  { name: 'Portfolio', href: '/portfolio' },
 ];
 
 const sellersDropdown = [
