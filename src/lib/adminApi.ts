@@ -66,6 +66,23 @@ export async function adminCheckSlug(token: string, slug: string, excludeId?: st
   return data.exists;
 }
 
+export async function adminUploadImage(token: string, file: File, folder: string): Promise<string> {
+  const formData = new FormData();
+  formData.append('file', file);
+  formData.append('folder', folder);
+  const res = await fetch(`${BASE}?action=upload`, {
+    method: 'POST',
+    headers: { 'x-admin-token': token },
+    body: formData,
+  });
+  if (!res.ok) {
+    const err = await res.json();
+    throw new Error(err.error || 'Failed to upload image');
+  }
+  const data = await res.json();
+  return data.url;
+}
+
 export function toSlug(title: string): string {
   return title
     .toLowerCase()
