@@ -71,6 +71,96 @@ export type Database = {
         }
         Relationships: []
       }
+      property_websites: {
+        Row: {
+          baths: number | null
+          beds: number | null
+          brochure_url: string | null
+          city: string | null
+          created_at: string | null
+          description: string | null
+          floorplan_url: string | null
+          gallery_images: Json | null
+          hero_image: string | null
+          id: string
+          is_featured: boolean | null
+          lot_size: string | null
+          neighbourhood: string | null
+          price: number | null
+          property_type: string | null
+          published: boolean | null
+          slug: string
+          sold_tagline: string | null
+          sort_order: number | null
+          sqft: number | null
+          status: string
+          tagline: string | null
+          thumbnail_image: string | null
+          title: string
+          tour_3d_url: string | null
+          updated_at: string | null
+          video_url: string | null
+        }
+        Insert: {
+          baths?: number | null
+          beds?: number | null
+          brochure_url?: string | null
+          city?: string | null
+          created_at?: string | null
+          description?: string | null
+          floorplan_url?: string | null
+          gallery_images?: Json | null
+          hero_image?: string | null
+          id?: string
+          is_featured?: boolean | null
+          lot_size?: string | null
+          neighbourhood?: string | null
+          price?: number | null
+          property_type?: string | null
+          published?: boolean | null
+          slug: string
+          sold_tagline?: string | null
+          sort_order?: number | null
+          sqft?: number | null
+          status?: string
+          tagline?: string | null
+          thumbnail_image?: string | null
+          title: string
+          tour_3d_url?: string | null
+          updated_at?: string | null
+          video_url?: string | null
+        }
+        Update: {
+          baths?: number | null
+          beds?: number | null
+          brochure_url?: string | null
+          city?: string | null
+          created_at?: string | null
+          description?: string | null
+          floorplan_url?: string | null
+          gallery_images?: Json | null
+          hero_image?: string | null
+          id?: string
+          is_featured?: boolean | null
+          lot_size?: string | null
+          neighbourhood?: string | null
+          price?: number | null
+          property_type?: string | null
+          published?: boolean | null
+          slug?: string
+          sold_tagline?: string | null
+          sort_order?: number | null
+          sqft?: number | null
+          status?: string
+          tagline?: string | null
+          thumbnail_image?: string | null
+          title?: string
+          tour_3d_url?: string | null
+          updated_at?: string | null
+          video_url?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
