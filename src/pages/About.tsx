@@ -37,7 +37,7 @@ export default function About() {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
               <span className="inline-block text-sm font-medium text-primary mb-4 tracking-wide uppercase">
-                About Fawad
+                About Fawad Nissari
               </span>
               <h1 className="font-serif text-4xl lg:text-5xl font-bold mb-6">
                 Real Estate Market<br />
