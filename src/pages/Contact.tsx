@@ -83,8 +83,8 @@ export default function Contact() {
   return (
     <Layout>
       <SEOHead
-        title="Contact Fawad Ahmed"
-        description="Get in touch with Fawad Ahmed for expert GTA real estate advice. No pressure, just honest guidance on selling your home in the Greater Toronto Area."
+        title="Contact Fawad Nissari"
+        description="Get in touch with Fawad Nissari for expert GTA real estate advice. No pressure, just honest guidance on selling your home in the Greater Toronto Area."
         canonicalUrl="https://gta-insight-hub.lovable.app/contact"
       />
       
@@ -181,7 +181,7 @@ export default function Contact() {
                   </div>
                   <div>
                     <p className="font-semibold">Phone</p>
-                    <p className="text-muted-foreground">(647) 555-0123</p>
+                    <p className="text-muted-foreground">(416) 878-1085</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-4">
@@ -190,7 +190,7 @@ export default function Contact() {
                   </div>
                   <div>
                     <p className="font-semibold">Email</p>
-                    <p className="text-muted-foreground">fawad@gtarealestate.com</p>
+                    <p className="text-muted-foreground">fawad.nissari@housesigma.com</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-4">
@@ -250,7 +250,7 @@ export default function Contact() {
                 Schedule a call at a time that works for you. No pressure, just helpful advice.
               </p>
               <Button variant="gold" asChild>
-                <a href="tel:6475550123">
+                <a href="tel:4168781085">
                   <Phone className="w-4 h-4" />
                   Call Now
                 </a>

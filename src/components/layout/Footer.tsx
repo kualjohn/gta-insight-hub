@@ -125,11 +125,11 @@ export function Footer() {
             <ul className="space-y-3">
               <li className="flex items-start gap-3">
                 <Phone className="w-4 h-4 mt-1 text-primary" />
-                <span className="text-primary-foreground/70 text-sm">(647) 555-0123</span>
+                <span className="text-primary-foreground/70 text-sm">(416) 878-1085</span>
               </li>
               <li className="flex items-start gap-3">
                 <Mail className="w-4 h-4 mt-1 text-primary" />
-                <span className="text-primary-foreground/70 text-sm">fawad@gtarealestate.com</span>
+                <span className="text-primary-foreground/70 text-sm">fawad.nissari@housesigma.com</span>
               </li>
               <li className="flex items-start gap-3">
                 <MapPin className="w-4 h-4 mt-1 text-primary" />
@@ -146,7 +146,7 @@ export function Footer() {
       <div className="border-t border-charcoal-light">
         <div className="container-wide mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-primary-foreground/50">
-            <p>© 2024 Fawad Real Estate. All rights reserved.</p>
+            <p>© 2024 Fawad Nissari Real Estate. All rights reserved.</p>
             <div className="flex items-center gap-6">
               <Link to="/privacy" className="hover:text-primary transition-colors">
                 Privacy Policy

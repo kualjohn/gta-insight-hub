@@ -19,7 +19,7 @@ export function SEOHead({
   articlePublishedTime,
   noindex = false,
 }: SEOHeadProps) {
-  const siteName = 'Fawad Ahmed | GTA Real Estate';
+  const siteName = 'Fawad Nissari | GTA Real Estate';
   const fullTitle = title.includes('Fawad') ? title : `${title} | ${siteName}`;
   
   return (
