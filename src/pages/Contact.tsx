@@ -181,7 +181,7 @@ export default function Contact() {
                   </div>
                   <div>
                     <p className="font-semibold">Phone</p>
-                    <p className="text-muted-foreground">(647) 555-0123</p>
+                    <p className="text-muted-foreground">(416) 878-1085</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-4">
