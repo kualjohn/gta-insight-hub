@@ -146,7 +146,7 @@ export function Footer() {
       <div className="border-t border-charcoal-light">
         <div className="container-wide mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-primary-foreground/50">
-            <p>© 2024 Fawad Real Estate. All rights reserved.</p>
+            <p>© 2024 Fawad Nissari Real Estate. All rights reserved.</p>
             <div className="flex items-center gap-6">
               <Link to="/privacy" className="hover:text-primary transition-colors">
                 Privacy Policy

@@ -250,7 +250,7 @@ export default function Contact() {
                 Schedule a call at a time that works for you. No pressure, just helpful advice.
               </p>
               <Button variant="gold" asChild>
-                <a href="tel:6475550123">
+                <a href="tel:4168781085">
                   <Phone className="w-4 h-4" />
                   Call Now
                 </a>

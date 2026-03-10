@@ -73,7 +73,7 @@ export default function About() {
               <div className="aspect-[4/5] rounded-2xl overflow-hidden bg-muted shadow-xl">
                 <img
                   src={fawadPortrait}
-                  alt="Fawad - GTA Real Estate Expert"
+                  alt="Fawad Nissari - GTA Real Estate Expert"
                   className="w-full h-full object-cover"
                 />
               </div>

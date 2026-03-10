@@ -52,7 +52,7 @@ export default function YouTubeHub() {
     <Layout>
       <SEOHead
         title="YouTube Channel | GTA Real Estate Videos"
-        description="Watch free GTA real estate videos covering market updates, selling tips, and neighborhood guides. New videos every week from Fawad Ahmed."
+        description="Watch free GTA real estate videos covering market updates, selling tips, and neighborhood guides. New videos every week from Fawad Nissari."
         canonicalUrl="https://gta-insight-hub.lovable.app/youtube"
       />
       
