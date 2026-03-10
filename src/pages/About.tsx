@@ -26,8 +26,8 @@ export default function About() {
   return (
     <Layout>
       <SEOHead
-        title="About Fawad | Real Estate Market Expert"
-        description="Learn about Fawad, a GTA real estate expert with over a decade of experience. Weekly insights, data-backed advice, and a commitment to helping homeowners make smarter decisions."
+        title="About Fawad Nissari | Real Estate Market Expert"
+        description="Learn about Fawad Nissari, a GTA real estate expert with over a decade of experience. Weekly insights, data-backed advice, and a commitment to helping homeowners make smarter decisions."
         canonicalUrl="https://gta-insight-hub.lovable.app/about"
       />
       
