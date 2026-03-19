@@ -9,6 +9,7 @@ import Index from "./pages/Index";
 import MarketUpdates from "./pages/MarketUpdates";
 import YouTubeHub from "./pages/YouTubeHub";
 import Blog from "./pages/Blog";
+import BlogPost from "./pages/BlogPost";
 import Insights from "./pages/Insights";
 import SellerServices from "./pages/SellerServices";
 import SellerGuide from "./pages/SellerGuide";
