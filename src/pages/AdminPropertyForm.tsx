@@ -154,7 +154,7 @@ export default function AdminPropertyForm() {
         title: form.title, slug: form.slug, status: form.status,
         city: form.city || null, neighbourhood: form.neighbourhood || null,
         property_type: form.property_type || null, price: form.price ? parseFloat(form.price) : null,
-        beds: form.beds ? parseInt(form.beds) : null, baths: form.baths ? parseInt(form.baths) : null,
+        beds: form.beds || null, baths: form.baths ? parseInt(form.baths) : null,
         sqft: form.sqft ? parseInt(form.sqft) : null, lot_size: form.lot_size || null,
         description: form.description || null, tagline: form.tagline || null,
         sold_tagline: form.sold_tagline || null, thumbnail_image: form.thumbnail_image || null,
@@ -207,7 +207,7 @@ export default function AdminPropertyForm() {
             <h2 className="font-display text-lg text-foreground mb-6 border-b border-border pb-3">Specs & Pricing</h2>
             <div className="grid grid-cols-2 md:grid-cols-5 gap-x-8 gap-y-6">
               <div><label className={labelClass}>Price</label><input type="number" value={form.price} onChange={e => set('price', e.target.value)} className={inputClass} /></div>
-              <div><label className={labelClass}>Beds</label><input type="number" value={form.beds} onChange={e => set('beds', e.target.value)} className={inputClass} /></div>
+              <div><label className={labelClass}>Beds</label><input type="text" value={form.beds} onChange={e => set('beds', e.target.value)} className={inputClass} placeholder="3 or 1+1 or 3+den" /></div>
               <div><label className={labelClass}>Baths</label><input type="number" value={form.baths} onChange={e => set('baths', e.target.value)} className={inputClass} /></div>
               <div><label className={labelClass}>Sqft</label><input type="number" value={form.sqft} onChange={e => set('sqft', e.target.value)} className={inputClass} /></div>
               <div><label className={labelClass}>Lot Size</label><input type="text" value={form.lot_size} onChange={e => set('lot_size', e.target.value)} className={inputClass} /></div>

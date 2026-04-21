@@ -9,7 +9,7 @@ export interface Property {
   price: number | null;
   city: string | null;
   neighbourhood: string | null;
-  beds: number | null;
+  beds: string | number | null;
   baths: number | null;
   sqft: number | null;
   lot_size: string | null;

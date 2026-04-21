@@ -1,0 +1,1 @@
+ALTER TABLE public.property_websites ALTER COLUMN beds TYPE text USING beds::text;
