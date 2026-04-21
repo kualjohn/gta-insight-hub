@@ -122,7 +122,7 @@ export type Database = {
       property_websites: {
         Row: {
           baths: number | null
-          beds: number | null
+          beds: string | null
           brochure_url: string | null
           city: string | null
           created_at: string | null
@@ -151,7 +151,7 @@ export type Database = {
         }
         Insert: {
           baths?: number | null
-          beds?: number | null
+          beds?: string | null
           brochure_url?: string | null
           city?: string | null
           created_at?: string | null
@@ -180,7 +180,7 @@ export type Database = {
         }
         Update: {
           baths?: number | null
-          beds?: number | null
+          beds?: string | null
           brochure_url?: string | null
           city?: string | null
           created_at?: string | null
