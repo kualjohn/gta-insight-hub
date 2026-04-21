@@ -12,9 +12,47 @@ function getSupabaseAdmin() {
   return createClient(url, key);
 }
 
+const encoder = new TextEncoder();
+
+function base64UrlEncode(value: Uint8Array): string {
+  let binary = "";
+  value.forEach((byte) => binary += String.fromCharCode(byte));
+  return btoa(binary).replace(/=/g, "").replace(/\+/g, "-").replace(/\//g, "_");
+}
+
+function base64UrlDecode(value: string): string {
+  const padded = value.replace(/-/g, "+").replace(/_/g, "/").padEnd(Math.ceil(value.length / 4) * 4, "=");
+  return atob(padded);
+}
+
+function timingSafeEqual(a: string, b: string): boolean {
+  const left = encoder.encode(a);
+  const right = encoder.encode(b);
+  if (left.length !== right.length) return false;
+  let result = 0;
+  for (let i = 0; i < left.length; i++) result |= left[i] ^ right[i];
+  return result === 0;
+}
+
 async function verifyAdmin(req: Request): Promise<boolean> {
   const token = req.headers.get("x-admin-token");
-  return !!token && token.length > 10;
+  const secret = Deno.env.get("ADMIN_PASSWORD");
+  if (!token || !secret) return false;
+
+  const [header, payload, signature] = token.split(".");
+  if (!header || !payload || !signature) return false;
+
+  const key = await crypto.subtle.importKey("raw", encoder.encode(secret), { name: "HMAC", hash: "SHA-256" }, false, ["sign"]);
+  const expected = await crypto.subtle.sign("HMAC", key, encoder.encode(`${header}.${payload}`));
+  if (!timingSafeEqual(signature, base64UrlEncode(new Uint8Array(expected)))) return false;
+
+  try {
+    const claims = JSON.parse(base64UrlDecode(payload));
+    const now = Math.floor(Date.now() / 1000);
+    return claims.sub === "admin" && claims.scope === "property-admin" && typeof claims.exp === "number" && claims.exp > now;
+  } catch {
+    return false;
+  }
 }
 
 serve(async (req) => {
