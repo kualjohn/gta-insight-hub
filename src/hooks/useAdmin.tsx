@@ -14,16 +14,23 @@ const AdminContext = createContext<AdminContextType>({
   logout: () => {},
 });
 
+function isValidAdminTokenShape(token: string | null): token is string {
+  return !!token && token.split('.').length === 3;
+}
+
 export function useAdmin() {
   return useContext(AdminContext);
 }
 
 export function AdminProvider({ children }: { children: ReactNode }) {
   const [token, setToken] = useState<string | null>(() => {
-    return sessionStorage.getItem('admin_token');
+    const storedToken = sessionStorage.getItem('admin_token');
+    if (isValidAdminTokenShape(storedToken)) return storedToken;
+    sessionStorage.removeItem('admin_token');
+    return null;
   });
 
-  const isAuthenticated = !!token;
+  const isAuthenticated = isValidAdminTokenShape(token);
 
   const login = async (password: string): Promise<boolean> => {
     try {
