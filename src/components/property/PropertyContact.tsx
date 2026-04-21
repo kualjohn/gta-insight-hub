@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Phone, Mail } from 'lucide-react';
 import type { Property } from '@/types/property';
+import fawadPhoto from '@/assets/fawad-contact.png';
 
 interface Props {
   property: Property;
@@ -38,8 +39,8 @@ export default function PropertyContact({ property }: Props) {
           <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
             <h2 className="font-display text-3xl md:text-4xl text-foreground mb-10">Get In Touch</h2>
             <div className="flex items-start gap-6 mb-10">
-              <div className="w-24 h-24 rounded-full bg-charcoal/10 flex items-center justify-center flex-shrink-0 overflow-hidden">
-                <span className="font-display text-2xl text-muted-foreground">FN</span>
+              <div className="w-24 h-24 rounded-full bg-charcoal/10 flex-shrink-0 overflow-hidden">
+                <img src={fawadPhoto} alt="Fawad Nissari" className="w-full h-full object-cover" />
               </div>
               <div>
                 <h3 className="font-display text-xl text-foreground mb-1">Fawad Nissari</h3>
