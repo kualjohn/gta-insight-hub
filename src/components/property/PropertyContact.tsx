@@ -40,7 +40,12 @@ export default function PropertyContact({ property }: Props) {
             <h2 className="font-display text-3xl md:text-4xl text-foreground mb-10">Get In Touch</h2>
             <div className="flex items-start gap-6 mb-10">
               <div className="w-24 h-24 rounded-full bg-charcoal/10 flex-shrink-0 overflow-hidden">
-                <img src={fawadPhoto} alt="Fawad Nissari" className="w-full h-full object-cover" />
+                <img
+                  src={fawadPhoto}
+                  alt="Fawad Nissari"
+                  className="w-full h-full object-cover"
+                  style={{ objectPosition: '50% 18%' }}
+                />
               </div>
               <div>
                 <h3 className="font-display text-xl text-foreground mb-1">Fawad Nissari</h3>
