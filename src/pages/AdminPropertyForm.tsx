@@ -154,7 +154,7 @@ export default function AdminPropertyForm() {
         title: form.title, slug: form.slug, status: form.status,
         city: form.city || null, neighbourhood: form.neighbourhood || null,
         property_type: form.property_type || null, price: form.price ? parseFloat(form.price) : null,
-        beds: form.beds ? parseInt(form.beds) : null, baths: form.baths ? parseInt(form.baths) : null,
+        beds: form.beds || null, baths: form.baths ? parseInt(form.baths) : null,
         sqft: form.sqft ? parseInt(form.sqft) : null, lot_size: form.lot_size || null,
         description: form.description || null, tagline: form.tagline || null,
         sold_tagline: form.sold_tagline || null, thumbnail_image: form.thumbnail_image || null,
