@@ -1,58 +1,123 @@
 import { motion } from 'framer-motion';
+import { useState } from 'react';
+import { ArrowUpRight } from 'lucide-react';
 import type { Property } from '@/types/property';
 import { statusLabel, formatPrice } from '@/types/property';
 
 interface Props {
   property: Property;
   index: number;
+  resultLine?: string;
 }
 
-export default function PortfolioCard({ property, index }: Props) {
-  const image = property.thumbnail_image || property.hero_image || '/placeholder.svg';
+function isDirectVideo(url: string | null): boolean {
+  if (!url) return false;
+  return /\.(mp4|webm|mov)(\?.*)?$/i.test(url);
+}
+
+export default function PortfolioCard({ property, index, resultLine }: Props) {
+  const image = property.hero_image || property.thumbnail_image || '/placeholder.svg';
+  const videoSrc = isDirectVideo(property.video_url) ? property.video_url! : null;
+  const [videoFailed, setVideoFailed] = useState(false);
+  const isSold = property.status === 'sold';
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 30 }}
+      initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
+      viewport={{ once: true, margin: '-60px' }}
+      transition={{ duration: 0.7, delay: index * 0.12, ease: [0.22, 1, 0.36, 1] }}
+      whileHover={{ y: -8 }}
+      className="group"
     >
       <a
         href={`/portfolio/${property.slug}`}
-        className="group block relative overflow-hidden"
+        className="block relative overflow-hidden rounded-sm cursor-pointer"
+        aria-label={`View ${property.title}`}
       >
-        <div className="relative bg-charcoal rounded-sm overflow-hidden shadow-xl">
-          <div className="relative aspect-[16/10] overflow-hidden">
-            <img
-              src={image}
-              alt={property.title}
-              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-            />
-            <div className="absolute inset-0 bg-charcoal/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-              <span className="font-body text-xs tracking-[0.2em] uppercase text-primary-foreground">
-                View Property →
-              </span>
-            </div>
-            <div className="absolute top-4 left-4">
-              <span className="bg-accent px-3 py-1 font-body text-[10px] tracking-[0.15em] uppercase text-accent-foreground font-bold">
+        <div className="relative bg-charcoal overflow-hidden shadow-xl transition-shadow duration-500 group-hover:shadow-2xl">
+          <div className="relative aspect-[4/5] md:aspect-[3/4] overflow-hidden">
+            {/* Media layer */}
+            {videoSrc && !videoFailed ? (
+              <video
+                src={videoSrc}
+                poster={image}
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="metadata"
+                onError={() => setVideoFailed(true)}
+                className="absolute inset-0 w-full h-full object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-[1.06]"
+              />
+            ) : (
+              <img
+                src={image}
+                alt={property.title}
+                loading="lazy"
+                className="absolute inset-0 w-full h-full object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-[1.06]"
+              />
+            )}
+
+            {/* Dramatic gradient overlay for text legibility */}
+            <div className="absolute inset-0 bg-gradient-to-t from-charcoal via-charcoal/50 to-charcoal/10" />
+            <div className="absolute inset-0 bg-gradient-to-b from-charcoal/40 via-transparent to-transparent" />
+
+            {/* Status badge */}
+            <div className="absolute top-5 left-5 z-10">
+              <span
+                className={`px-3 py-1.5 font-body text-[10px] tracking-[0.2em] uppercase font-bold shadow-lg ${
+                  isSold
+                    ? 'bg-foreground text-background'
+                    : 'bg-accent text-accent-foreground'
+                }`}
+              >
                 {statusLabel[property.status]}
               </span>
             </div>
-            <div className="absolute bottom-0 left-0 right-0 p-5 bg-gradient-to-t from-charcoal/80 to-transparent">
-              <h3 className="font-display text-lg text-primary-foreground mb-1">
+
+            {/* Hover "View Property" affordance */}
+            <div className="absolute top-5 right-5 z-10 opacity-0 translate-y-[-4px] group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500">
+              <div className="flex items-center gap-1.5 bg-background/95 backdrop-blur-sm px-3 py-1.5 rounded-full shadow-lg">
+                <span className="font-body text-[10px] tracking-[0.2em] uppercase text-foreground font-semibold">
+                  View
+                </span>
+                <ArrowUpRight className="w-3 h-3 text-foreground" />
+              </div>
+            </div>
+
+            {/* Content stack: visual → address → result → city/price */}
+            <div className="absolute inset-x-0 bottom-0 p-6 md:p-7 z-10">
+              {/* Address */}
+              <h3 className="font-display text-2xl md:text-3xl text-primary-foreground leading-tight mb-1.5 transition-transform duration-500 group-hover:-translate-y-0.5">
                 {property.title}
               </h3>
-              <p className="font-body text-xs tracking-[0.1em] uppercase text-primary-foreground/70">
-                {property.city}
-              </p>
-              {property.price && (
-                <p className="font-display text-lg text-primary-foreground mt-1">
-                  {formatPrice(property.price)}
-                </p>
+
+              {/* Result line — high priority */}
+              {resultLine && (
+                <div className="mb-3 md:mb-4 transition-all duration-500 group-hover:translate-x-0.5">
+                  <div className="inline-flex items-center gap-2">
+                    <span className="w-6 h-px bg-accent" />
+                    <p className="font-body text-sm md:text-[15px] text-accent font-semibold tracking-wide">
+                      {resultLine}
+                    </p>
+                  </div>
+                </div>
               )}
+
+              {/* City + Price row */}
+              <div className="flex items-center justify-between gap-3 pt-3 border-t border-primary-foreground/15">
+                <p className="font-body text-[11px] tracking-[0.2em] uppercase text-primary-foreground/70">
+                  {property.city}
+                </p>
+                {property.price && (
+                  <p className="font-display text-lg md:text-xl text-primary-foreground">
+                    {formatPrice(property.price)}
+                  </p>
+                )}
+              </div>
             </div>
           </div>
-          <div className="h-2 bg-charcoal-light" />
         </div>
       </a>
     </motion.div>
