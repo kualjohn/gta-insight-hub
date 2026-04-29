@@ -15,9 +15,26 @@ function isDirectVideo(url: string | null): boolean {
   return /\.(mp4|webm|mov)(\?.*)?$/i.test(url);
 }
 
+function getYouTubeId(url: string | null): string | null {
+  if (!url) return null;
+  // Matches youtu.be/ID, youtube.com/watch?v=ID, youtube.com/embed/ID, youtube.com/shorts/ID
+  const patterns = [
+    /youtu\.be\/([a-zA-Z0-9_-]{11})/,
+    /youtube\.com\/watch\?v=([a-zA-Z0-9_-]{11})/,
+    /youtube\.com\/embed\/([a-zA-Z0-9_-]{11})/,
+    /youtube\.com\/shorts\/([a-zA-Z0-9_-]{11})/,
+  ];
+  for (const p of patterns) {
+    const m = url.match(p);
+    if (m) return m[1];
+  }
+  return null;
+}
+
 export default function PortfolioCard({ property, index, resultLine }: Props) {
   const image = property.hero_image || property.thumbnail_image || '/placeholder.svg';
   const videoSrc = isDirectVideo(property.video_url) ? property.video_url! : null;
+  const youTubeId = !videoSrc ? getYouTubeId(property.video_url) : null;
   const [videoFailed, setVideoFailed] = useState(false);
   const isSold = property.status === 'sold';
 
@@ -50,6 +67,26 @@ export default function PortfolioCard({ property, index, resultLine }: Props) {
                 onError={() => setVideoFailed(true)}
                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-[1.06]"
               />
+            ) : youTubeId ? (
+              <>
+                {/* Poster image underneath as instant paint + fallback */}
+                <img
+                  src={image}
+                  alt={property.title}
+                  loading="lazy"
+                  className="absolute inset-0 w-full h-full object-cover"
+                />
+                {/* YouTube iframe — muted autoplay loop, scaled up + cropped to hide branding */}
+                <div className="absolute inset-0 overflow-hidden pointer-events-none">
+                  <iframe
+                    src={`https://www.youtube.com/embed/${youTubeId}?autoplay=1&mute=1&loop=1&playlist=${youTubeId}&controls=0&showinfo=0&rel=0&modestbranding=1&iv_load_policy=3&playsinline=1&disablekb=1`}
+                    title={property.title}
+                    allow="autoplay; encrypted-media"
+                    frameBorder={0}
+                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[180%] h-[180%] transition-transform duration-[1200ms] ease-out group-hover:scale-[1.06]"
+                  />
+                </div>
+              </>
             ) : (
               <img
                 src={image}
