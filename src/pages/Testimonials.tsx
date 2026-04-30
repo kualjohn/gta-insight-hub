@@ -51,21 +51,6 @@ const testimonials = [
   },
 ];
 
-const videoTestimonials = [
-  {
-    name: 'The Martinez Family',
-    location: 'Mississauga',
-    thumbnail: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&h=450&fit=crop',
-    outcome: 'Sold $50K over asking',
-  },
-  {
-    name: 'John & Karen Roberts',
-    location: 'Milton',
-    thumbnail: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&h=450&fit=crop',
-    outcome: 'Sold in 3 days',
-  },
-];
-
 const successStats = [
   { icon: TrendingUp, stat: '98%', label: 'Sold at or above asking' },
   { icon: Star, stat: '5.0', label: 'Average client rating' },
@@ -107,42 +92,6 @@ export default function Testimonials() {
               </div>
               <p className="text-3xl lg:text-4xl font-serif font-bold text-primary mb-1">{item.stat}</p>
               <p className="text-xs sm:text-sm text-muted-foreground">{item.label}</p>
-            </div>
-          ))}
-        </div>
-      </SectionWrapper>
-
-      {/* Video Testimonials */}
-      <SectionWrapper variant="muted">
-        <div className="text-center mb-10">
-          <h2 className="font-serif text-3xl lg:text-4xl font-bold mb-4">
-            Video Testimonials
-          </h2>
-          <p className="text-muted-foreground text-lg">
-            Hear directly from families who have worked with me.
-          </p>
-        </div>
-
-        <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-          {videoTestimonials.map((video, index) => (
-            <div key={index} className="group cursor-pointer bg-card rounded-xl overflow-hidden border border-border">
-              <div className="relative aspect-video bg-muted">
-                <img
-                  src={video.thumbnail}
-                  alt={video.name}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                />
-                <div className="absolute inset-0 bg-foreground/30 group-hover:bg-foreground/40 transition-colors flex items-center justify-center">
-                  <div className="w-16 h-16 rounded-full bg-primary flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
-                    <Play className="w-7 h-7 text-primary-foreground fill-current ml-1" />
-                  </div>
-                </div>
-              </div>
-              <div className="p-4">
-                <h3 className="font-serif text-lg font-semibold">{video.name}</h3>
-                <p className="text-sm text-muted-foreground">{video.location}</p>
-                <p className="text-sm text-primary font-medium mt-2">{video.outcome}</p>
-              </div>
             </div>
           ))}
         </div>
