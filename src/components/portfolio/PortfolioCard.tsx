@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
-import { useState } from 'react';
-import { ArrowUpRight } from 'lucide-react';
+import { useState, useEffect, useRef } from 'react';
+import { ArrowUpRight, Play } from 'lucide-react';
 import type { Property } from '@/types/property';
 import { statusLabel, formatPrice } from '@/types/property';
 
@@ -44,10 +44,29 @@ export default function PortfolioCard({ property, index, resultLine }: Props) {
   const vimeoId = !videoSrc && !youTubeId ? getVimeoId(property.video_url) : null;
   const [videoFailed, setVideoFailed] = useState(false);
   const [hovered, setHovered] = useState(false);
+  const [inView, setInView] = useState(false);
+  const containerRef = useRef<HTMLDivElement | null>(null);
   const isSold = property.status === 'sold';
+  const hasVideo = !!(videoSrc || youTubeId || vimeoId);
+  const shouldPlay = hasVideo && (inView || hovered);
+
+  // Autoplay only when the card is meaningfully visible — keeps the page fast
+  // by ensuring just 2–4 videos play at once instead of all of them.
+  useEffect(() => {
+    if (!hasVideo) return;
+    const el = containerRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => setInView(entry.isIntersecting && entry.intersectionRatio >= 0.5),
+      { threshold: [0, 0.5, 1] }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [hasVideo]);
 
   return (
     <motion.div
+      ref={containerRef}
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-60px' }}
@@ -69,7 +88,7 @@ export default function PortfolioCard({ property, index, resultLine }: Props) {
               <video
                 src={videoSrc}
                 poster={image}
-                autoPlay={hovered}
+                autoPlay={shouldPlay}
                 muted
                 loop
                 playsInline
@@ -86,8 +105,8 @@ export default function PortfolioCard({ property, index, resultLine }: Props) {
                   loading="lazy"
                   className="absolute inset-0 w-full h-full object-cover"
                 />
-                {/* YouTube iframe — only mounted on hover to keep page fast */}
-                {hovered && (
+                {/* YouTube iframe — only mounted while the card is in view */}
+                {shouldPlay && (
                   <div className="absolute inset-0 overflow-hidden pointer-events-none">
                     <iframe
                       src={`https://www.youtube.com/embed/${youTubeId}?autoplay=1&mute=1&loop=1&playlist=${youTubeId}&controls=0&showinfo=0&rel=0&modestbranding=1&iv_load_policy=3&playsinline=1&disablekb=1`}
@@ -107,7 +126,7 @@ export default function PortfolioCard({ property, index, resultLine }: Props) {
                   loading="lazy"
                   className="absolute inset-0 w-full h-full object-cover"
                 />
-                {hovered && (
+                {shouldPlay && (
                   <div className="absolute inset-0 overflow-hidden pointer-events-none">
                     <iframe
                       src={`https://player.vimeo.com/video/${vimeoId}?background=1&autoplay=1&loop=1&muted=1&controls=0&title=0&byline=0&portrait=0`}
@@ -131,6 +150,15 @@ export default function PortfolioCard({ property, index, resultLine }: Props) {
             {/* Dramatic gradient overlay for text legibility */}
             <div className="absolute inset-0 bg-gradient-to-t from-charcoal via-charcoal/50 to-charcoal/10" />
             <div className="absolute inset-0 bg-gradient-to-b from-charcoal/40 via-transparent to-transparent" />
+
+            {/* Video affordance — tells viewers there's video before motion kicks in */}
+            {hasVideo && !shouldPlay && (
+              <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-10">
+                <div className="w-14 h-14 md:w-16 md:h-16 rounded-full bg-charcoal/50 backdrop-blur-sm border border-primary-foreground/30 flex items-center justify-center shadow-xl">
+                  <Play className="w-5 h-5 md:w-6 md:h-6 text-primary-foreground fill-primary-foreground ml-0.5" />
+                </div>
+              </div>
+            )}
 
             {/* Status badge */}
             <div className="absolute top-5 left-5 z-10">
