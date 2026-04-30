@@ -15,6 +15,7 @@ const RESULT_LINES: Record<string, string> = {
   '1400-duval-drive': 'Sold in 4 days • 25,000+ buyer views',
   '212-shadow-place': '87 showings • 4 offers • 80,000+ ad views • Sold in 3 weeks',
   '1060-st-hildas-way': '43 showings • 5 offers • Sold in 2 weeks while identical units sat 60+ days',
+  '77-clarke-st-n': 'Sold for 95% of asking price',
 };
 
 export default function Portfolio() {
