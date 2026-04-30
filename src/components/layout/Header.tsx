@@ -166,10 +166,10 @@ export function Header() {
           {/* CTA Button */}
           <div className="flex items-center gap-3">
             <Button variant="gold" size="sm" className="hidden sm:flex" asChild>
-              <Link to="/contact">
+              <a href="https://calendly.com/fawadnissari" target="_blank" rel="noopener noreferrer">
                 <Phone className="w-4 h-4" />
                 Book a Call
-              </Link>
+              </a>
             </Button>
 
             {/* Mobile menu button */}
@@ -310,10 +310,15 @@ export function Header() {
 
               <div className="pt-4 px-4">
                 <Button variant="gold" className="w-full" asChild>
-                  <Link to="/contact" onClick={() => setMobileMenuOpen(false)}>
+                  <a
+                    href="https://calendly.com/fawadnissari"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
                     <Phone className="w-4 h-4" />
                     Book a Call
-                  </Link>
+                  </a>
                 </Button>
               </div>
             </div>

@@ -168,7 +168,7 @@ export default function SellerGuide() {
                     (and spam folder, just in case).
                   </p>
                   <p className="text-sm text-muted-foreground">
-                    Have questions? <a href="/contact" className="text-primary hover:underline">Book a call</a> anytime.
+                    Have questions? <a href="https://calendly.com/fawadnissari" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Book a call</a> anytime.
                   </p>
                 </div>
               )}

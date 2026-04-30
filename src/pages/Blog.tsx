@@ -138,7 +138,7 @@ export default function Blog() {
           variant="dark"
           title="Have Questions About Selling?"
           subtitle="Let's discuss your situation and create a plan that works for you."
-          primaryCta={{ text: "Book a Call", href: "/contact" }}
+          primaryCta={{ text: "Book a Call", href: "https://calendly.com/fawadnissari" }}
           secondaryCta={{ text: "Watch My Videos", href: "/youtube" }}
         />
       </SectionWrapper>

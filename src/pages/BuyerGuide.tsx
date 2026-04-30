@@ -57,10 +57,10 @@ const BuyerGuide = () => {
                   Download Free Guide
                 </Button>
                 <Button variant="outline" size="lg" asChild>
-                  <Link to="/contact">
+                  <a href="https://calendly.com/fawadnissari" target="_blank" rel="noopener noreferrer">
                     <Phone className="w-5 h-5" />
                     Book a Call
-                  </Link>
+                  </a>
                 </Button>
               </div>
             </div>
@@ -116,7 +116,7 @@ const BuyerGuide = () => {
           variant="dark"
           title="Ready to Start Your Home Search?"
           subtitle="Get personalized guidance from a local expert who knows the GTA market inside and out."
-          primaryCta={{ text: "Book a Call", href: "/contact" }}
+          primaryCta={{ text: "Book a Call", href: "https://calendly.com/fawadnissari" }}
           secondaryCta={{ text: "View Buyer Tips", href: "/buyer-tips" }}
         />
       </SectionWrapper>

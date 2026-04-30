@@ -114,7 +114,7 @@ export default function Areas() {
           variant="dark"
           title="Thinking About Your Next Move?"
           subtitle="Let's discuss which GTA community is the best fit for your lifestyle and budget."
-          primaryCta={{ text: "Book a Call", href: "/contact" }}
+          primaryCta={{ text: "Book a Call", href: "https://calendly.com/fawadnissari" }}
           secondaryCta={{ text: "Get Home Evaluation", href: "/home-evaluation" }}
         />
       </SectionWrapper>
