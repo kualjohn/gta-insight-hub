@@ -23,9 +23,9 @@ export default function PropertyExplore({ property }: Props) {
   if (!hasVideo && linkCards.length === 0) return null;
 
   return (
-    <section id="explore" className="px-6 md:px-12 lg:px-20 xl:px-28 py-20 md:py-32 bg-secondary">
+    <section id="explore" className="px-6 md:px-12 lg:px-20 xl:px-28 py-16 md:py-32 bg-secondary overflow-hidden">
       <div className="max-w-7xl mx-auto">
-        <motion.h2 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="font-display text-3xl md:text-4xl text-foreground mb-12">Explore</motion.h2>
+        <motion.h2 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="font-display text-3xl md:text-4xl text-foreground mb-8 md:mb-12">Explore</motion.h2>
 
         <div className={`grid grid-cols-1 ${linkCards.length > 0 ? 'lg:grid-cols-3' : ''} gap-6`}>
           {/* Video Player */}
@@ -47,7 +47,7 @@ export default function PropertyExplore({ property }: Props) {
                     className="w-full h-full"
                   />
                 </div>
-                <div className="p-6 flex items-center justify-between">
+                <div className="p-5 md:p-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                   <div>
                     <h3 className="font-display text-xl text-foreground mb-1">Video Tour</h3>
                     <p className="font-body text-sm text-muted-foreground">Take a cinematic walkthrough of this property.</p>
@@ -56,7 +56,7 @@ export default function PropertyExplore({ property }: Props) {
                     href={property.video_url!}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="font-body text-xs tracking-[0.2em] uppercase text-accent hover:text-accent/80 transition-colors flex items-center gap-2"
+                    className="font-body text-xs tracking-[0.2em] uppercase text-accent hover:text-accent/80 transition-colors flex items-center gap-2 self-start sm:self-auto whitespace-nowrap"
                   >
                     <Play className="w-4 h-4" />
                     Watch Full Screen

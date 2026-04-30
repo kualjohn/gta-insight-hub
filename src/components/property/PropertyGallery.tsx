@@ -21,14 +21,15 @@ export default function PropertyGallery({ images }: Props) {
   const next = () => setLightbox(i => (i !== null ? (i + 1) % images.length : null));
 
   const getSpan = (i: number) => {
-    const patterns = ['col-span-1 row-span-2', 'col-span-1 row-span-1', 'col-span-1 row-span-1', 'col-span-2 row-span-1', 'col-span-1 row-span-2'];
+    // On mobile (2-col grid), avoid col-span-2 patterns that combined with row-span-2 cause uneven heights.
+    const patterns = ['col-span-1 row-span-2', 'col-span-1 row-span-1', 'col-span-1 row-span-1', 'col-span-2 md:col-span-2 row-span-1', 'col-span-1 row-span-2'];
     return patterns[i % patterns.length];
   };
 
   return (
-    <section id="gallery" className="px-6 md:px-12 lg:px-20 xl:px-28 py-20 md:py-32">
+    <section id="gallery" className="px-6 md:px-12 lg:px-20 xl:px-28 py-16 md:py-32 overflow-hidden">
       <div className="max-w-7xl mx-auto">
-        <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="grid grid-cols-2 md:grid-cols-3 auto-rows-[250px] gap-3">
+        <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="grid grid-cols-2 md:grid-cols-3 auto-rows-[160px] sm:auto-rows-[200px] md:auto-rows-[250px] gap-2 md:gap-3">
           {visibleImages.map((img, i) => {
             const isLastVisible = i === VISIBLE_COUNT - 1 && remainingCount > 0;
             return (

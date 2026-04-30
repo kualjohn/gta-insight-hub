@@ -33,13 +33,13 @@ export default function PropertyContact({ property }: Props) {
   const inputClass = "w-full bg-transparent border-b border-border py-3 font-body text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-accent transition-colors";
 
   return (
-    <section id="contact" className="px-6 md:px-12 lg:px-20 xl:px-28 py-20 md:py-32 bg-secondary">
+    <section id="contact" className="px-6 md:px-12 lg:px-20 xl:px-28 py-16 md:py-32 bg-secondary overflow-hidden">
       <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
           <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
-            <h2 className="font-display text-3xl md:text-4xl text-foreground mb-10">Get In Touch</h2>
-            <div className="flex items-start gap-6 mb-10">
-              <div className="w-24 h-24 rounded-full bg-charcoal/10 flex-shrink-0 overflow-hidden">
+            <h2 className="font-display text-3xl md:text-4xl text-foreground mb-8 md:mb-10">Get In Touch</h2>
+            <div className="flex items-start gap-5 sm:gap-6 mb-8 md:mb-10">
+              <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-charcoal/10 flex-shrink-0 overflow-hidden">
                 <img
                   src={fawadPhoto}
                   alt="Fawad Nissari"
@@ -47,7 +47,7 @@ export default function PropertyContact({ property }: Props) {
                   style={{ objectPosition: '50% 18%' }}
                 />
               </div>
-              <div>
+              <div className="min-w-0">
                 <h3 className="font-display text-xl text-foreground mb-1">Fawad Nissari</h3>
                 <p className="font-body text-sm text-muted-foreground mb-1">Real Estate Broker</p>
                 <p className="font-body text-sm text-muted-foreground">HouseSigma Brokerage</p>
@@ -55,10 +55,10 @@ export default function PropertyContact({ property }: Props) {
             </div>
             <div className="space-y-4">
               <a href="tel:4168781085" className="flex items-center gap-3 font-body text-sm text-foreground hover:text-accent transition-colors">
-                <Phone className="w-4 h-4 text-accent" />(416) 878-1085
+                <Phone className="w-4 h-4 text-accent flex-shrink-0" />(416) 878-1085
               </a>
-              <a href="mailto:fawad.nissari@housesigma.com" className="flex items-center gap-3 font-body text-sm text-foreground hover:text-accent transition-colors">
-                <Mail className="w-4 h-4 text-accent" />fawad.nissari@housesigma.com
+              <a href="mailto:fawad.nissari@housesigma.com" className="flex items-center gap-3 font-body text-sm text-foreground hover:text-accent transition-colors break-all">
+                <Mail className="w-4 h-4 text-accent flex-shrink-0" />fawad.nissari@housesigma.com
               </a>
             </div>
           </motion.div>
