@@ -190,7 +190,7 @@ export default function Portfolio() {
                   </p>
                 </div>
                 <Button variant="gold" size="lg" asChild className="shrink-0">
-                  <Link to="/sell/home-valuation">
+                  <Link to="/home-evaluation">
                     <Home className="w-4 h-4" />
                     Get My Home Valuation
                   </Link>
@@ -305,7 +305,7 @@ export default function Portfolio() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <Button variant="gold" size="xl" asChild>
-                <Link to="/sell/home-valuation">
+                <Link to="/home-evaluation">
                   <TrendingUp className="w-4 h-4" />
                   Free Home Evaluation
                 </Link>
