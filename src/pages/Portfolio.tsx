@@ -13,7 +13,7 @@ const RESULT_LINES: Record<string, string> = {
   '1185-the-queensway208': '25,000+ buyer views generated in days',
   '808-krosno-blvd': 'Sold in 24 hours • 50,000+ views in 2 days',
   '1400-duval-drive': 'Sold in 4 days • 25,000+ buyer views',
-  '212-shadow-place': 'Sold over asking in 3 weeks',
+  '212-shadow-place': '87 showings • 4 offers • 80,000+ ad views • Sold in 3 weeks',
 };
 
 export default function Portfolio() {
