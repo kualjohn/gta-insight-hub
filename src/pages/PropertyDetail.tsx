@@ -32,7 +32,7 @@ export default function PropertyDetail() {
   }
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background overflow-x-hidden">
       <PropertyHeader />
       <PropertyHero property={property} />
       <PropertyOverview property={property} />
