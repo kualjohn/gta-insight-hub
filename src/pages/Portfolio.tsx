@@ -87,13 +87,13 @@ export default function Portfolio() {
           className="border-y border-border/60 py-8 md:py-10 grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8"
         >
           {[
-            { stat: '$155K', label: 'Over Asking — Record Sale' },
-            { stat: '7+', label: 'Record-Breaking Sales' },
-            { stat: '50K+', label: 'Buyer Views Per Listing' },
-            { stat: '24 hrs', label: 'Fastest Sale on Record' },
+            { stat: '100,000', label: 'Guaranteed Buyer Views Online' },
+            { stat: '24 hrs', label: 'Listing Agreement — No Lock-In' },
+            { stat: 'From 1%', label: 'Commission' },
+            { stat: 'Free', label: 'Professional Staging' },
           ].map((item, i) => (
             <div key={i} className="text-center md:text-left">
-              <div className="font-display text-3xl md:text-4xl lg:text-5xl text-accent mb-1">
+              <div className="font-display text-3xl md:text-4xl lg:text-5xl text-accent mb-2">
                 {item.stat}
               </div>
               <div className="font-body text-[11px] md:text-xs tracking-[0.2em] uppercase text-muted-foreground">
