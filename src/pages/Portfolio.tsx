@@ -17,6 +17,7 @@ const RESULT_LINES: Record<string, string> = {
   '1060-st-hildas-way': '43 showings • 5 offers • Sold in 2 weeks while identical units sat 60+ days',
   '77-clarke-st-n': 'Sold for 95% of asking price',
   '183-featherstone-rd': 'Sat 3 months with another agent • Sold in 4 weeks at 98% of asking',
+  '1160-middlebury-ave': '50,000+ views • Sold in 2 weeks at 98% of asking',
 };
 
 export default function Portfolio() {
