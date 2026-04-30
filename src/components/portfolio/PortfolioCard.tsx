@@ -103,11 +103,7 @@ export default function PortfolioCard({ property, index, resultLine }: Props) {
             {/* Status badge */}
             <div className="absolute top-5 left-5 z-10">
               <span
-                className={`px-3 py-1.5 font-body text-[10px] tracking-[0.2em] uppercase font-bold shadow-lg ${
-                  isSold
-                    ? 'bg-foreground text-background'
-                    : 'bg-accent text-accent-foreground'
-                }`}
+                className="px-3 py-1.5 font-body text-[10px] tracking-[0.2em] uppercase font-bold shadow-lg bg-accent text-accent-foreground"
               >
                 {statusLabel[property.status]}
               </span>
