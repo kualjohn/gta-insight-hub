@@ -25,6 +25,7 @@ const RESULT_LINES: Record<string, string> = {
   '29-napoleon-dr': 'Sold $182,500 over asking — Stoney Creek family home',
   '2-mark-street': 'Sold for the record price — $1,180,000 in Aurora Village',
   '8-sand-wedge-lane': 'Sold at the record price — highest ever on the street',
+  '1067-blueheron-blvd': 'Highest sale on the street — $1,805,000 in East Credit',
 };
 
 export default function Portfolio() {
