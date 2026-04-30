@@ -126,13 +126,29 @@ Deno.serve(async (req) => {
     }
 
     // Fetch fresh data
-    const videos = await fetchAndParseRSS();
-
-    // Sort by published date (newest first)
-    videos.sort((a, b) => new Date(b.published).getTime() - new Date(a.published).getTime());
-
-    // Update cache
-    cachedData = { videos, timestamp: now };
+    let videos: YouTubeVideo[] = [];
+    try {
+      videos = await fetchAndParseRSS();
+      // Sort by published date (newest first)
+      videos.sort((a, b) => new Date(b.published).getTime() - new Date(a.published).getTime());
+      // Update cache only on success
+      cachedData = { videos, timestamp: now };
+    } catch (fetchError) {
+      console.error('RSS feed unavailable, returning empty list:', fetchError);
+      // Graceful degradation — return empty videos with 200 so the UI doesn't break
+      return new Response(
+        JSON.stringify({
+          success: true,
+          videos: [],
+          cached: false,
+          channelUrl: CHANNEL_URL,
+          warning: 'RSS_FEED_UNAVAILABLE',
+        }),
+        {
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        }
+      );
+    }
 
     const resultVideos = limit ? videos.slice(0, limit) : videos;
 
@@ -151,12 +167,12 @@ Deno.serve(async (req) => {
     console.error('Error fetching YouTube feed:', error);
     return new Response(
       JSON.stringify({
-        success: false,
-        error: error instanceof Error ? error.message : 'Failed to fetch YouTube feed',
+        success: true,
+        videos: [],
         channelUrl: CHANNEL_URL,
+        warning: error instanceof Error ? error.message : 'Failed to fetch YouTube feed',
       }),
       {
-        status: 500,
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       }
     );
