@@ -72,8 +72,8 @@ const testimonials = [
 
 const successStats = [
   { key: 'sold', icon: TrendingUp, stat: '98%', label: 'Sold at or above asking' },
-  { key: 'rating', icon: Star, stat: '5.0', label: 'Average client rating' },
-  { key: 'count', icon: Home, stat: '12', label: 'Average days on market' },
+  { key: 'rating', icon: Star, stat: '5.0', label: 'Google rating' },
+  { key: 'count', icon: Home, stat: '12', label: 'Google reviews' },
 ];
 
 export default function Testimonials() {
