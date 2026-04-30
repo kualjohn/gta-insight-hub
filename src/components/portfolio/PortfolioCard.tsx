@@ -43,6 +43,7 @@ export default function PortfolioCard({ property, index, resultLine }: Props) {
   const youTubeId = !videoSrc ? getYouTubeId(property.video_url) : null;
   const vimeoId = !videoSrc && !youTubeId ? getVimeoId(property.video_url) : null;
   const [videoFailed, setVideoFailed] = useState(false);
+  const [hovered, setHovered] = useState(false);
   const isSold = property.status === 'sold';
 
   return (
@@ -53,6 +54,8 @@ export default function PortfolioCard({ property, index, resultLine }: Props) {
       transition={{ duration: 0.7, delay: index * 0.12, ease: [0.22, 1, 0.36, 1] }}
       whileHover={{ y: -8 }}
       className="group"
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
     >
       <a
         href={`/portfolio/${property.slug}`}
@@ -66,7 +69,7 @@ export default function PortfolioCard({ property, index, resultLine }: Props) {
               <video
                 src={videoSrc}
                 poster={image}
-                autoPlay
+                autoPlay={hovered}
                 muted
                 loop
                 playsInline
@@ -83,16 +86,18 @@ export default function PortfolioCard({ property, index, resultLine }: Props) {
                   loading="lazy"
                   className="absolute inset-0 w-full h-full object-cover"
                 />
-                {/* YouTube iframe — muted autoplay loop, scaled up + cropped to hide branding */}
-                <div className="absolute inset-0 overflow-hidden pointer-events-none">
-                  <iframe
-                    src={`https://www.youtube.com/embed/${youTubeId}?autoplay=1&mute=1&loop=1&playlist=${youTubeId}&controls=0&showinfo=0&rel=0&modestbranding=1&iv_load_policy=3&playsinline=1&disablekb=1`}
-                    title={property.title}
-                    allow="autoplay; encrypted-media"
-                    frameBorder={0}
-                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[180%] h-[180%] transition-transform duration-[1200ms] ease-out group-hover:scale-[1.06]"
-                  />
-                </div>
+                {/* YouTube iframe — only mounted on hover to keep page fast */}
+                {hovered && (
+                  <div className="absolute inset-0 overflow-hidden pointer-events-none">
+                    <iframe
+                      src={`https://www.youtube.com/embed/${youTubeId}?autoplay=1&mute=1&loop=1&playlist=${youTubeId}&controls=0&showinfo=0&rel=0&modestbranding=1&iv_load_policy=3&playsinline=1&disablekb=1`}
+                      title={property.title}
+                      allow="autoplay; encrypted-media"
+                      frameBorder={0}
+                      className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[180%] h-[180%] transition-transform duration-[1200ms] ease-out group-hover:scale-[1.06]"
+                    />
+                  </div>
+                )}
               </>
             ) : vimeoId ? (
               <>
@@ -102,15 +107,17 @@ export default function PortfolioCard({ property, index, resultLine }: Props) {
                   loading="lazy"
                   className="absolute inset-0 w-full h-full object-cover"
                 />
-                <div className="absolute inset-0 overflow-hidden pointer-events-none">
-                  <iframe
-                    src={`https://player.vimeo.com/video/${vimeoId}?background=1&autoplay=1&loop=1&muted=1&controls=0&title=0&byline=0&portrait=0`}
-                    title={property.title}
-                    allow="autoplay; encrypted-media"
-                    frameBorder={0}
-                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[180%] h-[180%] transition-transform duration-[1200ms] ease-out group-hover:scale-[1.06]"
-                  />
-                </div>
+                {hovered && (
+                  <div className="absolute inset-0 overflow-hidden pointer-events-none">
+                    <iframe
+                      src={`https://player.vimeo.com/video/${vimeoId}?background=1&autoplay=1&loop=1&muted=1&controls=0&title=0&byline=0&portrait=0`}
+                      title={property.title}
+                      allow="autoplay; encrypted-media"
+                      frameBorder={0}
+                      className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[180%] h-[180%] transition-transform duration-[1200ms] ease-out group-hover:scale-[1.06]"
+                    />
+                  </div>
+                )}
               </>
             ) : (
               <img
