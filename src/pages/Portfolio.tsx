@@ -24,6 +24,7 @@ const RESULT_LINES: Record<string, string> = {
   '1564-somergrove-cres': 'Sold for full asking in the heart of Brock Ridge',
   '29-napoleon-dr': 'Sold $182,500 over asking — Stoney Creek family home',
   '2-mark-street': 'Sold for the record price — $1,180,000 in Aurora Village',
+  '8-sand-wedge-lane': 'Sold at the record price — highest ever on the street',
 };
 
 export default function Portfolio() {
