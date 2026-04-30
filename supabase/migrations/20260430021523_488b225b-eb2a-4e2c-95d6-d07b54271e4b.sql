@@ -1,0 +1,1 @@
+UPDATE property_websites SET hero_image = 'https://photos.cribflyer-proxy.com/cdn-cgi/image/width=2400,fit=contain,rotate=0,format=auto,quality=60/2364/56474/2763767/photo.jpg', thumbnail_image = 'https://photos.cribflyer-proxy.com/cdn-cgi/image/width=2400,fit=contain,rotate=0,format=auto,quality=60/2364/56474/2763767/photo.jpg' WHERE slug = '183-featherstone-rd';
