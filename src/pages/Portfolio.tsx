@@ -19,6 +19,8 @@ const RESULT_LINES: Record<string, string> = {
   '183-featherstone-rd': 'Sat 3 months with another agent • Sold in 4 weeks at 98% of asking',
   '1160-middlebury-ave': '50,000+ views • Sold in 2 weeks at 98% of asking',
   '271-andrews-trail': 'Listed at $999K • Sold at $1.1M — $101,000 over asking',
+  '691-ormond-drive': 'Sold at full asking — multiple-offer night with families competing',
+  '1593-leblanc-court': 'Sold at the record price — highest ever on the street',
 };
 
 export default function Portfolio() {
