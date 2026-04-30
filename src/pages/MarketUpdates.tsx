@@ -123,7 +123,7 @@ export default function MarketUpdates() {
                     variant="secondary"
                     title="Want to discuss these market trends?"
                     subtitle="Book a free consultation to understand what this means for your home."
-                    primaryCta={{ text: "Book a Call", href: "/contact" }}
+                    primaryCta={{ text: "Book a Call", href: "https://calendly.com/fawadnissari" }}
                     secondaryCta={{ text: "Watch My Videos", href: "/youtube" }}
                   />
                 </div>
@@ -139,7 +139,7 @@ export default function MarketUpdates() {
           variant="dark"
           title="Get Personalized Market Insights"
           subtitle="Wondering what your home is worth in today's market? Let's talk."
-          primaryCta={{ text: "Book a Call", href: "/contact" }}
+          primaryCta={{ text: "Book a Call", href: "https://calendly.com/fawadnissari" }}
           secondaryCta={{ text: "Get Home Evaluation", href: "/home-evaluation" }}
         />
       </SectionWrapper>

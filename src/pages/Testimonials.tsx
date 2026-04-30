@@ -263,7 +263,7 @@ export default function Testimonials() {
           variant="dark"
           title="Ready to Be Our Next Success Story?"
           subtitle="Let's discuss your real estate goals and create a plan that works for you — no pressure, just honest advice."
-          primaryCta={{ text: "Book a Call", href: "/contact" }}
+          primaryCta={{ text: "Book a Call", href: "https://calendly.com/fawadnissari" }}
           secondaryCta={{ text: "View Seller Services", href: "/seller-services" }}
         />
       </SectionWrapper>

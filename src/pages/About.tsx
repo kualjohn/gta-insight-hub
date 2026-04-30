@@ -178,7 +178,7 @@ export default function About() {
           variant="dark"
           title="Let's Connect"
           subtitle="Whether you have questions about the market or are thinking about selling, I'm here to help — no pressure, just honest advice."
-          primaryCta={{ text: "Book a Call", href: "/contact" }}
+          primaryCta={{ text: "Book a Call", href: "https://calendly.com/fawadnissari" }}
           secondaryCta={{ text: "Download Seller Guide", href: "/seller-guide" }}
         />
       </SectionWrapper>

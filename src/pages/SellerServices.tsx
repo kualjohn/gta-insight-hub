@@ -121,7 +121,7 @@ export default function SellerServices() {
           variant="primary"
           title="Ready to Learn More?"
           subtitle="Book a free consultation to discuss your home and create a customized selling strategy."
-          primaryCta={{ text: "Book a Call", href: "/contact" }}
+          primaryCta={{ text: "Book a Call", href: "https://calendly.com/fawadnissari" }}
           secondaryCta={{ text: "Download Seller Guide", href: "/seller-guide" }}
         />
       </SectionWrapper>
@@ -204,7 +204,7 @@ export default function SellerServices() {
           variant="dark"
           title="Ready to Get Started?"
           subtitle="Let's discuss your home and create a customized selling strategy — no pressure, no obligation."
-          primaryCta={{ text: "Book a Call", href: "/contact" }}
+          primaryCta={{ text: "Book a Call", href: "https://calendly.com/fawadnissari" }}
           secondaryCta={{ text: "Get Home Evaluation", href: "/home-evaluation" }}
         />
       </SectionWrapper>

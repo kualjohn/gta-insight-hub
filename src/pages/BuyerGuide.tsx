@@ -116,7 +116,7 @@ const BuyerGuide = () => {
           variant="dark"
           title="Ready to Start Your Home Search?"
           subtitle="Get personalized guidance from a local expert who knows the GTA market inside and out."
-          primaryCta={{ text: "Book a Call", href: "/contact" }}
+          primaryCta={{ text: "Book a Call", href: "https://calendly.com/fawadnissari" }}
           secondaryCta={{ text: "View Buyer Tips", href: "/buyer-tips" }}
         />
       </SectionWrapper>

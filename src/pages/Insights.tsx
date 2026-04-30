@@ -188,7 +188,7 @@ export default function Insights() {
             variant="secondary"
             title="Looking for specific advice?"
             subtitle="Book a free call and get personalized insights for your situation."
-            primaryCta={{ text: "Book a Call", href: "/contact" }}
+            primaryCta={{ text: "Book a Call", href: "https://calendly.com/fawadnissari" }}
             secondaryCta={{ text: "Download Seller Guide", href: "/seller-guide" }}
           />
         </div>
@@ -214,7 +214,7 @@ export default function Insights() {
           variant="dark"
           title="Ready to Take the Next Step?"
           subtitle="Whether you're buying, selling, or just exploring — I'm here to help."
-          primaryCta={{ text: "Book a Call", href: "/contact" }}
+          primaryCta={{ text: "Book a Call", href: "https://calendly.com/fawadnissari" }}
           secondaryCta={{ text: "Download Seller Guide", href: "/seller-guide" }}
         />
       </SectionWrapper>

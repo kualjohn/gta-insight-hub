@@ -153,7 +153,7 @@ export default function FAQ() {
           variant="dark"
           title="Still Have Questions?"
           subtitle="I'm here to help. Book a free consultation and let's discuss your situation — no pressure, just honest advice."
-          primaryCta={{ text: "Book a Call", href: "/contact" }}
+          primaryCta={{ text: "Book a Call", href: "https://calendly.com/fawadnissari" }}
           secondaryCta={{ text: "Watch My Videos", href: "/youtube" }}
         />
       </SectionWrapper>

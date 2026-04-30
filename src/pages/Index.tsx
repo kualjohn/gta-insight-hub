@@ -291,7 +291,7 @@ const Index = () => {
           variant="dark"
           title="Ready to Have a Conversation?"
           subtitle="No pressure, no obligations. Just honest advice about your real estate goals."
-          primaryCta={{ text: "Book a Call", href: "/contact" }}
+          primaryCta={{ text: "Book a Call", href: "https://calendly.com/fawadnissari" }}
           secondaryCta={{ text: "Download Seller Guide", href: "/seller-guide" }}
         />
       </SectionWrapper>
