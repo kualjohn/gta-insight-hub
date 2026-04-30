@@ -71,7 +71,8 @@ const testimonials = [
 ];
 
 const successStats = [
-  { key: 'sold', icon: TrendingUp, stat: '98%', label: 'Sold at or above asking' },
+  { key: 'sold', icon: TrendingUp, stat: '103%', label: 'Average sale vs. asking price' },
+  { key: 'satisfaction', icon: Home, stat: '100%', label: 'Customer satisfaction' },
   { key: 'rating', icon: Star, stat: '5.0', label: 'Google rating' },
   { key: 'count', icon: Home, stat: '12', label: 'Google reviews' },
 ];
@@ -129,7 +130,7 @@ export default function Testimonials() {
 
       {/* Success Stats */}
       <SectionWrapper>
-        <div className="grid grid-cols-3 gap-6 max-w-3xl mx-auto mb-12">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto mb-12">
           {successStats.map((item, index) => (
             <div key={index} className="text-center">
               <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-3">
