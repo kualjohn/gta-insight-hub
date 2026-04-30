@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { Phone } from 'lucide-react';
+import { Phone, TrendingUp, Film, Megaphone, Handshake, Home, Calculator } from 'lucide-react';
 import { useProperties } from '@/hooks/useProperties';
 import PortfolioCard from '@/components/portfolio/PortfolioCard';
 import { Layout } from '@/components/layout/Layout';
@@ -47,6 +47,9 @@ export default function Portfolio() {
   const selectClass =
     "bg-transparent border-b border-border/60 pb-2 pr-6 font-body text-xs tracking-[0.2em] uppercase text-foreground/80 focus:outline-none focus:border-accent transition-colors cursor-pointer";
 
+  // Insert an inline seller CTA roughly mid-way through the grid
+  const midpoint = filtered.length >= 4 ? Math.ceil(filtered.length / 2) : -1;
+
   return (
     <Layout>
       {/* HERO / HEADING */}
@@ -71,6 +74,33 @@ export default function Portfolio() {
             From cinematic video and staging to targeted ads and massive buyer exposure,
             this is how we help listings stand out and sell.
           </p>
+        </motion.div>
+      </section>
+
+      {/* STATS BAR — Social proof up front */}
+      <section className="px-6 md:px-12 lg:px-20 xl:px-28 pb-12 md:pb-16">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+          className="border-y border-border/60 py-8 md:py-10 grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8"
+        >
+          {[
+            { stat: '$155K', label: 'Over Asking — Record Sale' },
+            { stat: '7+', label: 'Record-Breaking Sales' },
+            { stat: '50K+', label: 'Buyer Views Per Listing' },
+            { stat: '24 hrs', label: 'Fastest Sale on Record' },
+          ].map((item, i) => (
+            <div key={i} className="text-center md:text-left">
+              <div className="font-display text-3xl md:text-4xl lg:text-5xl text-accent mb-1">
+                {item.stat}
+              </div>
+              <div className="font-body text-[11px] md:text-xs tracking-[0.2em] uppercase text-muted-foreground">
+                {item.label}
+              </div>
+            </div>
+          ))}
         </motion.div>
       </section>
 
@@ -124,21 +154,126 @@ export default function Portfolio() {
             ))}
           </div>
         ) : filtered.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
-            {filtered.map((p, i) => (
-              <PortfolioCard
-                key={p.id}
-                property={p}
-                index={i}
-                resultLine={RESULT_LINES[p.slug]}
-              />
-            ))}
-          </div>
+          <>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
+              {filtered.slice(0, midpoint > 0 ? midpoint : filtered.length).map((p, i) => (
+                <PortfolioCard
+                  key={p.id}
+                  property={p}
+                  index={i}
+                  resultLine={RESULT_LINES[p.slug]}
+                />
+              ))}
+            </div>
+
+            {/* INLINE SELLER CTA — catches scrollers mid-page */}
+            {midpoint > 0 && (
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7 }}
+                className="my-16 md:my-20 border-y border-accent/30 py-10 md:py-12 flex flex-col md:flex-row md:items-center md:justify-between gap-6"
+              >
+                <div className="max-w-xl">
+                  <div className="flex items-center gap-3 mb-3">
+                    <Calculator className="w-4 h-4 text-accent" />
+                    <span className="font-body text-[11px] tracking-[0.3em] uppercase text-accent font-semibold">
+                      Curious?
+                    </span>
+                  </div>
+                  <p className="font-display text-2xl md:text-3xl text-foreground leading-tight">
+                    What could <span className="text-accent italic">your home</span> sell for?
+                  </p>
+                  <p className="font-body text-sm md:text-base text-muted-foreground mt-2">
+                    Get a free, no-obligation home evaluation from our team.
+                  </p>
+                </div>
+                <Button variant="gold" size="lg" asChild className="shrink-0">
+                  <Link to="/sell/home-valuation">
+                    <Home className="w-4 h-4" />
+                    Get My Home Valuation
+                  </Link>
+                </Button>
+              </motion.div>
+            )}
+
+            {midpoint > 0 && (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
+                {filtered.slice(midpoint).map((p, i) => (
+                  <PortfolioCard
+                    key={p.id}
+                    property={p}
+                    index={midpoint + i}
+                    resultLine={RESULT_LINES[p.slug]}
+                  />
+                ))}
+              </div>
+            )}
+          </>
         ) : (
           <div className="text-center py-20">
             <p className="font-body text-muted-foreground">No properties found.</p>
           </div>
         )}
+      </section>
+
+      {/* THE DIFFERENCE — Why these results happen */}
+      <section className="px-6 md:px-12 lg:px-20 xl:px-28 pb-24 md:pb-32">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+          className="max-w-2xl mb-12 md:mb-16"
+        >
+          <div className="flex items-center gap-3 mb-6">
+            <span className="w-8 h-px bg-accent" />
+            <span className="font-body text-[11px] tracking-[0.3em] uppercase text-accent font-semibold">
+              Why These Results Happen
+            </span>
+          </div>
+          <h2 className="font-display text-3xl md:text-4xl lg:text-5xl text-foreground leading-tight">
+            Our team's <span className="text-accent italic">difference</span>.
+          </h2>
+        </motion.div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10">
+          {[
+            {
+              icon: Film,
+              title: 'Cinematic Marketing',
+              body: 'Pro video, photography and staging that make every listing stop the scroll — the same treatment behind every record sale on this page.',
+            },
+            {
+              icon: Megaphone,
+              title: 'Maximum Exposure',
+              body: '50,000+ targeted buyer views per listing through paid social, YouTube and our agent network — not just MLS and hope.',
+            },
+            {
+              icon: Handshake,
+              title: 'Negotiation That Wins',
+              body: 'Multiple-offer strategy designed to push price, not just close fast. The reason listings here go over asking and break street records.',
+            },
+          ].map((item, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: i * 0.1 }}
+              className="border-t border-border/60 pt-8"
+            >
+              <item.icon className="w-6 h-6 text-accent mb-5" />
+              <h3 className="font-display text-xl md:text-2xl text-foreground mb-3">
+                {item.title}
+              </h3>
+              <p className="font-body text-sm md:text-base text-muted-foreground leading-relaxed">
+                {item.body}
+              </p>
+            </motion.div>
+          ))}
+        </div>
       </section>
 
       {/* CTA BLOCK */}
@@ -158,22 +293,35 @@ export default function Portfolio() {
             <div className="flex items-center justify-center gap-3 mb-6">
               <span className="w-8 h-px bg-accent" />
               <span className="font-body text-[11px] tracking-[0.3em] uppercase text-accent font-semibold">
-                Let’s Work Together
+                Be The Next Success Story
               </span>
               <span className="w-8 h-px bg-accent" />
             </div>
             <h2 className="font-display text-3xl md:text-5xl lg:text-6xl text-primary-foreground leading-tight mb-6 max-w-3xl mx-auto">
-              Thinking about selling your home?
+              Ready to be the next <span className="italic text-accent">record sale?</span>
             </h2>
             <p className="font-body text-base md:text-lg text-primary-foreground/70 max-w-2xl mx-auto mb-10 leading-relaxed">
-              Let’s build a strategy to get you the same kind of exposure and results.
+              Two ways to get started — pick the one that fits where you are right now.
             </p>
-            <Button variant="gold" size="xl" asChild>
-              <Link to="/contact">
-                <Phone className="w-4 h-4" />
-                Book a Call
-              </Link>
-            </Button>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+              <Button variant="gold" size="xl" asChild>
+                <Link to="/sell/home-valuation">
+                  <TrendingUp className="w-4 h-4" />
+                  Free Home Evaluation
+                </Link>
+              </Button>
+              <Button
+                variant="outline"
+                size="xl"
+                asChild
+                className="bg-transparent border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground hover:text-charcoal"
+              >
+                <Link to="/contact">
+                  <Phone className="w-4 h-4" />
+                  Book a Strategy Call
+                </Link>
+              </Button>
+            </div>
           </div>
         </motion.div>
       </section>
