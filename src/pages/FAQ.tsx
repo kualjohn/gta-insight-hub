@@ -118,8 +118,10 @@ export default function FAQ() {
           </div>
           
           <div className="grid md:grid-cols-2 gap-4">
-            <Link 
-              to="/contact"
+            <a
+              href="https://calendly.com/fawadnissari"
+              target="_blank"
+              rel="noopener noreferrer"
               className="flex items-center gap-4 p-6 bg-card rounded-xl border border-border hover:border-primary transition-colors group"
             >
               <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
@@ -129,7 +131,7 @@ export default function FAQ() {
                 <h3 className="font-semibold">Book a Call</h3>
                 <p className="text-sm text-muted-foreground">Free, no-pressure consultation</p>
               </div>
-            </Link>
+            </a>
             
             <Link 
               to="/seller-guide"

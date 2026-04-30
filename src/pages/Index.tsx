@@ -99,10 +99,10 @@ const Index = () => {
               </p>
               <div className="flex flex-col sm:flex-row gap-3 mb-5">
                 <Button variant="gold" size="lg" asChild>
-                  <Link to="/contact">
+                  <a href="https://calendly.com/fawadnissari" target="_blank" rel="noopener noreferrer">
                     <Phone className="w-5 h-5" />
                     Book a Call
-                  </Link>
+                  </a>
                 </Button>
                 <Button 
                   variant="outline" 

@@ -174,10 +174,10 @@ export default function YouTubeHub() {
               asChild
               className="text-primary-foreground hover:bg-primary-foreground/10"
             >
-              <Link to="/contact">
+              <a href="https://calendly.com/fawadnissari" target="_blank" rel="noopener noreferrer">
                 Book a Call
                 <ArrowRight className="w-4 h-4" />
-              </Link>
+              </a>
             </Button>
           </div>
         </div>

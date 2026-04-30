@@ -77,10 +77,10 @@ const BuyerTips = () => {
               </Link>
             </Button>
             <Button variant="outline" size="lg" asChild>
-              <Link to="/contact">
+              <a href="https://calendly.com/fawadnissari" target="_blank" rel="noopener noreferrer">
                 <Phone className="w-5 h-5" />
                 Book a Call
-              </Link>
+              </a>
             </Button>
           </div>
         </div>

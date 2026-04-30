@@ -60,10 +60,10 @@ export default function About() {
                   </Link>
                 </Button>
                 <Button variant="outline" size="lg" asChild>
-                  <Link to="/contact">
+                  <a href="https://calendly.com/fawadnissari" target="_blank" rel="noopener noreferrer">
                     <Phone className="w-4 h-4" />
                     Book a Call
-                  </Link>
+                  </a>
                 </Button>
               </div>
             </div>
