@@ -71,9 +71,9 @@ const testimonials = [
 ];
 
 const successStats = [
-  { icon: TrendingUp, stat: '98%', label: 'Sold at or above asking' },
-  { icon: Star, stat: '5.0', label: 'Average client rating' },
-  { icon: Home, stat: '12', label: 'Average days on market' },
+  { key: 'sold', icon: TrendingUp, stat: '98%', label: 'Sold at or above asking' },
+  { key: 'rating', icon: Star, stat: '5.0', label: 'Average client rating' },
+  { key: 'count', icon: Home, stat: '12', label: 'Average days on market' },
 ];
 
 export default function Testimonials() {
