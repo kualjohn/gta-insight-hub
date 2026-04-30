@@ -21,6 +21,8 @@ const RESULT_LINES: Record<string, string> = {
   '271-andrews-trail': 'Listed at $999K • Sold at $1.1M — $101,000 over asking',
   '691-ormond-drive': 'Sold at full asking — multiple-offer night with families competing',
   '1593-leblanc-court': 'Sold $155,000 over asking — record price, highest ever on the street',
+  '1564-somergrove-cres': 'Sold for full asking in the heart of Brock Ridge',
+  '29-napoleon-dr': 'Sold $182,500 over asking — Stoney Creek family home',
 };
 
 export default function Portfolio() {
