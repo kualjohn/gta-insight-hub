@@ -22,6 +22,17 @@ export function CTABlock({
 }: CTABlockProps) {
   const isDark = variant === 'dark';
 
+  const isExternal = (href: string) => /^https?:\/\//i.test(href);
+
+  const renderLink = (href: string, children: React.ReactNode) =>
+    isExternal(href) ? (
+      <a href={href} target="_blank" rel="noopener noreferrer">
+        {children}
+      </a>
+    ) : (
+      <Link to={href}>{children}</Link>
+    );
+
   return (
     <div className={cn(
       "rounded-2xl p-8 lg:p-12 text-center",
@@ -54,10 +65,12 @@ export function CTABlock({
               (variant === 'primary' || isDark) && "border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-foreground bg-transparent"
             )}
           >
-            <Link to={primaryCta.href}>
-              <Phone className="w-4 h-4" />
-              {primaryCta.text}
-            </Link>
+            {renderLink(primaryCta.href, (
+              <>
+                <Phone className="w-4 h-4" />
+                {primaryCta.text}
+              </>
+            ))}
           </Button>
         )}
         {secondaryCta && (
@@ -69,10 +82,12 @@ export function CTABlock({
               (variant === 'primary' || isDark) && "text-primary-foreground hover:bg-primary-foreground/10"
             )}
           >
-            <Link to={secondaryCta.href}>
-              {secondaryCta.text}
-              <ArrowRight className="w-4 h-4" />
-            </Link>
+            {renderLink(secondaryCta.href, (
+              <>
+                {secondaryCta.text}
+                <ArrowRight className="w-4 h-4" />
+              </>
+            ))}
           </Button>
         )}
       </div>
