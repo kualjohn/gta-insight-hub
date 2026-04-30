@@ -14,6 +14,7 @@ const RESULT_LINES: Record<string, string> = {
   '808-krosno-blvd': 'Sold in 24 hours • 50,000+ views in 2 days',
   '1400-duval-drive': 'Sold in 4 days • 25,000+ buyer views',
   '212-shadow-place': '87 showings • 4 offers • 80,000+ ad views • Sold in 3 weeks',
+  '1060-st-hildas-way': 'Sold over asking at $603,000 — freehold townhouse priced like a condo',
 };
 
 export default function Portfolio() {
