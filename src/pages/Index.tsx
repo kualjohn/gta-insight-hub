@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Download, Phone, AlertCircle, Check, Play, Star, Quote } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -8,6 +9,7 @@ import { SellerUSPBlock } from '@/components/sections/SellerUSPBlock';
 import { CTABlock } from '@/components/sections/CTABlock';
 import { Layout } from '@/components/layout/Layout';
 import { useYouTubeVideos } from '@/hooks/useYouTubeVideos';
+import { supabase } from '@/integrations/supabase/client';
 import { useProperties } from '@/hooks/useProperties';
 import PortfolioCard from '@/components/portfolio/PortfolioCard';
 import { Skeleton } from '@/components/ui/skeleton';
@@ -46,28 +48,40 @@ const firstTimeSellerPoints = [
   'Get honest answers without any sales pressure',
 ];
 
-const socialProofQuotes = [
-  {
-    quote: 'Got us 15% over asking in just 5 days. I trusted him completely before we even met.',
-    name: 'David Chen',
-    location: 'Milton',
-  },
-  {
-    quote: '47 showings the first weekend. Sold in 5 days with multiple offers.',
-    name: 'Priya Patel',
-    location: 'Oakville',
-  },
-  {
-    quote: 'Honest, hardworking, and truly cares. Restored our faith in real estate.',
-    name: 'Robert & Lisa Wilson',
-    location: 'Burlington',
-  },
-];
+type GoogleReview = {
+  author: string;
+  authorPhoto: string | null;
+  authorUrl: string | null;
+  rating: number;
+  text: string;
+  relativeTime: string;
+};
+
+type GoogleReviewsResponse = {
+  rating: number | null;
+  totalReviews: number;
+  mapsUrl: string;
+  reviews: GoogleReview[];
+};
 
 const Index = () => {
   const { videos, isLoading, error, channelUrl } = useYouTubeVideos(6);
   const { data: properties = [] } = useProperties();
   const featuredProperties = properties.slice(0, 3);
+  const [googleData, setGoogleData] = useState<GoogleReviewsResponse | null>(null);
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const { data, error } = await supabase.functions.invoke('google-reviews');
+        if (!error && data) setGoogleData(data as GoogleReviewsResponse);
+      } catch (e) {
+        console.error('Failed to load Google reviews', e);
+      }
+    })();
+  }, []);
+
+  const realReviews = (googleData?.reviews ?? []).filter(r => r.text && r.text.length > 0).slice(0, 3);
 
   return (
     <Layout>
