@@ -54,6 +54,9 @@ export default function AdminDashboard() {
         <header className="border-b border-border px-6 md:px-12 lg:px-20 xl:px-28 py-4 flex items-center justify-between">
           <h1 className="font-display text-xl text-foreground">Property Admin</h1>
           <div className="flex items-center gap-4">
+            <Link to="/admin/blog" className="font-body text-xs tracking-[0.15em] uppercase text-muted-foreground hover:text-foreground transition-colors">
+              Blog Posts
+            </Link>
             <Link to="/admin/properties/new" className="flex items-center gap-2 bg-accent text-accent-foreground px-5 py-2 font-body text-xs tracking-[0.15em] uppercase hover:bg-accent/90 transition-colors">
               <Plus className="w-4 h-4" /> New Property
             </Link>
