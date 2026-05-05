@@ -141,6 +141,56 @@ serve(async (req) => {
       return new Response(JSON.stringify({ exists: (data?.length || 0) > 0 }), { headers: { ...corsHeaders, "Content-Type": "application/json" } });
     }
 
+    // ---- Blog post actions ----
+    if (req.method === "GET" && action === "blog-list") {
+      const { data, error } = await supabase
+        .from("blog_posts")
+        .select("id,title,slug,category,published_at,featured_image,excerpt,updated_at,created_at")
+        .order("published_at", { ascending: false, nullsFirst: false });
+      if (error) throw error;
+      return new Response(JSON.stringify(data), { headers: { ...corsHeaders, "Content-Type": "application/json" } });
+    }
+
+    if (req.method === "GET" && action === "blog-get") {
+      const id = url.searchParams.get("id");
+      const { data, error } = await supabase.from("blog_posts").select("*").eq("id", id).single();
+      if (error) throw error;
+      return new Response(JSON.stringify(data), { headers: { ...corsHeaders, "Content-Type": "application/json" } });
+    }
+
+    if (req.method === "POST" && action === "blog-create") {
+      const body = await req.json();
+      if (!body.source_url) body.source_url = `manual:${body.slug || crypto.randomUUID()}`;
+      const { data, error } = await supabase.from("blog_posts").insert(body).select().single();
+      if (error) throw error;
+      return new Response(JSON.stringify(data), { status: 201, headers: { ...corsHeaders, "Content-Type": "application/json" } });
+    }
+
+    if (req.method === "PUT" && action === "blog-update") {
+      const id = url.searchParams.get("id");
+      const body = await req.json();
+      body.updated_at = new Date().toISOString();
+      const { data, error } = await supabase.from("blog_posts").update(body).eq("id", id).select().single();
+      if (error) throw error;
+      return new Response(JSON.stringify(data), { headers: { ...corsHeaders, "Content-Type": "application/json" } });
+    }
+
+    if (req.method === "DELETE" && action === "blog-delete") {
+      const id = url.searchParams.get("id");
+      const { error } = await supabase.from("blog_posts").delete().eq("id", id);
+      if (error) throw error;
+      return new Response(JSON.stringify({ success: true }), { headers: { ...corsHeaders, "Content-Type": "application/json" } });
+    }
+
+    if (req.method === "POST" && action === "blog-check-slug") {
+      const { slug, excludeId } = await req.json();
+      let query = supabase.from("blog_posts").select("id").eq("slug", slug);
+      if (excludeId) query = query.neq("id", excludeId);
+      const { data, error } = await query;
+      if (error) throw error;
+      return new Response(JSON.stringify({ exists: (data?.length || 0) > 0 }), { headers: { ...corsHeaders, "Content-Type": "application/json" } });
+    }
+
     return new Response(JSON.stringify({ error: "Unknown action" }), { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } });
   } catch (error) {
     console.error("Admin CRUD error:", error);
