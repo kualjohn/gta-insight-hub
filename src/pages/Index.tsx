@@ -164,46 +164,57 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Social Proof Strip */}
-      <SectionWrapper variant="muted" className="py-10 lg:py-14">
-        <div className="grid lg:grid-cols-[auto_1fr] gap-10 lg:gap-14 items-center">
-          {/* Stats */}
-          <div className="flex flex-row lg:flex-col gap-8 lg:gap-6 lg:border-r lg:border-border lg:pr-14">
-            <div className="text-center lg:text-left">
-              <p className="font-serif text-4xl lg:text-5xl font-bold text-primary">103%</p>
-              <p className="text-xs uppercase tracking-wider text-muted-foreground mt-1">Avg sale vs asking</p>
+      {/* Google Reviews — only real, fetched live */}
+      {realReviews.length > 0 && (
+        <SectionWrapper variant="muted" className="py-12 lg:py-16">
+          <div className="text-center mb-8">
+            <div className="inline-flex items-center gap-2 mb-2">
+              {[...Array(5)].map((_, i) => (
+                <Star key={i} className="w-5 h-5 text-primary fill-current" />
+              ))}
+              <span className="font-serif text-xl font-bold ml-2">
+                {googleData?.rating?.toFixed(1) ?? '5.0'}
+              </span>
+              <span className="text-sm text-muted-foreground">
+                · {googleData?.totalReviews ?? 0} Google reviews
+              </span>
             </div>
-            <div className="text-center lg:text-left">
-              <p className="font-serif text-4xl lg:text-5xl font-bold text-primary">100%</p>
-              <p className="text-xs uppercase tracking-wider text-muted-foreground mt-1">Client satisfaction</p>
-            </div>
-            <div className="text-center lg:text-left">
-              <div className="flex items-center justify-center lg:justify-start gap-1">
-                <p className="font-serif text-4xl lg:text-5xl font-bold text-primary">5.0</p>
-                <Star className="w-5 h-5 text-primary fill-current" />
-              </div>
-              <p className="text-xs uppercase tracking-wider text-muted-foreground mt-1">Google rating</p>
-            </div>
+            <h2 className="font-serif text-2xl lg:text-3xl font-bold">What Clients Say</h2>
           </div>
 
-          {/* Quotes */}
-          <div className="grid md:grid-cols-3 gap-5">
-            {socialProofQuotes.map((t, i) => (
-              <div key={i} className="bg-background border border-border rounded-xl p-5">
-                <Quote className="w-5 h-5 text-primary mb-2" />
-                <p className="text-sm text-foreground leading-relaxed mb-3">"{t.quote}"</p>
-                <p className="text-xs font-semibold">{t.name}</p>
-                <p className="text-xs text-muted-foreground">{t.location}</p>
+          <div className="grid md:grid-cols-3 gap-5 max-w-6xl mx-auto">
+            {realReviews.map((r, i) => (
+              <div key={i} className="bg-background border border-border rounded-xl p-5 flex flex-col">
+                <div className="flex items-center gap-3 mb-3">
+                  {r.authorPhoto ? (
+                    <img src={r.authorPhoto} alt={r.author} className="w-10 h-10 rounded-full object-cover" referrerPolicy="no-referrer" />
+                  ) : (
+                    <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary font-semibold">
+                      {r.author.charAt(0)}
+                    </div>
+                  )}
+                  <div>
+                    <p className="text-sm font-semibold leading-tight">{r.author}</p>
+                    <p className="text-xs text-muted-foreground">{r.relativeTime}</p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-0.5 mb-2">
+                  {[...Array(r.rating)].map((_, j) => (
+                    <Star key={j} className="w-3.5 h-3.5 text-primary fill-current" />
+                  ))}
+                </div>
+                <p className="text-sm text-foreground leading-relaxed line-clamp-5">{r.text}</p>
               </div>
             ))}
           </div>
-        </div>
-        <div className="text-center mt-8">
-          <Link to="/testimonials" className="text-sm font-medium text-primary hover:underline inline-flex items-center gap-1">
-            Read all client reviews <ArrowRight className="w-4 h-4" />
-          </Link>
-        </div>
-      </SectionWrapper>
+
+          <div className="text-center mt-8">
+            <Link to="/testimonials" className="text-sm font-medium text-primary hover:underline inline-flex items-center gap-1">
+              Read all client reviews <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
+        </SectionWrapper>
+      )}
 
       {/* Latest Videos Section */}
       <SectionWrapper className="py-12 lg:py-16">
