@@ -27,6 +27,8 @@ import PropertyDetail from "./pages/PropertyDetail";
 import AdminLogin from "./pages/AdminLogin";
 import AdminDashboard from "./pages/AdminDashboard";
 import AdminPropertyForm from "./pages/AdminPropertyForm";
+import AdminBlogList from "./pages/AdminBlogList";
+import AdminBlogForm from "./pages/AdminBlogForm";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -63,6 +65,9 @@ const App = () => (
               <Route path="/admin" element={<AdminDashboard />} />
               <Route path="/admin/properties/new" element={<AdminPropertyForm />} />
               <Route path="/admin/properties/:id/edit" element={<AdminPropertyForm />} />
+              <Route path="/admin/blog" element={<AdminBlogList />} />
+              <Route path="/admin/blog/new" element={<AdminBlogForm />} />
+              <Route path="/admin/blog/:id/edit" element={<AdminBlogForm />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>

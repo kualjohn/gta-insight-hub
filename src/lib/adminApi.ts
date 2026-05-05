@@ -89,3 +89,62 @@ export function toSlug(title: string): string {
     .replace(/[^a-z0-9]+/g, '-')
     .replace(/^-|-$/g, '');
 }
+
+// ---- Blog posts ----
+export async function adminListBlogPosts(token: string) {
+  const res = await fetch(`${BASE}?action=blog-list`, { headers: getHeaders(token) });
+  if (!res.ok) throw new Error('Failed to fetch blog posts');
+  return res.json();
+}
+
+export async function adminGetBlogPost(token: string, id: string) {
+  const res = await fetch(`${BASE}?action=blog-get&id=${id}`, { headers: getHeaders(token) });
+  if (!res.ok) throw new Error('Failed to fetch blog post');
+  return res.json();
+}
+
+export async function adminCreateBlogPost(token: string, data: Record<string, any>) {
+  const res = await fetch(`${BASE}?action=blog-create`, {
+    method: 'POST',
+    headers: getHeaders(token),
+    body: JSON.stringify(data),
+  });
+  if (!res.ok) {
+    const err = await res.json();
+    throw new Error(err.error || 'Failed to create blog post');
+  }
+  return res.json();
+}
+
+export async function adminUpdateBlogPost(token: string, id: string, data: Record<string, any>) {
+  const res = await fetch(`${BASE}?action=blog-update&id=${id}`, {
+    method: 'PUT',
+    headers: getHeaders(token),
+    body: JSON.stringify(data),
+  });
+  if (!res.ok) {
+    const err = await res.json();
+    throw new Error(err.error || 'Failed to update blog post');
+  }
+  return res.json();
+}
+
+export async function adminDeleteBlogPost(token: string, id: string) {
+  const res = await fetch(`${BASE}?action=blog-delete&id=${id}`, {
+    method: 'DELETE',
+    headers: getHeaders(token),
+  });
+  if (!res.ok) throw new Error('Failed to delete blog post');
+  return res.json();
+}
+
+export async function adminCheckBlogSlug(token: string, slug: string, excludeId?: string) {
+  const res = await fetch(`${BASE}?action=blog-check-slug`, {
+    method: 'POST',
+    headers: getHeaders(token),
+    body: JSON.stringify({ slug, excludeId }),
+  });
+  if (!res.ok) throw new Error('Failed to check slug');
+  const data = await res.json();
+  return data.exists;
+}
