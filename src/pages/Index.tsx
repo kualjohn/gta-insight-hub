@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { ArrowRight, Download, Phone, AlertCircle, Check, Play } from 'lucide-react';
+import { ArrowRight, Download, Phone, AlertCircle, Check, Play, Star, Quote } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { VideoCard } from '@/components/cards/VideoCard';
 import { SectionHeader, SectionWrapper } from '@/components/sections/SectionHeader';
@@ -8,10 +8,11 @@ import { SellerUSPBlock } from '@/components/sections/SellerUSPBlock';
 import { CTABlock } from '@/components/sections/CTABlock';
 import { Layout } from '@/components/layout/Layout';
 import { useYouTubeVideos } from '@/hooks/useYouTubeVideos';
+import { useProperties } from '@/hooks/useProperties';
+import PortfolioCard from '@/components/portfolio/PortfolioCard';
 import { Skeleton } from '@/components/ui/skeleton';
 import { VideoLightbox } from '@/components/VideoLightbox';
 import { SEOHead } from '@/components/seo/SEOHead';
-import { NewsletterSignup } from '@/components/forms/NewsletterSignup';
 import { SellerGuideSignup } from '@/components/forms/SellerGuideSignup';
 
 function formatDate(dateString: string): string {
@@ -45,8 +46,28 @@ const firstTimeSellerPoints = [
   'Get honest answers without any sales pressure',
 ];
 
+const socialProofQuotes = [
+  {
+    quote: 'Got us 15% over asking in just 5 days. I trusted him completely before we even met.',
+    name: 'David Chen',
+    location: 'Milton',
+  },
+  {
+    quote: '47 showings the first weekend. Sold in 5 days with multiple offers.',
+    name: 'Priya Patel',
+    location: 'Oakville',
+  },
+  {
+    quote: 'Honest, hardworking, and truly cares. Restored our faith in real estate.',
+    name: 'Robert & Lisa Wilson',
+    location: 'Burlington',
+  },
+];
+
 const Index = () => {
   const { videos, isLoading, error, channelUrl } = useYouTubeVideos(6);
+  const { data: properties = [] } = useProperties();
+  const featuredProperties = properties.slice(0, 3);
 
   return (
     <Layout>
@@ -129,6 +150,47 @@ const Index = () => {
         </div>
       </section>
 
+      {/* Social Proof Strip */}
+      <SectionWrapper variant="muted" className="py-10 lg:py-14">
+        <div className="grid lg:grid-cols-[auto_1fr] gap-10 lg:gap-14 items-center">
+          {/* Stats */}
+          <div className="flex flex-row lg:flex-col gap-8 lg:gap-6 lg:border-r lg:border-border lg:pr-14">
+            <div className="text-center lg:text-left">
+              <p className="font-serif text-4xl lg:text-5xl font-bold text-primary">103%</p>
+              <p className="text-xs uppercase tracking-wider text-muted-foreground mt-1">Avg sale vs asking</p>
+            </div>
+            <div className="text-center lg:text-left">
+              <p className="font-serif text-4xl lg:text-5xl font-bold text-primary">100%</p>
+              <p className="text-xs uppercase tracking-wider text-muted-foreground mt-1">Client satisfaction</p>
+            </div>
+            <div className="text-center lg:text-left">
+              <div className="flex items-center justify-center lg:justify-start gap-1">
+                <p className="font-serif text-4xl lg:text-5xl font-bold text-primary">5.0</p>
+                <Star className="w-5 h-5 text-primary fill-current" />
+              </div>
+              <p className="text-xs uppercase tracking-wider text-muted-foreground mt-1">Google rating</p>
+            </div>
+          </div>
+
+          {/* Quotes */}
+          <div className="grid md:grid-cols-3 gap-5">
+            {socialProofQuotes.map((t, i) => (
+              <div key={i} className="bg-background border border-border rounded-xl p-5">
+                <Quote className="w-5 h-5 text-primary mb-2" />
+                <p className="text-sm text-foreground leading-relaxed mb-3">"{t.quote}"</p>
+                <p className="text-xs font-semibold">{t.name}</p>
+                <p className="text-xs text-muted-foreground">{t.location}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className="text-center mt-8">
+          <Link to="/testimonials" className="text-sm font-medium text-primary hover:underline inline-flex items-center gap-1">
+            Read all client reviews <ArrowRight className="w-4 h-4" />
+          </Link>
+        </div>
+      </SectionWrapper>
+
       {/* Latest Videos Section */}
       <SectionWrapper className="py-12 lg:py-16">
         <SectionHeader
@@ -137,7 +199,7 @@ const Index = () => {
         />
         
         {isLoading ? (
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+          <div className="grid md:grid-cols-3 gap-5">
             {[1, 2, 3].map((i) => (
               <VideoSkeleton key={i} />
             ))}
@@ -156,8 +218,8 @@ const Index = () => {
             </Button>
           </div>
         ) : (
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-            {videos.slice(0, 6).map((video) => (
+          <div className="grid md:grid-cols-3 gap-5">
+            {videos.slice(0, 3).map((video) => (
               <VideoCard
                 key={video.videoId}
                 title={video.title}
@@ -178,30 +240,20 @@ const Index = () => {
             </Link>
           </Button>
         </div>
-
-        {/* Newsletter after videos */}
-        <div className="mt-10">
-          <NewsletterSignup variant="inline" />
-        </div>
-
-        {/* Seller Guide Opt-in */}
-        <div className="mt-6">
-          <SellerGuideSignup />
-        </div>
       </SectionWrapper>
 
-      {/* First-Time Seller Section */}
+      {/* Unified Seller Section */}
       <SectionWrapper variant="muted" className="py-12 lg:py-16">
         <div className="grid lg:grid-cols-2 gap-10 items-center">
           <div>
             <span className="inline-block text-sm font-medium text-primary mb-3 tracking-wide uppercase">
-              New to Selling?
+              Thinking About Selling?
             </span>
             <h2 className="font-serif text-3xl lg:text-4xl font-bold mb-4">
-              Are You a First-Time Seller?
+              Everything You Need<br />For a Successful Sale
             </h2>
             <p className="text-lg text-muted-foreground mb-5">
-              Here's what you must know before you list — simple, honest, and pressure-free.
+              Staging, marketing, photography, and strategic pricing — all included. Honest advice, no pressure.
             </p>
             
             <ul className="space-y-2.5 mb-6">
@@ -215,58 +267,6 @@ const Index = () => {
               ))}
             </ul>
 
-            <Button variant="gold" size="lg" asChild>
-              <Link to="/seller-guide">
-                <Download className="w-5 h-5" />
-                Download Your First-Time Seller Guide
-              </Link>
-            </Button>
-          </div>
-
-          <div className="relative">
-            <div className="aspect-[4/3] rounded-2xl overflow-hidden bg-gradient-to-br from-primary/20 to-primary/5 border border-primary/10 shadow-lg">
-              <img 
-                src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&h=600&fit=crop"
-                alt="Beautiful staged home"
-                className="w-full h-full object-cover"
-              />
-            </div>
-            <div className="absolute -bottom-3 -right-3 bg-primary text-primary-foreground px-5 py-2.5 rounded-lg shadow-lg">
-              <p className="font-semibold text-sm">Free Guide</p>
-              <p className="text-xs opacity-80">No pressure, just value</p>
-            </div>
-          </div>
-        </div>
-      </SectionWrapper>
-
-      {/* Trust Indicators */}
-      <SectionWrapper className="py-12 lg:py-16">
-        <div className="text-center mb-10">
-          <h2 className="font-serif text-3xl lg:text-4xl font-bold mb-3">
-            Why GTA Families Trust Us
-          </h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            A decade of experience, hundreds of educational videos, and a commitment to honest, 
-            data-driven advice.
-          </p>
-        </div>
-        <TrustIndicators />
-      </SectionWrapper>
-
-      {/* Seller Value Section */}
-      <SectionWrapper variant="muted" className="py-12 lg:py-16">
-        <div className="grid lg:grid-cols-2 gap-10 items-center">
-          <div>
-            <span className="inline-block text-sm font-medium text-primary mb-3 tracking-wide uppercase">
-              When You're Ready
-            </span>
-            <h2 className="font-serif text-3xl lg:text-4xl font-bold mb-5">
-              Here's How We Help<br />You Sell Your Home
-            </h2>
-            <p className="text-muted-foreground text-lg mb-6">
-              When the time comes to sell, we bring everything you need for a successful sale—staging, 
-              marketing, photography, and strategic pricing—all included.
-            </p>
             <div className="flex flex-col sm:flex-row gap-3">
               <Button variant="gold" size="lg" asChild>
                 <Link to="/seller-services">
@@ -275,15 +275,40 @@ const Index = () => {
                 </Link>
               </Button>
               <Button variant="outline" size="lg" asChild>
-                <Link to="/home-evaluation">
-                  Get a Home Evaluation
+                <Link to="/seller-guide">
+                  <Download className="w-5 h-5" />
+                  Free Seller Guide
                 </Link>
               </Button>
             </div>
           </div>
+
           <SellerUSPBlock />
         </div>
       </SectionWrapper>
+
+      {/* Featured Properties */}
+      {featuredProperties.length > 0 && (
+        <SectionWrapper className="py-12 lg:py-16">
+          <SectionHeader
+            title="Recent Sales & Listings"
+            subtitle="A glimpse at the homes we've helped sell across the GTA."
+          />
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {featuredProperties.map((property, idx) => (
+              <PortfolioCard key={property.id} property={property} index={idx} />
+            ))}
+          </div>
+          <div className="text-center mt-8">
+            <Button variant="outline" size="lg" asChild>
+              <Link to="/portfolio">
+                View Full Portfolio
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+            </Button>
+          </div>
+        </SectionWrapper>
+      )}
 
       {/* CTA Section */}
       <SectionWrapper className="py-12 lg:py-16">
