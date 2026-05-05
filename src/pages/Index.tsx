@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Download, Phone, AlertCircle, Check, Play, Star, Quote } from 'lucide-react';
+import { ArrowRight, Download, Phone, AlertCircle, Check, Play, Star } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { VideoCard } from '@/components/cards/VideoCard';
 import { SectionHeader, SectionWrapper } from '@/components/sections/SectionHeader';
