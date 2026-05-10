@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
-import { Phone, Mail, MapPin, Clock, Youtube, Instagram, Facebook, Loader2, CheckCircle } from 'lucide-react';
+import { Phone, Mail, MapPin, Clock, Youtube, Instagram, Facebook, Linkedin, Loader2, CheckCircle } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
 import { z } from 'zod';
