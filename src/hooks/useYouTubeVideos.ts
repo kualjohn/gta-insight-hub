@@ -18,7 +18,7 @@ interface UseYouTubeVideosResult {
   refetch: () => void;
 }
 
-const CHANNEL_URL = 'https://www.youtube.com/channel/UCNiL5jVJ7uM89e2S69FrUxQ';
+const CHANNEL_URL = 'https://www.youtube.com/@Fawadnissari';
 
 export function useYouTubeVideos(limit?: number): UseYouTubeVideosResult {
   const [videos, setVideos] = useState<YouTubeVideo[]>([]);
