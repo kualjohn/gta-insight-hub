@@ -20,7 +20,7 @@ const quickLinks = [
   { name: 'Staging', href: '/staging' },
 ];
 
-const YOUTUBE_CHANNEL = 'https://www.youtube.com/channel/UCNiL5jVJ7uM89e2S69FrUxQ';
+const YOUTUBE_CHANNEL = 'https://www.youtube.com/@Fawadnissari';
 
 export function Footer() {
   return (
