@@ -39,7 +39,7 @@ function VideoSkeleton() {
 
 const FEATURED_VIDEO_ID = 'Mh6UJ08iSkA';
 const FEATURED_VIDEO_THUMBNAIL = `https://i.ytimg.com/vi/${FEATURED_VIDEO_ID}/maxresdefault.jpg`;
-const CHANNEL_URL = 'https://www.youtube.com/channel/UCNiL5jVJ7uM89e2S69FrUxQ';
+const CHANNEL_URL = 'https://www.youtube.com/@Fawadnissari';
 
 const firstTimeSellerPoints = [
   'Understand the true value of your home in today\'s market',

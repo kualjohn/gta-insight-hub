@@ -10,7 +10,7 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { useYouTubeVideos } from '@/hooks/useYouTubeVideos';
 import { SEOHead } from '@/components/seo/SEOHead';
 
-const CHANNEL_URL = 'https://www.youtube.com/channel/UCNiL5jVJ7uM89e2S69FrUxQ';
+const CHANNEL_URL = 'https://www.youtube.com/@Fawadnissari';
 
 function formatDate(dateString: string): string {
   const date = new Date(dateString);
