@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Youtube, Mail, Phone, MapPin, Instagram } from 'lucide-react';
+import { Youtube, Mail, Phone, MapPin, Instagram, Linkedin } from 'lucide-react';
 import { NewsletterSignup } from '@/components/forms/NewsletterSignup';
 
 const areas = [
