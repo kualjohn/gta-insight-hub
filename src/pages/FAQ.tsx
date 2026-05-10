@@ -45,7 +45,7 @@ const faqs = [
   },
   {
     question: 'Is staging really included for free?',
-    answer: 'Yes! My wife runs a professional staging company, and we include full home staging at no additional cost for all our sellers. Studies show staged homes sell 73% faster and for up to 20% more. It\'s one of the many ways we go above and beyond.',
+    answer: 'Yes! We invest heavily in staging — on average $4,500 per home — and provide it completely free of charge to our sellers. We do this because we believe in our service and we\'re confident we can sell your home. Studies show staged homes sell 73% faster and for up to 20% more.',
     cta: { text: 'Learn About Staging', href: '/staging' },
   },
   {
