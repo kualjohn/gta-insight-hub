@@ -218,7 +218,7 @@ export default function Contact() {
               <h3 className="font-serif text-xl font-semibold mb-4">Follow Me</h3>
               <div className="flex items-center gap-3">
                 <a
-                  href="https://youtube.com"
+                  href="https://www.youtube.com/@Fawadnissari"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-12 h-12 rounded-full bg-charcoal text-primary-foreground flex items-center justify-center hover:bg-primary transition-colors"
@@ -226,7 +226,7 @@ export default function Contact() {
                   <Youtube className="w-5 h-5" />
                 </a>
                 <a
-                  href="https://instagram.com"
+                  href="https://www.instagram.com/fawadnissari"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-12 h-12 rounded-full bg-charcoal text-primary-foreground flex items-center justify-center hover:bg-primary transition-colors"
@@ -234,12 +234,20 @@ export default function Contact() {
                   <Instagram className="w-5 h-5" />
                 </a>
                 <a
-                  href="https://facebook.com"
+                  href="https://www.facebook.com/fawadnissari1"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-12 h-12 rounded-full bg-charcoal text-primary-foreground flex items-center justify-center hover:bg-primary transition-colors"
                 >
                   <Facebook className="w-5 h-5" />
+                </a>
+                <a
+                  href="https://www.linkedin.com/in/fawadnissari/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-12 h-12 rounded-full bg-charcoal text-primary-foreground flex items-center justify-center hover:bg-primary transition-colors"
+                >
+                  <Linkedin className="w-5 h-5" />
                 </a>
               </div>
             </div>
