@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAdmin } from '@/hooks/useAdmin';
-import { adminListProperties, adminDeleteProperty } from '@/lib/adminApi';
+import { adminListProperties, adminDeleteProperty, adminGetYouTubeDraftCount } from '@/lib/adminApi';
 import { statusLabel, formatPrice } from '@/types/property';
-import { Plus, ExternalLink, Pencil, Trash2, LogOut, Search } from 'lucide-react';
+import { Plus, ExternalLink, Pencil, Trash2, LogOut, Search, Youtube } from 'lucide-react';
 
 export default function AdminDashboard() {
   const { token, isAuthenticated, logout } = useAdmin();
@@ -14,10 +14,12 @@ export default function AdminDashboard() {
   const [filterStatus, setFilterStatus] = useState('');
   const [filterCity, setFilterCity] = useState('');
   const [deleteId, setDeleteId] = useState<string | null>(null);
+  const [draftCount, setDraftCount] = useState(0);
 
   useEffect(() => {
     if (!isAuthenticated) { navigate('/admin/login'); return; }
     loadProperties();
+    if (token) adminGetYouTubeDraftCount(token).then(setDraftCount).catch(() => {});
   }, [isAuthenticated]);
 
   const loadProperties = async () => {
@@ -54,6 +56,17 @@ export default function AdminDashboard() {
         <header className="border-b border-border px-6 md:px-12 lg:px-20 xl:px-28 py-4 flex items-center justify-between">
           <h1 className="font-display text-xl text-foreground">Property Admin</h1>
           <div className="flex items-center gap-4">
+            <Link
+              to="/admin/blog-drafts"
+              className="relative flex items-center gap-2 font-body text-xs tracking-[0.15em] uppercase text-muted-foreground hover:text-foreground transition-colors"
+            >
+              <Youtube className="w-4 h-4" /> YT Drafts
+              {draftCount > 0 && (
+                <span className="absolute -top-2 -right-3 bg-accent text-accent-foreground text-[9px] font-body font-bold rounded-full min-w-[18px] h-[18px] flex items-center justify-center px-1">
+                  {draftCount}
+                </span>
+              )}
+            </Link>
             <Link to="/admin/blog" className="font-body text-xs tracking-[0.15em] uppercase text-muted-foreground hover:text-foreground transition-colors">
               Blog Posts
             </Link>
