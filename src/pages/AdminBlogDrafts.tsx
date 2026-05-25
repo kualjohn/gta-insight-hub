@@ -137,6 +137,14 @@ export default function AdminBlogDrafts() {
                     <h3 className="font-display text-lg text-foreground mb-2 line-clamp-2">{d.blog_title}</h3>
                     {d.category && <p className="font-body text-[10px] tracking-[0.15em] uppercase text-muted-foreground mb-2">{d.category}</p>}
                     <p className="font-body text-sm text-muted-foreground line-clamp-3 mb-4">{d.meta_description}</p>
+                    {d.transcript_source && (
+                      <p className="font-body text-[10px] tracking-[0.1em] uppercase text-muted-foreground mb-4">
+                        Source:{' '}
+                        <span className={d.transcript_source === 'fallback_metadata' ? 'text-destructive' : 'text-accent'}>
+                          {d.transcript_source === 'fallback_metadata' ? 'Title + description (no transcript)' : 'Transcript'}
+                        </span>
+                      </p>
+                    )}
                     <div className="mt-auto flex flex-wrap gap-2 pt-4 border-t border-border">
                       <button
                         onClick={() => setPreviewDraft(d)}
