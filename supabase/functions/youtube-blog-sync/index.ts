@@ -149,8 +149,8 @@ async function fetchTranscript(videoId: string): Promise<{ text: string; source:
 }
 
 async function generateBlogWithClaude(meta: VideoMeta, transcript: string) {
-  const apiKey = Deno.env.get("ANTHROPIC_API_KEY");
-  if (!apiKey) throw new Error("ANTHROPIC_API_KEY missing");
+  const apiKey = Deno.env.get("LOVABLE_API_KEY");
+  if (!apiKey) throw new Error("LOVABLE_API_KEY missing");
 
   const userContent = `Video title: ${meta.title}
 Published: ${meta.publishedAt}
@@ -161,26 +161,27 @@ ${meta.description || "(no description)"}
 
 ${transcript ? `Transcript:\n${transcript}` : "Note: No transcript available. Use the description and title to write the blog post, expanding with your real estate expertise."}`;
 
-  const r = await fetch("https://api.anthropic.com/v1/messages", {
+  const r = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
     method: "POST",
     headers: {
-      "x-api-key": apiKey,
-      "anthropic-version": "2023-06-01",
-      "content-type": "application/json",
+      Authorization: `Bearer ${apiKey}`,
+      "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      model: "claude-sonnet-4-20250514",
-      max_tokens: 4096,
-      system: SYSTEM_PROMPT,
-      messages: [{ role: "user", content: userContent }],
+      model: "google/gemini-2.5-flash",
+      messages: [
+        { role: "system", content: SYSTEM_PROMPT },
+        { role: "user", content: userContent },
+      ],
+      response_format: { type: "json_object" },
     }),
   });
   if (!r.ok) {
     const t = await r.text();
-    throw new Error(`Claude API ${r.status}: ${t}`);
+    throw new Error(`Lovable AI ${r.status}: ${t}`);
   }
   const j = await r.json();
-  const text = j.content?.[0]?.text || "";
+  const text = j.choices?.[0]?.message?.content || "";
   // Strip code fences if any
   const cleaned = text.replace(/^```(?:json)?\s*/i, "").replace(/```\s*$/i, "").trim();
   const parsed = JSON.parse(cleaned);
