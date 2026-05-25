@@ -191,6 +191,142 @@ serve(async (req) => {
       return new Response(JSON.stringify({ exists: (data?.length || 0) > 0 }), { headers: { ...corsHeaders, "Content-Type": "application/json" } });
     }
 
+    // ---- YouTube blog draft actions ----
+    if (req.method === "GET" && action === "ybp-list") {
+      const { data, error } = await supabase
+        .from("youtube_blog_posts")
+        .select("*")
+        .order("created_at", { ascending: false });
+      if (error) throw error;
+      return new Response(JSON.stringify(data), { headers: { ...corsHeaders, "Content-Type": "application/json" } });
+    }
+
+    if (req.method === "GET" && action === "ybp-get") {
+      const id = url.searchParams.get("id");
+      const { data, error } = await supabase.from("youtube_blog_posts").select("*").eq("id", id).single();
+      if (error) throw error;
+      return new Response(JSON.stringify(data), { headers: { ...corsHeaders, "Content-Type": "application/json" } });
+    }
+
+    if (req.method === "GET" && action === "ybp-draft-count") {
+      const { count, error } = await supabase
+        .from("youtube_blog_posts")
+        .select("*", { count: "exact", head: true })
+        .eq("status", "draft");
+      if (error) throw error;
+      return new Response(JSON.stringify({ count: count || 0 }), { headers: { ...corsHeaders, "Content-Type": "application/json" } });
+    }
+
+    if (req.method === "PUT" && action === "ybp-update") {
+      const id = url.searchParams.get("id");
+      const body = await req.json();
+      const { data, error } = await supabase.from("youtube_blog_posts").update(body).eq("id", id).select().single();
+      if (error) throw error;
+      return new Response(JSON.stringify(data), { headers: { ...corsHeaders, "Content-Type": "application/json" } });
+    }
+
+    if (req.method === "DELETE" && action === "ybp-delete") {
+      const id = url.searchParams.get("id");
+      const { error } = await supabase.from("youtube_blog_posts").delete().eq("id", id);
+      if (error) throw error;
+      return new Response(JSON.stringify({ success: true }), { headers: { ...corsHeaders, "Content-Type": "application/json" } });
+    }
+
+    if (req.method === "POST" && action === "ybp-publish") {
+      const { id } = await req.json();
+      const { data: draft, error: fetchErr } = await supabase
+        .from("youtube_blog_posts")
+        .select("*")
+        .eq("id", id)
+        .single();
+      if (fetchErr) throw fetchErr;
+      if (!draft) throw new Error("Draft not found");
+
+      // Build slug, ensure unique
+      const baseSlug = (draft.blog_title || "post").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "").slice(0, 80);
+      let slug = baseSlug || `youtube-${draft.youtube_video_id}`;
+      let suffix = 1;
+      while (true) {
+        const { data: exists } = await supabase.from("blog_posts").select("id").eq("slug", slug).maybeSingle();
+        if (!exists) break;
+        suffix += 1;
+        slug = `${baseSlug}-${suffix}`;
+      }
+
+      const embed = `<div class="video-embed" style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;margin:1.5rem 0;"><iframe src="https://www.youtube.com/embed/${draft.youtube_video_id}" title="${(draft.blog_title || "").replace(/"/g, "&quot;")}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe></div>`;
+      const fullHtml = `${embed}\n${draft.content || ""}`;
+
+      const now = new Date().toISOString();
+      const { data: post, error: insErr } = await supabase
+        .from("blog_posts")
+        .insert({
+          title: draft.blog_title,
+          slug,
+          excerpt: draft.meta_description,
+          content_html: fullHtml,
+          category: draft.category,
+          featured_image: draft.thumbnail_url,
+          source_url: `https://www.youtube.com/watch?v=${draft.youtube_video_id}`,
+          published_at: now,
+        })
+        .select()
+        .single();
+      if (insErr) throw insErr;
+
+      const { error: updErr } = await supabase
+        .from("youtube_blog_posts")
+        .update({ status: "published", published_at: now, published_blog_post_id: post.id })
+        .eq("id", id);
+      if (updErr) throw updErr;
+
+      return new Response(JSON.stringify({ success: true, blog_post: post }), {
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+
+    if (req.method === "POST" && action === "ybp-regenerate") {
+      const { id } = await req.json();
+      const { data: draft, error: fetchErr } = await supabase
+        .from("youtube_blog_posts")
+        .select("youtube_video_id, status")
+        .eq("id", id)
+        .single();
+      if (fetchErr) throw fetchErr;
+      if (draft.status === "published") throw new Error("Cannot regenerate a published post");
+
+      const supaUrl = Deno.env.get("SUPABASE_URL")!;
+      const r = await fetch(`${supaUrl}/functions/v1/youtube-blog-sync`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          apikey: Deno.env.get("SUPABASE_ANON_KEY") || "",
+        },
+        body: JSON.stringify({ videoId: draft.youtube_video_id, force: true }),
+      });
+      const j = await r.json();
+      if (!r.ok) throw new Error(j.error || "Regenerate failed");
+      return new Response(JSON.stringify({ success: true, ...j }), {
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+
+    if (req.method === "POST" && action === "ybp-sync-now") {
+      const supaUrl = Deno.env.get("SUPABASE_URL")!;
+      const r = await fetch(`${supaUrl}/functions/v1/youtube-blog-sync`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          apikey: Deno.env.get("SUPABASE_ANON_KEY") || "",
+        },
+        body: JSON.stringify({ source: "manual" }),
+      });
+      const j = await r.json();
+      if (!r.ok) throw new Error(j.error || "Sync failed");
+      return new Response(JSON.stringify({ success: true, ...j }), {
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+
     return new Response(JSON.stringify({ error: "Unknown action" }), { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } });
   } catch (error) {
     console.error("Admin CRUD error:", error);
