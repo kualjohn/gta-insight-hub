@@ -1,0 +1,1 @@
+DELETE FROM public.youtube_blog_posts WHERE youtube_video_id IN ('hEi6OQ0KYAM','lFUAHFgIEIg');
