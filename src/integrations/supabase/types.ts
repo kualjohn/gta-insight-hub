@@ -224,6 +224,7 @@ export type Database = {
           status: string
           tags: string[] | null
           thumbnail_url: string | null
+          transcript_source: string | null
           updated_at: string
           youtube_description: string | null
           youtube_published_at: string | null
@@ -244,6 +245,7 @@ export type Database = {
           status?: string
           tags?: string[] | null
           thumbnail_url?: string | null
+          transcript_source?: string | null
           updated_at?: string
           youtube_description?: string | null
           youtube_published_at?: string | null
@@ -264,6 +266,7 @@ export type Database = {
           status?: string
           tags?: string[] | null
           thumbnail_url?: string | null
+          transcript_source?: string | null
           updated_at?: string
           youtube_description?: string | null
           youtube_published_at?: string | null
