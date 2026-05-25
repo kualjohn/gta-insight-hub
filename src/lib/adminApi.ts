@@ -148,3 +148,80 @@ export async function adminCheckBlogSlug(token: string, slug: string, excludeId?
   const data = await res.json();
   return data.exists;
 }
+
+// ---- YouTube blog drafts ----
+export async function adminListYouTubeDrafts(token: string) {
+  const res = await fetch(`${BASE}?action=ybp-list`, { headers: getHeaders(token) });
+  if (!res.ok) throw new Error('Failed to fetch drafts');
+  return res.json();
+}
+
+export async function adminGetYouTubeDraft(token: string, id: string) {
+  const res = await fetch(`${BASE}?action=ybp-get&id=${id}`, { headers: getHeaders(token) });
+  if (!res.ok) throw new Error('Failed to fetch draft');
+  return res.json();
+}
+
+export async function adminGetYouTubeDraftCount(token: string): Promise<number> {
+  const res = await fetch(`${BASE}?action=ybp-draft-count`, { headers: getHeaders(token) });
+  if (!res.ok) return 0;
+  const data = await res.json();
+  return data.count || 0;
+}
+
+export async function adminUpdateYouTubeDraft(token: string, id: string, data: Record<string, any>) {
+  const res = await fetch(`${BASE}?action=ybp-update&id=${id}`, {
+    method: 'PUT',
+    headers: getHeaders(token),
+    body: JSON.stringify(data),
+  });
+  if (!res.ok) throw new Error('Failed to update draft');
+  return res.json();
+}
+
+export async function adminDeleteYouTubeDraft(token: string, id: string) {
+  const res = await fetch(`${BASE}?action=ybp-delete&id=${id}`, {
+    method: 'DELETE',
+    headers: getHeaders(token),
+  });
+  if (!res.ok) throw new Error('Failed to delete draft');
+  return res.json();
+}
+
+export async function adminPublishYouTubeDraft(token: string, id: string) {
+  const res = await fetch(`${BASE}?action=ybp-publish`, {
+    method: 'POST',
+    headers: getHeaders(token),
+    body: JSON.stringify({ id }),
+  });
+  if (!res.ok) {
+    const err = await res.json();
+    throw new Error(err.error || 'Failed to publish');
+  }
+  return res.json();
+}
+
+export async function adminRegenerateYouTubeDraft(token: string, id: string) {
+  const res = await fetch(`${BASE}?action=ybp-regenerate`, {
+    method: 'POST',
+    headers: getHeaders(token),
+    body: JSON.stringify({ id }),
+  });
+  if (!res.ok) {
+    const err = await res.json();
+    throw new Error(err.error || 'Failed to regenerate');
+  }
+  return res.json();
+}
+
+export async function adminSyncYouTubeNow(token: string) {
+  const res = await fetch(`${BASE}?action=ybp-sync-now`, {
+    method: 'POST',
+    headers: getHeaders(token),
+  });
+  if (!res.ok) {
+    const err = await res.json();
+    throw new Error(err.error || 'Sync failed');
+  }
+  return res.json();
+}

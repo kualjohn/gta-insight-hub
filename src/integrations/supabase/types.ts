@@ -209,6 +209,69 @@ export type Database = {
         }
         Relationships: []
       }
+      youtube_blog_posts: {
+        Row: {
+          blog_title: string
+          category: string | null
+          content: string
+          created_at: string
+          error: string | null
+          focus_keyword: string | null
+          id: string
+          meta_description: string | null
+          published_at: string | null
+          published_blog_post_id: string | null
+          status: string
+          tags: string[] | null
+          thumbnail_url: string | null
+          updated_at: string
+          youtube_description: string | null
+          youtube_published_at: string | null
+          youtube_title: string | null
+          youtube_video_id: string
+        }
+        Insert: {
+          blog_title: string
+          category?: string | null
+          content: string
+          created_at?: string
+          error?: string | null
+          focus_keyword?: string | null
+          id?: string
+          meta_description?: string | null
+          published_at?: string | null
+          published_blog_post_id?: string | null
+          status?: string
+          tags?: string[] | null
+          thumbnail_url?: string | null
+          updated_at?: string
+          youtube_description?: string | null
+          youtube_published_at?: string | null
+          youtube_title?: string | null
+          youtube_video_id: string
+        }
+        Update: {
+          blog_title?: string
+          category?: string | null
+          content?: string
+          created_at?: string
+          error?: string | null
+          focus_keyword?: string | null
+          id?: string
+          meta_description?: string | null
+          published_at?: string | null
+          published_blog_post_id?: string | null
+          status?: string
+          tags?: string[] | null
+          thumbnail_url?: string | null
+          updated_at?: string
+          youtube_description?: string | null
+          youtube_published_at?: string | null
+          youtube_title?: string | null
+          youtube_video_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
