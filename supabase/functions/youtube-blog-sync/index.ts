@@ -53,26 +53,49 @@ interface VideoMeta {
   tags: string[];
 }
 
-async function fetchRecentVideos(limit = 15): Promise<{ id: string; title: string; published: string }[]> {
+function decodeXmlEntities(s: string): string {
+  return s
+    .replace(/&amp;/g, "&")
+    .replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">")
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;/g, "'")
+    .replace(/&apos;/g, "'");
+}
+
+interface RssEntry {
+  id: string;
+  title: string;
+  description: string;
+  published: string;
+  thumbnail: string;
+}
+
+async function fetchRecentVideos(limit = 15): Promise<RssEntry[]> {
   const res = await fetch(RSS_URL);
   const xml = await res.text();
   const entries = xml.split("<entry>").slice(1);
   return entries.slice(0, limit).map((e) => {
     const id = e.match(/<yt:videoId>([^<]+)<\/yt:videoId>/)?.[1] || "";
-    const title = (e.match(/<title>([^<]+)<\/title>/)?.[1] || "").trim();
+    const title = decodeXmlEntities((e.match(/<title>([\s\S]*?)<\/title>/)?.[1] || "").trim());
     const published = e.match(/<published>([^<]+)<\/published>/)?.[1] || "";
-    return { id, title, published };
+    const description = decodeXmlEntities(
+      (e.match(/<media:description>([\s\S]*?)<\/media:description>/)?.[1] || "").trim()
+    );
+    const thumbnail = `https://img.youtube.com/vi/${id}/maxresdefault.jpg`;
+    return { id, title, description, published, thumbnail };
   }).filter((v) => v.id);
 }
 
 async function fetchVideoMetadata(videoId: string): Promise<VideoMeta | null> {
+  // Primary: YouTube Data API if key present
   const apiKey = Deno.env.get("YOUTUBE_API_KEY");
   if (apiKey) {
     try {
       const r = await fetch(`https://www.googleapis.com/youtube/v3/videos?id=${videoId}&part=snippet&key=${apiKey}`);
       const j = await r.json();
       const snip = j.items?.[0]?.snippet;
-      if (snip) {
+      if (snip && snip.title) {
         return {
           id: videoId,
           title: snip.title,
@@ -86,32 +109,20 @@ async function fetchVideoMetadata(videoId: string): Promise<VideoMeta | null> {
       console.error("YouTube API meta error", e);
     }
   }
-  // Fallback: scrape watch page
-  return await scrapeMetadata(videoId);
-}
-
-async function scrapeMetadata(videoId: string): Promise<VideoMeta | null> {
-  try {
-    const r = await fetch(`https://www.youtube.com/watch?v=${videoId}`, {
-      headers: { "User-Agent": "Mozilla/5.0", "Accept-Language": "en-US,en" },
-    });
-    const html = await r.text();
-    const title = html.match(/<meta name="title" content="([^"]+)"/)?.[1]?.replace(/&amp;/g, "&") || "";
-    const description = html.match(/<meta name="description" content="([^"]+)"/)?.[1]?.replace(/&amp;/g, "&") || "";
-    const keywords = html.match(/<meta name="keywords" content="([^"]+)"/)?.[1] || "";
-    const tags = keywords ? keywords.split(",").map((t) => t.trim()).filter(Boolean) : [];
+  // Fallback: RSS feed (always has the real title + media:description)
+  const entries = await fetchRecentVideos(50);
+  const match = entries.find((e) => e.id === videoId);
+  if (match && match.title) {
     return {
       id: videoId,
-      title,
-      description,
-      publishedAt: new Date().toISOString(),
-      thumbnail: `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`,
-      tags,
+      title: match.title,
+      description: match.description,
+      publishedAt: match.published,
+      thumbnail: match.thumbnail,
+      tags: [],
     };
-  } catch (e) {
-    console.error("scrapeMetadata error", e);
-    return null;
   }
+  return null;
 }
 
 /**
@@ -194,7 +205,7 @@ ${transcript ? `Transcript:\n${transcript}` : "Note: No transcript available. Us
   };
 }
 
-async function processVideo(supabase: any, video: { id: string; title: string; published: string }) {
+async function processVideo(supabase: any, video: { id: string; title?: string; published?: string }) {
   // Skip if already exists
   const { data: existing } = await supabase
     .from("youtube_blog_posts")
@@ -204,10 +215,11 @@ async function processVideo(supabase: any, video: { id: string; title: string; p
   if (existing) return { id: video.id, skipped: true };
 
   const meta = await fetchVideoMetadata(video.id);
-  if (!meta) throw new Error("Could not fetch metadata");
+  if (!meta || !meta.title) throw new Error("Could not fetch video metadata (missing title)");
 
   const { text: transcript, source: transcriptSource } = await fetchTranscript(video.id);
   console.log(`Video ${video.id}: transcript source = ${transcriptSource} (${transcript.length} chars)`);
+  console.log(`Video ${video.id}: title="${meta.title}" desc=${meta.description.length} chars`);
   const ai = await generateBlogWithClaude(meta, transcript);
 
   const { data, error } = await supabase
