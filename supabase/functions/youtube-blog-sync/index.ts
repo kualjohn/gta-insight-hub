@@ -115,38 +115,36 @@ async function scrapeMetadata(videoId: string): Promise<VideoMeta | null> {
 }
 
 /**
- * Extract transcript by scraping the YouTube watch page for captionTracks.
- * Returns empty string if unavailable.
+ * Fetch transcript via the free unofficial youtube-transcript.com endpoint.
+ * Returns { text, source } where source describes which method succeeded.
  */
-async function fetchTranscript(videoId: string): Promise<string> {
+async function fetchTranscript(videoId: string): Promise<{ text: string; source: string }> {
   try {
-    const r = await fetch(`https://www.youtube.com/watch?v=${videoId}`, {
-      headers: { "User-Agent": "Mozilla/5.0", "Accept-Language": "en-US,en" },
-    });
-    const html = await r.text();
-    const m = html.match(/"captionTracks":(\[.*?\])/);
-    if (!m) return "";
-    const tracks = JSON.parse(m[1].replace(/\\u0026/g, "&"));
-    if (!Array.isArray(tracks) || tracks.length === 0) return "";
-    // Prefer English
-    const track = tracks.find((t: any) => /en/i.test(t.languageCode)) || tracks[0];
-    if (!track?.baseUrl) return "";
-    const tr = await fetch(track.baseUrl);
-    const xml = await tr.text();
-    const lines = [...xml.matchAll(/<text[^>]*>([\s\S]*?)<\/text>/g)].map((mm) =>
-      mm[1]
-        .replace(/&amp;/g, "&")
-        .replace(/&#39;/g, "'")
-        .replace(/&quot;/g, '"')
-        .replace(/&lt;/g, "<")
-        .replace(/&gt;/g, ">")
-        .replace(/<[^>]+>/g, "")
-        .trim()
-    ).filter(Boolean);
-    return lines.join(" ");
+    const r = await fetch(
+      `https://www.youtube-transcript.com/api/transcript?video_id=${videoId}`,
+      { headers: { "User-Agent": "Mozilla/5.0", Accept: "application/json" } }
+    );
+    if (!r.ok) {
+      console.warn(`youtube-transcript.com returned ${r.status} for ${videoId}`);
+      return { text: "", source: "fallback_metadata" };
+    }
+    const j = await r.json();
+    // Endpoint typically returns an array of { text, start, dur } or { transcript: [...] }
+    const segments: any[] = Array.isArray(j) ? j : (j.transcript || j.data || []);
+    if (!Array.isArray(segments) || segments.length === 0) {
+      return { text: "", source: "fallback_metadata" };
+    }
+    const text = segments
+      .map((s) => (typeof s === "string" ? s : s.text || ""))
+      .filter(Boolean)
+      .join(" ")
+      .replace(/\s+/g, " ")
+      .trim();
+    if (!text) return { text: "", source: "fallback_metadata" };
+    return { text, source: "youtube-transcript.com" };
   } catch (e) {
     console.error("fetchTranscript error", e);
-    return "";
+    return { text: "", source: "fallback_metadata" };
   }
 }
 
@@ -207,7 +205,8 @@ async function processVideo(supabase: any, video: { id: string; title: string; p
   const meta = await fetchVideoMetadata(video.id);
   if (!meta) throw new Error("Could not fetch metadata");
 
-  const transcript = await fetchTranscript(video.id);
+  const { text: transcript, source: transcriptSource } = await fetchTranscript(video.id);
+  console.log(`Video ${video.id}: transcript source = ${transcriptSource} (${transcript.length} chars)`);
   const ai = await generateBlogWithClaude(meta, transcript);
 
   const { data, error } = await supabase
@@ -224,12 +223,13 @@ async function processVideo(supabase: any, video: { id: string; title: string; p
       category: ai.category,
       thumbnail_url: meta.thumbnail,
       tags: meta.tags,
+      transcript_source: transcriptSource,
       status: "draft",
     })
     .select()
     .single();
   if (error) throw error;
-  return { id: video.id, draftId: data.id, created: true };
+  return { id: video.id, draftId: data.id, created: true, transcriptSource };
 }
 
 serve(async (req) => {
