@@ -27,6 +27,7 @@ const RESULT_LINES: Record<string, string> = {
   '8-sand-wedge-lane': 'Sold at the record price — highest ever on the street',
   '1067-blueheron-blvd': 'Highest sale on the street — $1,805,000 in East Credit',
   '56-goodway-trail': 'Sold $151,500 over asking in just 5 days',
+  '445-rivermont-rd-w': 'Sold $131,000 over asking in just 1 day',
 };
 
 export default function Portfolio() {
