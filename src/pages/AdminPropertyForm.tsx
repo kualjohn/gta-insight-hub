@@ -77,6 +77,8 @@ export default function AdminPropertyForm() {
   const [error, setError] = useState('');
   const [slugManual, setSlugManual] = useState(false);
   const [galleryUploading, setGalleryUploading] = useState(false);
+  const [galleryProgress, setGalleryProgress] = useState({ done: 0, total: 0 });
+  const [isDragOver, setIsDragOver] = useState(false);
   const [dragIndex, setDragIndex] = useState<number | null>(null);
   const galleryInputRef = useRef<HTMLInputElement>(null);
 
@@ -110,20 +112,30 @@ export default function AdminPropertyForm() {
     });
   };
 
-  const handleGalleryUpload = async (files: FileList) => {
+  const handleGalleryUpload = async (files: FileList | File[]) => {
     if (!token) return;
+    const imageFiles = Array.from(files).filter(f => f.type.startsWith('image/'));
+    if (!imageFiles.length) return;
     setGalleryUploading(true);
-    const newUrls: string[] = [];
-    for (const file of Array.from(files)) {
-      try {
-        const url = await adminUploadImage(token, file, `gallery/${form.slug || 'property'}`);
-        newUrls.push(url);
-      } catch (e: any) {
-        console.error('Gallery upload failed:', e);
-      }
+    setGalleryProgress({ done: 0, total: imageFiles.length });
+    const folder = `gallery/${form.slug || 'property'}`;
+    // Upload in parallel batches of 4 to avoid overwhelming the server
+    const batchSize = 4;
+    const results: string[] = [];
+    for (let i = 0; i < imageFiles.length; i += batchSize) {
+      const batch = imageFiles.slice(i, i + batchSize);
+      const urls = await Promise.all(
+        batch.map(file =>
+          adminUploadImage(token, file, folder)
+            .then(url => { setGalleryProgress(p => ({ ...p, done: p.done + 1 })); return url; })
+            .catch(e => { console.error('Gallery upload failed:', e); setGalleryProgress(p => ({ ...p, done: p.done + 1 })); return null; })
+        )
+      );
+      results.push(...urls.filter((u): u is string => !!u));
     }
-    setForm(f => ({ ...f, gallery_images: [...f.gallery_images, ...newUrls] }));
+    setForm(f => ({ ...f, gallery_images: [...f.gallery_images, ...results] }));
     setGalleryUploading(false);
+    setGalleryProgress({ done: 0, total: 0 });
   };
 
   const removeGalleryImage = (index: number) => setForm(f => ({ ...f, gallery_images: f.gallery_images.filter((_, i) => i !== index) }));
@@ -230,8 +242,17 @@ export default function AdminPropertyForm() {
               <ImageUploadField label="Hero Image" value={form.hero_image} onChange={url => set('hero_image', url)} token={token!} folder={`heroes/${form.slug || 'property'}`} />
             </div>
             <div>
-              <label className={labelClass}>Gallery Images (drag to reorder)</label>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mt-3">
+              <label className={labelClass}>Gallery Images (drag to reorder • drop files anywhere below)</label>
+              <div
+                onDragOver={e => { e.preventDefault(); if (!isDragOver) setIsDragOver(true); }}
+                onDragLeave={e => { if (e.currentTarget === e.target) setIsDragOver(false); }}
+                onDrop={e => {
+                  e.preventDefault();
+                  setIsDragOver(false);
+                  if (e.dataTransfer.files?.length) handleGalleryUpload(e.dataTransfer.files);
+                }}
+                className={`grid grid-cols-2 md:grid-cols-4 gap-3 mt-3 p-3 rounded-sm transition-colors ${isDragOver ? 'bg-accent/10 ring-2 ring-accent' : ''}`}
+              >
                 {form.gallery_images.map((img, i) => (
                   <div key={i} draggable onDragStart={() => handleDragStart(i)} onDragOver={e => handleDragOver(e, i)} onDragEnd={handleDragEnd} className={`relative group aspect-square overflow-hidden rounded-sm border ${dragIndex === i ? 'border-accent' : 'border-border/50'}`}>
                     <img src={img} alt="" className="w-full h-full object-cover" />
@@ -244,14 +265,17 @@ export default function AdminPropertyForm() {
                 ))}
                 <div
                   onClick={() => !galleryUploading && galleryInputRef.current?.click()}
-                  className="aspect-square border-2 border-dashed border-border hover:border-accent rounded-sm flex flex-col items-center justify-center cursor-pointer transition-colors"
+                  className="aspect-square border-2 border-dashed border-border hover:border-accent rounded-sm flex flex-col items-center justify-center cursor-pointer transition-colors text-center p-2"
                 >
                   {galleryUploading ? (
-                    <Loader2 className="w-6 h-6 animate-spin text-accent" />
+                    <>
+                      <Loader2 className="w-6 h-6 animate-spin text-accent mb-1" />
+                      <span className="font-body text-[10px] text-muted-foreground">{galleryProgress.done}/{galleryProgress.total}</span>
+                    </>
                   ) : (
                     <>
                       <Plus className="w-6 h-6 text-muted-foreground mb-1" />
-                      <span className="font-body text-[10px] text-muted-foreground">Upload Photos</span>
+                      <span className="font-body text-[10px] text-muted-foreground leading-tight">Click or drop<br/>multiple photos</span>
                     </>
                   )}
                 </div>
