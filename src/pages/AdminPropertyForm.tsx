@@ -16,6 +16,7 @@ function ImageUploadField({ label, value, onChange, token, folder }: {
   label: string; value: string; onChange: (url: string) => void; token: string; folder: string;
 }) {
   const [uploading, setUploading] = useState(false);
+  const [dragOver, setDragOver] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
 
   const handleFile = async (file: File) => {
@@ -36,7 +37,15 @@ function ImageUploadField({ label, value, onChange, token, folder }: {
       <label className={labelClass}>{label}</label>
       <div
         onClick={() => !uploading && inputRef.current?.click()}
-        className="mt-1 border-2 border-dashed border-border hover:border-accent rounded-sm p-4 cursor-pointer transition-colors text-center"
+        onDragOver={e => { e.preventDefault(); if (!dragOver) setDragOver(true); }}
+        onDragLeave={e => { if (e.currentTarget === e.target) setDragOver(false); }}
+        onDrop={e => {
+          e.preventDefault();
+          setDragOver(false);
+          const file = Array.from(e.dataTransfer.files || []).find(f => f.type.startsWith('image/'));
+          if (file && !uploading) handleFile(file);
+        }}
+        className={`mt-1 border-2 border-dashed rounded-sm p-4 cursor-pointer transition-colors text-center ${dragOver ? 'border-accent bg-accent/10' : 'border-border hover:border-accent'}`}
       >
         {uploading ? (
           <div className="flex items-center justify-center gap-2 py-4">
@@ -47,13 +56,13 @@ function ImageUploadField({ label, value, onChange, token, folder }: {
           <div className="relative group">
             <img src={value} alt="" className="w-full h-32 object-cover rounded-sm" />
             <div className="absolute inset-0 bg-background/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-              <span className="font-body text-xs text-foreground">Click to replace</span>
+              <span className="font-body text-xs text-foreground">Click or drop to replace</span>
             </div>
           </div>
         ) : (
           <div className="py-6 flex flex-col items-center gap-2">
             <Upload className="w-6 h-6 text-muted-foreground" />
-            <span className="font-body text-xs text-muted-foreground">Click to upload</span>
+            <span className="font-body text-xs text-muted-foreground">Click or drop image</span>
           </div>
         )}
       </div>
