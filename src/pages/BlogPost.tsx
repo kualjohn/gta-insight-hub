@@ -6,6 +6,7 @@ import { useBlogPost } from "@/hooks/useBlogPosts";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Button } from "@/components/ui/button";
 import { SEOHead } from "@/components/seo/SEOHead";
+import { ShareButtons } from "@/components/blog/ShareButtons";
 
 export default function BlogPostPage() {
   const { slug } = useParams<{ slug: string }>();
@@ -101,6 +102,12 @@ export default function BlogPostPage() {
             dangerouslySetInnerHTML={{ __html: post.content_html }}
           />
         )}
+
+        <ShareButtons
+          title={post.title}
+          url={typeof window !== "undefined" ? window.location.href : `https://fawadnissari.ca/blog/${slug}`}
+          excerpt={post.excerpt || undefined}
+        />
       </article>
     </Layout>
   );
