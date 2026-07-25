@@ -25,6 +25,7 @@ import BuyerTips from "./pages/BuyerTips";
 import Portfolio from "./pages/Portfolio";
 import PropertyDetail from "./pages/PropertyDetail";
 import CostOfSellingMilton from "./pages/CostOfSellingMilton";
+import CostOfSellingMississauga from "./pages/CostOfSellingMississauga";
 import AdminLogin from "./pages/AdminLogin";
 import AdminDashboard from "./pages/AdminDashboard";
 import AdminPropertyForm from "./pages/AdminPropertyForm";
@@ -64,6 +65,7 @@ const App = () => (
               <Route path="/portfolio" element={<Portfolio />} />
               <Route path="/portfolio/:slug" element={<PropertyDetail />} />
               <Route path="/cost-of-selling-a-house-in-milton" element={<CostOfSellingMilton />} />
+              <Route path="/cost-of-selling-a-house-in-mississauga" element={<CostOfSellingMississauga />} />
               <Route path="/admin/login" element={<AdminLogin />} />
               <Route path="/admin" element={<AdminDashboard />} />
               <Route path="/admin/properties/new" element={<AdminPropertyForm />} />
