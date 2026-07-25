@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Download, Phone, AlertCircle, Check, Play, Star } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -9,8 +8,8 @@ import { SellerUSPBlock } from '@/components/sections/SellerUSPBlock';
 import { CTABlock } from '@/components/sections/CTABlock';
 import { Layout } from '@/components/layout/Layout';
 import { useYouTubeVideos } from '@/hooks/useYouTubeVideos';
-import { supabase } from '@/integrations/supabase/client';
 import { useProperties } from '@/hooks/useProperties';
+import { useGoogleReviews } from '@/hooks/useGoogleReviews';
 import PortfolioCard from '@/components/portfolio/PortfolioCard';
 import { Skeleton } from '@/components/ui/skeleton';
 import { VideoLightbox } from '@/components/VideoLightbox';
@@ -48,38 +47,11 @@ const firstTimeSellerPoints = [
   'Get honest answers without any sales pressure',
 ];
 
-type GoogleReview = {
-  author: string;
-  authorPhoto: string | null;
-  authorUrl: string | null;
-  rating: number;
-  text: string;
-  relativeTime: string;
-};
-
-type GoogleReviewsResponse = {
-  rating: number | null;
-  totalReviews: number;
-  mapsUrl: string;
-  reviews: GoogleReview[];
-};
-
 const Index = () => {
   const { videos, isLoading, error, channelUrl } = useYouTubeVideos(6);
   const { data: properties = [] } = useProperties();
   const featuredProperties = properties.slice(0, 3);
-  const [googleData, setGoogleData] = useState<GoogleReviewsResponse | null>(null);
-
-  useEffect(() => {
-    (async () => {
-      try {
-        const { data, error } = await supabase.functions.invoke('google-reviews');
-        if (!error && data) setGoogleData(data as GoogleReviewsResponse);
-      } catch (e) {
-        console.error('Failed to load Google reviews', e);
-      }
-    })();
-  }, []);
+  const { data: googleData } = useGoogleReviews();
 
   const realReviews = (googleData?.reviews ?? []).filter(r => r.text && r.text.length > 0).slice(0, 3);
 
