@@ -1,29 +1,10 @@
-import { useEffect, useState } from 'react';
 import { Layout } from '@/components/layout/Layout';
 import { SectionWrapper } from '@/components/sections/SectionHeader';
 import { CTABlock } from '@/components/sections/CTABlock';
 import { SEOHead } from '@/components/seo/SEOHead';
 import { Star, TrendingUp, Home, ExternalLink, Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { supabase } from '@/integrations/supabase/client';
-
-type GoogleReview = {
-  author: string;
-  authorPhoto: string | null;
-  authorUrl: string | null;
-  rating: number;
-  text: string;
-  relativeTime: string;
-  publishTime: string | null;
-};
-
-type GoogleReviewsResponse = {
-  name: string;
-  rating: number | null;
-  totalReviews: number;
-  mapsUrl: string;
-  reviews: GoogleReview[];
-};
+import { useGoogleReviews } from '@/hooks/useGoogleReviews';
 
 const testimonials = [
   {
@@ -74,35 +55,11 @@ const successStats = [
   { key: 'sold', icon: TrendingUp, stat: '103%', label: 'Average sale vs. asking price' },
   { key: 'satisfaction', icon: Home, stat: '100%', label: 'Customer satisfaction' },
   { key: 'rating', icon: Star, stat: '5.0', label: 'Google rating' },
-  { key: 'count', icon: Home, stat: '12', label: 'Google reviews' },
+  { key: 'count', icon: Home, stat: '0', label: 'Google reviews' },
 ];
 
 export default function Testimonials() {
-  const [data, setData] = useState<GoogleReviewsResponse | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    let cancelled = false;
-    (async () => {
-      try {
-        const { data, error } = await supabase.functions.invoke<GoogleReviewsResponse>(
-          'google-reviews',
-          { method: 'GET' },
-        );
-        if (cancelled) return;
-        if (error) throw error;
-        setData(data ?? null);
-      } catch (err: any) {
-        if (!cancelled) setError(err?.message ?? 'Failed to load reviews');
-      } finally {
-        if (!cancelled) setLoading(false);
-      }
-    })();
-    return () => {
-      cancelled = true;
-    };
-  }, []);
+  const { data, loading, error } = useGoogleReviews();
 
   return (
     <Layout>
