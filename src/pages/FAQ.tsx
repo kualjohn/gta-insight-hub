@@ -4,6 +4,7 @@ import { SectionWrapper } from '@/components/sections/SectionHeader';
 import { CTABlock } from '@/components/sections/CTABlock';
 import { Button } from '@/components/ui/button';
 import { SEOHead } from '@/components/seo/SEOHead';
+import { Helmet } from 'react-helmet-async';
 import {
   Accordion,
   AccordionContent,
@@ -63,6 +64,19 @@ export default function FAQ() {
         description="Answers to common questions about selling your home in the GTA. Learn about the process, pricing, staging, and what makes our approach different."
         canonicalUrl="https://gta-insight-hub.lovable.app/faq"
       />
+      <Helmet>
+        <script type="application/ld+json">
+          {JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'FAQPage',
+            mainEntity: faqs.map((f) => ({
+              '@type': 'Question',
+              name: f.question,
+              acceptedAnswer: { '@type': 'Answer', text: f.answer },
+            })),
+          })}
+        </script>
+      </Helmet>
 
       {/* Header */}
       <section className="bg-gradient-warm section-padding py-16">
