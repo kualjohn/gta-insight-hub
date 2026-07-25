@@ -5,6 +5,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AdminProvider } from "@/hooks/useAdmin";
+import { CanonicalTag } from "@/components/seo/CanonicalTag";
 import Index from "./pages/Index";
 import MarketUpdates from "./pages/MarketUpdates";
 import YouTubeHub from "./pages/YouTubeHub";
@@ -44,6 +45,7 @@ const App = () => (
         <Sonner />
         <AdminProvider>
           <BrowserRouter>
+            <CanonicalTag />
             <Routes>
               <Route path="/" element={<Index />} />
               <Route path="/market-updates" element={<MarketUpdates />} />
