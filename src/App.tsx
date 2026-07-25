@@ -21,6 +21,8 @@ import Milton from "./pages/areas/Milton";
 import Mississauga from "./pages/areas/Mississauga";
 import Oakville from "./pages/areas/Oakville";
 import Burlington from "./pages/areas/Burlington";
+import Hamilton from "./pages/areas/Hamilton";
+import Brampton from "./pages/areas/Brampton";
 import About from "./pages/About";
 import Testimonials from "./pages/Testimonials";
 import Staging from "./pages/Staging";
@@ -67,6 +69,8 @@ const App = () => (
               <Route path="/areas/mississauga" element={<Mississauga />} />
               <Route path="/areas/oakville" element={<Oakville />} />
               <Route path="/areas/burlington" element={<Burlington />} />
+              <Route path="/areas/hamilton" element={<Hamilton />} />
+              <Route path="/areas/brampton" element={<Brampton />} />
               <Route path="/about" element={<About />} />
               <Route path="/testimonials" element={<Testimonials />} />
               <Route path="/staging" element={<Staging />} />
