@@ -56,6 +56,10 @@ export default function Portfolio() {
 
   return (
     <Layout>
+      <SEOHead
+        title="Sold Properties Portfolio"
+        description="Recent homes sold across Milton, Mississauga, Oakville, and Brampton by Fawad Nissari. See real results — over-asking sales, days on market, and marketing that moves listings."
+      />
       {/* HERO / HEADING */}
       <section className="relative px-6 md:px-12 lg:px-20 xl:px-28 pt-24 md:pt-36 pb-12 md:pb-16 bg-background">
         <motion.div
