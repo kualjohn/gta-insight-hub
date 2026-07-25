@@ -3,7 +3,6 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useAdmin } from '@/hooks/useAdmin';
 import { adminListProperties, adminDeleteProperty, adminGetYouTubeDraftCount } from '@/lib/adminApi';
 import { statusLabel, formatPrice } from '@/types/property';
-import { SEOHead } from '@/components/seo/SEOHead';
 import { Plus, ExternalLink, Pencil, Trash2, LogOut, Search, Youtube } from 'lucide-react';
 
 export default function AdminDashboard() {
