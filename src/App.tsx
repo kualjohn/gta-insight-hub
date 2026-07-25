@@ -16,6 +16,10 @@ import SellerServices from "./pages/SellerServices";
 import SellerGuide from "./pages/SellerGuide";
 import HomeEvaluation from "./pages/HomeEvaluation";
 import Areas from "./pages/Areas";
+import Milton from "./pages/areas/Milton";
+import Mississauga from "./pages/areas/Mississauga";
+import Oakville from "./pages/areas/Oakville";
+import Burlington from "./pages/areas/Burlington";
 import About from "./pages/About";
 import Testimonials from "./pages/Testimonials";
 import Staging from "./pages/Staging";
@@ -57,6 +61,10 @@ const App = () => (
               <Route path="/seller-guide" element={<SellerGuide />} />
               <Route path="/home-evaluation" element={<HomeEvaluation />} />
               <Route path="/areas" element={<Areas />} />
+              <Route path="/areas/milton" element={<Milton />} />
+              <Route path="/areas/mississauga" element={<Mississauga />} />
+              <Route path="/areas/oakville" element={<Oakville />} />
+              <Route path="/areas/burlington" element={<Burlington />} />
               <Route path="/about" element={<About />} />
               <Route path="/testimonials" element={<Testimonials />} />
               <Route path="/staging" element={<Staging />} />
