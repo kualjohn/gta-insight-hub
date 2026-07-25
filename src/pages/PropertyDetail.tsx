@@ -7,6 +7,7 @@ import PropertyGallery from '@/components/property/PropertyGallery';
 import PropertyExplore from '@/components/property/PropertyExplore';
 import PropertyMap from '@/components/property/PropertyMap';
 import PropertyContact from '@/components/property/PropertyContact';
+import { SEOHead } from '@/components/seo/SEOHead';
 
 export default function PropertyDetail() {
   const { slug } = useParams<{ slug: string }>();
@@ -33,6 +34,11 @@ export default function PropertyDetail() {
 
   return (
     <div className="min-h-screen bg-background overflow-x-hidden">
+      <SEOHead
+        title={`${property.title}${property.city ? ` in ${property.city}` : ''}`}
+        description={`${property.title}${property.city ? ` — ${property.city}` : ''}. Explore photos, features, and marketing results from this listing sold by Fawad Nissari.`}
+        ogImage={property.hero_image || undefined}
+      />
       <PropertyHeader />
       <PropertyHero property={property} />
       <PropertyOverview property={property} />
