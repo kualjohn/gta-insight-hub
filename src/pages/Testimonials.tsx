@@ -2,6 +2,7 @@ import { Layout } from '@/components/layout/Layout';
 import { SectionWrapper } from '@/components/sections/SectionHeader';
 import { CTABlock } from '@/components/sections/CTABlock';
 import { SEOHead } from '@/components/seo/SEOHead';
+import { TestimonialsSchema } from '@/components/seo/TestimonialsSchema';
 import { Star, TrendingUp, Home, ExternalLink, Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useGoogleReviews } from '@/hooks/useGoogleReviews';
@@ -68,6 +69,7 @@ export default function Testimonials() {
         description="Real stories from GTA families who trusted Fawad Nissari with their real estate journey. See how our clients achieved their home selling goals."
         canonicalUrl="https://gta-insight-hub.lovable.app/testimonials"
       />
+      <TestimonialsSchema />
 
       {/* Header */}
       <section className="bg-gradient-warm section-padding py-16">
