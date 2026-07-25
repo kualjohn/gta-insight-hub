@@ -4,6 +4,7 @@ import { Layout } from '@/components/layout/Layout';
 import { SectionWrapper } from '@/components/sections/SectionHeader';
 import { CTABlock } from '@/components/sections/CTABlock';
 import { Button } from '@/components/ui/button';
+import { SEOHead } from '@/components/seo/SEOHead';
 
 const areas = [
   {
@@ -53,6 +54,10 @@ const areas = [
 export default function Areas() {
   return (
     <Layout>
+      <SEOHead
+        title="GTA Areas We Serve"
+        description="Explore the GTA communities Fawad Nissari serves — Milton, Mississauga, Oakville, and Burlington. Local market insights, neighbourhood expertise, and free home evaluations."
+      />
       {/* Header */}
       <section className="bg-gradient-warm section-padding py-16">
         <div className="container-wide mx-auto">
