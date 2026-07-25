@@ -6,6 +6,7 @@ import { useProperties } from '@/hooks/useProperties';
 import PortfolioCard from '@/components/portfolio/PortfolioCard';
 import { Layout } from '@/components/layout/Layout';
 import { Button } from '@/components/ui/button';
+import { SEOHead } from '@/components/seo/SEOHead';
 
 // Marketing result lines per property (keyed by slug).
 // These are the highest-priority conversion lines on the page.
