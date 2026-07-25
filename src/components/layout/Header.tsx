@@ -20,6 +20,7 @@ const mainNavigation = [
 const sellersDropdown = [
   { name: 'First-Time Seller Guide', href: '/seller-guide' },
   { name: 'Seller Services', href: '/seller-services' },
+  { name: 'Cost of Selling a House in Milton', href: '/cost-of-selling-a-house-in-milton' },
 ];
 
 const buyersDropdown = [

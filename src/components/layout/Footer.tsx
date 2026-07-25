@@ -16,6 +16,7 @@ const quickLinks = [
   { name: 'YouTube Channel', href: '/youtube' },
   { name: 'Seller Services', href: '/seller-services' },
   { name: 'First-Time Seller Guide', href: '/seller-guide' },
+  { name: 'Cost of Selling a House in Milton', href: '/cost-of-selling-a-house-in-milton' },
   { name: 'Home Evaluation', href: '/home-evaluation' },
   { name: 'Staging', href: '/staging' },
 ];
