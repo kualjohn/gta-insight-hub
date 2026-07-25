@@ -69,6 +69,7 @@ export default function Testimonials() {
         description="Real stories from GTA families who trusted Fawad Nissari with their real estate journey. See how our clients achieved their home selling goals."
         canonicalUrl="https://gta-insight-hub.lovable.app/testimonials"
       />
+      <TestimonialsSchema />
 
       {/* Header */}
       <section className="bg-gradient-warm section-padding py-16">
