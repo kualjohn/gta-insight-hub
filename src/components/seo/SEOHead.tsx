@@ -10,48 +10,31 @@ interface SEOHeadProps {
   noindex?: boolean;
 }
 
+/**
+ * Legacy per-page SEO component. Title / description / canonical / og / twitter
+ * are now emitted from a single persistent source: <RouteHead /> in App.tsx,
+ * keyed on the current route. That eliminates a race where this component
+ * unmounted between route transitions and briefly let the static index.html
+ * defaults win.
+ *
+ * This component is kept as a no-op wrapper (with `noindex` and
+ * `articlePublishedTime` still respected) so existing per-page imports keep
+ * compiling without editing every page. To change a page's title or
+ * description, edit the ROUTE_META map in src/components/seo/RouteHead.tsx.
+ */
 export function SEOHead({
-  title,
-  description,
-  canonicalUrl,
-  ogImage = 'https://i.ytimg.com/vi/Mh6UJ08iSkA/maxresdefault.jpg',
-  ogType = 'website',
   articlePublishedTime,
+  ogType,
   noindex = false,
 }: SEOHeadProps) {
-  const siteName = 'Fawad Nissari | GTA Real Estate';
-  const fullTitle = title.includes('Fawad') ? title : `${title} | ${siteName}`;
-  
+  const emitArticleTime = ogType === 'article' && articlePublishedTime;
+  if (!noindex && !emitArticleTime) return null;
   return (
     <Helmet>
-      {/* Primary Meta Tags */}
-      <title>{fullTitle}</title>
-      <meta name="title" content={fullTitle} />
-      <meta name="description" content={description} />
-      
-      {/* Robots */}
       {noindex && <meta name="robots" content="noindex,nofollow" />}
-      
-      {/* Canonical URL is emitted globally by <CanonicalTag /> based on the current route. */}
-
-      {/* Open Graph / Facebook */}
-      <meta property="og:type" content={ogType} />
-      <meta property="og:title" content={fullTitle} />
-      <meta property="og:description" content={description} />
-      <meta property="og:image" content={ogImage} />
-      <meta property="og:site_name" content={siteName} />
-      {/* og:url is emitted globally by <CanonicalTag /> and will dedupe this route's URL. */}
-
-      {/* Article specific */}
-      {ogType === 'article' && articlePublishedTime && (
+      {emitArticleTime && (
         <meta property="article:published_time" content={articlePublishedTime} />
       )}
-      
-      {/* Twitter */}
-      <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:title" content={fullTitle} />
-      <meta name="twitter:description" content={description} />
-      <meta name="twitter:image" content={ogImage} />
     </Helmet>
   );
 }
