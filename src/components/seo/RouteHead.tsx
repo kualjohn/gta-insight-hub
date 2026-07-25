@@ -1,5 +1,6 @@
 import { Helmet } from 'react-helmet-async';
 import { useLocation } from 'react-router-dom';
+import { MILTON_NEIGHBOURHOOD_MAP } from '@/pages/areas/milton/neighbourhoods';
 
 const SITE_URL = 'https://fawadnissari.ca';
 const DEFAULT_OG_IMAGE =
@@ -114,6 +115,14 @@ const ROUTE_META: Record<string, Meta> = {
 
 const DYNAMIC_FALLBACKS: Array<{ test: (p: string) => boolean; meta: Meta }> = [
   {
+    test: (p) => p.startsWith('/areas/milton/'),
+    meta: {
+      title: 'Milton Neighbourhoods | Fawad Nissari GTA Real Estate',
+      description:
+        'Explore Milton neighbourhoods — local market insights, community snapshots, and free home evaluations from Fawad Nissari.',
+    },
+  },
+  {
     test: (p) => p.startsWith('/blog/'),
     meta: {
       title: 'Blog & Insights | Fawad Nissari GTA Real Estate',
@@ -146,6 +155,16 @@ function normalize(pathname: string) {
 function metaFor(pathname: string): Meta {
   const p = normalize(pathname);
   if (ROUTE_META[p]) return ROUTE_META[p];
+  const miltonMatch = p.match(/^\/areas\/milton\/([^/]+)$/);
+  if (miltonMatch) {
+    const n = MILTON_NEIGHBOURHOOD_MAP[miltonMatch[1]];
+    if (n) {
+      return {
+        title: `Selling a Home in ${n.name}, Milton | ${n.name} Real Estate Advisor`,
+        description: `Thinking about selling in ${n.name}, Milton? Free home evaluation, local market insights, and neighbourhood expertise from Fawad Nissari.`,
+      };
+    }
+  }
   const dyn = DYNAMIC_FALLBACKS.find((d) => d.test(p));
   return dyn ? dyn.meta : FALLBACK;
 }

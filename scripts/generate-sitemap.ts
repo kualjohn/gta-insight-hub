@@ -2,6 +2,7 @@
 
 import { readdirSync, statSync, writeFileSync } from "fs";
 import { basename, extname, resolve } from "path";
+import { MILTON_NEIGHBOURHOODS } from "../src/pages/areas/milton/neighbourhoods";
 
 const BASE_URL = "https://fawadnissari.ca";
 
@@ -62,6 +63,14 @@ function discoverAreaRoutes(): SitemapEntry[] {
   return routes.sort((a, b) => a.path.localeCompare(b.path));
 }
 
+function miltonNeighbourhoodRoutes(): SitemapEntry[] {
+  return MILTON_NEIGHBOURHOODS.map((n) => ({
+    path: `/areas/milton/${n.slug}`,
+    changefreq: "monthly" as const,
+    priority: "0.6",
+  })).sort((a, b) => a.path.localeCompare(b.path));
+}
+
 function generateSitemap(entries: SitemapEntry[]) {
   const urls = entries.map((e) =>
     [
@@ -84,7 +93,10 @@ function generateSitemap(entries: SitemapEntry[]) {
 }
 
 const areaEntries = discoverAreaRoutes();
-const entries = [...staticEntries, ...areaEntries];
+const miltonEntries = miltonNeighbourhoodRoutes();
+const entries = [...staticEntries, ...areaEntries, ...miltonEntries];
 
 writeFileSync(resolve("public/sitemap.xml"), generateSitemap(entries));
-console.log(`sitemap.xml written (${entries.length} entries, ${areaEntries.length} area pages)`);
+console.log(
+  `sitemap.xml written (${entries.length} entries, ${areaEntries.length} area pages, ${miltonEntries.length} Milton neighbourhoods)`,
+);
