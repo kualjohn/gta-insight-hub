@@ -3,13 +3,19 @@ import { SectionWrapper } from '@/components/sections/SectionHeader';
 import { SEOHead } from '@/components/seo/SEOHead';
 import { HomeEvaluationForm } from '@/components/forms/HomeEvaluationForm';
 import { MapPin } from 'lucide-react';
+import { Link } from 'react-router-dom';
+
+export interface AreaNeighbourhood {
+  name: string;
+  href?: string;
+}
 
 export interface AreaConfig {
   name: string;
   slug: string;
   region: string;
   intro: string;
-  neighbourhoods: string[];
+  neighbourhoods: Array<string | AreaNeighbourhood>;
   costStub: string;
 }
 
@@ -58,15 +64,32 @@ export default function AreaPage({ area }: { area: AreaConfig }) {
             A few of the communities I work in across {area.name}:
           </p>
           <ul className="grid sm:grid-cols-2 gap-3">
-            {area.neighbourhoods.map((n) => (
-              <li
-                key={n}
-                className="flex items-center gap-3 bg-card border border-border rounded-lg px-4 py-3"
-              >
-                <MapPin className="w-4 h-4 text-primary shrink-0" />
-                <span className="font-medium">{n}</span>
-              </li>
-            ))}
+            {area.neighbourhoods.map((raw) => {
+              const n: AreaNeighbourhood =
+                typeof raw === 'string' ? { name: raw } : raw;
+              const inner = (
+                <>
+                  <MapPin className="w-4 h-4 text-primary shrink-0" />
+                  <span className="font-medium">{n.name}</span>
+                </>
+              );
+              return (
+                <li key={n.name}>
+                  {n.href ? (
+                    <Link
+                      to={n.href}
+                      className="flex items-center gap-3 bg-card border border-border rounded-lg px-4 py-3 hover:border-primary hover:shadow-sm transition-all"
+                    >
+                      {inner}
+                    </Link>
+                  ) : (
+                    <div className="flex items-center gap-3 bg-card border border-border rounded-lg px-4 py-3">
+                      {inner}
+                    </div>
+                  )}
+                </li>
+              );
+            })}
           </ul>
         </div>
       </SectionWrapper>
