@@ -54,8 +54,10 @@ export function BusinessSchema() {
   };
 
   return (
-    <Helmet>
-      <script type="application/ld+json">{JSON.stringify(schema)}</script>
+    <Helmet defer={false}>
+      <script id="business-schema" key="business-schema" type="application/ld+json">
+        {JSON.stringify(schema)}
+      </script>
     </Helmet>
   );
 }
