@@ -6,6 +6,9 @@ import { MILTON_NEIGHBOURHOODS } from "../src/pages/areas/milton/neighbourhoods"
 import { MISSISSAUGA_NEIGHBOURHOODS } from "../src/pages/areas/mississauga/neighbourhoods";
 
 const BASE_URL = "https://fawadnissari.ca";
+const SUPABASE_URL = "https://pwowsqscpvhlttltziod.supabase.co";
+const SUPABASE_ANON_KEY =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InB3b3dzcXNjcHZobHR0bHR6aW9kIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjkzNjMwMzEsImV4cCI6MjA4NDkzOTAzMX0.16LXohxAkrZeV2hQAvAI7jum_BnMPo5rHrPcDZnnNWA";
 
 interface SitemapEntry {
   path: string;
@@ -80,6 +83,34 @@ function mississaugaNeighbourhoodRoutes(): SitemapEntry[] {
   })).sort((a, b) => a.path.localeCompare(b.path));
 }
 
+async function fetchSlugs(path: string): Promise<string[]> {
+  try {
+    const res = await fetch(`${SUPABASE_URL}/rest/v1/${path}`, {
+      headers: { apikey: SUPABASE_ANON_KEY, Authorization: `Bearer ${SUPABASE_ANON_KEY}` },
+    });
+    if (!res.ok) throw new Error(`${res.status}`);
+    const rows = (await res.json()) as Array<{ slug?: string }>;
+    return rows.map((r) => r.slug).filter((s): s is string => Boolean(s));
+  } catch (err) {
+    console.warn(`Could not fetch sitemap rows for ${path}:`, err);
+    return [];
+  }
+}
+
+async function blogPostRoutes(): Promise<SitemapEntry[]> {
+  const slugs = await fetchSlugs("blog_posts?select=slug");
+  return slugs
+    .map((slug) => ({ path: `/blog/${slug}`, changefreq: "monthly" as const, priority: "0.6" }))
+    .sort((a, b) => a.path.localeCompare(b.path));
+}
+
+async function propertyRoutes(): Promise<SitemapEntry[]> {
+  const slugs = await fetchSlugs("property_websites?select=slug&published=eq.true");
+  return slugs
+    .map((slug) => ({ path: `/portfolio/${slug}`, changefreq: "monthly" as const, priority: "0.6" }))
+    .sort((a, b) => a.path.localeCompare(b.path));
+}
+
 function generateSitemap(entries: SitemapEntry[]) {
   const urls = entries.map((e) =>
     [
@@ -104,9 +135,20 @@ function generateSitemap(entries: SitemapEntry[]) {
 const areaEntries = discoverAreaRoutes();
 const miltonEntries = miltonNeighbourhoodRoutes();
 const mississaugaEntries = mississaugaNeighbourhoodRoutes();
-const entries = [...staticEntries, ...areaEntries, ...miltonEntries, ...mississaugaEntries];
+const blogEntries = await blogPostRoutes();
+const propertyEntries = await propertyRoutes();
+// Admin routes (/admin, /admin/login, /admin/**) are intentionally excluded:
+// they are private, non-indexable, and disallowed in robots.txt.
+const entries = [
+  ...staticEntries,
+  ...areaEntries,
+  ...miltonEntries,
+  ...mississaugaEntries,
+  ...blogEntries,
+  ...propertyEntries,
+];
 
 writeFileSync(resolve("public/sitemap.xml"), generateSitemap(entries));
 console.log(
-  `sitemap.xml written (${entries.length} entries, ${areaEntries.length} area pages, ${miltonEntries.length} Milton neighbourhoods, ${mississaugaEntries.length} Mississauga neighbourhoods)`,
+  `sitemap.xml written (${entries.length} entries, ${areaEntries.length} area pages, ${miltonEntries.length} Milton neighbourhoods, ${mississaugaEntries.length} Mississauga neighbourhoods, ${blogEntries.length} blog posts, ${propertyEntries.length} properties)`,
 );
