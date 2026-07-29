@@ -181,7 +181,7 @@ const Index = () => {
           </div>
 
           <div className="text-center mt-8">
-            <Link to="/testimonials" className="text-sm font-medium text-primary hover:underline inline-flex items-center gap-1">
+            <Link to="/testimonials" className="text-sm font-semibold text-foreground underline underline-offset-4 hover:text-primary inline-flex items-center gap-1">
               Read all client reviews <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
