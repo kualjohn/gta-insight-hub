@@ -3,6 +3,7 @@
 import { readdirSync, statSync, writeFileSync } from "fs";
 import { basename, extname, resolve } from "path";
 import { MILTON_NEIGHBOURHOODS } from "../src/pages/areas/milton/neighbourhoods";
+import { MISSISSAUGA_NEIGHBOURHOODS } from "../src/pages/areas/mississauga/neighbourhoods";
 
 const BASE_URL = "https://fawadnissari.ca";
 
@@ -72,6 +73,12 @@ function miltonNeighbourhoodRoutes(): SitemapEntry[] {
 }
 
 function generateSitemap(entries: SitemapEntry[]) {
+  return generateSitemapXml(entries);
+}
+
+function miltonOrMississauga() {}
+
+function generateSitemapXml(entries: SitemapEntry[]) {
   const urls = entries.map((e) =>
     [
       `  <url>`,
