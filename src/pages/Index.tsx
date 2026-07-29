@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Download, Phone, AlertCircle, Check, Play, Star } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -53,6 +54,14 @@ const Index = () => {
   const featuredProperties = properties.slice(0, 3);
   const { data: googleData } = useGoogleReviews();
 
+  // Defer the heavy background iframe so the hero poster/headline paints fast (LCP).
+  const [showBgVideo, setShowBgVideo] = useState(false);
+  useEffect(() => {
+    const start = () => setShowBgVideo(true);
+    const id = window.setTimeout(start, 1200);
+    return () => window.clearTimeout(id);
+  }, []);
+
   const realReviews = (googleData?.reviews ?? []).filter(r => r.text && r.text.length > 0).slice(0, 3);
 
   return (
@@ -69,6 +78,7 @@ const Index = () => {
         <div className="absolute inset-0">
           {/* YouTube iframe as background - autoplay, muted, loop */}
           <div className="absolute inset-0 pointer-events-none overflow-hidden">
+            {showBgVideo && (
             <iframe
               src={`https://www.youtube.com/embed/${FEATURED_VIDEO_ID}?autoplay=1&mute=1&loop=1&playlist=${FEATURED_VIDEO_ID}&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&enablejsapi=1&origin=${window.location.origin}`}
               title="Background Video"
@@ -76,11 +86,16 @@ const Index = () => {
               className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[177.78vh] min-w-full h-[56.25vw] min-h-full"
               style={{ border: 'none' }}
             />
+            )}
           </div>
           {/* Fallback poster image while video loads */}
           <img 
             src={FEATURED_VIDEO_THUMBNAIL}
             alt="Real Estate Market Expert"
+            width={1280}
+            height={720}
+            fetchPriority="high"
+            decoding="async"
             className="absolute inset-0 w-full h-full object-cover -z-10"
           />
         </div>
