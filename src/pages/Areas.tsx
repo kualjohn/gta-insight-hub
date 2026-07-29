@@ -104,7 +104,7 @@ export default function Areas() {
               </div>
               <Button variant="outline-gold" size="sm" asChild>
                 <Link to={`/areas/${area.slug}`}>
-                  Learn More
+                  Explore {area.name} real estate
                   <ArrowRight className="w-4 h-4" />
                 </Link>
               </Button>
