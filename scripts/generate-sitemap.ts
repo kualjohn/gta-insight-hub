@@ -72,13 +72,15 @@ function miltonNeighbourhoodRoutes(): SitemapEntry[] {
   })).sort((a, b) => a.path.localeCompare(b.path));
 }
 
-function generateSitemap(entries: SitemapEntry[]) {
-  return generateSitemapXml(entries);
+function mississaugaNeighbourhoodRoutes(): SitemapEntry[] {
+  return MISSISSAUGA_NEIGHBOURHOODS.map((n) => ({
+    path: `/areas/mississauga/${n.slug}`,
+    changefreq: "monthly" as const,
+    priority: "0.6",
+  })).sort((a, b) => a.path.localeCompare(b.path));
 }
 
-function miltonOrMississauga() {}
-
-function generateSitemapXml(entries: SitemapEntry[]) {
+function generateSitemap(entries: SitemapEntry[]) {
   const urls = entries.map((e) =>
     [
       `  <url>`,
@@ -101,9 +103,10 @@ function generateSitemapXml(entries: SitemapEntry[]) {
 
 const areaEntries = discoverAreaRoutes();
 const miltonEntries = miltonNeighbourhoodRoutes();
-const entries = [...staticEntries, ...areaEntries, ...miltonEntries];
+const mississaugaEntries = mississaugaNeighbourhoodRoutes();
+const entries = [...staticEntries, ...areaEntries, ...miltonEntries, ...mississaugaEntries];
 
 writeFileSync(resolve("public/sitemap.xml"), generateSitemap(entries));
 console.log(
-  `sitemap.xml written (${entries.length} entries, ${areaEntries.length} area pages, ${miltonEntries.length} Milton neighbourhoods)`,
+  `sitemap.xml written (${entries.length} entries, ${areaEntries.length} area pages, ${miltonEntries.length} Milton neighbourhoods, ${mississaugaEntries.length} Mississauga neighbourhoods)`,
 );
