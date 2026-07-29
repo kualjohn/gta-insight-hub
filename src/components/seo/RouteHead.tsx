@@ -1,6 +1,7 @@
 import { Helmet } from 'react-helmet-async';
 import { useLocation } from 'react-router-dom';
 import { MILTON_NEIGHBOURHOOD_MAP } from '@/pages/areas/milton/neighbourhoods';
+import { MISSISSAUGA_NEIGHBOURHOOD_MAP } from '@/pages/areas/mississauga/neighbourhoods';
 
 const SITE_URL = 'https://fawadnissari.ca';
 const DEFAULT_OG_IMAGE =
@@ -123,6 +124,14 @@ const DYNAMIC_FALLBACKS: Array<{ test: (p: string) => boolean; meta: Meta }> = [
     },
   },
   {
+    test: (p) => p.startsWith('/areas/mississauga/'),
+    meta: {
+      title: 'Mississauga Neighbourhoods | Fawad Nissari GTA Real Estate',
+      description:
+        'Explore Mississauga neighbourhoods — local market insights, community snapshots, and free home evaluations from Fawad Nissari.',
+    },
+  },
+  {
     test: (p) => p.startsWith('/blog/'),
     meta: {
       title: 'Blog & Insights | Fawad Nissari GTA Real Estate',
@@ -162,6 +171,16 @@ function metaFor(pathname: string): Meta {
       return {
         title: `Selling a Home in ${n.name}, Milton | ${n.name} Real Estate Advisor`,
         description: `Thinking about selling in ${n.name}, Milton? Free home evaluation, local market insights, and neighbourhood expertise from Fawad Nissari.`,
+      };
+    }
+  }
+  const missMatch = p.match(/^\/areas\/mississauga\/([^/]+)$/);
+  if (missMatch) {
+    const n = MISSISSAUGA_NEIGHBOURHOOD_MAP[missMatch[1]];
+    if (n) {
+      return {
+        title: `Selling a Home in ${n.name}, Mississauga | ${n.name} Real Estate Advisor`,
+        description: `Thinking about selling in ${n.name}, Mississauga? ${n.vibe} — free home evaluation, local sold data, and neighbourhood expertise from Fawad Nissari.`,
       };
     }
   }

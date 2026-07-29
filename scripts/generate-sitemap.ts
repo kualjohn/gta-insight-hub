@@ -3,6 +3,7 @@
 import { readdirSync, statSync, writeFileSync } from "fs";
 import { basename, extname, resolve } from "path";
 import { MILTON_NEIGHBOURHOODS } from "../src/pages/areas/milton/neighbourhoods";
+import { MISSISSAUGA_NEIGHBOURHOODS } from "../src/pages/areas/mississauga/neighbourhoods";
 
 const BASE_URL = "https://fawadnissari.ca";
 
@@ -71,6 +72,14 @@ function miltonNeighbourhoodRoutes(): SitemapEntry[] {
   })).sort((a, b) => a.path.localeCompare(b.path));
 }
 
+function mississaugaNeighbourhoodRoutes(): SitemapEntry[] {
+  return MISSISSAUGA_NEIGHBOURHOODS.map((n) => ({
+    path: `/areas/mississauga/${n.slug}`,
+    changefreq: "monthly" as const,
+    priority: "0.6",
+  })).sort((a, b) => a.path.localeCompare(b.path));
+}
+
 function generateSitemap(entries: SitemapEntry[]) {
   const urls = entries.map((e) =>
     [
@@ -94,9 +103,10 @@ function generateSitemap(entries: SitemapEntry[]) {
 
 const areaEntries = discoverAreaRoutes();
 const miltonEntries = miltonNeighbourhoodRoutes();
-const entries = [...staticEntries, ...areaEntries, ...miltonEntries];
+const mississaugaEntries = mississaugaNeighbourhoodRoutes();
+const entries = [...staticEntries, ...areaEntries, ...miltonEntries, ...mississaugaEntries];
 
 writeFileSync(resolve("public/sitemap.xml"), generateSitemap(entries));
 console.log(
-  `sitemap.xml written (${entries.length} entries, ${areaEntries.length} area pages, ${miltonEntries.length} Milton neighbourhoods)`,
+  `sitemap.xml written (${entries.length} entries, ${areaEntries.length} area pages, ${miltonEntries.length} Milton neighbourhoods, ${mississaugaEntries.length} Mississauga neighbourhoods)`,
 );

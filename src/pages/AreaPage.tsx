@@ -17,6 +17,8 @@ export interface AreaConfig {
   intro: string;
   neighbourhoods: Array<string | AreaNeighbourhood>;
   costStub: string;
+  costCtaHref?: string;
+  costCtaLabel?: string;
 }
 
 export default function AreaPage({ area }: { area: AreaConfig }) {
@@ -48,9 +50,18 @@ export default function AreaPage({ area }: { area: AreaConfig }) {
             Cost of Selling in {area.name}
           </h2>
           <p className="text-muted-foreground mt-4">{area.costStub}</p>
-          <p className="text-sm text-muted-foreground mt-4 italic">
-            Detailed cost breakdown coming soon.
-          </p>
+          {area.costCtaHref ? (
+            <Link
+              to={area.costCtaHref}
+              className="inline-flex items-center gap-2 mt-6 rounded-lg bg-primary px-6 py-3 font-medium text-primary-foreground hover:opacity-90 transition-opacity"
+            >
+              {area.costCtaLabel ?? 'See the Full Cost Breakdown'}
+            </Link>
+          ) : (
+            <p className="text-sm text-muted-foreground mt-4 italic">
+              Detailed cost breakdown coming soon.
+            </p>
+          )}
         </div>
       </SectionWrapper>
 
