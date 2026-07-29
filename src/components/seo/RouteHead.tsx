@@ -7,6 +7,7 @@ const SITE_URL = 'https://fawadnissari.ca';
 const DEFAULT_OG_IMAGE =
   'https://storage.googleapis.com/gpt-engineer-file-uploads/RiDF2UivMiaiiiF7b0hWJpqbExC3/social-images/social-1773159078532-Fawad_pic2.webp';
 const SITE_NAME = 'Fawad Nissari | GTA Real Estate';
+const HOME_PATH = '/';
 
 type Meta = { title: string; description: string };
 
@@ -154,11 +155,30 @@ const DYNAMIC_FALLBACKS: Array<{ test: (p: string) => boolean; meta: Meta }> = [
   },
 ];
 
-const FALLBACK: Meta = ROUTE_META['/'];
-
 function normalize(pathname: string) {
   if (pathname.length > 1 && pathname.endsWith('/')) return pathname.slice(0, -1);
   return pathname;
+}
+
+function toTitleCase(value: string) {
+  return value
+    .split('-')
+    .filter(Boolean)
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(' ');
+}
+
+function fallbackMetaFor(pathname: string): Meta {
+  const path = normalize(pathname);
+  if (path === HOME_PATH) return ROUTE_META[HOME_PATH];
+
+  const segments = path.split('/').filter(Boolean);
+  const pageName = segments.map(toTitleCase).join(' / ');
+
+  return {
+    title: `${pageName} | Fawad Nissari | GTA Real Estate`,
+    description: `${pageName} information from Fawad Nissari, a GTA real estate advisor serving Milton, Mississauga, Oakville, Burlington, Brampton, Hamilton, and nearby communities.`,
+  };
 }
 
 function metaFor(pathname: string): Meta {
@@ -185,7 +205,7 @@ function metaFor(pathname: string): Meta {
     }
   }
   const dyn = DYNAMIC_FALLBACKS.find((d) => d.test(p));
-  return dyn ? dyn.meta : FALLBACK;
+  return dyn ? dyn.meta : fallbackMetaFor(p);
 }
 
 /**
@@ -201,21 +221,21 @@ export function RouteHead() {
   const { title, description } = metaFor(pathname);
 
   return (
-    <Helmet>
-      <title>{title}</title>
-      <meta name="title" content={title} />
-      <meta name="description" content={description} />
-      <link rel="canonical" href={url} />
-      <meta property="og:type" content="website" />
-      <meta property="og:site_name" content={SITE_NAME} />
-      <meta property="og:title" content={title} />
-      <meta property="og:description" content={description} />
-      <meta property="og:url" content={url} />
-      <meta property="og:image" content={DEFAULT_OG_IMAGE} />
-      <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:title" content={title} />
-      <meta name="twitter:description" content={description} />
-      <meta name="twitter:image" content={DEFAULT_OG_IMAGE} />
+    <Helmet key={path} defer={false}>
+      <title key={`title-${path}`}>{title}</title>
+      <meta key={`meta-title-${path}`} name="title" content={title} />
+      <meta key={`description-${path}`} name="description" content={description} />
+      <link key={`canonical-${path}`} rel="canonical" href={url} />
+      <meta key={`og-type-${path}`} property="og:type" content="website" />
+      <meta key={`og-site-name-${path}`} property="og:site_name" content={SITE_NAME} />
+      <meta key={`og-title-${path}`} property="og:title" content={title} />
+      <meta key={`og-description-${path}`} property="og:description" content={description} />
+      <meta key={`og-url-${path}`} property="og:url" content={url} />
+      <meta key={`og-image-${path}`} property="og:image" content={DEFAULT_OG_IMAGE} />
+      <meta key={`twitter-card-${path}`} name="twitter:card" content="summary_large_image" />
+      <meta key={`twitter-title-${path}`} name="twitter:title" content={title} />
+      <meta key={`twitter-description-${path}`} name="twitter:description" content={description} />
+      <meta key={`twitter-image-${path}`} name="twitter:image" content={DEFAULT_OG_IMAGE} />
     </Helmet>
   );
 }

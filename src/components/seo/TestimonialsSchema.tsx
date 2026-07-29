@@ -67,8 +67,10 @@ export function TestimonialsSchema() {
   };
 
   return (
-    <Helmet>
-      <script type="application/ld+json">{JSON.stringify(schema)}</script>
+    <Helmet defer={false}>
+      <script id="testimonials-schema" key="testimonials-schema" type="application/ld+json">
+        {JSON.stringify(schema)}
+      </script>
     </Helmet>
   );
 }
