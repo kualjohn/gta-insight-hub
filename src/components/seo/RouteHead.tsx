@@ -113,6 +113,10 @@ const ROUTE_META: Record<string, Meta> = {
     title: 'Cost of Selling a House in Mississauga (2026 Breakdown) | Fawad Nissari',
     description: 'Full 2026 breakdown of the real cost of selling a house in Mississauga — commission, staging, legal fees, and how to save with 1% listing.',
   },
+  '/ontario-land-transfer-tax-guide': {
+    title: 'Ontario Land Transfer Tax Rates 2025 + Calculator',
+    description: 'Ontario land transfer tax rates for 2025, a free calculator, Toronto\u2019s double tax explained, and the first-time home buyer rebate.',
+  },
 };
 
 const DYNAMIC_FALLBACKS: Array<{ test: (p: string) => boolean; meta: Meta }> = [
