@@ -209,6 +209,7 @@ export function RouteHead() {
   const path = normalize(pathname);
   const url = `${SITE_URL}${path}`;
   const { title, description } = metaFor(pathname);
+  const ogType = path.startsWith('/blog/') ? 'article' : 'website';
 
   return (
     <Helmet key={path} defer={false}>
@@ -216,7 +217,7 @@ export function RouteHead() {
       <meta key={`meta-title-${path}`} name="title" content={title} />
       <meta key={`description-${path}`} name="description" content={description} />
       <link key={`canonical-${path}`} rel="canonical" href={url} />
-      <meta key={`og-type-${path}`} property="og:type" content="website" />
+      <meta key={`og-type-${path}`} property="og:type" content={ogType} />
       <meta key={`og-site-name-${path}`} property="og:site_name" content={SITE_NAME} />
       <meta key={`og-title-${path}`} property="og:title" content={title} />
       <meta key={`og-description-${path}`} property="og:description" content={description} />
