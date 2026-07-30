@@ -133,20 +133,6 @@ const DYNAMIC_FALLBACKS: Array<{ test: (p: string) => boolean; meta: Meta }> = [
     },
   },
   {
-    test: (p) => p.startsWith('/blog/'),
-    meta: {
-      title: 'Blog & Insights | Fawad Nissari GTA Real Estate',
-      description: 'GTA real estate articles, market updates, and expert insights from Fawad Nissari.',
-    },
-  },
-  {
-    test: (p) => p.startsWith('/portfolio/'),
-    meta: {
-      title: 'Sold Portfolio | Fawad Nissari GTA Real Estate',
-      description: 'Recently sold homes across the GTA — see real results and marketing campaigns from Fawad Nissari.',
-    },
-  },
-  {
     test: (p) => p.startsWith('/admin'),
     meta: {
       title: 'Admin | Fawad Nissari',
