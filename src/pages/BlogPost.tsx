@@ -53,11 +53,47 @@ export default function BlogPostPage() {
     ? format(new Date(post.published_at), "MMMM d, yyyy")
     : null;
 
+  const canonicalUrl = `https://fawadnissari.ca/blog/${post.slug}`;
+  const rawExcerpt = (post.excerpt || "").replace(/\s+/g, " ").trim();
+  const metaDescription = (
+    rawExcerpt.length >= 50
+      ? rawExcerpt
+      : `${post.title} — GTA real estate insights, market data, and practical advice from Fawad Nissari.`
+  ).slice(0, 158);
+  const metaTitle = `${post.title} | Fawad Nissari`.slice(0, 60);
+  const articleSchema = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: post.title.slice(0, 110),
+    description: metaDescription,
+    mainEntityOfPage: { "@type": "WebPage", "@id": canonicalUrl },
+    url: canonicalUrl,
+    ...(post.featured_image ? { image: [post.featured_image] } : {}),
+    ...(post.published_at ? { datePublished: post.published_at } : {}),
+    ...(post.published_at ? { dateModified: post.published_at } : {}),
+    ...(post.category ? { articleSection: post.category } : {}),
+    author: {
+      "@type": "Person",
+      name: "Fawad Nissari",
+      url: "https://fawadnissari.ca/about",
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "Fawad Nissari | GTA Real Estate",
+      url: "https://fawadnissari.ca",
+    },
+  };
+
   return (
     <Layout>
       <SEOHead
-        title={`${post.title} | Fawad Nissari`}
-        description={post.excerpt || post.title}
+        title={metaTitle}
+        description={metaDescription}
+        canonicalUrl={canonicalUrl}
+        ogType="article"
+        ogImage={post.featured_image || undefined}
+        articlePublishedTime={post.published_at || undefined}
+        jsonLd={articleSchema}
       />
       <article className="container-wide mx-auto px-4 py-12 max-w-3xl">
         {/* Back link */}

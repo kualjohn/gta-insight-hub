@@ -113,6 +113,10 @@ const ROUTE_META: Record<string, Meta> = {
     title: 'Cost of Selling a House in Mississauga (2026 Breakdown) | Fawad Nissari',
     description: 'Full 2026 breakdown of the real cost of selling a house in Mississauga — commission, staging, legal fees, and how to save with 1% listing.',
   },
+  '/ontario-land-transfer-tax-guide': {
+    title: 'Ontario Land Transfer Tax Rates 2025 + Calculator',
+    description: 'Ontario land transfer tax rates for 2025, a free calculator, Toronto\u2019s double tax explained, and the first-time home buyer rebate.',
+  },
 };
 
 const DYNAMIC_FALLBACKS: Array<{ test: (p: string) => boolean; meta: Meta }> = [
@@ -130,20 +134,6 @@ const DYNAMIC_FALLBACKS: Array<{ test: (p: string) => boolean; meta: Meta }> = [
       title: 'Mississauga Neighbourhoods | Fawad Nissari GTA Real Estate',
       description:
         'Explore Mississauga neighbourhoods — local market insights, community snapshots, and free home evaluations from Fawad Nissari.',
-    },
-  },
-  {
-    test: (p) => p.startsWith('/blog/'),
-    meta: {
-      title: 'Blog & Insights | Fawad Nissari GTA Real Estate',
-      description: 'GTA real estate articles, market updates, and expert insights from Fawad Nissari.',
-    },
-  },
-  {
-    test: (p) => p.startsWith('/portfolio/'),
-    meta: {
-      title: 'Sold Portfolio | Fawad Nissari GTA Real Estate',
-      description: 'Recently sold homes across the GTA — see real results and marketing campaigns from Fawad Nissari.',
     },
   },
   {
@@ -219,6 +209,7 @@ export function RouteHead() {
   const path = normalize(pathname);
   const url = `${SITE_URL}${path}`;
   const { title, description } = metaFor(pathname);
+  const ogType = path.startsWith('/blog/') ? 'article' : 'website';
 
   return (
     <Helmet key={path} defer={false}>
@@ -226,7 +217,7 @@ export function RouteHead() {
       <meta key={`meta-title-${path}`} name="title" content={title} />
       <meta key={`description-${path}`} name="description" content={description} />
       <link key={`canonical-${path}`} rel="canonical" href={url} />
-      <meta key={`og-type-${path}`} property="og:type" content="website" />
+      <meta key={`og-type-${path}`} property="og:type" content={ogType} />
       <meta key={`og-site-name-${path}`} property="og:site_name" content={SITE_NAME} />
       <meta key={`og-title-${path}`} property="og:title" content={title} />
       <meta key={`og-description-${path}`} property="og:description" content={description} />

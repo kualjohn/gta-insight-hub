@@ -7,33 +7,56 @@ interface SEOHeadProps {
   ogImage?: string;
   ogType?: 'website' | 'article';
   articlePublishedTime?: string;
+  articleModifiedTime?: string;
   noindex?: boolean;
+  jsonLd?: Record<string, unknown>;
 }
 
 /**
- * Legacy per-page SEO component. Title / description / canonical / og / twitter
- * are now emitted from a single persistent source: <RouteHead /> in App.tsx,
- * keyed on the current route. That eliminates a race where this component
- * unmounted between route transitions and briefly let the static index.html
- * defaults win.
+ * Per-page head override. <RouteHead /> in App.tsx emits the persistent
+ * per-route defaults (title, description, canonical, og/twitter). This
+ * component mounts *below* RouteHead, so react-helmet-async dedupes its
+ * <title> and its name/property meta tags on top of the route defaults —
+ * giving dynamic pages (blog posts, listings) unique metadata.
  *
- * This component is kept as a no-op wrapper (with `noindex` and
- * `articlePublishedTime` still respected) so existing per-page imports keep
- * compiling without editing every page. To change a page's title or
- * description, edit the ROUTE_META map in src/components/seo/RouteHead.tsx.
+ * Static pages should keep editing ROUTE_META in RouteHead.tsx instead.
  */
 export function SEOHead({
+  title,
+  description,
+  canonicalUrl,
+  ogImage,
+  ogType = 'website',
   articlePublishedTime,
-  ogType,
+  articleModifiedTime,
   noindex = false,
+  jsonLd,
 }: SEOHeadProps) {
-  const emitArticleTime = ogType === 'article' && articlePublishedTime;
-  if (!noindex && !emitArticleTime) return null;
+  const trimmedTitle = title?.trim();
+  const trimmedDescription = description?.trim();
+
   return (
-    <Helmet>
-      {noindex && <meta name="robots" content="noindex,nofollow" />}
-      {emitArticleTime && (
+    <Helmet defer={false}>
+      {trimmedTitle && <title>{trimmedTitle}</title>}
+      {trimmedTitle && <meta name="title" content={trimmedTitle} />}
+      {trimmedDescription && <meta name="description" content={trimmedDescription} />}
+      {trimmedTitle && <meta property="og:title" content={trimmedTitle} />}
+      {trimmedDescription && <meta property="og:description" content={trimmedDescription} />}
+      <meta property="og:type" content={ogType} />
+      {canonicalUrl && <meta property="og:url" content={canonicalUrl} />}
+      {ogImage && <meta property="og:image" content={ogImage} />}
+      {trimmedTitle && <meta name="twitter:title" content={trimmedTitle} />}
+      {trimmedDescription && <meta name="twitter:description" content={trimmedDescription} />}
+      {ogImage && <meta name="twitter:image" content={ogImage} />}
+      {ogType === 'article' && articlePublishedTime && (
         <meta property="article:published_time" content={articlePublishedTime} />
+      )}
+      {ogType === 'article' && articleModifiedTime && (
+        <meta property="article:modified_time" content={articleModifiedTime} />
+      )}
+      {noindex && <meta name="robots" content="noindex,nofollow" />}
+      {jsonLd && (
+        <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
       )}
     </Helmet>
   );
