@@ -32,12 +32,48 @@ export default function PropertyDetail() {
     );
   }
 
+  const canonicalUrl = `https://fawadnissari.ca/portfolio/${property.slug}`;
+  const locationSuffix = property.city ? ` in ${property.city}` : '';
+  const metaTitle = `${property.title}${locationSuffix} | Sold by Fawad Nissari`.slice(0, 60);
+  const specs = [
+    property.beds ? `${property.beds} bed` : null,
+    property.baths ? `${property.baths} bath` : null,
+    property.sqft ? `${property.sqft} sq ft` : null,
+  ]
+    .filter(Boolean)
+    .join(', ');
+  const metaDescription = `${property.title}${property.city ? `, ${property.city}` : ''}${
+    specs ? ` — ${specs}` : ''
+  }. See photos, features, sold results, and the full marketing campaign behind this listing.`.slice(0, 158);
+  const listingSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'RealEstateListing',
+    name: `${property.title}${locationSuffix}`,
+    description: metaDescription,
+    url: canonicalUrl,
+    ...(property.hero_image ? { image: [property.hero_image] } : {}),
+    ...(property.city
+      ? { address: { '@type': 'PostalAddress', streetAddress: property.title, addressLocality: property.city, addressRegion: 'ON', addressCountry: 'CA' } }
+      : {}),
+    ...(property.price
+      ? { offers: { '@type': 'Offer', price: property.price, priceCurrency: 'CAD', availability: 'https://schema.org/SoldOut' } }
+      : {}),
+    ...(property.beds ? { numberOfBedrooms: property.beds } : {}),
+    ...(property.baths ? { numberOfBathroomsTotal: property.baths } : {}),
+    ...(property.sqft
+      ? { floorSize: { '@type': 'QuantitativeValue', value: property.sqft, unitCode: 'FTK' } }
+      : {}),
+    broker: { '@type': 'RealEstateAgent', name: 'Fawad Nissari', url: 'https://fawadnissari.ca' },
+  };
+
   return (
     <div className="min-h-screen bg-background overflow-x-hidden">
       <SEOHead
-        title={`${property.title}${property.city ? ` in ${property.city}` : ''}`}
-        description={`${property.title}${property.city ? ` — ${property.city}` : ''}. Explore photos, features, and marketing results from this listing sold by Fawad Nissari.`}
+        title={metaTitle}
+        description={metaDescription}
+        canonicalUrl={canonicalUrl}
         ogImage={property.hero_image || undefined}
+        jsonLd={listingSchema}
       />
       <PropertyHeader />
       <PropertyHero property={property} />
