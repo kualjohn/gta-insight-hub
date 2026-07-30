@@ -7,6 +7,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AdminProvider } from "@/hooks/useAdmin";
 import { RouteHead } from "@/components/seo/RouteHead";
 import { BusinessSchema } from "@/components/seo/BusinessSchema";
+import { Analytics } from "@/components/analytics/Analytics";
 import Index from "./pages/Index";
 import MarketUpdates from "./pages/MarketUpdates";
 import YouTubeHub from "./pages/YouTubeHub";
@@ -56,6 +57,7 @@ const App = () => (
           <BrowserRouter>
             <RouteHead />
             <BusinessSchema />
+            <Analytics />
             <Routes>
               <Route path="/" element={<Index />} />
               <Route path="/market-updates" element={<MarketUpdates />} />
