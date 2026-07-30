@@ -36,6 +36,7 @@ const staticEntries: SitemapEntry[] = [
   { path: "/portfolio", changefreq: "weekly", priority: "0.8" },
   { path: "/cost-of-selling-a-house-in-milton", changefreq: "monthly", priority: "0.7" },
   { path: "/cost-of-selling-a-house-in-mississauga", changefreq: "monthly", priority: "0.7" },
+  { path: "/ontario-land-transfer-tax-guide", changefreq: "monthly", priority: "0.7" },
 ];
 
 function discoverAreaRoutes(): SitemapEntry[] {
