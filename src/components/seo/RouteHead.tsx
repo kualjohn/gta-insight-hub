@@ -54,7 +54,7 @@ const ROUTE_META: Record<string, Meta> = {
     description: 'Thinking about selling in Milton? Free home evaluation, local market insights, and neighbourhood expertise from Fawad Nissari.',
   },
   '/areas/mississauga': {
-    title: 'Selling a Home in Mississauga | Mississauga Real Estate Advisor',
+    title: 'Selling a Home in Mississauga | Real Estate Advisor',
     description: 'Thinking about selling in Mississauga? Free home evaluation and local market insights from Fawad Nissari.',
   },
   '/areas/oakville': {
@@ -62,7 +62,7 @@ const ROUTE_META: Record<string, Meta> = {
     description: 'Thinking about selling in Oakville? Free home evaluation and local market insights from Fawad Nissari.',
   },
   '/areas/burlington': {
-    title: 'Selling a Home in Burlington | Burlington Real Estate Advisor',
+    title: 'Selling a Home in Burlington | Real Estate Advisor',
     description: 'Thinking about selling in Burlington? Free home evaluation and local market insights from Fawad Nissari.',
   },
   '/areas/hamilton': {
@@ -106,11 +106,11 @@ const ROUTE_META: Record<string, Meta> = {
     description: 'Recently sold homes across the GTA — see real results, sold prices, and marketing campaigns from Fawad Nissari.',
   },
   '/cost-of-selling-a-house-in-milton': {
-    title: 'Cost of Selling a House in Milton (2026 Breakdown) | Fawad Nissari',
+    title: 'Cost of Selling a House in Milton (2026 Guide)',
     description: 'Full 2026 breakdown of the real cost of selling a house in Milton — commission, staging, legal fees, and how to save with 1% listing.',
   },
   '/cost-of-selling-a-house-in-mississauga': {
-    title: 'Cost of Selling a House in Mississauga (2026 Breakdown) | Fawad Nissari',
+    title: 'Cost of Selling a House in Mississauga (2026)',
     description: 'Full 2026 breakdown of the real cost of selling a house in Mississauga — commission, staging, legal fees, and how to save with 1% listing.',
   },
   '/ontario-land-transfer-tax-guide': {
@@ -179,7 +179,7 @@ function metaFor(pathname: string): Meta {
     const n = MILTON_NEIGHBOURHOOD_MAP[miltonMatch[1]];
     if (n) {
       return {
-        title: `Selling a Home in ${n.name}, Milton | ${n.name} Real Estate Advisor`,
+        title: `Selling a Home in ${n.name}, Milton | Fawad Nissari`,
         description: `Thinking about selling in ${n.name}, Milton? Free home evaluation, local market insights, and neighbourhood expertise from Fawad Nissari.`,
       };
     }
@@ -189,7 +189,7 @@ function metaFor(pathname: string): Meta {
     const n = MISSISSAUGA_NEIGHBOURHOOD_MAP[missMatch[1]];
     if (n) {
       return {
-        title: `Selling a Home in ${n.name}, Mississauga | ${n.name} Real Estate Advisor`,
+        title: `Selling in ${n.name}, Mississauga | Fawad Nissari`,
         description: `Thinking about selling in ${n.name}, Mississauga? ${n.vibe} — free home evaluation, local sold data, and neighbourhood expertise from Fawad Nissari.`,
       };
     }

@@ -67,7 +67,7 @@ export default function Testimonials() {
       <SEOHead
         title="Client Testimonials | Success Stories"
         description="Real stories from GTA families who trusted Fawad Nissari with their real estate journey. See how our clients achieved their home selling goals."
-        canonicalUrl="https://gta-insight-hub.lovable.app/testimonials"
+        canonicalUrl="https://fawadnissari.ca/testimonials"
       />
       <TestimonialsSchema />
 

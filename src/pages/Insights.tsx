@@ -108,7 +108,7 @@ export default function Insights() {
       <SEOHead
         title="Insights | Market Updates, Seller Tips & Buyer Guides"
         description="Your unified hub for GTA real estate insights. Market updates, seller tips, buyer tips, articles, and neighborhood guides all in one place."
-        canonicalUrl="https://gta-insight-hub.lovable.app/insights"
+        canonicalUrl="https://fawadnissari.ca/insights"
       />
 
       {/* Header */}

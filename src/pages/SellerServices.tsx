@@ -58,7 +58,7 @@ export default function SellerServices() {
       <SEOHead
         title="Seller Services | Full-Service Home Selling"
         description="Everything you need to sell your GTA home: free staging, 4K video, drone photography, daily advertising, dedicated websites, and flexible commission. Cancel anytime."
-        canonicalUrl="https://gta-insight-hub.lovable.app/seller-services"
+        canonicalUrl="https://fawadnissari.ca/seller-services"
       />
 
       {/* Header with CTA */}
