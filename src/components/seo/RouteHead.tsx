@@ -179,7 +179,7 @@ function metaFor(pathname: string): Meta {
     const n = MILTON_NEIGHBOURHOOD_MAP[miltonMatch[1]];
     if (n) {
       return {
-        title: `Selling a Home in ${n.name}, Milton | ${n.name} Real Estate Advisor`,
+        title: `Selling a Home in ${n.name}, Milton | Fawad Nissari`,
         description: `Thinking about selling in ${n.name}, Milton? Free home evaluation, local market insights, and neighbourhood expertise from Fawad Nissari.`,
       };
     }
@@ -189,7 +189,7 @@ function metaFor(pathname: string): Meta {
     const n = MISSISSAUGA_NEIGHBOURHOOD_MAP[missMatch[1]];
     if (n) {
       return {
-        title: `Selling a Home in ${n.name}, Mississauga | ${n.name} Real Estate Advisor`,
+        title: `Selling in ${n.name}, Mississauga | Fawad Nissari`,
         description: `Thinking about selling in ${n.name}, Mississauga? ${n.vibe} — free home evaluation, local sold data, and neighbourhood expertise from Fawad Nissari.`,
       };
     }
