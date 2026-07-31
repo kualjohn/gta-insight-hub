@@ -54,7 +54,7 @@ const ROUTE_META: Record<string, Meta> = {
     description: 'Thinking about selling in Milton? Free home evaluation, local market insights, and neighbourhood expertise from Fawad Nissari.',
   },
   '/areas/mississauga': {
-    title: 'Selling a Home in Mississauga | Mississauga Real Estate Advisor',
+    title: 'Selling a Home in Mississauga | Real Estate Advisor',
     description: 'Thinking about selling in Mississauga? Free home evaluation and local market insights from Fawad Nissari.',
   },
   '/areas/oakville': {
@@ -62,7 +62,7 @@ const ROUTE_META: Record<string, Meta> = {
     description: 'Thinking about selling in Oakville? Free home evaluation and local market insights from Fawad Nissari.',
   },
   '/areas/burlington': {
-    title: 'Selling a Home in Burlington | Burlington Real Estate Advisor',
+    title: 'Selling a Home in Burlington | Real Estate Advisor',
     description: 'Thinking about selling in Burlington? Free home evaluation and local market insights from Fawad Nissari.',
   },
   '/areas/hamilton': {
