@@ -106,11 +106,11 @@ const ROUTE_META: Record<string, Meta> = {
     description: 'Recently sold homes across the GTA — see real results, sold prices, and marketing campaigns from Fawad Nissari.',
   },
   '/cost-of-selling-a-house-in-milton': {
-    title: 'Cost of Selling a House in Milton (2026 Breakdown) | Fawad Nissari',
+    title: 'Cost of Selling a House in Milton (2026 Guide)',
     description: 'Full 2026 breakdown of the real cost of selling a house in Milton — commission, staging, legal fees, and how to save with 1% listing.',
   },
   '/cost-of-selling-a-house-in-mississauga': {
-    title: 'Cost of Selling a House in Mississauga (2026 Breakdown) | Fawad Nissari',
+    title: 'Cost of Selling a House in Mississauga (2026)',
     description: 'Full 2026 breakdown of the real cost of selling a house in Mississauga — commission, staging, legal fees, and how to save with 1% listing.',
   },
   '/ontario-land-transfer-tax-guide': {
