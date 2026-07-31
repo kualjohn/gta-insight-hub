@@ -80,7 +80,7 @@ export default function SellerGuide() {
       <SEOHead
         title="Free First-Time Seller Guide"
         description="Download the free GTA home seller guide. Learn pricing strategies, staging tips, and avoid common mistakes when selling your home in the Greater Toronto Area."
-        canonicalUrl="https://gta-insight-hub.lovable.app/seller-guide"
+        canonicalUrl="https://fawadnissari.ca/seller-guide"
       />
       
       <section className="bg-gradient-warm min-h-[80vh] flex items-center">

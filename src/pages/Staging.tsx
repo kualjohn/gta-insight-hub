@@ -33,7 +33,7 @@ export default function Staging() {
       <SEOHead
         title="Free Home Staging | Professional Staging Included"
         description="Professional staging is included FREE when you list with us. See before and after transformations that helped our clients sell faster and for more money."
-        canonicalUrl="https://gta-insight-hub.lovable.app/staging"
+        canonicalUrl="https://fawadnissari.ca/staging"
       />
 
       {/* Header */}

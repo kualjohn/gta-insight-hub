@@ -62,7 +62,7 @@ export default function FAQ() {
       <SEOHead
         title="Frequently Asked Questions | GTA Real Estate"
         description="Answers to common questions about selling your home in the GTA. Learn about the process, pricing, staging, and what makes our approach different."
-        canonicalUrl="https://gta-insight-hub.lovable.app/faq"
+        canonicalUrl="https://fawadnissari.ca/faq"
       />
       <Helmet>
         <script type="application/ld+json">

@@ -111,7 +111,7 @@ export default function HomeEvaluation() {
       <SEOHead
         title="Free Home Evaluation | Get Your GTA Home's Value"
         description="Get a data-driven home evaluation with real comparable sales and market analysis. No pressure, no obligation — just honest information about your home's value."
-        canonicalUrl="https://gta-insight-hub.lovable.app/home-evaluation"
+        canonicalUrl="https://fawadnissari.ca/home-evaluation"
       />
 
       {/* Header */}

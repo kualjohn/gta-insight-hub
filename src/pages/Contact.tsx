@@ -85,7 +85,7 @@ export default function Contact() {
       <SEOHead
         title="Contact Fawad Nissari"
         description="Get in touch with Fawad Nissari for expert GTA real estate advice. No pressure, just honest guidance on selling your home in the Greater Toronto Area."
-        canonicalUrl="https://gta-insight-hub.lovable.app/contact"
+        canonicalUrl="https://fawadnissari.ca/contact"
       />
       
       {/* Header */}

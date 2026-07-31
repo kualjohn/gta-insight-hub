@@ -20,7 +20,7 @@ const BuyerGuide = () => {
       <SEOHead
         title="First-Time Buyer Guide | Free Download"
         description="Everything you need to know before buying your first home in the GTA. Download our free guide with tips, checklists, and expert advice."
-        canonicalUrl="https://gta-insight-hub.lovable.app/buyer-guide"
+        canonicalUrl="https://fawadnissari.ca/buyer-guide"
       />
       
       {/* Hero Section */}

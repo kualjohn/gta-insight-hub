@@ -53,7 +53,7 @@ const BuyerTips = () => {
       <SEOHead
         title="Buyer Tips | Smart Home Buying Strategies"
         description="Expert tips and strategies for buying a home in the GTA. Learn from weekly videos and proven advice to make smarter decisions."
-        canonicalUrl="https://gta-insight-hub.lovable.app/buyer-tips"
+        canonicalUrl="https://fawadnissari.ca/buyer-tips"
       />
       
       {/* Hero Section */}
