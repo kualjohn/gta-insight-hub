@@ -76,7 +76,9 @@ export default function Areas() {
 
       {/* Areas Grid */}
       <SectionWrapper>
+        <h2 className="font-serif text-2xl font-bold mb-6">GTA Communities We Serve</h2>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+
           {areas.map((area) => (
             <article key={area.slug} className="group hover-lift">
               <div className="relative aspect-[16/10] rounded-xl overflow-hidden mb-4 bg-muted">
