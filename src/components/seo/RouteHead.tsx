@@ -117,6 +117,30 @@ const ROUTE_META: Record<string, Meta> = {
     title: 'Ontario Land Transfer Tax Rates 2025 + Calculator',
     description: 'Ontario land transfer tax rates for 2025, a free calculator, Toronto\u2019s double tax explained, and the first-time home buyer rebate.',
   },
+  '/admin': {
+    title: 'Admin Dashboard | Fawad Nissari',
+    description: 'Secure admin dashboard for managing blog posts, property listings, and incoming leads.',
+  },
+  '/admin/login': {
+    title: 'Admin Login | Fawad Nissari',
+    description: 'Secure admin login for Fawad Nissari real estate content management.',
+  },
+  '/admin/properties/new': {
+    title: 'Add New Property Listing | Fawad Nissari',
+    description: 'Create a new property listing with photos, details, and sold pricing for the portfolio.',
+  },
+  '/admin/blog': {
+    title: 'Manage Blog Posts | Fawad Nissari',
+    description: 'View, publish, edit, and delete blog posts for the GTA real estate insights hub.',
+  },
+  '/admin/blog/new': {
+    title: 'Create Blog Post | Fawad Nissari',
+    description: 'Write and publish a new SEO-optimized blog post for the GTA real estate website.',
+  },
+  '/admin/blog-drafts': {
+    title: 'Blog Drafts | Fawad Nissari',
+    description: 'Review and edit AI-generated blog drafts before publishing to the insights hub.',
+  },
 };
 
 const DYNAMIC_FALLBACKS: Array<{ test: (p: string) => boolean; meta: Meta }> = [
@@ -137,10 +161,24 @@ const DYNAMIC_FALLBACKS: Array<{ test: (p: string) => boolean; meta: Meta }> = [
     },
   },
   {
+    test: (p) => /^\/admin\/properties\/[^/]+\/edit$/.test(p),
+    meta: {
+      title: 'Edit Property Listing | Fawad Nissari',
+      description: 'Update an existing property listing, photos, and sold pricing.',
+    },
+  },
+  {
+    test: (p) => /^\/admin\/blog\/[^/]+\/edit$/.test(p),
+    meta: {
+      title: 'Edit Blog Post | Fawad Nissari',
+      description: 'Update an existing blog post, metadata, and publishing status.',
+    },
+  },
+  {
     test: (p) => p.startsWith('/admin'),
     meta: {
-      title: 'Admin | Fawad Nissari',
-      description: 'Admin area.',
+      title: 'Admin Portal | Fawad Nissari',
+      description: 'Secure admin portal for managing Fawad Nissari real estate content, property listings, blog posts, and incoming leads.',
     },
   },
 ];
