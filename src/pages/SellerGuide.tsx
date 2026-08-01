@@ -101,8 +101,9 @@ export default function SellerGuide() {
               </p>
 
               <div className="mb-8">
-                <h3 className="font-semibold mb-4">What's Inside:</h3>
+                <h2 className="font-semibold mb-4">What's Inside:</h2>
                 <ul className="space-y-3">
+
                   {guideContents.map((item, index) => (
                     <li key={index} className="flex items-center gap-3">
                       <div className="w-5 h-5 rounded-full bg-primary/10 flex items-center justify-center shrink-0">

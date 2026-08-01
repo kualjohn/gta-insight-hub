@@ -83,8 +83,10 @@ export default function YouTubeHub() {
         {/* Search */}
         <div className="mb-8">
           <div className="relative max-w-md">
+            <label htmlFor="video-search" className="sr-only">Search videos</label>
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
             <Input
+              id="video-search"
               type="text"
               placeholder="Search videos..."
               value={searchQuery}
@@ -92,9 +94,13 @@ export default function YouTubeHub() {
               className="pl-10"
             />
           </div>
+
         </div>
 
+        <h2 className="font-serif text-2xl font-bold mb-6">Latest Videos</h2>
+
         {/* Videos Grid */}
+
         {isLoading ? (
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[1, 2, 3, 4, 5, 6].map((i) => (
