@@ -119,27 +119,27 @@ const ROUTE_META: Record<string, Meta> = {
   },
   '/admin': {
     title: 'Admin Dashboard | Fawad Nissari',
-    description: 'Secure admin dashboard for managing blog posts, property listings, and incoming leads.',
+    description: 'Private admin dashboard for the Fawad Nissari real estate site — an overview of blog posts, property listings, and incoming seller leads.',
   },
   '/admin/login': {
     title: 'Admin Login | Fawad Nissari',
-    description: 'Secure admin login for Fawad Nissari real estate content management.',
+    description: 'Sign-in page for authorised staff of the Fawad Nissari real estate site. Access is restricted to the content management team only.',
   },
   '/admin/properties/new': {
     title: 'Add New Property Listing | Fawad Nissari',
-    description: 'Create a new property listing with photos, details, and sold pricing for the portfolio.',
+    description: 'Internal tool for adding a new property listing — upload photos, enter specifications, and record sold pricing for the GTA sold portfolio.',
   },
   '/admin/blog': {
     title: 'Manage Blog Posts | Fawad Nissari',
-    description: 'View, publish, edit, and delete blog posts for the GTA real estate insights hub.',
+    description: 'Internal blog library for the GTA real estate insights hub — browse, publish, edit, and remove articles across every market update category.',
   },
   '/admin/blog/new': {
     title: 'Create Blog Post | Fawad Nissari',
-    description: 'Write and publish a new SEO-optimized blog post for the GTA real estate website.',
+    description: 'Internal editor for drafting and publishing a new GTA real estate article, including headline, body content, imagery, and search metadata.',
   },
   '/admin/blog-drafts': {
     title: 'Blog Drafts | Fawad Nissari',
-    description: 'Review and edit AI-generated blog drafts before publishing to the insights hub.',
+    description: 'Internal review queue for YouTube-generated blog drafts — refine wording and metadata before publishing them to the insights hub.',
   },
 };
 
@@ -164,21 +164,21 @@ const DYNAMIC_FALLBACKS: Array<{ test: (p: string) => boolean; meta: Meta }> = [
     test: (p) => /^\/admin\/properties\/[^/]+\/edit$/.test(p),
     meta: {
       title: 'Edit Property Listing | Fawad Nissari',
-      description: 'Update an existing property listing, photos, and sold pricing.',
+      description: 'Internal editor for updating an existing property listing — revise photos, specifications, sold pricing, and marketing copy for the portfolio.',
     },
   },
   {
     test: (p) => /^\/admin\/blog\/[^/]+\/edit$/.test(p),
     meta: {
       title: 'Edit Blog Post | Fawad Nissari',
-      description: 'Update an existing blog post, metadata, and publishing status.',
+      description: 'Internal editor for revising an existing GTA real estate article — update the body content, featured image, search metadata, and publish state.',
     },
   },
   {
     test: (p) => p.startsWith('/admin'),
     meta: {
       title: 'Admin Portal | Fawad Nissari',
-      description: 'Secure admin portal for managing Fawad Nissari real estate content, property listings, blog posts, and incoming leads.',
+      description: 'Restricted admin portal for the Fawad Nissari real estate site, used to manage property listings, blog content, and incoming seller enquiries.',
     },
   },
 ];
@@ -248,6 +248,7 @@ export function RouteHead() {
   const url = `${SITE_URL}${path}`;
   const { title, description } = metaFor(pathname);
   const ogType = path.startsWith('/blog/') ? 'article' : 'website';
+  const isAdmin = path.startsWith('/admin');
 
   return (
     <Helmet key={path} defer={false}>
@@ -255,6 +256,11 @@ export function RouteHead() {
       <meta key={`meta-title-${path}`} name="title" content={title} />
       <meta key={`description-${path}`} name="description" content={description} />
       <link key={`canonical-${path}`} rel="canonical" href={url} />
+      {isAdmin ? (
+        <meta key={`robots-${path}`} name="robots" content="noindex, nofollow" />
+      ) : (
+        <meta key={`robots-${path}`} name="robots" content="index, follow" />
+      )}
       <meta key={`og-type-${path}`} property="og:type" content={ogType} />
       <meta key={`og-site-name-${path}`} property="og:site_name" content={SITE_NAME} />
       <meta key={`og-title-${path}`} property="og:title" content={title} />
