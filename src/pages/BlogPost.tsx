@@ -139,6 +139,22 @@ export default function BlogPostPage() {
           />
         )}
 
+        {MILTON_RELOCATION_SLUGS.includes(post.slug) && (
+          <aside className="mt-10 rounded-xl border border-border bg-card p-6">
+            <p className="brand-label text-accent mb-2">Relocating to Milton?</p>
+            <h2 className="font-serif text-2xl mb-2">Read the full Moving to Milton guide</h2>
+            <p className="text-muted-foreground mb-4">
+              Commute times to Toronto, GO train and highway access, cost of living, the best
+              neighbourhoods for newcomers, school boards, and current home prices by type.
+            </p>
+            <Link to="/moving-to-milton" className="brand-label text-primary hover:underline">
+              Open the Moving to Milton guide →
+            </Link>
+          </aside>
+        )}
+
+
+
         <ShareButtons
           title={post.title}
           url={typeof window !== "undefined" ? window.location.href : `https://fawadnissari.ca/blog/${slug}`}
