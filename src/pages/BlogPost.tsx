@@ -8,6 +8,13 @@ import { Button } from "@/components/ui/button";
 import { SEOHead } from "@/components/seo/SEOHead";
 import { ShareButtons } from "@/components/blog/ShareButtons";
 
+const MILTON_RELOCATION_SLUGS = [
+  "Is-Milton-a-Good-Area-to-Live--A-Comprehensive-Milton-Real-Estate-Guide",
+  "Pros-and-Cons-of-Living-in-Milton-Is-It-the-Right-Place-for-You-",
+];
+
+
+
 export default function BlogPostPage() {
   const { slug } = useParams<{ slug: string }>();
   const { data: post, isLoading, error } = useBlogPost(slug || "");
