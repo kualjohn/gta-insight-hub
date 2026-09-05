@@ -96,7 +96,7 @@ export function ShareButtons({ title, url, excerpt }: ShareButtonsProps) {
         </Button>
 
         <Button variant="outline" size="sm" onClick={copyLink}>
-          {copied ? <Check className="h-4 w-4 text-green-600" /> : <LinkIcon className="h-4 w-4" />}
+          {copied ? <Check className="h-4 w-4 text-accent" /> : <LinkIcon className="h-4 w-4" />}
           <span className="ml-2 hidden sm:inline">{copied ? "Copied" : "Copy link"}</span>
         </Button>
 
@@ -133,7 +133,7 @@ export function ShareButtons({ title, url, excerpt }: ShareButtonsProps) {
           <Textarea value={gmbText} readOnly rows={8} className="font-mono text-xs" onFocus={(e) => e.currentTarget.select()} />
           <DialogFooter className="flex-col sm:flex-row gap-2">
             <Button variant="outline" onClick={() => copyAndConfirm(gmbText)} className="w-full sm:w-auto">
-              {textCopied ? <><Check className="h-4 w-4 mr-2 text-green-600" /> Copied</> : "Copy text"}
+              {textCopied ? <><Check className="h-4 w-4 mr-2 text-accent" /> Copied</> : "Copy text"}
             </Button>
             <Button
               onClick={() => window.open("https://business.google.com/posts", "_blank", "noopener,noreferrer")}
@@ -157,7 +157,7 @@ export function ShareButtons({ title, url, excerpt }: ShareButtonsProps) {
           <Textarea value={igText} readOnly rows={6} className="font-mono text-xs" onFocus={(e) => e.currentTarget.select()} />
           <DialogFooter className="flex-col sm:flex-row gap-2">
             <Button variant="outline" onClick={() => copyAndConfirm(igText)} className="w-full sm:w-auto">
-              {textCopied ? <><Check className="h-4 w-4 mr-2 text-green-600" /> Copied</> : "Copy caption"}
+              {textCopied ? <><Check className="h-4 w-4 mr-2 text-accent" /> Copied</> : "Copy caption"}
             </Button>
             <Button
               onClick={() => window.open("https://www.instagram.com/", "_blank", "noopener,noreferrer")}
