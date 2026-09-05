@@ -13,7 +13,7 @@ type Meta = { title: string; description: string };
 
 const ROUTE_META: Record<string, Meta> = {
   '/': {
-    title: 'Milton Real Estate Agent | Fawad Nissari \u2014 GTA Broker',
+    title: 'Milton Real Estate Agent | Fawad Nissari \u2014 GTA Real Estate Broker',
     description:
       'Milton real estate agent Fawad Nissari \u2014 weekly market data, free staging, and 1% listing commission for sellers in Milton and across the Greater Toronto Area.',
   },
