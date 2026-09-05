@@ -134,7 +134,7 @@ export default function BlogPostPage() {
         {/* Content */}
         {post.content_html && (
           <div
-            className="prose prose-lg max-w-none dark:prose-invert prose-headings:font-serif prose-a:text-primary"
+            className="blog-content prose prose-invert prose-lg max-w-none prose-headings:font-serif prose-a:text-primary"
             dangerouslySetInnerHTML={{ __html: post.content_html }}
           />
         )}

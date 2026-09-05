@@ -210,7 +210,7 @@ export default function AdminBlogDrafts() {
                   <p className="font-body text-[10px] tracking-[0.15em] uppercase text-muted-foreground mb-6">Focus keyword: {previewDraft.focus_keyword}</p>
                 )}
                 <div
-                  className="prose prose-neutral max-w-none font-body text-foreground prose-headings:font-display prose-headings:text-foreground prose-a:text-accent"
+                  className="prose prose-invert max-w-none font-body text-foreground prose-headings:font-display prose-headings:text-foreground prose-a:text-accent"
                   dangerouslySetInnerHTML={{ __html: previewDraft.content || '' }}
                 />
               </div>
