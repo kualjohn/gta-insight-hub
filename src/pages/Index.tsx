@@ -67,8 +67,8 @@ const Index = () => {
   return (
     <Layout>
       <SEOHead
-        title="Real Estate Market Expert & Advisor | GTA"
-        description="Weekly videos, data-backed insights, and proven strategies to help you sell, buy, or invest with confidence in the Greater Toronto Area."
+        title="Milton Real Estate Agent | Fawad Nissari — GTA Real Estate Broker"
+        description="Milton real estate agent Fawad Nissari — weekly market data, free staging, and 1% listing commission for sellers in Milton and across the Greater Toronto Area."
         canonicalUrl="https://fawadnissari.ca"
       />
       
