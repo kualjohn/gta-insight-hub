@@ -28,6 +28,7 @@ const staticEntries: SitemapEntry[] = [
   { path: "/buyer-guide", changefreq: "monthly", priority: "0.8" },
   { path: "/buyer-tips", changefreq: "monthly", priority: "0.7" },
   { path: "/areas", changefreq: "monthly", priority: "0.7" },
+  { path: "/moving-to-milton", changefreq: "monthly", priority: "0.9" },
   { path: "/about", changefreq: "monthly", priority: "0.7" },
   { path: "/testimonials", changefreq: "monthly", priority: "0.7" },
   { path: "/staging", changefreq: "monthly", priority: "0.6" },
