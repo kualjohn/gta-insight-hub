@@ -322,7 +322,33 @@ const Index = () => {
         </SectionWrapper>
       )}
 
+      {/* Moving to Milton */}
+      <SectionWrapper variant="muted" className="py-12 lg:py-16">
+        <div className="grid md:grid-cols-[1.4fr,1fr] gap-8 items-center">
+          <div>
+            <p className="brand-label text-accent mb-3">New to the area</p>
+            <h2 className="font-serif text-3xl lg:text-4xl font-bold mb-4">
+              Moving to Milton, Ontario?
+            </h2>
+            <p className="text-muted-foreground">
+              Commute times to Toronto, GO train and highway access, cost of living, the best
+              neighbourhoods for newcomers, school boards, and current home prices by type — all in
+              one relocation guide.
+            </p>
+          </div>
+          <div className="md:text-right">
+            <Button variant="gold" size="lg" asChild>
+              <Link to="/moving-to-milton">
+                Read the Milton Relocation Guide
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+            </Button>
+          </div>
+        </div>
+      </SectionWrapper>
+
       {/* CTA Section */}
+
       <SectionWrapper className="py-12 lg:py-16">
         <CTABlock
           variant="dark"
