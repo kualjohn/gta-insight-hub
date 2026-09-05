@@ -119,7 +119,7 @@ export default function MovingToMilton() {
       {/* Hero */}
       <section className="bg-gradient-warm section-padding py-16 lg:py-20">
         <div className="container-wide mx-auto">
-          <span className="brand-label text-accent inline-flex items-center gap-2 mb-4">
+          <span className="brand-label text-accent flex items-center gap-2 mb-4">
             <MapPin className="w-4 h-4" />
             Relocation Guide · Milton, Ontario
           </span>
@@ -164,7 +164,7 @@ export default function MovingToMilton() {
 
       {/* Cost of living */}
       <SectionWrapper variant="muted">
-        <span className="brand-label text-accent inline-flex items-center gap-2 mb-3">
+        <span className="brand-label text-accent flex items-center gap-2 mb-3">
           <Wallet className="w-4 h-4" />
           Cost of living
         </span>
@@ -238,7 +238,7 @@ export default function MovingToMilton() {
 
       {/* Schools */}
       <SectionWrapper>
-        <span className="brand-label text-accent inline-flex items-center gap-2 mb-3">
+        <span className="brand-label text-accent flex items-center gap-2 mb-3">
           <GraduationCap className="w-4 h-4" />
           Schools
         </span>
