@@ -13,9 +13,14 @@ type Meta = { title: string; description: string };
 
 const ROUTE_META: Record<string, Meta> = {
   '/': {
-    title: 'Fawad Nissari | GTA Real Estate Expert',
+    title: 'Milton Real Estate Agent | Fawad Nissari \u2014 GTA Broker',
     description:
-      'Weekly videos, data-backed insights, and proven strategies to help you sell, buy, or invest with confidence in the Greater Toronto Area.',
+      'Milton real estate agent Fawad Nissari \u2014 weekly market data, free staging, and 1% listing commission for sellers in Milton and across the Greater Toronto Area.',
+  },
+  '/moving-to-milton': {
+    title: 'Moving to Milton, Ontario | Relocation Guide 2026',
+    description:
+      'Moving to Milton, Ontario? Commute times to Toronto, GO train and highway access, cost of living, best neighbourhoods for newcomers, schools, and current home prices.',
   },
   '/market-updates': {
     title: 'GTA Market Updates | Fawad Nissari',
@@ -50,7 +55,7 @@ const ROUTE_META: Record<string, Meta> = {
     description: 'Local real estate expertise across Milton, Mississauga, Oakville, Burlington, Hamilton, and Brampton.',
   },
   '/areas/milton': {
-    title: 'Selling a Home in Milton | Milton Real Estate Advisor',
+    title: 'Milton Real Estate | Selling a Home in Milton, GTA',
     description: 'Thinking about selling in Milton? Free home evaluation, local market insights, and neighbourhood expertise from Fawad Nissari.',
   },
   '/areas/mississauga': {
@@ -106,7 +111,7 @@ const ROUTE_META: Record<string, Meta> = {
     description: 'Recently sold homes across the GTA — see real results, sold prices, and marketing campaigns from Fawad Nissari.',
   },
   '/cost-of-selling-a-house-in-milton': {
-    title: 'Cost of Selling a House in Milton (2026 Guide)',
+    title: 'Milton: Cost of Selling a House (2026 Guide)',
     description: 'Full 2026 breakdown of the real cost of selling a house in Milton — commission, staging, legal fees, and how to save with 1% listing.',
   },
   '/cost-of-selling-a-house-in-mississauga': {
@@ -147,7 +152,7 @@ const DYNAMIC_FALLBACKS: Array<{ test: (p: string) => boolean; meta: Meta }> = [
   {
     test: (p) => p.startsWith('/areas/milton/'),
     meta: {
-      title: 'Milton Neighbourhoods | Fawad Nissari GTA Real Estate',
+      title: 'Milton Neighbourhoods | Milton Real Estate Guide',
       description:
         'Explore Milton neighbourhoods — local market insights, community snapshots, and free home evaluations from Fawad Nissari.',
     },
@@ -217,7 +222,7 @@ function metaFor(pathname: string): Meta {
     const n = MILTON_NEIGHBOURHOOD_MAP[miltonMatch[1]];
     if (n) {
       return {
-        title: `Selling a Home in ${n.name}, Milton | Fawad Nissari`,
+        title: `Milton \u2014 Selling a Home in ${n.name} | Fawad Nissari`,
         description: `Thinking about selling in ${n.name}, Milton? Free home evaluation, local market insights, and neighbourhood expertise from Fawad Nissari.`,
       };
     }
