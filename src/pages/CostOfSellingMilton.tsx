@@ -3,6 +3,7 @@ import { SEOHead } from '@/components/seo/SEOHead';
 import { Helmet } from 'react-helmet-async';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
+import { MILTON_PRICES_BY_TYPE } from '@/data/miltonMarket';
 
 const faqSchema = {
   "@context": "https://schema.org",
@@ -31,13 +32,7 @@ const faqSchema = {
   ]
 };
 
-const marketCards = [
-  { type: 'Detached', price: '$1,160,000', yoy: '▼ $24,000 vs June 2025', meta: '259 sales · 26 days avg · 98% SP/LP' },
-  { type: 'Semi-Detached', price: '$865,000', yoy: '▼ $102,500 vs June 2025', meta: '17 sales · 25 days avg · 100% SP/LP' },
-  { type: 'Townhouse', price: '$810,000', yoy: '▼ $60,000 vs June 2025', meta: '77 sales · 16 days avg · 100% SP/LP' },
-  { type: 'Condo Townhouse', price: '$651,500', yoy: '▼ $78,500 vs June 2025', meta: '22 sales · 37 days avg · 96% SP/LP' },
-  { type: 'Condo Apartment', price: '$465,000', yoy: '▼ $108,500 vs June 2025', meta: '27 sales · 39 days avg · 96% SP/LP' },
-];
+const marketCards = MILTON_PRICES_BY_TYPE;
 
 const includes = [
   'Full professional home staging — furniture, decor, the works. Not a consultation. Actual staging.',
@@ -51,13 +46,7 @@ const includes = [
   '1% listing commission (vs. the standard 2–2.5%)',
 ];
 
-const dom = [
-  { t: 'Townhouse', d: '16 days', r: '100%', m: 'Selling at full asking — most competitive segment' },
-  { t: 'Semi-Detached', d: '25 days', r: '100%', m: 'At asking, slightly slower than towns' },
-  { t: 'Detached', d: '26 days', r: '98%', m: 'Slight discount to list — room to negotiate' },
-  { t: 'Condo Townhouse', d: '37 days', r: '96%', m: 'Buyers negotiating 4% below ask — pricing critical' },
-  { t: 'Condo Apartment', d: '39 days', r: '96%', m: 'Slowest segment — inventory high, patience needed' },
-];
+const dom = MILTON_PRICES_BY_TYPE.map((p) => ({ t: p.type, d: p.dom, r: p.ratio, m: p.note }));
 
 const faqs = [
   { q: 'Do I pay HST on real estate commission in Milton?', a: "Yes. Real estate commission in Ontario is subject to HST (13%). So if the total commission is 3.5% on a $1,160,000 home ($40,600), you'll pay an additional $5,278 in HST on the commission portion. Your lawyer accounts for this at closing." },

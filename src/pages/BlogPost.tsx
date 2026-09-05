@@ -8,6 +8,13 @@ import { Button } from "@/components/ui/button";
 import { SEOHead } from "@/components/seo/SEOHead";
 import { ShareButtons } from "@/components/blog/ShareButtons";
 
+const MILTON_RELOCATION_SLUGS = [
+  "Is-Milton-a-Good-Area-to-Live--A-Comprehensive-Milton-Real-Estate-Guide",
+  "Pros-and-Cons-of-Living-in-Milton-Is-It-the-Right-Place-for-You-",
+];
+
+
+
 export default function BlogPostPage() {
   const { slug } = useParams<{ slug: string }>();
   const { data: post, isLoading, error } = useBlogPost(slug || "");
@@ -134,10 +141,26 @@ export default function BlogPostPage() {
         {/* Content */}
         {post.content_html && (
           <div
-            className="prose prose-lg max-w-none dark:prose-invert prose-headings:font-serif prose-a:text-primary"
+            className="blog-content prose prose-invert prose-lg max-w-none prose-headings:font-serif prose-a:text-primary"
             dangerouslySetInnerHTML={{ __html: post.content_html }}
           />
         )}
+
+        {MILTON_RELOCATION_SLUGS.includes(post.slug) && (
+          <aside className="mt-10 rounded-xl border border-border bg-card p-6">
+            <p className="brand-label text-accent mb-2">Relocating to Milton?</p>
+            <h2 className="font-serif text-2xl mb-2">Read the full Moving to Milton guide</h2>
+            <p className="text-muted-foreground mb-4">
+              Commute times to Toronto, GO train and highway access, cost of living, the best
+              neighbourhoods for newcomers, school boards, and current home prices by type.
+            </p>
+            <Link to="/moving-to-milton" className="brand-label text-primary hover:underline">
+              Open the Moving to Milton guide →
+            </Link>
+          </aside>
+        )}
+
+
 
         <ShareButtons
           title={post.title}

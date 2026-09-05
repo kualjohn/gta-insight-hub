@@ -2,13 +2,16 @@ import { Helmet } from 'react-helmet-async';
 import { useGoogleReviews } from '@/hooks/useGoogleReviews';
 
 const DEFAULT_RATING = '5.0';
-const DEFAULT_REVIEW_COUNT = '0';
 
 export function BusinessSchema() {
   const { data: googleData } = useGoogleReviews();
 
   const rating = googleData?.rating?.toFixed(1) ?? DEFAULT_RATING;
-  const reviewCount = googleData?.totalReviews?.toString() ?? DEFAULT_REVIEW_COUNT;
+  // Google requires reviewCount to be a positive integer. Emitting 0 (or the
+  // schema at all before reviews load) produces "reviewCount must be positive"
+  // errors in Search Console, so the block is omitted until we have real data.
+  const reviewCount = googleData?.totalReviews ?? 0;
+  const hasReviews = Number.isFinite(reviewCount) && reviewCount > 0;
 
   const schema = {
     '@context': 'https://schema.org',
@@ -35,13 +38,17 @@ export function BusinessSchema() {
           addressRegion: 'ON',
           addressCountry: 'CA',
         },
-        aggregateRating: {
-          '@type': 'AggregateRating',
-          ratingValue: rating,
-          reviewCount: reviewCount,
-          bestRating: '5',
-          worstRating: '1',
-        },
+        ...(hasReviews
+          ? {
+              aggregateRating: {
+                '@type': 'AggregateRating',
+                ratingValue: rating,
+                reviewCount: reviewCount,
+                bestRating: '5',
+                worstRating: '1',
+              },
+            }
+          : {}),
         sameAs: [
           'https://www.instagram.com/fawadnissari.realestate',
           'https://www.facebook.com/fawadnissarirealestate',

@@ -8,6 +8,8 @@ export function TestimonialsSchema() {
 
   const ratingValue = data.rating?.toFixed(1) ?? '5.0';
   const reviewCount = data.totalReviews ?? 0;
+  // Google rejects a review snippet with reviewCount of 0 or less.
+  const hasReviews = Number.isFinite(reviewCount) && reviewCount > 0;
 
   const individualReviews = data.reviews.map((review) => ({
     '@type': 'Review',
@@ -54,13 +56,17 @@ export function TestimonialsSchema() {
           addressRegion: 'ON',
           addressCountry: 'CA',
         },
-        aggregateRating: {
-          '@type': 'AggregateRating',
-          ratingValue,
-          reviewCount,
-          bestRating: '5',
-          worstRating: '1',
-        },
+        ...(hasReviews
+          ? {
+              aggregateRating: {
+                '@type': 'AggregateRating',
+                ratingValue,
+                reviewCount,
+                bestRating: '5',
+                worstRating: '1',
+              },
+            }
+          : {}),
       },
       ...individualReviews,
     ],

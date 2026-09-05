@@ -67,8 +67,8 @@ const Index = () => {
   return (
     <Layout>
       <SEOHead
-        title="Real Estate Market Expert & Advisor | GTA"
-        description="Weekly videos, data-backed insights, and proven strategies to help you sell, buy, or invest with confidence in the Greater Toronto Area."
+        title="Milton Real Estate Agent | Fawad Nissari — GTA Real Estate Broker"
+        description="Milton real estate agent Fawad Nissari — weekly market data, free staging, and 1% listing commission for sellers in Milton and across the Greater Toronto Area."
         canonicalUrl="https://fawadnissari.ca"
       />
       
@@ -101,21 +101,21 @@ const Index = () => {
         </div>
         
         {/* Dark Overlay (35-40%) */}
-        <div className="absolute inset-0 bg-black/40" />
+        <div className="absolute inset-0 bg-background/55" />
         
         {/* Content */}
         <div className="relative z-10 container-wide mx-auto px-4 sm:px-6 lg:px-8 h-full">
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center min-h-[600px] lg:min-h-[700px] py-12 lg:py-16">
             {/* Left: Text Content */}
             <div className="animate-fade-in">
-              <span className="inline-block text-sm font-medium text-primary mb-3 tracking-wide uppercase">
+              <span className="inline-block brand-label text-accent mb-3">
                 GTA Real Estate Authority
               </span>
-              <h1 className="font-serif text-4xl sm:text-5xl lg:text-5xl xl:text-6xl font-bold mb-5 leading-tight text-white">
+              <h1 className="font-serif text-4xl sm:text-5xl lg:text-5xl xl:text-6xl font-bold mb-5 leading-tight text-foreground">
                 Real Estate Market<br />
                 <span className="text-primary">Expert & Advisor</span>
               </h1>
-              <p className="text-lg lg:text-xl text-white/85 mb-6 max-w-xl">
+              <p className="text-lg lg:text-xl text-foreground/85 mb-6 max-w-xl">
                 Weekly videos, data-backed insights, and proven strategies to help you sell, 
                 buy, or invest with confidence.
               </p>
@@ -129,7 +129,7 @@ const Index = () => {
                 <Button 
                   variant="outline" 
                   size="lg" 
-                  className="border-white/30 bg-transparent text-white hover:bg-white/10 hover:text-white"
+                  className="border-foreground/30 bg-transparent text-foreground hover:bg-foreground/10 hover:text-foreground"
                   asChild
                 >
                   <Link to="/seller-guide">
@@ -140,7 +140,7 @@ const Index = () => {
               </div>
               <Link 
                 to="/youtube"
-                className="inline-flex items-center gap-2 text-white/70 hover:text-primary transition-colors text-sm font-medium"
+                className="inline-flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors text-sm font-medium"
               >
                 <Play className="w-4 h-4" />
                 Watch More Videos
@@ -258,7 +258,7 @@ const Index = () => {
       <SectionWrapper variant="muted" className="py-12 lg:py-16">
         <div className="grid lg:grid-cols-2 gap-10 items-center">
           <div>
-            <span className="inline-block text-sm font-medium text-primary mb-3 tracking-wide uppercase">
+            <span className="inline-block brand-label text-accent mb-3">
               Thinking About Selling?
             </span>
             <h2 className="font-serif text-3xl lg:text-4xl font-bold mb-4">
@@ -322,7 +322,33 @@ const Index = () => {
         </SectionWrapper>
       )}
 
+      {/* Moving to Milton */}
+      <SectionWrapper variant="muted" className="py-12 lg:py-16">
+        <div className="grid md:grid-cols-[1.4fr,1fr] gap-8 items-center">
+          <div>
+            <p className="brand-label text-accent mb-3">New to the area</p>
+            <h2 className="font-serif text-3xl lg:text-4xl font-bold mb-4">
+              Moving to Milton, Ontario?
+            </h2>
+            <p className="text-muted-foreground">
+              Commute times to Toronto, GO train and highway access, cost of living, the best
+              neighbourhoods for newcomers, school boards, and current home prices by type — all in
+              one relocation guide.
+            </p>
+          </div>
+          <div className="md:text-right">
+            <Button variant="gold" size="lg" asChild>
+              <Link to="/moving-to-milton">
+                Read the Milton Relocation Guide
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+            </Button>
+          </div>
+        </div>
+      </SectionWrapper>
+
       {/* CTA Section */}
+
       <SectionWrapper className="py-12 lg:py-16">
         <CTABlock
           variant="dark"

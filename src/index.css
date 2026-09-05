@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;600;700;800;900&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,114 +6,120 @@
 
 @layer base {
   :root {
-    /* Core palette - Authority Real Estate */
-    --background: 0 0% 100%;
-    --foreground: 0 0% 8%;
+    /* Brand palette — black dominant, red urgency, yellow learn-this, grey secondary */
+    --background: 0 0% 4%;          /* #0A0A0A */
+    --foreground: 0 0% 100%;        /* #FFFFFF */
 
-    --card: 0 0% 98%;
-    --card-foreground: 0 0% 8%;
+    --card: 0 0% 7%;
+    --card-foreground: 0 0% 100%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 8%;
+    --popover: 0 0% 7%;
+    --popover-foreground: 0 0% 100%;
 
-    /* Gold accent - warm, authoritative */
-    --primary: 43 74% 49%;
+    /* Accent / urgency — red, CTAs only */
+    --primary: 7 100% 54%;          /* #FF2E12 */
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 0 0% 96%;
-    --secondary-foreground: 0 0% 15%;
+    --secondary: 0 0% 11%;
+    --secondary-foreground: 0 0% 100%;
 
-    --muted: 0 0% 94%;
-    --muted-foreground: 0 0% 38%;
+    --muted: 0 0% 9%;
+    --muted-foreground: 0 0% 54%;   /* #8A8A8A */
 
-    --accent: 43 74% 49%;
-    --accent-foreground: 0 0% 100%;
+    /* Secondary accent — yellow, labels and tags */
+    --accent: 50 100% 50%;          /* #FFD400 */
+    --accent-foreground: 0 0% 4%;
 
-    --destructive: 0 84.2% 60.2%;
+    --destructive: 7 100% 54%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 0 0% 90%;
-    --input: 0 0% 90%;
-    --ring: 43 74% 49%;
+    --border: 0 0% 16%;
+    --input: 0 0% 16%;
+    --ring: 7 100% 54%;
 
     --radius: 0.5rem;
 
     /* Custom tokens */
-    --gold: 43 74% 49%;
-    --gold-light: 43 60% 65%;
-    --gold-dark: 43 80% 38%;
-    --charcoal: 0 0% 15%;
-    --charcoal-light: 0 0% 25%;
-    --warm-white: 40 20% 98%;
-    --warm-grey: 40 5% 92%;
+    --gold: 50 100% 50%;
+    --gold-light: 50 100% 62%;
+    --gold-dark: 50 100% 40%;
+    --charcoal: 0 0% 7%;
+    --charcoal-light: 0 0% 11%;
+    --warm-white: 0 0% 4%;
+    --warm-grey: 0 0% 9%;
 
     /* Typography */
-    --font-serif: 'Playfair Display', Georgia, serif;
-    --font-sans: 'Inter', system-ui, sans-serif;
+    --font-serif: 'Anton', 'Archivo', system-ui, sans-serif;
+    --font-sans: 'Archivo', system-ui, sans-serif;
 
     /* Shadows */
-    --shadow-soft: 0 4px 20px -4px rgba(0, 0, 0, 0.08);
-    --shadow-medium: 0 8px 30px -8px rgba(0, 0, 0, 0.12);
-    --shadow-gold: 0 4px 20px -4px rgba(184, 134, 11, 0.25);
+    --shadow-soft: 0 4px 20px -4px rgba(0, 0, 0, 0.6);
+    --shadow-medium: 0 8px 30px -8px rgba(0, 0, 0, 0.75);
+    --shadow-gold: 0 4px 20px -4px hsl(7 100% 54% / 0.35);
 
     /* Gradients */
-    --gradient-gold: linear-gradient(135deg, hsl(43 74% 49%), hsl(43 80% 38%));
-    --gradient-dark: linear-gradient(180deg, hsl(0 0% 8%), hsl(0 0% 15%));
-    --gradient-warm: linear-gradient(180deg, hsl(40 20% 98%), hsl(0 0% 100%));
+    --gradient-gold: linear-gradient(135deg, hsl(50 100% 50%), hsl(50 100% 40%));
+    --gradient-dark: linear-gradient(180deg, hsl(0 0% 4%), hsl(0 0% 7%));
+    --gradient-warm: linear-gradient(180deg, hsl(0 0% 7%), hsl(0 0% 4%));
 
-    --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 0 0% 25%;
-    --sidebar-primary: 43 74% 49%;
+    --sidebar-background: 0 0% 7%;
+    --sidebar-foreground: 0 0% 100%;
+    --sidebar-primary: 7 100% 54%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 0 0% 94%;
-    --sidebar-accent-foreground: 0 0% 15%;
-    --sidebar-border: 0 0% 90%;
-    --sidebar-ring: 43 74% 49%;
+    --sidebar-accent: 0 0% 11%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 0 0% 16%;
+    --sidebar-ring: 7 100% 54%;
   }
 
+  /* Single brand theme — dark class mirrors the root palette */
   .dark {
-    --background: 0 0% 6%;
-    --foreground: 0 0% 95%;
+    --background: 0 0% 4%;
+    --foreground: 0 0% 100%;
 
-    --card: 0 0% 10%;
-    --card-foreground: 0 0% 95%;
+    --card: 0 0% 7%;
+    --card-foreground: 0 0% 100%;
 
-    --popover: 0 0% 8%;
-    --popover-foreground: 0 0% 95%;
+    --popover: 0 0% 7%;
+    --popover-foreground: 0 0% 100%;
 
-    --primary: 43 74% 55%;
-    --primary-foreground: 0 0% 8%;
+    --primary: 7 100% 54%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 0 0% 15%;
-    --secondary-foreground: 0 0% 95%;
+    --secondary: 0 0% 11%;
+    --secondary-foreground: 0 0% 100%;
 
-    --muted: 0 0% 18%;
-    --muted-foreground: 0 0% 60%;
+    --muted: 0 0% 9%;
+    --muted-foreground: 0 0% 54%;
 
-    --accent: 43 74% 55%;
-    --accent-foreground: 0 0% 8%;
+    --accent: 50 100% 50%;
+    --accent-foreground: 0 0% 4%;
 
-    --destructive: 0 62.8% 50%;
+    --destructive: 7 100% 54%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 0 0% 20%;
-    --input: 0 0% 20%;
-    --ring: 43 74% 55%;
+    --border: 0 0% 16%;
+    --input: 0 0% 16%;
+    --ring: 7 100% 54%;
 
-    --sidebar-background: 0 0% 8%;
-    --sidebar-foreground: 0 0% 90%;
-    --sidebar-primary: 43 74% 55%;
-    --sidebar-primary-foreground: 0 0% 8%;
-    --sidebar-accent: 0 0% 15%;
-    --sidebar-accent-foreground: 0 0% 90%;
-    --sidebar-border: 0 0% 18%;
-    --sidebar-ring: 43 74% 55%;
+    --sidebar-background: 0 0% 7%;
+    --sidebar-foreground: 0 0% 100%;
+    --sidebar-primary: 7 100% 54%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 0 0% 11%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 0 0% 16%;
+    --sidebar-ring: 7 100% 54%;
   }
 }
 
 @layer base {
   * {
     @apply border-border;
+  }
+
+  html {
+    background-color: hsl(var(--background));
   }
 
   body {
@@ -123,7 +129,8 @@
 
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-serif);
-    @apply font-semibold tracking-tight;
+    @apply font-normal tracking-tight uppercase;
+    letter-spacing: 0.01em;
   }
 }
 
@@ -138,6 +145,12 @@
 
   .container-wide {
     @apply max-w-7xl mx-auto;
+  }
+
+  /* Archivo 800 uppercase labels / tags */
+  .brand-label {
+    font-family: var(--font-sans);
+    @apply text-xs font-extrabold uppercase tracking-widest;
   }
 
   .text-gradient-gold {
@@ -182,8 +195,28 @@
     left: 0;
     width: 60px;
     height: 3px;
-    background: var(--gradient-gold);
+    background: hsl(var(--accent));
     border-radius: 2px;
+  }
+
+
+  /* Imported blog HTML often ships inline light-theme colours — force brand palette */
+  .blog-content [style] {
+    color: inherit !important;
+    background-color: transparent !important;
+    background-image: none !important;
+    border-color: hsl(var(--border)) !important;
+  }
+
+  .blog-content strong,
+  .blog-content h1,
+  .blog-content h2,
+  .blog-content h3 {
+    color: hsl(var(--foreground)) !important;
+  }
+
+  .blog-content a[style] {
+    color: hsl(var(--primary)) !important;
   }
 
   .hover-lift {

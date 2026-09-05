@@ -18,6 +18,7 @@ import SellerServices from "./pages/SellerServices";
 import SellerGuide from "./pages/SellerGuide";
 import HomeEvaluation from "./pages/HomeEvaluation";
 import Areas from "./pages/Areas";
+import MovingToMilton from "./pages/MovingToMilton";
 import Milton from "./pages/areas/Milton";
 import MiltonNeighbourhood from "./pages/areas/milton/MiltonNeighbourhood";
 import Mississauga from "./pages/areas/Mississauga";
@@ -70,6 +71,7 @@ const App = () => (
               <Route path="/seller-guide" element={<SellerGuide />} />
               <Route path="/home-evaluation" element={<HomeEvaluation />} />
               <Route path="/areas" element={<Areas />} />
+              <Route path="/moving-to-milton" element={<MovingToMilton />} />
               <Route path="/areas/milton" element={<Milton />} />
               <Route path="/areas/milton/:slug" element={<MiltonNeighbourhood />} />
               <Route path="/areas/mississauga" element={<Mississauga />} />
