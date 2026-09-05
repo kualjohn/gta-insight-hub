@@ -25,7 +25,7 @@ export default function AreaPage({ area }: { area: AreaConfig }) {
   return (
     <Layout>
       <SEOHead
-        title={`Selling a Home in ${area.name} | ${area.name} Real Estate Advisor`}
+        title={`${area.name} Real Estate | Selling a Home in ${area.name}`}
         description={`Thinking about selling in ${area.name}? Get a free home evaluation, local market insights, and neighbourhood expertise from Fawad Nissari, your ${area.name} real estate advisor.`}
       />
 
