@@ -199,6 +199,26 @@
     border-radius: 2px;
   }
 
+
+  /* Imported blog HTML often ships inline light-theme colours — force brand palette */
+  .blog-content [style] {
+    color: inherit !important;
+    background-color: transparent !important;
+    background-image: none !important;
+    border-color: hsl(var(--border)) !important;
+  }
+
+  .blog-content strong,
+  .blog-content h1,
+  .blog-content h2,
+  .blog-content h3 {
+    color: hsl(var(--foreground)) !important;
+  }
+
+  .blog-content a[style] {
+    color: hsl(var(--primary)) !important;
+  }
+
   .hover-lift {
     @apply transition-all duration-300;
   }
