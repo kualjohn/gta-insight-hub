@@ -63,7 +63,7 @@ export function VideoCard({
 
         {/* VIDEO badge - always visible */}
         <Badge 
-          className="absolute bottom-3 left-3 bg-red-600 hover:bg-red-600 text-white text-xs font-bold px-2 py-1 shadow-md"
+          className="absolute bottom-3 left-3 bg-primary hover:bg-primary text-primary-foreground text-xs font-bold px-2 py-1 shadow-md"
         >
           VIDEO
         </Badge>
