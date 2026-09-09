@@ -74,7 +74,7 @@ export default function Testimonials() {
       {/* Header */}
       <section className="bg-gradient-warm section-padding py-16">
         <div className="container-wide mx-auto">
-          <span className="inline-block text-sm font-medium text-primary mb-4 tracking-wide uppercase">
+          <span className="inline-block text-sm font-medium text-accent mb-4 tracking-wide uppercase">
             Success Stories
           </span>
           <h1 className="font-serif text-4xl lg:text-5xl font-bold mb-4">
@@ -92,10 +92,10 @@ export default function Testimonials() {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto mb-12">
           {successStats.map((item, index) => (
             <div key={index} className="text-center">
-              <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-3">
-                <item.icon className="w-5 h-5 text-primary" />
+              <div className="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center mx-auto mb-3">
+                <item.icon className="w-5 h-5 text-accent" />
               </div>
-              <p className="text-3xl lg:text-4xl font-serif font-bold text-primary mb-1">
+              <p className="text-3xl lg:text-4xl font-serif font-bold text-accent mb-1">
                 {item.key === 'rating' && data?.rating
                   ? data.rating.toFixed(1)
                   : item.key === 'count' && data?.totalReviews
@@ -131,7 +131,7 @@ export default function Testimonials() {
                     key={i}
                     className={`w-4 h-4 ${
                       data.rating && i < Math.round(data.rating)
-                        ? 'fill-primary text-primary'
+                        ? 'fill-accent text-accent'
                         : 'text-muted-foreground/40'
                     }`}
                   />
@@ -146,7 +146,7 @@ export default function Testimonials() {
 
         {loading && (
           <div className="flex justify-center py-12">
-            <Loader2 className="w-6 h-6 animate-spin text-primary" />
+            <Loader2 className="w-6 h-6 animate-spin text-accent" />
           </div>
         )}
 
@@ -157,7 +157,7 @@ export default function Testimonials() {
               href={`https://search.google.com/local/reviews?placeid=ChIJnUQ_IwJ8BE4RjYxwrqc6azw`}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-primary hover:underline inline-flex items-center gap-1 mt-2"
+              className="text-accent hover:underline inline-flex items-center gap-1 mt-2"
             >
               View on Google <ExternalLink className="w-3 h-3" />
             </a>
@@ -175,7 +175,7 @@ export default function Testimonials() {
                         key={i}
                         className={`w-4 h-4 ${
                           i < review.rating
-                            ? 'fill-primary text-primary'
+                            ? 'fill-accent text-accent'
                             : 'text-muted-foreground/30'
                         }`}
                       />
@@ -191,7 +191,7 @@ export default function Testimonials() {
                         referrerPolicy="no-referrer"
                       />
                     ) : (
-                      <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary font-semibold">
+                      <div className="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center text-accent font-semibold">
                         {review.author.charAt(0)}
                       </div>
                     )}

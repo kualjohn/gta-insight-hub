@@ -117,7 +117,7 @@ export default function HomeEvaluation() {
       {/* Header */}
       <section className="bg-gradient-warm section-padding py-16">
         <div className="container-wide mx-auto">
-          <span className="inline-block text-sm font-medium text-primary mb-4 tracking-wide uppercase">
+          <span className="inline-block text-sm font-medium text-accent mb-4 tracking-wide uppercase">
             Home Evaluation
           </span>
           <h1 className="font-serif text-4xl lg:text-5xl font-bold mb-4">
@@ -137,8 +137,8 @@ export default function HomeEvaluation() {
           <div className="bg-card p-8 rounded-2xl border border-border">
             {isSuccess ? (
               <div className="text-center py-8">
-                <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
-                  <CheckCircle className="w-8 h-8 text-primary" />
+                <div className="w-16 h-16 rounded-full bg-accent/10 flex items-center justify-center mx-auto mb-4">
+                  <CheckCircle className="w-8 h-8 text-accent" />
                 </div>
                 <h2 className="font-serif text-2xl font-bold mb-2">Request Received!</h2>
                 <p className="text-muted-foreground">
@@ -216,8 +216,8 @@ export default function HomeEvaluation() {
             <div className="space-y-6 mb-8">
               {benefits.map((benefit, index) => (
                 <div key={index} className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
-                    <benefit.icon className="w-6 h-6 text-primary" />
+                  <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center shrink-0">
+                    <benefit.icon className="w-6 h-6 text-accent" />
                   </div>
                   <div>
                     <h3 className="font-semibold mb-1">{benefit.title}</h3>
@@ -227,7 +227,7 @@ export default function HomeEvaluation() {
               ))}
             </div>
 
-            <div className="bg-primary/5 border border-primary/20 p-6 rounded-xl">
+            <div className="bg-accent/5 border border-accent/20 p-6 rounded-xl">
               <h3 className="font-serif text-lg font-semibold mb-2">Why Request a CMA?</h3>
               <p className="text-muted-foreground text-sm">
                 Whether you're thinking about selling now or in a few years, understanding 

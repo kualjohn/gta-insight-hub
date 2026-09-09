@@ -54,7 +54,7 @@ export function Header() {
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2">
             <span className="font-serif text-xl lg:text-2xl font-bold text-foreground">
-              Fawad<span className="text-primary">.</span>
+              Fawad<span className="text-accent">.</span>
             </span>
           </Link>
 
@@ -67,7 +67,7 @@ export function Header() {
                 className={cn(
                   "px-4 py-2 text-sm font-medium transition-colors rounded-md",
                   location.pathname === item.href
-                    ? "text-primary bg-primary/5"
+                    ? "text-accent bg-accent/5"
                     : "text-muted-foreground hover:text-foreground hover:bg-muted"
                 )}
               >
@@ -81,7 +81,7 @@ export function Header() {
                 className={cn(
                   "flex items-center gap-1 px-4 py-2 text-sm font-medium transition-colors rounded-md outline-none",
                   isActiveDropdown(sellersDropdown)
-                    ? "text-primary bg-primary/5"
+                    ? "text-accent bg-accent/5"
                     : "text-muted-foreground hover:text-foreground hover:bg-muted"
                 )}
               >
@@ -95,7 +95,7 @@ export function Header() {
                       to={item.href}
                       className={cn(
                         "w-full cursor-pointer",
-                        location.pathname === item.href && "text-primary"
+                        location.pathname === item.href && "text-accent"
                       )}
                     >
                       {item.name}
@@ -111,7 +111,7 @@ export function Header() {
                 className={cn(
                   "flex items-center gap-1 px-4 py-2 text-sm font-medium transition-colors rounded-md outline-none",
                   isActiveDropdown(buyersDropdown)
-                    ? "text-primary bg-primary/5"
+                    ? "text-accent bg-accent/5"
                     : "text-muted-foreground hover:text-foreground hover:bg-muted"
                 )}
               >
@@ -125,7 +125,7 @@ export function Header() {
                       to={item.href}
                       className={cn(
                         "w-full cursor-pointer",
-                        location.pathname === item.href && "text-primary"
+                        location.pathname === item.href && "text-accent"
                       )}
                     >
                       {item.name}
@@ -141,7 +141,7 @@ export function Header() {
                 className={cn(
                   "flex items-center gap-1 px-4 py-2 text-sm font-medium transition-colors rounded-md outline-none",
                   isActiveDropdown(aboutDropdown)
-                    ? "text-primary bg-primary/5"
+                    ? "text-accent bg-accent/5"
                     : "text-muted-foreground hover:text-foreground hover:bg-muted"
                 )}
               >
@@ -155,7 +155,7 @@ export function Header() {
                       to={item.href}
                       className={cn(
                         "w-full cursor-pointer",
-                        location.pathname === item.href && "text-primary"
+                        location.pathname === item.href && "text-accent"
                       )}
                     >
                       {item.name}
@@ -200,7 +200,7 @@ export function Header() {
                   className={cn(
                     "px-4 py-3 text-base font-medium transition-colors rounded-md",
                     location.pathname === item.href
-                      ? "text-primary bg-primary/5"
+                      ? "text-accent bg-accent/5"
                       : "text-muted-foreground hover:text-foreground hover:bg-muted"
                   )}
                 >
@@ -215,7 +215,7 @@ export function Header() {
                   className={cn(
                     "w-full flex items-center justify-between px-4 py-3 text-base font-medium transition-colors rounded-md",
                     isActiveDropdown(sellersDropdown)
-                      ? "text-primary bg-primary/5"
+                      ? "text-accent bg-accent/5"
                       : "text-muted-foreground hover:text-foreground hover:bg-muted"
                   )}
                 >
@@ -232,7 +232,7 @@ export function Header() {
                         className={cn(
                           "block px-4 py-2 text-sm font-medium transition-colors",
                           location.pathname === item.href
-                            ? "text-primary"
+                            ? "text-accent"
                             : "text-muted-foreground hover:text-foreground"
                         )}
                       >
@@ -250,7 +250,7 @@ export function Header() {
                   className={cn(
                     "w-full flex items-center justify-between px-4 py-3 text-base font-medium transition-colors rounded-md",
                     isActiveDropdown(buyersDropdown)
-                      ? "text-primary bg-primary/5"
+                      ? "text-accent bg-accent/5"
                       : "text-muted-foreground hover:text-foreground hover:bg-muted"
                   )}
                 >
@@ -267,7 +267,7 @@ export function Header() {
                         className={cn(
                           "block px-4 py-2 text-sm font-medium transition-colors",
                           location.pathname === item.href
-                            ? "text-primary"
+                            ? "text-accent"
                             : "text-muted-foreground hover:text-foreground"
                         )}
                       >
@@ -285,7 +285,7 @@ export function Header() {
                   className={cn(
                     "w-full flex items-center justify-between px-4 py-3 text-base font-medium transition-colors rounded-md",
                     isActiveDropdown(aboutDropdown)
-                      ? "text-primary bg-primary/5"
+                      ? "text-accent bg-accent/5"
                       : "text-muted-foreground hover:text-foreground hover:bg-muted"
                   )}
                 >
@@ -302,7 +302,7 @@ export function Header() {
                         className={cn(
                           "block px-4 py-2 text-sm font-medium transition-colors",
                           location.pathname === item.href
-                            ? "text-primary"
+                            ? "text-accent"
                             : "text-muted-foreground hover:text-foreground"
                         )}
                       >

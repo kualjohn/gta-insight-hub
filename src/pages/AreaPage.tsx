@@ -32,7 +32,7 @@ export default function AreaPage({ area }: { area: AreaConfig }) {
       {/* Header */}
       <section className="bg-gradient-warm section-padding py-16">
         <div className="container-wide mx-auto">
-          <span className="inline-flex items-center gap-2 text-sm font-medium text-primary mb-4 tracking-wide uppercase">
+          <span className="inline-flex items-center gap-2 text-sm font-medium text-accent mb-4 tracking-wide uppercase">
             <MapPin className="w-4 h-4" />
             {area.region}
           </span>
@@ -80,7 +80,7 @@ export default function AreaPage({ area }: { area: AreaConfig }) {
                 typeof raw === 'string' ? { name: raw } : raw;
               const inner = (
                 <>
-                  <MapPin className="w-4 h-4 text-primary shrink-0" />
+                  <MapPin className="w-4 h-4 text-accent shrink-0" />
                   <span className="font-medium">{n.name}</span>
                 </>
               );
@@ -89,7 +89,7 @@ export default function AreaPage({ area }: { area: AreaConfig }) {
                   {n.href ? (
                     <Link
                       to={n.href}
-                      className="flex items-center gap-3 bg-card border border-border rounded-lg px-4 py-3 hover:border-primary hover:shadow-sm transition-all"
+                      className="flex items-center gap-3 bg-card border border-border rounded-lg px-4 py-3 hover:border-accent hover:shadow-sm transition-all"
                     >
                       {inner}
                     </Link>
@@ -109,7 +109,7 @@ export default function AreaPage({ area }: { area: AreaConfig }) {
       <SectionWrapper>
         <div className="grid lg:grid-cols-2 gap-12 items-start">
           <div>
-            <span className="inline-block text-sm font-medium text-primary mb-4 tracking-wide uppercase">
+            <span className="inline-block text-sm font-medium text-accent mb-4 tracking-wide uppercase">
               Free Home Evaluation
             </span>
             <h2 className="font-serif text-3xl lg:text-4xl font-bold mb-4">

@@ -47,7 +47,7 @@ export function Footer() {
           <div>
             <Link to="/" className="inline-block mb-4">
               <span className="font-serif text-2xl font-bold">
-                Fawad<span className="text-primary">.</span>
+                Fawad<span className="text-accent">.</span>
               </span>
             </Link>
             <p className="text-primary-foreground/70 text-sm leading-relaxed mb-6">
@@ -59,7 +59,7 @@ export function Footer() {
                 href={YOUTUBE_CHANNEL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full bg-charcoal-light flex items-center justify-center hover:bg-primary transition-colors"
+                className="w-10 h-10 rounded-full bg-charcoal-light flex items-center justify-center hover:bg-accent transition-colors"
                 aria-label="YouTube"
               >
                 <Youtube className="w-5 h-5" />
@@ -68,7 +68,7 @@ export function Footer() {
                 href="https://www.instagram.com/fawadnissari"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full bg-charcoal-light flex items-center justify-center hover:bg-primary transition-colors"
+                className="w-10 h-10 rounded-full bg-charcoal-light flex items-center justify-center hover:bg-accent transition-colors"
                 aria-label="Instagram"
               >
                 <Instagram className="w-5 h-5" />
@@ -77,7 +77,7 @@ export function Footer() {
                 href="https://www.tiktok.com/@fawadnissari"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full bg-charcoal-light flex items-center justify-center hover:bg-primary transition-colors"
+                className="w-10 h-10 rounded-full bg-charcoal-light flex items-center justify-center hover:bg-accent transition-colors"
                 aria-label="TikTok"
               >
                 <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
@@ -88,7 +88,7 @@ export function Footer() {
                 href="https://www.linkedin.com/in/fawadnissari/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full bg-charcoal-light flex items-center justify-center hover:bg-primary transition-colors"
+                className="w-10 h-10 rounded-full bg-charcoal-light flex items-center justify-center hover:bg-accent transition-colors"
                 aria-label="LinkedIn"
               >
                 <Linkedin className="w-5 h-5" />
@@ -104,7 +104,7 @@ export function Footer() {
                 <li key={link.name}>
                   <Link
                     to={link.href}
-                    className="text-primary-foreground/70 hover:text-primary transition-colors text-sm"
+                    className="text-primary-foreground/70 hover:text-accent transition-colors text-sm"
                   >
                     {link.name}
                   </Link>
@@ -121,7 +121,7 @@ export function Footer() {
                 <li key={area}>
                   <Link
                     to={`/areas/${area.toLowerCase()}`}
-                    className="text-primary-foreground/70 hover:text-primary transition-colors text-sm"
+                    className="text-primary-foreground/70 hover:text-accent transition-colors text-sm"
                   >
                     {area}
                   </Link>
@@ -135,15 +135,15 @@ export function Footer() {
             <h4 className="font-serif text-lg font-semibold mb-4">Contact</h4>
             <ul className="space-y-3">
               <li className="flex items-start gap-3">
-                <Phone className="w-4 h-4 mt-1 text-primary" />
+                <Phone className="w-4 h-4 mt-1 text-accent" />
                 <span className="text-primary-foreground/70 text-sm">(416) 878-1085</span>
               </li>
               <li className="flex items-start gap-3">
-                <Mail className="w-4 h-4 mt-1 text-primary" />
+                <Mail className="w-4 h-4 mt-1 text-accent" />
                 <span className="text-primary-foreground/70 text-sm">fawad.nissari@housesigma.com</span>
               </li>
               <li className="flex items-start gap-3">
-                <MapPin className="w-4 h-4 mt-1 text-primary" />
+                <MapPin className="w-4 h-4 mt-1 text-accent" />
                 <span className="text-primary-foreground/70 text-sm">
                   Serving the Greater Toronto Area
                 </span>
@@ -159,10 +159,10 @@ export function Footer() {
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-primary-foreground/50">
             <p>© 2024 Fawad Nissari Real Estate. All rights reserved.</p>
             <div className="flex items-center gap-6">
-              <Link to="/privacy" className="hover:text-primary transition-colors">
+              <Link to="/privacy" className="hover:text-accent transition-colors">
                 Privacy Policy
               </Link>
-              <Link to="/terms" className="hover:text-primary transition-colors">
+              <Link to="/terms" className="hover:text-accent transition-colors">
                 Terms of Service
               </Link>
             </div>

@@ -45,10 +45,10 @@ export function SellerUSPBlock({ className, showAll = true }: SellerUSPBlockProp
       {features.map((feature, index) => (
         <div
           key={index}
-          className="flex items-start gap-4 p-4 rounded-lg bg-card border border-border hover:border-primary/30 transition-colors"
+          className="flex items-start gap-4 p-4 rounded-lg bg-card border border-border hover:border-accent/30 transition-colors"
         >
-          <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
-            <Check className="w-4 h-4 text-primary" />
+          <div className="w-8 h-8 rounded-full bg-accent/10 flex items-center justify-center shrink-0">
+            <Check className="w-4 h-4 text-accent" />
           </div>
           <div>
             <h4 className="font-semibold mb-1">{feature.title}</h4>

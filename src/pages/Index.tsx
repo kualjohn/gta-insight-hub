@@ -109,15 +109,13 @@ const Index = () => {
             {/* Left: Text Content */}
             <div className="animate-fade-in">
               <span className="inline-block brand-label text-accent mb-3">
-                GTA Real Estate Authority
+                Milton Real Estate Agent
               </span>
               <h1 className="font-serif text-4xl sm:text-5xl lg:text-5xl xl:text-6xl font-bold mb-5 leading-tight text-foreground">
-                Real Estate Market<br />
-                <span className="text-primary">Expert & Advisor</span>
+                Milton Real Estate Agent
               </h1>
               <p className="text-lg lg:text-xl text-foreground/85 mb-6 max-w-xl">
-                Weekly videos, data-backed insights, and proven strategies to help you sell, 
-                buy, or invest with confidence.
+                Serving Milton and the GTA. Real numbers, not 'it depends.'
               </p>
               <div className="flex flex-col sm:flex-row gap-3 mb-5">
                 <Button variant="gold" size="lg" asChild>
@@ -140,7 +138,7 @@ const Index = () => {
               </div>
               <Link 
                 to="/youtube"
-                className="inline-flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors text-sm font-medium"
+                className="inline-flex items-center gap-2 text-muted-foreground hover:text-accent transition-colors text-sm font-medium"
               >
                 <Play className="w-4 h-4" />
                 Watch More Videos
@@ -157,7 +155,7 @@ const Index = () => {
           <div className="text-center mb-8">
             <div className="inline-flex items-center gap-2 mb-2">
               {[...Array(5)].map((_, i) => (
-                <Star key={i} className="w-5 h-5 text-primary fill-current" />
+                <Star key={i} className="w-5 h-5 text-accent fill-current" />
               ))}
               <span className="font-serif text-xl font-bold ml-2">
                 {googleData?.rating?.toFixed(1) ?? '5.0'}
@@ -176,7 +174,7 @@ const Index = () => {
                   {r.authorPhoto ? (
                     <img src={r.authorPhoto} alt={r.author} className="w-10 h-10 rounded-full object-cover" referrerPolicy="no-referrer" />
                   ) : (
-                    <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary font-semibold">
+                    <div className="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center text-accent font-semibold">
                       {r.author.charAt(0)}
                     </div>
                   )}
@@ -187,7 +185,7 @@ const Index = () => {
                 </div>
                 <div className="flex items-center gap-0.5 mb-2">
                   {[...Array(r.rating)].map((_, j) => (
-                    <Star key={j} className="w-3.5 h-3.5 text-primary fill-current" />
+                    <Star key={j} className="w-3.5 h-3.5 text-accent fill-current" />
                   ))}
                 </div>
                 <p className="text-sm text-foreground leading-relaxed line-clamp-5">{r.text}</p>
@@ -196,7 +194,7 @@ const Index = () => {
           </div>
 
           <div className="text-center mt-8">
-            <Link to="/testimonials" className="text-sm font-semibold text-foreground underline underline-offset-4 hover:text-primary inline-flex items-center gap-1">
+            <Link to="/testimonials" className="text-sm font-semibold text-foreground underline underline-offset-4 hover:text-accent inline-flex items-center gap-1">
               Read all client reviews <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
@@ -271,8 +269,8 @@ const Index = () => {
             <ul className="space-y-2.5 mb-6">
               {firstTimeSellerPoints.map((point, index) => (
                 <li key={index} className="flex items-start gap-3">
-                  <div className="w-5 h-5 rounded-full bg-primary/10 flex items-center justify-center shrink-0 mt-0.5">
-                    <Check className="w-3 h-3 text-primary" />
+                  <div className="w-5 h-5 rounded-full bg-accent/10 flex items-center justify-center shrink-0 mt-0.5">
+                    <Check className="w-3 h-3 text-accent" />
                   </div>
                   <span className="text-muted-foreground">{point}</span>
                 </li>

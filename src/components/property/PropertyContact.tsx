@@ -52,7 +52,7 @@ export default function PropertyContact({ property }: Props) {
             href="https://calendly.com/fawadnissari"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-3 bg-accent text-accent-foreground px-8 py-4 font-body text-xs tracking-[0.2em] uppercase hover:bg-accent/90 transition-colors flex-shrink-0"
+            className="inline-flex items-center gap-3 bg-primary text-primary-foreground px-8 py-4 font-body text-xs tracking-[0.2em] uppercase hover:bg-primary/90 transition-colors flex-shrink-0"
           >
             <CalendarDays className="w-4 h-4" />
             Book a Call
@@ -104,7 +104,7 @@ export default function PropertyContact({ property }: Props) {
                 <input type="tel" placeholder="Phone" maxLength={20} value={form.phone} onChange={e => setForm(f => ({ ...f, phone: e.target.value }))} className={inputClass} />
                 <p className="font-body text-[10px] text-muted-foreground">* Email or phone required</p>
                 <textarea placeholder="Message" maxLength={1000} rows={4} value={form.message} onChange={e => setForm(f => ({ ...f, message: e.target.value }))} className={`${inputClass} resize-none`} />
-                <button type="submit" disabled={submitting || (!form.email && !form.phone)} className="bg-accent text-accent-foreground px-10 py-3 font-body text-xs tracking-[0.2em] uppercase hover:bg-accent/90 transition-colors disabled:opacity-50">
+                <button type="submit" disabled={submitting || (!form.email && !form.phone)} className="bg-primary text-primary-foreground px-10 py-3 font-body text-xs tracking-[0.2em] uppercase hover:bg-primary/90 transition-colors disabled:opacity-50">
                   {submitting ? 'Sending...' : 'Send Message'}
                 </button>
               </form>

@@ -92,8 +92,8 @@ export function HomeEvaluationForm({
     <div className="bg-card p-8 rounded-2xl border border-border">
       {isSuccess ? (
         <div className="text-center py-8">
-          <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
-            <CheckCircle className="w-8 h-8 text-primary" />
+          <div className="w-16 h-16 rounded-full bg-accent/10 flex items-center justify-center mx-auto mb-4">
+            <CheckCircle className="w-8 h-8 text-accent" />
           </div>
           <h2 className="font-serif text-2xl font-bold mb-2">Request Received!</h2>
           <p className="text-muted-foreground">

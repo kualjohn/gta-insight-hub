@@ -56,14 +56,14 @@ export function VideoCard({
         
         {/* Always visible overlay with play button */}
         <div className="absolute inset-0 bg-gradient-to-t from-foreground/40 via-transparent to-transparent flex items-center justify-center">
-          <div className="w-14 h-14 rounded-full bg-primary/90 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+          <div className="w-14 h-14 rounded-full bg-accent/90 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
             <Play className="w-6 h-6 text-primary-foreground fill-current ml-1" />
           </div>
         </div>
 
         {/* VIDEO badge - always visible */}
         <Badge 
-          className="absolute bottom-3 left-3 bg-primary hover:bg-primary text-primary-foreground text-xs font-bold px-2 py-1 shadow-md"
+          className="absolute bottom-3 left-3 bg-accent hover:bg-accent text-accent-foreground text-xs font-bold px-2 py-1 shadow-md"
         >
           VIDEO
         </Badge>
@@ -88,13 +88,13 @@ export function VideoCard({
         {date && (
           <span className="text-xs text-muted-foreground">{date}</span>
         )}
-        <h3 className="font-serif text-lg font-semibold mt-1 group-hover:text-primary transition-colors line-clamp-2">
+        <h3 className="font-serif text-lg font-semibold mt-1 group-hover:text-accent transition-colors line-clamp-2">
           {title}
         </h3>
         
         {/* Watch on YouTube link */}
         {showWatchLink && videoUrl && (
-          <span className="inline-flex items-center gap-1 text-sm text-primary mt-2 group-hover:underline">
+          <span className="inline-flex items-center gap-1 text-sm text-accent mt-2 group-hover:underline">
             Watch on YouTube
             <ExternalLink className="w-3 h-3" />
           </span>

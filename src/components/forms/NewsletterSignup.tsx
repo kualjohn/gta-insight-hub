@@ -76,7 +76,7 @@ export function NewsletterSignup({ variant = 'inline', className = '' }: Newslet
     return (
       <div className={cn(
         "flex items-center gap-2",
-        variant === 'dark' ? "text-primary" : "text-primary",
+        variant === 'dark' ? "text-accent" : "text-accent",
         className
       )}>
         <CheckCircle className="w-5 h-5" />

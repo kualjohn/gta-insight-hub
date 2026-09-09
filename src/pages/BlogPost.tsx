@@ -115,7 +115,7 @@ export default function BlogPostPage() {
         {/* Header */}
         <header className="mb-8">
           {post.category && (
-            <span className="text-sm font-medium text-primary uppercase tracking-wider mb-4 block">
+            <span className="text-sm font-medium text-accent uppercase tracking-wider mb-4 block">
               {post.category}
             </span>
           )}
@@ -141,7 +141,7 @@ export default function BlogPostPage() {
         {/* Content */}
         {post.content_html && (
           <div
-            className="blog-content prose prose-invert prose-lg max-w-none prose-headings:font-serif prose-a:text-primary"
+            className="blog-content prose prose-invert prose-lg max-w-none prose-headings:font-serif prose-a:text-accent"
             dangerouslySetInnerHTML={{ __html: post.content_html }}
           />
         )}
@@ -154,7 +154,7 @@ export default function BlogPostPage() {
               Commute times to Toronto, GO train and highway access, cost of living, the best
               neighbourhoods for newcomers, school boards, and current home prices by type.
             </p>
-            <Link to="/moving-to-milton" className="brand-label text-primary hover:underline">
+            <Link to="/moving-to-milton" className="brand-label text-accent hover:underline">
               Open the Moving to Milton guide →
             </Link>
           </aside>

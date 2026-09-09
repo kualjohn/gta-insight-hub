@@ -91,7 +91,7 @@ export default function Contact() {
       {/* Header */}
       <section className="bg-gradient-warm section-padding py-16">
         <div className="container-wide mx-auto">
-          <span className="inline-block text-sm font-medium text-primary mb-4 tracking-wide uppercase">
+          <span className="inline-block text-sm font-medium text-accent mb-4 tracking-wide uppercase">
             Get in Touch
           </span>
           <h1 className="font-serif text-4xl lg:text-5xl font-bold mb-4">
@@ -159,8 +159,8 @@ export default function Contact() {
               </>
             ) : (
               <div className="text-center py-12">
-                <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
-                  <CheckCircle className="w-8 h-8 text-primary" />
+                <div className="w-16 h-16 rounded-full bg-accent/10 flex items-center justify-center mx-auto mb-4">
+                  <CheckCircle className="w-8 h-8 text-accent" />
                 </div>
                 <h2 className="font-serif text-2xl font-bold mb-2">Message Sent!</h2>
                 <p className="text-muted-foreground">
@@ -176,8 +176,8 @@ export default function Contact() {
               <h2 className="font-serif text-2xl font-bold mb-6">Contact Information</h2>
               <div className="space-y-4">
                 <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
-                    <Phone className="w-5 h-5 text-primary" />
+                  <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center shrink-0">
+                    <Phone className="w-5 h-5 text-accent" />
                   </div>
                   <div>
                     <p className="font-semibold">Phone</p>
@@ -185,8 +185,8 @@ export default function Contact() {
                   </div>
                 </div>
                 <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
-                    <Mail className="w-5 h-5 text-primary" />
+                  <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center shrink-0">
+                    <Mail className="w-5 h-5 text-accent" />
                   </div>
                   <div>
                     <p className="font-semibold">Email</p>
@@ -194,8 +194,8 @@ export default function Contact() {
                   </div>
                 </div>
                 <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
-                    <MapPin className="w-5 h-5 text-primary" />
+                  <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center shrink-0">
+                    <MapPin className="w-5 h-5 text-accent" />
                   </div>
                   <div>
                     <p className="font-semibold">Service Area</p>
@@ -203,8 +203,8 @@ export default function Contact() {
                   </div>
                 </div>
                 <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
-                    <Clock className="w-5 h-5 text-primary" />
+                  <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center shrink-0">
+                    <Clock className="w-5 h-5 text-accent" />
                   </div>
                   <div>
                     <p className="font-semibold">Availability</p>

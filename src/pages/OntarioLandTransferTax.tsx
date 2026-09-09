@@ -96,11 +96,11 @@ export default function OntarioLandTransferTax() {
 
       <section className="bg-charcoal text-primary-foreground py-20 lg:py-28 px-4">
         <div className="max-w-3xl mx-auto text-center">
-          <p className="text-xs font-bold tracking-[0.12em] uppercase text-primary mb-5">
+          <p className="text-xs font-bold tracking-[0.12em] uppercase text-accent mb-5">
             Ontario · Closing Costs · 2025 Rates
           </p>
           <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl leading-tight mb-6">
-            Ontario Land Transfer Tax <span className="text-primary">Rates &amp; Calculator</span>
+            Ontario Land Transfer Tax <span className="text-accent">Rates &amp; Calculator</span>
           </h1>
           <p className="text-primary-foreground/70 max-w-xl mx-auto mb-9 text-base lg:text-lg">
             The full 2025 bracket table, what changes inside Toronto, and exactly how much of it a
@@ -175,7 +175,7 @@ export default function OntarioLandTransferTax() {
               )}
               <div className="flex justify-between font-serif text-2xl pt-3 border-t border-border">
                 <dt>Total due on closing</dt>
-                <dd className="text-primary">{money(result.total)}</dd>
+                <dd className="text-accent">{money(result.total)}</dd>
               </div>
             </dl>
           </div>

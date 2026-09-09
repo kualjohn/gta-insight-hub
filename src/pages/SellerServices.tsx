@@ -64,7 +64,7 @@ export default function SellerServices() {
       {/* Header with CTA */}
       <section className="bg-gradient-warm section-padding py-16">
         <div className="container-wide mx-auto">
-          <span className="inline-block text-sm font-medium text-primary mb-4 tracking-wide uppercase">
+          <span className="inline-block text-sm font-medium text-accent mb-4 tracking-wide uppercase">
             Seller Services
           </span>
           <h1 className="font-serif text-4xl lg:text-5xl font-bold mb-4">
@@ -104,9 +104,9 @@ export default function SellerServices() {
         
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {services.map((service, index) => (
-            <div key={index} className="bg-card p-6 rounded-xl border border-border hover:border-primary/50 transition-colors">
-              <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4">
-                <service.icon className="w-6 h-6 text-primary" />
+            <div key={index} className="bg-card p-6 rounded-xl border border-border hover:border-accent/50 transition-colors">
+              <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center mb-4">
+                <service.icon className="w-6 h-6 text-accent" />
               </div>
               <h3 className="font-serif text-lg font-semibold mb-2">{service.title}</h3>
               <p className="text-sm text-muted-foreground">{service.description}</p>
@@ -143,7 +143,7 @@ export default function SellerServices() {
             <div className="grid grid-cols-3 bg-charcoal text-primary-foreground">
               <div className="p-4 font-medium">Feature</div>
               <div className="p-4 font-medium text-center">Typical Agent</div>
-              <div className="p-4 font-medium text-center bg-primary">What We Do</div>
+              <div className="p-4 font-medium text-center bg-accent text-accent-foreground">What We Do</div>
             </div>
 
             {/* Rows */}
@@ -160,8 +160,8 @@ export default function SellerServices() {
                     <X className="w-5 h-5 text-muted-foreground/40" />
                   )}
                 </div>
-                <div className="p-4 flex justify-center bg-primary/5">
-                  <Check className="w-5 h-5 text-primary" />
+                <div className="p-4 flex justify-center bg-accent/5">
+                  <Check className="w-5 h-5 text-accent" />
                 </div>
               </div>
             ))}

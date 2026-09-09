@@ -18,12 +18,12 @@ export default function MiltonNeighbourhood() {
         <div className="container-wide mx-auto">
           <Link
             to="/areas/milton"
-            className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary mb-4"
+            className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-accent mb-4"
           >
             <ArrowLeft className="w-4 h-4" />
             Back to Milton
           </Link>
-          <span className="inline-flex items-center gap-2 text-sm font-medium text-primary mb-4 tracking-wide uppercase">
+          <span className="inline-flex items-center gap-2 text-sm font-medium text-accent mb-4 tracking-wide uppercase">
             <MapPin className="w-4 h-4" />
             {n.name} · Milton, ON
           </span>
@@ -64,7 +64,7 @@ export default function MiltonNeighbourhood() {
                   key={l}
                   className="flex items-center gap-3 bg-card border border-border rounded-lg px-4 py-3"
                 >
-                  <MapPin className="w-4 h-4 text-primary shrink-0" />
+                  <MapPin className="w-4 h-4 text-accent shrink-0" />
                   <span className="font-medium">{l}</span>
                 </li>
               ))}
@@ -93,7 +93,7 @@ export default function MiltonNeighbourhood() {
       <SectionWrapper>
         <div className="grid lg:grid-cols-2 gap-12 items-start">
           <div>
-            <span className="inline-block text-sm font-medium text-primary mb-4 tracking-wide uppercase">
+            <span className="inline-block text-sm font-medium text-accent mb-4 tracking-wide uppercase">
               Free Home Evaluation
             </span>
             <h2 className="font-serif text-3xl lg:text-4xl font-bold mb-4">

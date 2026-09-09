@@ -61,7 +61,7 @@ export default function Areas() {
       {/* Header */}
       <section className="bg-gradient-warm section-padding py-16">
         <div className="container-wide mx-auto">
-          <span className="inline-block text-sm font-medium text-primary mb-4 tracking-wide uppercase">
+          <span className="inline-block text-sm font-medium text-accent mb-4 tracking-wide uppercase">
             Areas Served
           </span>
           <h1 className="font-serif text-4xl lg:text-5xl font-bold mb-4">

@@ -36,7 +36,7 @@ export function MarketUpdateCard({
           </div>
           <div className={cn(
             "flex items-center gap-1 text-sm font-medium px-2 py-1 rounded",
-            trend === 'up' && "bg-primary/10 text-primary",
+            trend === 'up' && "bg-accent/10 text-accent",
             trend === 'down' && "bg-destructive/10 text-destructive",
             trend === 'stable' && "bg-muted text-muted-foreground"
           )}>
@@ -47,7 +47,7 @@ export function MarketUpdateCard({
         </div>
 
         {/* Content */}
-        <h3 className="font-serif text-xl font-semibold mb-2 group-hover:text-primary transition-colors line-clamp-2">
+        <h3 className="font-serif text-xl font-semibold mb-2 group-hover:text-accent transition-colors line-clamp-2">
           {title}
         </h3>
         <p className="text-muted-foreground text-sm line-clamp-3 mb-4">
@@ -55,7 +55,7 @@ export function MarketUpdateCard({
         </p>
 
         {/* CTA */}
-        <span className="inline-flex items-center gap-1 text-sm font-medium text-primary group-hover:gap-2 transition-all">
+        <span className="inline-flex items-center gap-1 text-sm font-medium text-accent group-hover:gap-2 transition-all">
           Read Update
           <ArrowRight className="w-4 h-4" />
         </span>

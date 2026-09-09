@@ -60,7 +60,7 @@ export default function YouTubeHub() {
       {/* Header */}
       <section className="bg-charcoal text-primary-foreground section-padding py-16">
         <div className="container-wide mx-auto">
-          <span className="inline-block text-sm font-medium text-primary mb-4 tracking-wide uppercase">
+          <span className="inline-block text-sm font-medium text-accent mb-4 tracking-wide uppercase">
             YouTube Channel
           </span>
           <h1 className="font-serif text-4xl lg:text-5xl font-bold mb-4">
@@ -155,7 +155,7 @@ export default function YouTubeHub() {
 
       {/* Bottom CTA */}
       <SectionWrapper variant="muted">
-        <div className="rounded-2xl p-8 lg:p-12 text-center bg-gradient-to-r from-primary to-primary/90">
+        <div className="rounded-2xl p-8 lg:p-12 text-center bg-charcoal border border-border">
           <h3 className="font-serif text-2xl lg:text-3xl font-bold mb-3 text-primary-foreground">
             Never Miss an Update
           </h3>
