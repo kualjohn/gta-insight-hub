@@ -59,7 +59,7 @@ export function Footer() {
                 href={YOUTUBE_CHANNEL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full bg-charcoal-light flex items-center justify-center hover:bg-primary transition-colors"
+                className="w-10 h-10 rounded-full bg-charcoal-light flex items-center justify-center hover:bg-accent transition-colors"
                 aria-label="YouTube"
               >
                 <Youtube className="w-5 h-5" />
@@ -68,7 +68,7 @@ export function Footer() {
                 href="https://www.instagram.com/fawadnissari"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full bg-charcoal-light flex items-center justify-center hover:bg-primary transition-colors"
+                className="w-10 h-10 rounded-full bg-charcoal-light flex items-center justify-center hover:bg-accent transition-colors"
                 aria-label="Instagram"
               >
                 <Instagram className="w-5 h-5" />
@@ -77,7 +77,7 @@ export function Footer() {
                 href="https://www.tiktok.com/@fawadnissari"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full bg-charcoal-light flex items-center justify-center hover:bg-primary transition-colors"
+                className="w-10 h-10 rounded-full bg-charcoal-light flex items-center justify-center hover:bg-accent transition-colors"
                 aria-label="TikTok"
               >
                 <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
@@ -88,7 +88,7 @@ export function Footer() {
                 href="https://www.linkedin.com/in/fawadnissari/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full bg-charcoal-light flex items-center justify-center hover:bg-primary transition-colors"
+                className="w-10 h-10 rounded-full bg-charcoal-light flex items-center justify-center hover:bg-accent transition-colors"
                 aria-label="LinkedIn"
               >
                 <Linkedin className="w-5 h-5" />

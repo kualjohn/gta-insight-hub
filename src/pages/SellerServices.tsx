@@ -143,7 +143,7 @@ export default function SellerServices() {
             <div className="grid grid-cols-3 bg-charcoal text-primary-foreground">
               <div className="p-4 font-medium">Feature</div>
               <div className="p-4 font-medium text-center">Typical Agent</div>
-              <div className="p-4 font-medium text-center bg-primary">What We Do</div>
+              <div className="p-4 font-medium text-center bg-accent text-accent-foreground">What We Do</div>
             </div>
 
             {/* Rows */}

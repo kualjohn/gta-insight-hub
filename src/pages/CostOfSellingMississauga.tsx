@@ -82,11 +82,11 @@ export default function CostOfSellingMississauga() {
       {/* Hero */}
       <section className="bg-charcoal text-primary-foreground py-20 lg:py-28 px-4">
         <div className="max-w-3xl mx-auto text-center">
-          <p className="text-xs font-bold tracking-[0.12em] uppercase text-primary mb-5">
+          <p className="text-xs font-bold tracking-[0.12em] uppercase text-accent mb-5">
             Mississauga · TRREB Data · May 2026
           </p>
           <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl leading-tight mb-6">
-            The Real Cost of Selling a House in <span className="text-primary">Mississauga</span>
+            The Real Cost of Selling a House in <span className="text-accent">Mississauga</span>
           </h1>
           <p className="text-primary-foreground/70 max-w-xl mx-auto mb-9 text-base lg:text-lg">
             Commission, legal fees, staging, and every other cost — so you know exactly what you'll net before you list.
@@ -103,7 +103,7 @@ export default function CostOfSellingMississauga() {
               { n: '235', l: 'Detached Sales (May 2026)' },
             ].map((s) => (
               <div key={s.l} className="text-center">
-                <span className="block font-serif text-2xl lg:text-3xl text-primary">{s.n}</span>
+                <span className="block font-serif text-2xl lg:text-3xl text-accent">{s.n}</span>
                 <span className="text-xs uppercase tracking-wider text-primary-foreground/60">{s.l}</span>
               </div>
             ))}
@@ -149,7 +149,7 @@ export default function CostOfSellingMississauga() {
                       {note && <div className="text-xs text-muted-foreground mt-1">{note}</div>}
                     </td>
                     <td className="p-3 border-b border-border align-top">{typical}</td>
-                    <td className={`p-3 border-b border-border align-top ${String(fawad).startsWith('FREE') ? 'text-primary font-semibold' : ''}`}>{fawad}</td>
+                    <td className={`p-3 border-b border-border align-top ${String(fawad).startsWith('FREE') ? 'text-accent font-semibold' : ''}`}>{fawad}</td>
                   </tr>
                 ))}
                 <tr className="bg-charcoal text-primary-foreground font-bold">
@@ -160,7 +160,7 @@ export default function CostOfSellingMississauga() {
                 <tr className="bg-charcoal text-primary-foreground font-bold border-t border-charcoal-light">
                   <td className="p-4">Estimated Total (With Fawad's 1% Listing)</td>
                   <td className="p-4"></td>
-                  <td className="p-4 text-primary">$39,300 – $54,900</td>
+                  <td className="p-4 text-accent">$39,300 – $54,900</td>
                 </tr>
               </tbody>
             </table>
@@ -170,7 +170,7 @@ export default function CostOfSellingMississauga() {
             Based on a Mississauga detached median of $1,160,000 (May 2026, TRREB). Buyer co-op at 2.5%. Mortgage penalty excluded. All amounts CAD.
           </p>
 
-          <div className="bg-primary/10 border-l-4 border-primary p-6 mt-8">
+          <div className="bg-accent/10 border-l-4 border-accent p-6 mt-8">
             <p className="text-sm">
               <strong>Commission saving on a $1,160,000 Mississauga home:</strong> Dropping from 2.5% to 1% listing commission puts <strong>$17,400</strong> back in your pocket. Staging, photography, drone, video, and paid ads still included.
             </p>
@@ -234,7 +234,7 @@ export default function CostOfSellingMississauga() {
             </table>
           </div>
 
-          <div className="bg-primary/10 border-l-4 border-primary p-6 mt-6">
+          <div className="bg-accent/10 border-l-4 border-accent p-6 mt-6">
             <p className="text-sm">
               <strong>Note on condo townhouse data:</strong> Only 4 condo townhouse sales in Mississauga recorded in May 2026. Use this as directional, not definitive. Your specific location and unit quality will drive the result more than the segment average in a thin market.
             </p>
@@ -250,14 +250,14 @@ export default function CostOfSellingMississauga() {
           <ul className="my-6">
             {includes.map((item) => (
               <li key={item} className="py-3 border-b border-border flex items-start gap-3 text-sm">
-                <span className="text-primary font-bold text-lg leading-none flex-shrink-0">✓</span>
+                <span className="text-accent font-bold text-lg leading-none flex-shrink-0">✓</span>
                 <span>{item}</span>
               </li>
             ))}
           </ul>
 
           <div className="bg-charcoal text-primary-foreground p-8 lg:p-10 mt-10 text-center">
-            <h3 className="font-serif text-2xl text-primary mb-3">
+            <h3 className="font-serif text-2xl text-accent mb-3">
               How much does the 1% save you in Mississauga?
             </h3>
             <p className="text-primary-foreground/80">

@@ -72,11 +72,11 @@ export default function CostOfSellingMilton() {
       {/* Hero */}
       <section className="bg-charcoal text-primary-foreground py-20 lg:py-28 px-4">
         <div className="max-w-3xl mx-auto text-center">
-          <p className="text-xs font-bold tracking-[0.12em] uppercase text-primary mb-5">
+          <p className="text-xs font-bold tracking-[0.12em] uppercase text-accent mb-5">
             Milton · TRREB Data · June 2026
           </p>
           <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl leading-tight mb-6">
-            The Real Cost of Selling a House in <span className="text-primary">Milton</span>
+            The Real Cost of Selling a House in <span className="text-accent">Milton</span>
           </h1>
           <p className="text-primary-foreground/70 max-w-xl mx-auto mb-9 text-base lg:text-lg">
             No guesswork. Exact numbers for commission, legal fees, staging, and every other cost — so you know exactly what you'll net before you list.
@@ -93,7 +93,7 @@ export default function CostOfSellingMilton() {
               { n: '259', l: 'Detached Sales (June 2026)' },
             ].map((s) => (
               <div key={s.l} className="text-center">
-                <span className="block font-serif text-2xl lg:text-3xl text-primary">{s.n}</span>
+                <span className="block font-serif text-2xl lg:text-3xl text-accent">{s.n}</span>
                 <span className="text-xs uppercase tracking-wider text-primary-foreground/60">{s.l}</span>
               </div>
             ))}
@@ -140,7 +140,7 @@ export default function CostOfSellingMilton() {
                       {note && <div className="text-xs text-muted-foreground mt-1">{note}</div>}
                     </td>
                     <td className="p-3 border-b border-border align-top">{typical}</td>
-                    <td className={`p-3 border-b border-border align-top ${String(fawad).startsWith('FREE') ? 'text-primary font-semibold' : ''}`}>{fawad}</td>
+                    <td className={`p-3 border-b border-border align-top ${String(fawad).startsWith('FREE') ? 'text-accent font-semibold' : ''}`}>{fawad}</td>
                   </tr>
                 ))}
                 <tr className="bg-charcoal text-primary-foreground font-bold">
@@ -151,7 +151,7 @@ export default function CostOfSellingMilton() {
                 <tr className="bg-charcoal text-primary-foreground font-bold border-t border-charcoal-light">
                   <td className="p-4">Estimated Total (With Fawad's 1% Listing)</td>
                   <td className="p-4"></td>
-                  <td className="p-4 text-primary">$38,800 – $54,100</td>
+                  <td className="p-4 text-accent">$38,800 – $54,100</td>
                 </tr>
               </tbody>
             </table>
@@ -161,7 +161,7 @@ export default function CostOfSellingMilton() {
             Based on a Milton detached median sale price of $1,160,000 (June 2026, TRREB). Buyer agent co-op set at 2.5%. Mortgage penalty not included — contact your lender for your exact figure. All amounts in CAD.
           </p>
 
-          <div className="bg-primary/10 border-l-4 border-primary p-6 mt-8">
+          <div className="bg-accent/10 border-l-4 border-accent p-6 mt-8">
             <p className="text-sm">
               <strong>The real saving with a 1% listing:</strong> On a $1,160,000 sale, dropping from 2.5% to 1% listing commission saves you <strong>$17,400</strong> — with more included, not less. Full staging, pro photography, drone, video, and multi-platform paid ads come standard.
             </p>
@@ -230,7 +230,7 @@ export default function CostOfSellingMilton() {
             These are averages. A well-staged, properly priced townhouse in Hawthorne Village or Beaty can still sell in under a week. An overpriced detached with dated photos can sit for 60+ days and require price reductions that cost more than good marketing would have.
           </p>
 
-          <div className="bg-primary/10 border-l-4 border-primary p-6 mt-6">
+          <div className="bg-accent/10 border-l-4 border-accent p-6 mt-6">
             <p className="text-sm">
               <strong>The add-list period before closing:</strong> Once you accept an offer, closing in Milton typically takes 30–90 days depending on what you negotiate. Factor that into your plans if you're buying simultaneously.
             </p>
@@ -249,14 +249,14 @@ export default function CostOfSellingMilton() {
           <ul className="my-6">
             {includes.map((item) => (
               <li key={item} className="py-3 border-b border-border flex items-start gap-3 text-sm">
-                <span className="text-primary font-bold text-lg leading-none flex-shrink-0">✓</span>
+                <span className="text-accent font-bold text-lg leading-none flex-shrink-0">✓</span>
                 <span>{item}</span>
               </li>
             ))}
           </ul>
 
           <div className="bg-charcoal text-primary-foreground p-8 lg:p-10 mt-10 text-center">
-            <h3 className="font-serif text-2xl text-primary mb-3">
+            <h3 className="font-serif text-2xl text-accent mb-3">
               What does the 1% actually save you on your Milton home?
             </h3>
             <p className="text-primary-foreground/80">

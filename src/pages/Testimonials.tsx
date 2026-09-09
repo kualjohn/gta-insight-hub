@@ -131,7 +131,7 @@ export default function Testimonials() {
                     key={i}
                     className={`w-4 h-4 ${
                       data.rating && i < Math.round(data.rating)
-                        ? 'fill-primary text-accent'
+                        ? 'fill-accent text-accent'
                         : 'text-muted-foreground/40'
                     }`}
                   />
@@ -175,7 +175,7 @@ export default function Testimonials() {
                         key={i}
                         className={`w-4 h-4 ${
                           i < review.rating
-                            ? 'fill-primary text-accent'
+                            ? 'fill-accent text-accent'
                             : 'text-muted-foreground/30'
                         }`}
                       />

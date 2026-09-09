@@ -57,7 +57,7 @@ const BuyerTips = () => {
       />
       
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-primary/10 via-background to-background py-16 lg:py-20">
+      <section className="bg-gradient-to-br from-accent/10 via-background to-background py-16 lg:py-20">
         <div className="container-wide mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <span className="inline-block text-sm font-medium text-accent mb-4 tracking-wide uppercase">
             Buyer Education

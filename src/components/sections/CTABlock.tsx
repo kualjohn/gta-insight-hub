@@ -101,7 +101,7 @@ export function DownloadCTA({ className }: { className?: string }) {
       "rounded-2xl p-8 bg-muted border border-border text-center",
       className
     )}>
-      <Download className="w-10 h-10 text-primary mx-auto mb-4" />
+      <Download className="w-10 h-10 text-accent mx-auto mb-4" />
       <h3 className="font-serif text-xl font-bold mb-2">
         First-Time Seller Guide
       </h3>
@@ -123,8 +123,8 @@ export function VideoCTA({ className }: { className?: string }) {
       "rounded-2xl p-8 bg-charcoal text-primary-foreground text-center",
       className
     )}>
-      <div className="w-14 h-14 rounded-full bg-primary flex items-center justify-center mx-auto mb-4">
-        <Play className="w-6 h-6 text-primary-foreground fill-current ml-1" />
+      <div className="w-14 h-14 rounded-full bg-accent flex items-center justify-center mx-auto mb-4">
+        <Play className="w-6 h-6 text-accent-foreground fill-current ml-1" />
       </div>
       <h3 className="font-serif text-xl font-bold mb-2">
         Watch My Videos

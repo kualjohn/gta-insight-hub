@@ -155,7 +155,7 @@ export default function YouTubeHub() {
 
       {/* Bottom CTA */}
       <SectionWrapper variant="muted">
-        <div className="rounded-2xl p-8 lg:p-12 text-center bg-gradient-to-r from-primary to-primary/90">
+        <div className="rounded-2xl p-8 lg:p-12 text-center bg-charcoal border border-border">
           <h3 className="font-serif text-2xl lg:text-3xl font-bold mb-3 text-primary-foreground">
             Never Miss an Update
           </h3>
