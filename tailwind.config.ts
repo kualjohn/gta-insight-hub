@@ -70,6 +70,10 @@ export default {
           white: "hsl(var(--warm-white))",
           grey: "hsl(var(--warm-grey))",
         },
+        youtube: {
+          DEFAULT: "hsl(var(--youtube))",
+          foreground: "hsl(var(--youtube-foreground))",
+        },
       },
       fontFamily: {
         serif: ['Anton', 'Archivo', 'system-ui', 'sans-serif'],

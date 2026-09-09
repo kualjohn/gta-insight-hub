@@ -47,6 +47,8 @@
     --charcoal-light: 0 0% 11%;
     --warm-white: 0 0% 4%;
     --warm-grey: 0 0% 9%;
+    --youtube: 0 100% 50%;     /* #FF0000 YouTube brand red */
+    --youtube-foreground: 0 0% 100%;
 
     /* Typography */
     --font-serif: 'Anton', 'Archivo', system-ui, sans-serif;

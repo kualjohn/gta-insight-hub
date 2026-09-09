@@ -56,8 +56,8 @@ export function VideoCard({
         
         {/* Always visible overlay with play button */}
         <div className="absolute inset-0 bg-gradient-to-t from-foreground/40 via-transparent to-transparent flex items-center justify-center">
-          <div className="w-14 h-14 rounded-full bg-accent/90 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
-            <Play className="w-6 h-6 text-primary-foreground fill-current ml-1" />
+          <div className="w-14 h-14 rounded-full bg-youtube/90 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+            <Play className="w-6 h-6 text-youtube-foreground fill-current ml-1" />
           </div>
         </div>
 
