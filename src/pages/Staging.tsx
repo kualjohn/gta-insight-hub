@@ -40,8 +40,8 @@ export default function Staging() {
       <section className="bg-gradient-warm section-padding py-16">
         <div className="container-wide mx-auto">
           <div className="flex items-center gap-3 mb-4">
-            <Heart className="w-5 h-5 text-primary" />
-            <span className="text-sm font-medium text-primary tracking-wide uppercase">
+            <Heart className="w-5 h-5 text-accent" />
+            <span className="text-sm font-medium text-accent tracking-wide uppercase">
               Free When You List With Us
             </span>
           </div>
@@ -101,7 +101,7 @@ export default function Staging() {
                 { stat: '100%', label: 'Included Free' },
               ].map((item, index) => (
                 <div key={index} className="text-center">
-                  <p className="text-4xl font-serif font-bold text-primary mb-1">{item.stat}</p>
+                  <p className="text-4xl font-serif font-bold text-accent mb-1">{item.stat}</p>
                   <p className="text-sm text-muted-foreground">{item.label}</p>
                 </div>
               ))}
@@ -113,7 +113,7 @@ export default function Staging() {
       {/* Free Staging Highlight */}
       <SectionWrapper variant="muted">
         <div className="max-w-3xl mx-auto text-center">
-          <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full mb-6">
+          <div className="inline-flex items-center gap-2 bg-accent/10 text-accent px-4 py-2 rounded-full mb-6">
             <Heart className="w-4 h-4" />
             <span className="font-medium">A Family Business</span>
           </div>
@@ -171,7 +171,7 @@ export default function Staging() {
                   </div>
                 </div>
               </div>
-              <p className="inline-block bg-primary/10 text-primary font-medium px-4 py-2 rounded-full text-sm">
+              <p className="inline-block bg-accent/10 text-accent font-medium px-4 py-2 rounded-full text-sm">
                 Result: {example.result}
               </p>
             </div>

@@ -76,7 +76,7 @@ export function NewsletterSignup({ variant = 'inline', className = '' }: Newslet
     return (
       <div className={cn(
         "flex items-center gap-2",
-        variant === 'dark' ? "text-primary" : "text-primary",
+        variant === 'dark' ? "text-accent" : "text-accent",
         className
       )}>
         <CheckCircle className="w-5 h-5" />
@@ -133,7 +133,7 @@ export function NewsletterSignup({ variant = 'inline', className = '' }: Newslet
           placeholder="First name"
           value={firstName}
           onChange={(e) => setFirstName(e.target.value)}
-          className="bg-charcoal-light border-charcoal-light text-primary-foreground placeholder:text-primary-foreground/50 sm:w-28"
+          className="bg-charcoal-light border-charcoal-light text-accent-foreground placeholder:text-accent-foreground/50 sm:w-28"
         />
         <div className="relative flex-1">
           <Input
@@ -142,7 +142,7 @@ export function NewsletterSignup({ variant = 'inline', className = '' }: Newslet
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
-            className="bg-charcoal-light border-charcoal-light text-primary-foreground placeholder:text-primary-foreground/50"
+            className="bg-charcoal-light border-charcoal-light text-accent-foreground placeholder:text-accent-foreground/50"
           />
         </div>
         <Button variant="gold" type="submit" disabled={isLoading}>

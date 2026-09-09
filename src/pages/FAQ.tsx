@@ -81,7 +81,7 @@ export default function FAQ() {
       {/* Header */}
       <section className="bg-gradient-warm section-padding py-16">
         <div className="container-wide mx-auto">
-          <span className="inline-block text-sm font-medium text-primary mb-4 tracking-wide uppercase">
+          <span className="inline-block text-sm font-medium text-accent mb-4 tracking-wide uppercase">
             Common Questions
           </span>
           <h1 className="font-serif text-4xl lg:text-5xl font-bold mb-4">
@@ -111,7 +111,7 @@ export default function FAQ() {
                   <p className="text-muted-foreground mb-4">{faq.answer}</p>
                   <Link 
                     to={faq.cta.href}
-                    className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline"
+                    className="inline-flex items-center gap-2 text-sm font-medium text-accent hover:underline"
                   >
                     {faq.cta.text}
                     <ArrowRight className="w-4 h-4" />
@@ -136,10 +136,10 @@ export default function FAQ() {
               href="https://calendly.com/fawadnissari"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-4 p-6 bg-card rounded-xl border border-border hover:border-primary transition-colors group"
+              className="flex items-center gap-4 p-6 bg-card rounded-xl border border-border hover:border-accent transition-colors group"
             >
-              <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-                <Phone className="w-5 h-5 text-primary" />
+              <div className="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center group-hover:bg-accent/20 transition-colors">
+                <Phone className="w-5 h-5 text-accent" />
               </div>
               <div>
                 <h3 className="font-semibold">Book a Call</h3>
@@ -149,10 +149,10 @@ export default function FAQ() {
             
             <Link 
               to="/seller-guide"
-              className="flex items-center gap-4 p-6 bg-card rounded-xl border border-border hover:border-primary transition-colors group"
+              className="flex items-center gap-4 p-6 bg-card rounded-xl border border-border hover:border-accent transition-colors group"
             >
-              <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-                <Download className="w-5 h-5 text-primary" />
+              <div className="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center group-hover:bg-accent/20 transition-colors">
+                <Download className="w-5 h-5 text-accent" />
               </div>
               <div>
                 <h3 className="font-semibold">Download Seller Guide</h3>

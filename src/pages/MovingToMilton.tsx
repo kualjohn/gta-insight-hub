@@ -206,7 +206,7 @@ export default function MovingToMilton() {
         </div>
         <p className="text-sm text-muted-foreground mt-6">
           Source: {MILTON_MARKET_SOURCE}, {MILTON_MARKET_PERIOD}.{' '}
-          <Link to="/cost-of-selling-a-house-in-milton" className="text-primary hover:underline">
+          <Link to="/cost-of-selling-a-house-in-milton" className="text-accent hover:underline">
             See the full Milton market and selling-cost breakdown
           </Link>
           .
@@ -227,11 +227,11 @@ export default function MovingToMilton() {
             >
               <h3 className="font-serif text-xl mb-2">{n.name}</h3>
               <p className="text-muted-foreground text-sm">{n.why}</p>
-              <span className="brand-label text-primary mt-4 inline-block">View neighbourhood →</span>
+              <span className="brand-label text-accent mt-4 inline-block">View neighbourhood →</span>
             </Link>
           ))}
         </div>
-        <Link to="/areas/milton" className="brand-label text-primary mt-8 inline-block hover:underline">
+        <Link to="/areas/milton" className="brand-label text-accent mt-8 inline-block hover:underline">
           All Milton neighbourhoods →
         </Link>
       </SectionWrapper>
@@ -260,7 +260,7 @@ export default function MovingToMilton() {
         </div>
         <Link
           to="/blog/The-Best-Schools-in-Milton--A-Guide-for-Home-Buyers-with-Kids"
-          className="brand-label text-primary mt-6 inline-block hover:underline"
+          className="brand-label text-accent mt-6 inline-block hover:underline"
         >
           Read the full Milton schools guide →
         </Link>
@@ -284,21 +284,21 @@ export default function MovingToMilton() {
             More reading:{' '}
             <Link
               to="/blog/Is-Milton-a-Good-Area-to-Live--A-Comprehensive-Milton-Real-Estate-Guide"
-              className="text-primary hover:underline"
+              className="text-accent hover:underline"
             >
               Is Milton a Good Area to Live?
             </Link>{' '}
             ·{' '}
             <Link
               to="/blog/Pros-and-Cons-of-Living-in-Milton-Is-It-the-Right-Place-for-You-"
-              className="text-primary hover:underline"
+              className="text-accent hover:underline"
             >
               Pros and Cons of Living in Milton
             </Link>{' '}
             ·{' '}
             <Link
               to="/blog/What-s-the-Cost-of-Living-in-Milton--A-Breakdown-for-2025-Home-Buyers"
-              className="text-primary hover:underline"
+              className="text-accent hover:underline"
             >
               Cost of Living in Milton
             </Link>

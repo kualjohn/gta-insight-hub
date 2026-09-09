@@ -34,13 +34,13 @@ export function BlogCard({ title, excerpt, image, category, date, slug, classNam
             <Calendar className="w-3 h-3" />
             <span>{date}</span>
           </div>
-          <h3 className="font-serif text-xl font-semibold mb-2 group-hover:text-primary transition-colors line-clamp-2">
+          <h3 className="font-serif text-xl font-semibold mb-2 group-hover:text-accent transition-colors line-clamp-2">
             {title}
           </h3>
           <p className="text-muted-foreground text-sm line-clamp-2 mb-3">
             {excerpt}
           </p>
-          <span className="inline-flex items-center gap-1 text-sm font-medium text-primary group-hover:gap-2 transition-all">
+          <span className="inline-flex items-center gap-1 text-sm font-medium text-accent group-hover:gap-2 transition-all">
             Read More
             <ArrowRight className="w-4 h-4" />
           </span>

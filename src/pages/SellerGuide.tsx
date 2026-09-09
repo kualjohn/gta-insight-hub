@@ -88,7 +88,7 @@ export default function SellerGuide() {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Content */}
             <div>
-              <span className="inline-block text-sm font-medium text-primary mb-4 tracking-wide uppercase">
+              <span className="inline-block text-sm font-medium text-accent mb-4 tracking-wide uppercase">
                 Free Download
               </span>
               <h1 className="font-serif text-4xl lg:text-5xl font-bold mb-6">
@@ -106,8 +106,8 @@ export default function SellerGuide() {
 
                   {guideContents.map((item, index) => (
                     <li key={index} className="flex items-center gap-3">
-                      <div className="w-5 h-5 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
-                        <Check className="w-3 h-3 text-primary" />
+                      <div className="w-5 h-5 rounded-full bg-accent/10 flex items-center justify-center shrink-0">
+                        <Check className="w-3 h-3 text-accent" />
                       </div>
                       <span className="text-muted-foreground">{item}</span>
                     </li>
@@ -121,8 +121,8 @@ export default function SellerGuide() {
               {!submitted ? (
                 <>
                   <div className="flex items-center gap-4 mb-6">
-                    <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center">
-                      <Download className="w-7 h-7 text-primary" />
+                    <div className="w-14 h-14 rounded-xl bg-accent/10 flex items-center justify-center">
+                      <Download className="w-7 h-7 text-accent" />
                     </div>
                     <div>
                       <h2 className="font-serif text-xl font-bold">Get Your Free Copy</h2>
@@ -160,8 +160,8 @@ export default function SellerGuide() {
                 </>
               ) : (
                 <div className="text-center py-8">
-                  <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
-                    <Check className="w-8 h-8 text-primary" />
+                  <div className="w-16 h-16 rounded-full bg-accent/10 flex items-center justify-center mx-auto mb-4">
+                    <Check className="w-8 h-8 text-accent" />
                   </div>
                   <h2 className="font-serif text-2xl font-bold mb-2">Check Your Email!</h2>
                   <p className="text-muted-foreground mb-6">
@@ -169,7 +169,7 @@ export default function SellerGuide() {
                     (and spam folder, just in case).
                   </p>
                   <p className="text-sm text-muted-foreground">
-                    Have questions? <a href="https://calendly.com/fawadnissari" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Book a call</a> anytime.
+                    Have questions? <a href="https://calendly.com/fawadnissari" target="_blank" rel="noopener noreferrer" className="text-accent hover:underline">Book a call</a> anytime.
                   </p>
                 </div>
               )}

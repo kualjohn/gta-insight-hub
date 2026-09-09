@@ -36,12 +36,12 @@ export default function About() {
         <div className="container-wide mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
-              <span className="inline-block text-sm font-medium text-primary mb-4 tracking-wide uppercase">
+              <span className="inline-block text-sm font-medium text-accent mb-4 tracking-wide uppercase">
                 About Fawad Nissari
               </span>
               <h1 className="font-serif text-4xl lg:text-5xl font-bold mb-6">
                 Real Estate Market<br />
-                <span className="text-primary">Expert & Advisor</span>
+                <span className="text-accent">Expert & Advisor</span>
               </h1>
               <p className="text-lg text-muted-foreground mb-6">
                 I believe the best real estate decisions come from understanding the market — not 
@@ -80,7 +80,7 @@ export default function About() {
               {/* Video overlay button */}
               <button className="absolute bottom-6 left-6 flex items-center gap-3 bg-background/95 backdrop-blur-sm px-6 py-3 rounded-full shadow-lg hover:bg-background transition-colors group">
                 <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center group-hover:scale-110 transition-transform">
-                  <Play className="w-4 h-4 text-primary-foreground fill-current ml-0.5" />
+                  <Play className="w-4 h-4 text-accent-foreground fill-current ml-0.5" />
                 </div>
                 <span className="font-medium">Watch Intro Video</span>
               </button>
@@ -104,8 +104,8 @@ export default function About() {
           <div className="space-y-8">
             {missionPoints.map((point, index) => (
               <div key={index} className="flex gap-6">
-                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
-                  <span className="font-serif text-xl font-bold text-primary">{index + 1}</span>
+                <div className="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center shrink-0">
+                  <span className="font-serif text-xl font-bold text-accent">{index + 1}</span>
                 </div>
                 <div>
                   <h3 className="font-serif text-xl font-semibold mb-2">{point.title}</h3>
@@ -127,7 +127,7 @@ export default function About() {
             { stat: '100%', label: 'Cancel Anytime' },
           ].map((item, index) => (
             <div key={index}>
-              <p className="text-4xl lg:text-5xl font-serif font-bold text-primary mb-2">{item.stat}</p>
+              <p className="text-4xl lg:text-5xl font-serif font-bold text-accent mb-2">{item.stat}</p>
               <p className="text-sm text-muted-foreground">{item.label}</p>
             </div>
           ))}
@@ -153,8 +153,8 @@ export default function About() {
             { icon: Play, title: 'Buyer Advice', desc: 'Guidance for navigating the buying process confidently' },
           ].map((item, index) => (
             <div key={index} className="text-center p-6 bg-card rounded-xl border border-border">
-              <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
-                <item.icon className="w-6 h-6 text-primary" />
+              <div className="w-14 h-14 rounded-full bg-accent/10 flex items-center justify-center mx-auto mb-4">
+                <item.icon className="w-6 h-6 text-accent" />
               </div>
               <h3 className="font-serif text-lg font-semibold mb-2">{item.title}</h3>
               <p className="text-sm text-muted-foreground">{item.desc}</p>

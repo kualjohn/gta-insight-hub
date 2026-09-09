@@ -59,7 +59,7 @@ const BuyerTips = () => {
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-primary/10 via-background to-background py-16 lg:py-20">
         <div className="container-wide mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <span className="inline-block text-sm font-medium text-primary mb-4 tracking-wide uppercase">
+          <span className="inline-block text-sm font-medium text-accent mb-4 tracking-wide uppercase">
             Buyer Education
           </span>
           <h1 className="font-serif text-4xl lg:text-5xl font-bold mb-6">
@@ -99,8 +99,8 @@ const BuyerTips = () => {
               key={index}
               className="bg-card border border-border rounded-xl p-6 hover:shadow-md transition-shadow"
             >
-              <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center mb-4">
-                <span className="text-primary font-bold">{index + 1}</span>
+              <div className="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center mb-4">
+                <span className="text-accent font-bold">{index + 1}</span>
               </div>
               <h3 className="font-semibold text-lg mb-2">{tip.title}</h3>
               <p className="text-muted-foreground text-sm">{tip.description}</p>

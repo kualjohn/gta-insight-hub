@@ -61,7 +61,7 @@ export default function Areas() {
       {/* Header */}
       <section className="bg-gradient-warm section-padding py-16">
         <div className="container-wide mx-auto">
-          <span className="inline-block text-sm font-medium text-primary mb-4 tracking-wide uppercase">
+          <span className="inline-block text-sm font-medium text-accent mb-4 tracking-wide uppercase">
             Areas Served
           </span>
           <h1 className="font-serif text-4xl lg:text-5xl font-bold mb-4">
@@ -88,7 +88,7 @@ export default function Areas() {
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-foreground/60 to-transparent" />
-                <div className="absolute bottom-4 left-4 text-primary-foreground">
+                <div className="absolute bottom-4 left-4 text-accent-foreground">
                   <div className="flex items-center gap-2 mb-1">
                     <MapPin className="w-4 h-4" />
                     <span className="text-sm">GTA West</span>

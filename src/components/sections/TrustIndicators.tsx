@@ -33,8 +33,8 @@ export function TrustIndicators({ className }: TrustIndicatorsProps) {
     <div className={cn("grid sm:grid-cols-2 lg:grid-cols-4 gap-6", className)}>
       {trustIndicators.map((item, index) => (
         <div key={index} className="text-center">
-          <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mx-auto mb-4">
-            <item.icon className="w-7 h-7 text-primary" />
+          <div className="w-14 h-14 rounded-xl bg-accent/10 flex items-center justify-center mx-auto mb-4">
+            <item.icon className="w-7 h-7 text-accent" />
           </div>
           <h3 className="font-serif text-lg font-semibold mb-2">{item.title}</h3>
           <p className="text-sm text-muted-foreground">{item.description}</p>

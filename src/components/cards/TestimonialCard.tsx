@@ -14,7 +14,7 @@ export function TestimonialCard({ name, location, quote, image, rating = 5, clas
   return (
     <article className={cn("p-6 bg-card border border-border rounded-xl", className)}>
       {/* Quote Icon */}
-      <Quote className="w-8 h-8 text-primary mb-4" />
+      <Quote className="w-8 h-8 text-accent mb-4" />
 
       {/* Quote */}
       <p className="text-foreground leading-relaxed mb-6">
@@ -25,7 +25,7 @@ export function TestimonialCard({ name, location, quote, image, rating = 5, clas
       {rating > 0 && (
         <div className="flex items-center gap-1 mb-4">
           {[...Array(rating)].map((_, i) => (
-            <Star key={i} className="w-4 h-4 text-primary fill-current" />
+            <Star key={i} className="w-4 h-4 text-accent fill-current" />
           ))}
         </div>
       )}
@@ -39,8 +39,8 @@ export function TestimonialCard({ name, location, quote, image, rating = 5, clas
             className="w-12 h-12 rounded-full object-cover"
           />
         ) : (
-          <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
-            <span className="text-primary font-semibold text-lg">
+          <div className="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center">
+            <span className="text-accent font-semibold text-lg">
               {name.charAt(0)}
             </span>
           </div>

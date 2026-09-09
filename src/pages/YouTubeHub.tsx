@@ -60,7 +60,7 @@ export default function YouTubeHub() {
       {/* Header */}
       <section className="bg-charcoal text-primary-foreground section-padding py-16">
         <div className="container-wide mx-auto">
-          <span className="inline-block text-sm font-medium text-primary mb-4 tracking-wide uppercase">
+          <span className="inline-block text-sm font-medium text-accent mb-4 tracking-wide uppercase">
             YouTube Channel
           </span>
           <h1 className="font-serif text-4xl lg:text-5xl font-bold mb-4">

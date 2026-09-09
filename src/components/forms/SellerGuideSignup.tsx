@@ -81,10 +81,10 @@ export function SellerGuideSignup({ className = '' }: SellerGuideSignupProps) {
   if (isSuccess) {
     return (
       <div className={cn(
-        "bg-gradient-to-br from-primary/5 to-primary/10 rounded-xl p-6 border border-primary/20",
+        "bg-gradient-to-br from-primary/5 to-primary/10 rounded-xl p-6 border border-accent/20",
         className
       )}>
-        <div className="flex items-center justify-center gap-3 text-primary">
+        <div className="flex items-center justify-center gap-3 text-accent">
           <CheckCircle className="w-6 h-6" />
           <span className="font-semibold text-lg">Your guide is on the way!</span>
         </div>
@@ -94,15 +94,15 @@ export function SellerGuideSignup({ className = '' }: SellerGuideSignupProps) {
 
   return (
     <div className={cn(
-      "bg-gradient-to-br from-primary/5 to-primary/10 rounded-xl p-6 border border-primary/20",
+      "bg-gradient-to-br from-primary/5 to-primary/10 rounded-xl p-6 border border-accent/20",
       className
     )}>
       <div className="flex flex-col lg:flex-row lg:items-center gap-6">
         {/* Left: Icon + Text */}
         <div className="flex-1">
           <div className="flex items-center gap-3 mb-2">
-            <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
-              <FileText className="w-5 h-5 text-primary" />
+            <div className="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center">
+              <FileText className="w-5 h-5 text-accent" />
             </div>
             <h3 className="font-serif text-xl font-semibold">Selling in 2026? Get the Free Seller Guide</h3>
           </div>

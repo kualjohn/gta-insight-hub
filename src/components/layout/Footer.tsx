@@ -26,13 +26,13 @@ const YOUTUBE_CHANNEL = 'https://www.youtube.com/@Fawadnissari';
 
 export function Footer() {
   return (
-    <footer className="bg-charcoal text-primary-foreground">
+    <footer className="bg-charcoal text-accent-foreground">
       {/* Newsletter Section */}
       <div className="border-b border-charcoal-light">
         <div className="container-wide mx-auto section-padding py-12">
           <div className="max-w-2xl mx-auto text-center">
             <h3 className="font-serif text-2xl lg:text-3xl mb-3">Get Weekly Insights</h3>
-            <p className="text-primary-foreground/70 mb-6">
+            <p className="text-accent-foreground/70 mb-6">
               Market trends, seller tips, and buyer guidance delivered every Friday.
             </p>
             <NewsletterSignup variant="dark" />
@@ -47,10 +47,10 @@ export function Footer() {
           <div>
             <Link to="/" className="inline-block mb-4">
               <span className="font-serif text-2xl font-bold">
-                Fawad<span className="text-primary">.</span>
+                Fawad<span className="text-accent">.</span>
               </span>
             </Link>
-            <p className="text-primary-foreground/70 text-sm leading-relaxed mb-6">
+            <p className="text-accent-foreground/70 text-sm leading-relaxed mb-6">
               Real Estate Market Expert & Advisor. Weekly videos, data-backed insights, 
               and proven strategies for GTA homeowners.
             </p>
@@ -104,7 +104,7 @@ export function Footer() {
                 <li key={link.name}>
                   <Link
                     to={link.href}
-                    className="text-primary-foreground/70 hover:text-primary transition-colors text-sm"
+                    className="text-accent-foreground/70 hover:text-accent transition-colors text-sm"
                   >
                     {link.name}
                   </Link>
@@ -121,7 +121,7 @@ export function Footer() {
                 <li key={area}>
                   <Link
                     to={`/areas/${area.toLowerCase()}`}
-                    className="text-primary-foreground/70 hover:text-primary transition-colors text-sm"
+                    className="text-accent-foreground/70 hover:text-accent transition-colors text-sm"
                   >
                     {area}
                   </Link>
@@ -135,16 +135,16 @@ export function Footer() {
             <h4 className="font-serif text-lg font-semibold mb-4">Contact</h4>
             <ul className="space-y-3">
               <li className="flex items-start gap-3">
-                <Phone className="w-4 h-4 mt-1 text-primary" />
-                <span className="text-primary-foreground/70 text-sm">(416) 878-1085</span>
+                <Phone className="w-4 h-4 mt-1 text-accent" />
+                <span className="text-accent-foreground/70 text-sm">(416) 878-1085</span>
               </li>
               <li className="flex items-start gap-3">
-                <Mail className="w-4 h-4 mt-1 text-primary" />
-                <span className="text-primary-foreground/70 text-sm">fawad.nissari@housesigma.com</span>
+                <Mail className="w-4 h-4 mt-1 text-accent" />
+                <span className="text-accent-foreground/70 text-sm">fawad.nissari@housesigma.com</span>
               </li>
               <li className="flex items-start gap-3">
-                <MapPin className="w-4 h-4 mt-1 text-primary" />
-                <span className="text-primary-foreground/70 text-sm">
+                <MapPin className="w-4 h-4 mt-1 text-accent" />
+                <span className="text-accent-foreground/70 text-sm">
                   Serving the Greater Toronto Area
                 </span>
               </li>
@@ -156,13 +156,13 @@ export function Footer() {
       {/* Bottom Bar */}
       <div className="border-t border-charcoal-light">
         <div className="container-wide mx-auto px-4 sm:px-6 lg:px-8 py-6">
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-primary-foreground/50">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-accent-foreground/50">
             <p>© 2024 Fawad Nissari Real Estate. All rights reserved.</p>
             <div className="flex items-center gap-6">
-              <Link to="/privacy" className="hover:text-primary transition-colors">
+              <Link to="/privacy" className="hover:text-accent transition-colors">
                 Privacy Policy
               </Link>
-              <Link to="/terms" className="hover:text-primary transition-colors">
+              <Link to="/terms" className="hover:text-accent transition-colors">
                 Terms of Service
               </Link>
             </div>

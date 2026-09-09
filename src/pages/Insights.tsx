@@ -114,7 +114,7 @@ export default function Insights() {
       {/* Header */}
       <section className="bg-gradient-warm section-padding py-16">
         <div className="container-wide mx-auto">
-          <span className="inline-block text-sm font-medium text-primary mb-4 tracking-wide uppercase">
+          <span className="inline-block text-sm font-medium text-accent mb-4 tracking-wide uppercase">
             Knowledge Hub
           </span>
           <h1 className="font-serif text-4xl lg:text-5xl font-bold mb-4">
