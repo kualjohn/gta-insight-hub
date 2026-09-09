@@ -221,7 +221,7 @@ export default function Contact() {
                   href="https://www.youtube.com/@Fawadnissari"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-12 h-12 rounded-full bg-charcoal text-accent-foreground flex items-center justify-center hover:bg-primary transition-colors"
+                  className="w-12 h-12 rounded-full bg-charcoal text-primary-foreground flex items-center justify-center hover:bg-primary transition-colors"
                 >
                   <Youtube className="w-5 h-5" />
                 </a>
@@ -229,7 +229,7 @@ export default function Contact() {
                   href="https://www.instagram.com/fawadnissari"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-12 h-12 rounded-full bg-charcoal text-accent-foreground flex items-center justify-center hover:bg-primary transition-colors"
+                  className="w-12 h-12 rounded-full bg-charcoal text-primary-foreground flex items-center justify-center hover:bg-primary transition-colors"
                 >
                   <Instagram className="w-5 h-5" />
                 </a>
@@ -237,7 +237,7 @@ export default function Contact() {
                   href="https://www.facebook.com/fawadnissari1"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-12 h-12 rounded-full bg-charcoal text-accent-foreground flex items-center justify-center hover:bg-primary transition-colors"
+                  className="w-12 h-12 rounded-full bg-charcoal text-primary-foreground flex items-center justify-center hover:bg-primary transition-colors"
                 >
                   <Facebook className="w-5 h-5" />
                 </a>
@@ -245,7 +245,7 @@ export default function Contact() {
                   href="https://www.linkedin.com/in/fawadnissari/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-12 h-12 rounded-full bg-charcoal text-accent-foreground flex items-center justify-center hover:bg-primary transition-colors"
+                  className="w-12 h-12 rounded-full bg-charcoal text-primary-foreground flex items-center justify-center hover:bg-primary transition-colors"
                 >
                   <Linkedin className="w-5 h-5" />
                 </a>

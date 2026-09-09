@@ -88,7 +88,7 @@ export default function Areas() {
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-foreground/60 to-transparent" />
-                <div className="absolute bottom-4 left-4 text-accent-foreground">
+                <div className="absolute bottom-4 left-4 text-primary-foreground">
                   <div className="flex items-center gap-2 mb-1">
                     <MapPin className="w-4 h-4" />
                     <span className="text-sm">GTA West</span>

@@ -53,7 +53,7 @@ export default function AreaPage({ area }: { area: AreaConfig }) {
           {area.costCtaHref ? (
             <Link
               to={area.costCtaHref}
-              className="inline-flex items-center gap-2 mt-6 rounded-lg bg-primary px-6 py-3 font-medium text-accent-foreground hover:opacity-90 transition-opacity"
+              className="inline-flex items-center gap-2 mt-6 rounded-lg bg-primary px-6 py-3 font-medium text-primary-foreground hover:opacity-90 transition-opacity"
             >
               {area.costCtaLabel ?? 'See the Full Cost Breakdown'}
             </Link>

@@ -140,7 +140,7 @@ export default function SellerServices() {
         <div className="max-w-3xl mx-auto">
           <div className="bg-card rounded-xl border border-border overflow-hidden">
             {/* Header */}
-            <div className="grid grid-cols-3 bg-charcoal text-accent-foreground">
+            <div className="grid grid-cols-3 bg-charcoal text-primary-foreground">
               <div className="p-4 font-medium">Feature</div>
               <div className="p-4 font-medium text-center">Typical Agent</div>
               <div className="p-4 font-medium text-center bg-primary">What We Do</div>
@@ -188,7 +188,7 @@ export default function SellerServices() {
             { step: '04', title: 'Closing', desc: 'We handle negotiations and guide you through to a successful sale.' },
           ].map((item) => (
             <div key={item.step} className="text-center">
-              <div className="w-16 h-16 rounded-full bg-primary text-accent-foreground flex items-center justify-center mx-auto mb-4 font-serif text-xl font-bold">
+              <div className="w-16 h-16 rounded-full bg-primary text-primary-foreground flex items-center justify-center mx-auto mb-4 font-serif text-xl font-bold">
                 {item.step}
               </div>
               <h3 className="font-serif text-xl font-semibold mb-2">{item.title}</h3>

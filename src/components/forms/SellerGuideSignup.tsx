@@ -81,7 +81,7 @@ export function SellerGuideSignup({ className = '' }: SellerGuideSignupProps) {
   if (isSuccess) {
     return (
       <div className={cn(
-        "bg-gradient-to-br from-primary/5 to-primary/10 rounded-xl p-6 border border-accent/20",
+        "bg-gradient-to-br from-accent/5 to-accent/10 rounded-xl p-6 border border-accent/20",
         className
       )}>
         <div className="flex items-center justify-center gap-3 text-accent">
@@ -94,7 +94,7 @@ export function SellerGuideSignup({ className = '' }: SellerGuideSignupProps) {
 
   return (
     <div className={cn(
-      "bg-gradient-to-br from-primary/5 to-primary/10 rounded-xl p-6 border border-accent/20",
+      "bg-gradient-to-br from-accent/5 to-accent/10 rounded-xl p-6 border border-accent/20",
       className
     )}>
       <div className="flex flex-col lg:flex-row lg:items-center gap-6">

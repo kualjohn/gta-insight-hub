@@ -80,7 +80,7 @@ export default function About() {
               {/* Video overlay button */}
               <button className="absolute bottom-6 left-6 flex items-center gap-3 bg-background/95 backdrop-blur-sm px-6 py-3 rounded-full shadow-lg hover:bg-background transition-colors group">
                 <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center group-hover:scale-110 transition-transform">
-                  <Play className="w-4 h-4 text-accent-foreground fill-current ml-0.5" />
+                  <Play className="w-4 h-4 text-primary-foreground fill-current ml-0.5" />
                 </div>
                 <span className="font-medium">Watch Intro Video</span>
               </button>
