@@ -27,11 +27,11 @@ export function VideoLightbox({ videoId, thumbnailUrl, channelUrl, className }: 
       >
         {/* Play Button */}
         <div className="relative">
-          <div className="w-20 h-20 lg:w-24 lg:h-24 rounded-full bg-primary/90 flex items-center justify-center shadow-2xl group-hover:scale-110 group-hover:bg-primary transition-all duration-300 ring-4 ring-white/20">
-            <Play className="w-8 h-8 lg:w-10 lg:h-10 text-primary-foreground fill-current ml-1" />
+          <div className="w-20 h-20 lg:w-24 lg:h-24 rounded-full bg-youtube/90 flex items-center justify-center shadow-2xl group-hover:scale-110 group-hover:bg-youtube transition-all duration-300 ring-4 ring-white/20">
+            <Play className="w-8 h-8 lg:w-10 lg:h-10 text-youtube-foreground fill-current ml-1" />
           </div>
           {/* Pulse animation */}
-          <div className="absolute inset-0 rounded-full bg-primary/50 animate-ping" style={{ animationDuration: '2s' }} />
+          <div className="absolute inset-0 rounded-full bg-youtube/50 animate-ping" style={{ animationDuration: '2s' }} />
         </div>
         
         {/* Label */}
