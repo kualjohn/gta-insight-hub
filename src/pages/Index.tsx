@@ -109,15 +109,13 @@ const Index = () => {
             {/* Left: Text Content */}
             <div className="animate-fade-in">
               <span className="inline-block brand-label text-accent mb-3">
-                GTA Real Estate Authority
+                Milton Real Estate Agent
               </span>
               <h1 className="font-serif text-4xl sm:text-5xl lg:text-5xl xl:text-6xl font-bold mb-5 leading-tight text-foreground">
-                Real Estate Market<br />
-                <span className="text-primary">Expert & Advisor</span>
+                Milton Real Estate Agent
               </h1>
               <p className="text-lg lg:text-xl text-foreground/85 mb-6 max-w-xl">
-                Weekly videos, data-backed insights, and proven strategies to help you sell, 
-                buy, or invest with confidence.
+                Serving Milton and the GTA. Real numbers, not 'it depends.'
               </p>
               <div className="flex flex-col sm:flex-row gap-3 mb-5">
                 <Button variant="gold" size="lg" asChild>
