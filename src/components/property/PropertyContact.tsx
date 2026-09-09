@@ -52,7 +52,7 @@ export default function PropertyContact({ property }: Props) {
             href="https://calendly.com/fawadnissari"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-3 bg-primary text-primary-foreground px-8 py-4 font-body text-xs tracking-[0.2em] uppercase hover:bg-primary/90 transition-colors flex-shrink-0"
+            className="inline-flex items-center gap-3 bg-accent text-accent-foreground px-8 py-4 font-body text-xs tracking-[0.2em] uppercase hover:bg-accent/90 transition-colors flex-shrink-0"
           >
             <CalendarDays className="w-4 h-4" />
             Book a Call

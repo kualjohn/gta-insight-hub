@@ -59,7 +59,7 @@ export default function About() {
                     Watch My Videos
                   </Link>
                 </Button>
-                <Button variant="outline" size="lg" asChild>
+                <Button variant="accent" size="lg" asChild>
                   <a href="https://calendly.com/fawadnissari" target="_blank" rel="noopener noreferrer">
                     <Phone className="w-4 h-4" />
                     Book a Call

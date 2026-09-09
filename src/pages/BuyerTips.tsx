@@ -76,7 +76,7 @@ const BuyerTips = () => {
                 Download Buyer Guide
               </Link>
             </Button>
-            <Button variant="outline" size="lg" asChild>
+            <Button variant="accent" size="lg" asChild>
               <a href="https://calendly.com/fawadnissari" target="_blank" rel="noopener noreferrer">
                 <Phone className="w-5 h-5" />
                 Book a Call
