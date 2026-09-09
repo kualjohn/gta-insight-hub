@@ -174,12 +174,7 @@ export default function YouTubeHub() {
                 Subscribe on YouTube
               </a>
             </Button>
-            <Button
-              variant="ghost"
-              size="lg"
-              asChild
-              className="text-primary-foreground hover:bg-primary-foreground/10"
-            >
+            <Button variant="accent" size="lg" asChild>
               <a href="https://calendly.com/fawadnissari" target="_blank" rel="noopener noreferrer">
                 Book a Call
                 <ArrowRight className="w-4 h-4" />
