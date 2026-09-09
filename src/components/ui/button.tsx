@@ -17,6 +17,7 @@ const buttonVariants = cva(
         link: "text-primary underline-offset-4 hover:underline",
         // Authority-first real estate variants
         gold: "bg-gradient-to-r from-primary to-primary/90 text-primary-foreground hover:opacity-90 shadow-sm font-semibold",
+        accent: "bg-accent text-accent-foreground hover:bg-accent/90 shadow-sm font-semibold",
         dark: "bg-foreground text-background hover:bg-foreground/90",
         "outline-gold": "border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground",
         "outline-dark": "border-2 border-foreground text-foreground hover:bg-foreground hover:text-background",

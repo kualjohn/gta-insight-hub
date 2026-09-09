@@ -168,7 +168,7 @@ export function Header() {
 
           {/* CTA Button */}
           <div className="flex items-center gap-3">
-            <Button variant="gold" size="sm" className="hidden sm:flex" asChild>
+            <Button variant="accent" size="sm" className="hidden sm:flex" asChild>
               <a href="https://calendly.com/fawadnissari" target="_blank" rel="noopener noreferrer">
                 <Phone className="w-4 h-4" />
                 Book a Call
@@ -314,7 +314,7 @@ export function Header() {
               </div>
 
               <div className="pt-4 px-4">
-                <Button variant="gold" className="w-full" asChild>
+                <Button variant="accent" className="w-full" asChild>
                   <a
                     href="https://calendly.com/fawadnissari"
                     target="_blank"

@@ -21,6 +21,7 @@ export function CTABlock({
   className,
 }: CTABlockProps) {
   const isDark = variant === 'dark';
+  const isBookCall = primaryCta?.text === 'Book a Call';
 
   const isExternal = (href: string) => /^https?:\/\//i.test(href);
 
@@ -58,11 +59,11 @@ export function CTABlock({
       <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
         {primaryCta && (
           <Button
-            variant={isDark || variant === 'primary' ? 'outline' : 'gold'}
+            variant={isBookCall ? 'accent' : (isDark || variant === 'primary' ? 'outline' : 'gold')}
             size="lg"
             asChild
             className={cn(
-              (variant === 'primary' || isDark) && "border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-foreground bg-transparent"
+              !isBookCall && (variant === 'primary' || isDark) && "border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-foreground bg-transparent"
             )}
           >
             {renderLink(primaryCta.href, (
