@@ -3,7 +3,6 @@
 import { readdirSync, statSync, writeFileSync } from "fs";
 import { basename, extname, resolve } from "path";
 import { MILTON_NEIGHBOURHOODS } from "../src/pages/areas/milton/neighbourhoods";
-import { MISSISSAUGA_NEIGHBOURHOODS } from "../src/pages/areas/mississauga/neighbourhoods";
 
 const BASE_URL = "https://fawadnissari.ca";
 const SUPABASE_URL = "https://pwowsqscpvhlttltziod.supabase.co";
@@ -77,14 +76,6 @@ function miltonNeighbourhoodRoutes(): SitemapEntry[] {
   })).sort((a, b) => a.path.localeCompare(b.path));
 }
 
-function mississaugaNeighbourhoodRoutes(): SitemapEntry[] {
-  return MISSISSAUGA_NEIGHBOURHOODS.map((n) => ({
-    path: `/areas/mississauga/${n.slug}`,
-    changefreq: "monthly" as const,
-    priority: "0.6",
-  })).sort((a, b) => a.path.localeCompare(b.path));
-}
-
 async function fetchSlugs(path: string): Promise<string[]> {
   try {
     const res = await fetch(`${SUPABASE_URL}/rest/v1/${path}`, {
@@ -103,13 +94,6 @@ async function blogPostRoutes(): Promise<SitemapEntry[]> {
   const slugs = await fetchSlugs("blog_posts?select=slug");
   return slugs
     .map((slug) => ({ path: `/blog/${slug}`, changefreq: "monthly" as const, priority: "0.6" }))
-    .sort((a, b) => a.path.localeCompare(b.path));
-}
-
-async function propertyRoutes(): Promise<SitemapEntry[]> {
-  const slugs = await fetchSlugs("property_websites?select=slug&published=eq.true");
-  return slugs
-    .map((slug) => ({ path: `/portfolio/${slug}`, changefreq: "monthly" as const, priority: "0.6" }))
     .sort((a, b) => a.path.localeCompare(b.path));
 }
 
@@ -136,21 +120,19 @@ function generateSitemap(entries: SitemapEntry[]) {
 
 const areaEntries = discoverAreaRoutes();
 const miltonEntries = miltonNeighbourhoodRoutes();
-const mississaugaEntries = mississaugaNeighbourhoodRoutes();
+// Mississauga neighbourhood sub-pages are noindex, follow — excluded from the sitemap.
 const blogEntries = await blogPostRoutes();
-const propertyEntries = await propertyRoutes();
+// Individual /portfolio/:slug pages are noindex, follow — excluded from the sitemap.
 // Admin routes (/admin, /admin/login, /admin/**) are intentionally excluded:
 // they are private, non-indexable, and disallowed in robots.txt.
 const entries = [
   ...staticEntries,
   ...areaEntries,
   ...miltonEntries,
-  ...mississaugaEntries,
   ...blogEntries,
-  ...propertyEntries,
 ];
 
 writeFileSync(resolve("public/sitemap.xml"), generateSitemap(entries));
 console.log(
-  `sitemap.xml written (${entries.length} entries, ${areaEntries.length} area pages, ${miltonEntries.length} Milton neighbourhoods, ${mississaugaEntries.length} Mississauga neighbourhoods, ${blogEntries.length} blog posts, ${propertyEntries.length} properties)`,
+  `sitemap.xml written (${entries.length} entries, ${areaEntries.length} area pages, ${miltonEntries.length} Milton neighbourhoods, ${blogEntries.length} blog posts)`,
 );

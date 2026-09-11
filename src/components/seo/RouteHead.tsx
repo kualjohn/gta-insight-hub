@@ -254,6 +254,10 @@ export function RouteHead() {
   const { title, description } = metaFor(pathname);
   const ogType = path.startsWith('/blog/') ? 'article' : 'website';
   const isAdmin = path.startsWith('/admin');
+  // Thin / duplicate-intent pages: keep them live and crawlable for links,
+  // but out of the index.
+  const isNoindexFollow =
+    /^\/portfolio\/[^/]+$/.test(path) || /^\/areas\/mississauga\/[^/]+$/.test(path);
 
   return (
     <Helmet key={path} defer={false}>
@@ -263,6 +267,8 @@ export function RouteHead() {
       <link key={`canonical-${path}`} rel="canonical" href={url} />
       {isAdmin ? (
         <meta key={`robots-${path}`} name="robots" content="noindex, nofollow" />
+      ) : isNoindexFollow ? (
+        <meta key={`robots-${path}`} name="robots" content="noindex, follow" />
       ) : (
         <meta key={`robots-${path}`} name="robots" content="index, follow" />
       )}

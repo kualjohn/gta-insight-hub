@@ -15,6 +15,20 @@ const MILTON_RELOCATION_SLUGS = [
 
 
 
+/**
+ * The page header already renders the single <h1> (the post title), so any
+ * <h1> inside the stored article HTML would create duplicates. Demote them
+ * to <h2> and drop a leading heading that just repeats the post title.
+ */
+function normalizeHeadings(html: string, title: string): string {
+  let out = html.replace(/<(\/?)h1(\s|>)/gi, (_m, slash, tail) => `<${slash}h2${tail}`);
+  const norm = (s: string) => s.replace(/<[^>]*>/g, '').replace(/\s+/g, ' ').trim().toLowerCase();
+  out = out.replace(/^\s*<h2[^>]*>([\s\S]*?)<\/h2>/i, (match, inner) =>
+    norm(inner) === norm(title) ? '' : match,
+  );
+  return out;
+}
+
 export default function BlogPostPage() {
   const { slug } = useParams<{ slug: string }>();
   const { data: post, isLoading, error } = useBlogPost(slug || "");
@@ -142,7 +156,7 @@ export default function BlogPostPage() {
         {post.content_html && (
           <div
             className="blog-content prose prose-invert prose-lg max-w-none prose-headings:font-serif prose-a:text-accent"
-            dangerouslySetInnerHTML={{ __html: post.content_html }}
+            dangerouslySetInnerHTML={{ __html: normalizeHeadings(post.content_html, post.title) }}
           />
         )}
 
