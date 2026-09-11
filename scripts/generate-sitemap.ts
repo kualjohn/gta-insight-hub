@@ -136,21 +136,19 @@ function generateSitemap(entries: SitemapEntry[]) {
 
 const areaEntries = discoverAreaRoutes();
 const miltonEntries = miltonNeighbourhoodRoutes();
-const mississaugaEntries = mississaugaNeighbourhoodRoutes();
+// Mississauga neighbourhood sub-pages are noindex, follow — excluded from the sitemap.
 const blogEntries = await blogPostRoutes();
-const propertyEntries = await propertyRoutes();
+// Individual /portfolio/:slug pages are noindex, follow — excluded from the sitemap.
 // Admin routes (/admin, /admin/login, /admin/**) are intentionally excluded:
 // they are private, non-indexable, and disallowed in robots.txt.
 const entries = [
   ...staticEntries,
   ...areaEntries,
   ...miltonEntries,
-  ...mississaugaEntries,
   ...blogEntries,
-  ...propertyEntries,
 ];
 
 writeFileSync(resolve("public/sitemap.xml"), generateSitemap(entries));
 console.log(
-  `sitemap.xml written (${entries.length} entries, ${areaEntries.length} area pages, ${miltonEntries.length} Milton neighbourhoods, ${mississaugaEntries.length} Mississauga neighbourhoods, ${blogEntries.length} blog posts, ${propertyEntries.length} properties)`,
+  `sitemap.xml written (${entries.length} entries, ${areaEntries.length} area pages, ${miltonEntries.length} Milton neighbourhoods, ${blogEntries.length} blog posts)`,
 );
