@@ -67,8 +67,8 @@ const Index = () => {
   return (
     <Layout>
       <SEOHead
-        title="Milton Real Estate Agent | Fawad Nissari — GTA Real Estate Broker"
-        description="Milton real estate agent Fawad Nissari — weekly market data, free staging, and 1% listing commission for sellers in Milton and across the Greater Toronto Area."
+        title="Milton Real Estate Agent | Fawad Nissari"
+        description="Milton real estate agent Fawad Nissari — free staging, 1% listing commission, and straight answers for sellers in Milton and the wider west GTA."
         canonicalUrl="https://fawadnissari.ca"
       />
       
@@ -115,7 +115,7 @@ const Index = () => {
                 Milton Real Estate Agent
               </h1>
               <p className="text-lg lg:text-xl text-foreground/85 mb-6 max-w-xl">
-                Serving Milton and the GTA. Real numbers, not 'it depends.'
+                Serving Milton, Mississauga, Oakville and the GTA. Real numbers, not 'it depends.'
               </p>
               <div className="flex flex-col sm:flex-row gap-3 mb-5">
                 <Button variant="accent" size="lg" asChild>

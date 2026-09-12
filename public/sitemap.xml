@@ -61,6 +61,11 @@
     <priority>0.9</priority>
   </url>
   <url>
+    <loc>https://fawadnissari.ca/where-i-work</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://fawadnissari.ca/about</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>

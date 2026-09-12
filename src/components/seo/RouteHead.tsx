@@ -13,9 +13,14 @@ type Meta = { title: string; description: string };
 
 const ROUTE_META: Record<string, Meta> = {
   '/': {
-    title: 'Milton Real Estate Agent | Fawad Nissari \u2014 GTA Real Estate Broker',
+    title: 'Milton Real Estate Agent | Fawad Nissari',
     description:
-      'Milton real estate agent Fawad Nissari \u2014 weekly market data, free staging, and 1% listing commission for sellers in Milton and across the Greater Toronto Area.',
+      'Milton real estate agent Fawad Nissari \u2014 free staging, 1% listing commission, and straight answers for sellers in Milton and the wider west GTA.',
+  },
+  '/where-i-work': {
+    title: 'Where I Work | Milton Real Estate Broker Fawad Nissari',
+    description:
+      'Milton-based broker Fawad Nissari works across Milton, Mississauga, Oakville and the wider west GTA. See what I cover in each market and how I list there.',
   },
   '/moving-to-milton': {
     title: 'Moving to Milton, Ontario | Relocation Guide 2026',
@@ -79,8 +84,8 @@ const ROUTE_META: Record<string, Meta> = {
     description: 'Thinking about selling in Brampton? Free home evaluation and local market insights from Fawad Nissari.',
   },
   '/about': {
-    title: 'About Fawad Nissari — Real Estate Market Expert',
-    description: 'Learn about Fawad Nissari, a GTA real estate expert with over a decade of experience helping homeowners sell smarter.',
+    title: 'Milton Real Estate Broker | About Fawad Nissari',
+    description: 'Learn about Fawad Nissari, a Milton real estate broker with over a decade of experience helping homeowners across the west GTA sell smarter.',
   },
   '/testimonials': {
     title: 'Client Testimonials & Google Reviews | Fawad Nissari',
