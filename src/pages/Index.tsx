@@ -218,9 +218,9 @@ const Index = () => {
           Milton Neighbourhoods
         </h2>
         <p className="text-muted-foreground leading-relaxed max-w-4xl mb-8">
-          Buyers do not evaluate every Milton home in the same way. Lot style, school access, commuting options,
-          housing age, and nearby amenities can shape demand from one community to the next. Explore the local guides
-          below to understand how each area is positioned, then use that context when preparing and pricing your home.
+          Buyers evaluate each Milton community differently. Lot style, school access, commuting options, housing age,
+          and nearby amenities can shape demand. Explore these local guides, then use that context when preparing and
+          pricing your home.
         </p>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-4">
           {MILTON_NEIGHBOURHOODS.map((neighbourhood) => (
