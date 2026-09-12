@@ -65,3 +65,21 @@ export function useBlogPost(slug: string) {
     enabled: !!slug,
   });
 }
+
+export function useLatestMiltonPosts(limit: number = 3) {
+  return useQuery({
+    queryKey: ["latest-milton-posts", limit],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("blog_posts")
+        .select("id, title, slug, published_at, category, featured_image, excerpt, content_html, content_markdown, source_url, imported_at, created_at")
+        .not("published_at", "is", null)
+        .or("title.ilike.%Milton%,excerpt.ilike.%Milton%")
+        .order("published_at", { ascending: false, nullsFirst: false })
+        .limit(limit);
+
+      if (error) throw error;
+      return (data || []) as BlogPost[];
+    },
+  });
+}
