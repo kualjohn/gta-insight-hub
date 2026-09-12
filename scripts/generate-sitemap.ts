@@ -55,6 +55,8 @@ function discoverAreaRoutes(): SitemapEntry[] {
       if (!/^[A-Z]/.test(componentName)) continue;
 
       const slug = componentName.toLowerCase();
+      // Off-target city pages are noindex, follow — excluded from the sitemap.
+      if (slug === "hamilton" || slug === "burlington") continue;
       routes.push({
         path: `/areas/${slug}`,
         changefreq: "monthly",
