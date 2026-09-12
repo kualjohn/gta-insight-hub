@@ -26,8 +26,8 @@ export default function About() {
   return (
     <Layout>
       <SEOHead
-        title="About Fawad Nissari | Real Estate Market Expert"
-        description="Learn about Fawad Nissari, a GTA real estate expert with over a decade of experience. Weekly insights, data-backed advice, and a commitment to helping homeowners make smarter decisions."
+        title="Milton Real Estate Broker | About Fawad Nissari"
+        description="Learn about Fawad Nissari, a Milton real estate broker with over a decade of experience helping homeowners across the west GTA sell smarter."
         canonicalUrl="https://fawadnissari.ca/about"
       />
       
@@ -40,17 +40,17 @@ export default function About() {
                 About Fawad Nissari
               </span>
               <h1 className="font-serif text-4xl lg:text-5xl font-bold mb-6">
-                Real Estate Market<br />
-                <span className="text-accent">Expert & Advisor</span>
+                Milton Real Estate<br />
+                <span className="text-accent">Broker & Advisor</span>
               </h1>
               <p className="text-lg text-muted-foreground mb-6">
                 I believe the best real estate decisions come from understanding the market — not 
-                from sales pressure. That's why I create weekly content to help GTA homeowners 
+                from sales pressure. That's why I create weekly content to help homeowners 
                 make informed choices.
               </p>
               <p className="text-lg text-muted-foreground mb-8">
-                For over a decade, I've helped families across Mississauga, Milton, Oakville, 
-                Burlington, Hamilton, and Brampton navigate one of life's biggest financial decisions.
+                For over a decade, I've helped families across Milton, Mississauga, Oakville
+                and the GTA navigate one of life's biggest financial decisions.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button variant="gold" size="lg" asChild>
