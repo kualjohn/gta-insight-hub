@@ -9,7 +9,6 @@ interface CTABlockProps {
   subtitle?: string;
   primaryCta?: { text: string; href: string };
   secondaryCta?: { text: string; href: string };
-  headingLevel?: 'h2' | 'h3';
   className?: string;
 }
 
@@ -19,12 +18,10 @@ export function CTABlock({
   subtitle,
   primaryCta,
   secondaryCta,
-  headingLevel = 'h3',
   className,
 }: CTABlockProps) {
   const isDark = variant === 'dark';
   const isBookCall = primaryCta?.text === 'Book a Call';
-  const Heading = headingLevel;
 
   const isExternal = (href: string) => /^https?:\/\//i.test(href);
 
@@ -45,12 +42,12 @@ export function CTABlock({
       variant === 'dark' && "bg-charcoal",
       className
     )}>
-      <Heading className={cn(
+      <h3 className={cn(
         "font-serif text-2xl lg:text-3xl font-bold mb-3",
         (variant === 'primary' || isDark) ? "text-primary-foreground" : "text-foreground"
       )}>
         {title}
-      </Heading>
+      </h3>
       {subtitle && (
         <p className={cn(
           "text-lg mb-6 max-w-xl mx-auto",

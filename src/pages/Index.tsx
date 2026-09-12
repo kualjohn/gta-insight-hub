@@ -229,7 +229,7 @@ const Index = () => {
               to={`/areas/milton/${neighbourhood.slug}`}
               className="inline-flex items-center justify-between gap-3 border-b border-border py-3 text-foreground hover:text-accent transition-colors"
             >
-              <span>Explore homes and local insights in {neighbourhood.name}</span>
+              <span>{neighbourhood.name} real estate guide</span>
               <ArrowRight className="w-4 h-4 shrink-0" />
             </Link>
           ))}
@@ -259,7 +259,7 @@ const Index = () => {
               Latest Milton Market Updates
             </h2>
             <p className="text-muted-foreground mt-4 max-w-3xl">
-              Read the newest Milton-focused analysis for current context before making a selling decision.
+              Read the newest Milton analysis before making a selling decision.
             </p>
           </div>
           <Button variant="outline-gold" asChild>
