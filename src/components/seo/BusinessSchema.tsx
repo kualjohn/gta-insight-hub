@@ -34,8 +34,10 @@ export function BusinessSchema() {
         ],
         address: {
           '@type': 'PostalAddress',
+          streetAddress: '420 Main St E Unit 556',
           addressLocality: 'Milton',
           addressRegion: 'ON',
+          postalCode: 'L9T 5G3',
           addressCountry: 'CA',
         },
         ...(hasReviews

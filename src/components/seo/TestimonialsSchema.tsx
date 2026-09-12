@@ -33,7 +33,10 @@ export function TestimonialsSchema() {
       telephone: '+1-416-878-1085',
       address: {
         '@type': 'PostalAddress',
+        streetAddress: '420 Main St E Unit 556',
+        addressLocality: 'Milton',
         addressRegion: 'ON',
+        postalCode: 'L9T 5G3',
         addressCountry: 'CA',
       },
     },
@@ -53,7 +56,10 @@ export function TestimonialsSchema() {
         priceRange: '$$',
         address: {
           '@type': 'PostalAddress',
+          streetAddress: '420 Main St E Unit 556',
+          addressLocality: 'Milton',
           addressRegion: 'ON',
+          postalCode: 'L9T 5G3',
           addressCountry: 'CA',
         },
         ...(hasReviews

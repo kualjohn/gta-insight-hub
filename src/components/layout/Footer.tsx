@@ -145,10 +145,16 @@ export function Footer() {
               <li className="flex items-start gap-3">
                 <MapPin className="w-4 h-4 mt-1 text-accent" />
                 <span className="text-primary-foreground/70 text-sm">
-                  Serving the Greater Toronto Area
+                  420 Main St E Unit 556<br />
+                  Milton, ON L9T 5G3
                 </span>
               </li>
             </ul>
+            <p className="text-primary-foreground/50 text-xs mt-4">
+              HouseSigma Inc., Brokerage
+              <br />
+              Fawad Nissari, Broker
+            </p>
           </div>
         </div>
       </div>
