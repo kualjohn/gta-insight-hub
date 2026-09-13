@@ -48,10 +48,22 @@ const firstTimeSellerPoints = [
   'Get honest answers without any sales pressure',
 ];
 
+// Homepage priority: Milton first, then Mississauga/Oakville, then the rest of the
+// GTA. useProperties() already orders each tier by is_featured / sort_order /
+// created_at — this only re-groups by city on top of that (Array#sort is stable).
+function cityTier(city: string | null): number {
+  const c = (city || '').toLowerCase();
+  if (c === 'milton') return 0;
+  if (c === 'mississauga' || c === 'oakville') return 1;
+  return 2;
+}
+
 const Index = () => {
   const { videos, isLoading, error, channelUrl } = useYouTubeVideos(6);
   const { data: properties = [] } = useProperties();
-  const featuredProperties = properties.slice(0, 3);
+  const featuredProperties = [...properties]
+    .sort((a, b) => cityTier(a.city) - cityTier(b.city))
+    .slice(0, 3);
   const { data: googleData } = useGoogleReviews();
 
   // Defer the heavy background iframe so the hero poster/headline paints fast (LCP).
@@ -109,7 +121,7 @@ const Index = () => {
             {/* Left: Text Content */}
             <div className="animate-fade-in">
               <span className="inline-block brand-label text-accent mb-3">
-                Milton Real Estate Agent
+                HouseSigma Inc., Brokerage
               </span>
               <h1 className="font-serif text-4xl sm:text-5xl lg:text-5xl xl:text-6xl font-bold mb-5 leading-tight text-foreground">
                 Milton Real Estate Agent
@@ -148,6 +160,19 @@ const Index = () => {
           </div>
         </div>
       </section>
+
+      {/* Credibility Row — real platform presence, plain text marks (no assets to source logos from) */}
+      <div className="border-b border-border bg-muted/30">
+        <div className="container-wide mx-auto px-4 sm:px-6 lg:px-8 py-5">
+          <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-3 text-sm font-semibold tracking-wide text-muted-foreground/80 uppercase">
+            <span>HouseSigma</span>
+            <span>Google Reviews</span>
+            <span>YouTube</span>
+            <span>Instagram</span>
+            <span>TikTok</span>
+          </div>
+        </div>
+      </div>
 
       {/* Google Reviews — only real, fetched live */}
       {realReviews.length > 0 && (
@@ -219,7 +244,7 @@ const Index = () => {
             <AlertCircle className="w-10 h-10 text-muted-foreground mx-auto mb-3" />
             <h3 className="font-semibold text-lg mb-2">Unable to load videos</h3>
             <p className="text-muted-foreground mb-4">
-              We couldn't fetch the latest videos. Please try again later.
+              Couldn't load the latest videos right now. Please try again later.
             </p>
             <Button variant="outline" asChild>
               <a href={channelUrl} target="_blank" rel="noopener noreferrer">
@@ -263,7 +288,7 @@ const Index = () => {
               Everything You Need<br />For a Successful Sale
             </h2>
             <p className="text-lg text-muted-foreground mb-5">
-              Staging, marketing, photography, and strategic pricing — all included. Honest advice, no pressure.
+              Staging, marketing, photography, and strategic pricing, all included. Honest advice, no pressure.
             </p>
             
             <ul className="space-y-2.5 mb-6">
@@ -280,7 +305,7 @@ const Index = () => {
             <div className="flex flex-col sm:flex-row gap-3">
               <Button variant="gold" size="lg" asChild>
                 <Link to="/seller-services">
-                  Learn About Our Services
+                  Learn About My Services
                   <ArrowRight className="w-4 h-4" />
                 </Link>
               </Button>
@@ -302,7 +327,7 @@ const Index = () => {
         <SectionWrapper className="py-12 lg:py-16">
           <SectionHeader
             title="Recent Sales & Listings"
-            subtitle="A glimpse at the homes we've helped sell across the GTA."
+            subtitle="A glimpse at homes I've helped sell across Milton, Mississauga, Oakville and the GTA."
           />
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {featuredProperties.map((property, idx) => (
@@ -330,7 +355,7 @@ const Index = () => {
             </h2>
             <p className="text-muted-foreground">
               Commute times to Toronto, GO train and highway access, cost of living, the best
-              neighbourhoods for newcomers, school boards, and current home prices by type — all in
+              neighbourhoods for newcomers, school boards, and current home prices by type, all in
               one relocation guide.
             </p>
           </div>

@@ -107,7 +107,7 @@ export function DownloadCTA({ className }: { className?: string }) {
         First-Time Seller Guide
       </h3>
       <p className="text-muted-foreground mb-4">
-        Get our free guide with everything you need to know about selling your first home in the GTA.
+        Get my free guide with everything you need to know about selling your first home in the GTA.
       </p>
       <Button variant="gold" asChild>
         <Link to="/seller-guide">
