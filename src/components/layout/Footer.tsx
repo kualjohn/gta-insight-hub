@@ -3,11 +3,9 @@ import { Youtube, Mail, Phone, MapPin, Instagram, Linkedin } from 'lucide-react'
 import { NewsletterSignup } from '@/components/forms/NewsletterSignup';
 
 const areas = [
-  'Mississauga',
   'Milton',
+  'Mississauga',
   'Oakville',
-  'Burlington',
-  'Hamilton',
   'Brampton',
 ];
 
@@ -51,8 +49,8 @@ export function Footer() {
               </span>
             </Link>
             <p className="text-primary-foreground/70 text-sm leading-relaxed mb-6">
-              Real Estate Market Expert & Advisor. Weekly videos, data-backed insights, 
-              and proven strategies for GTA homeowners.
+              I'm a Milton real estate broker serving Milton, Mississauga, Oakville and
+              the GTA. Weekly videos, data-backed insights, and honest advice.
             </p>
             <div className="flex items-center gap-3">
               <a
