@@ -10,15 +10,15 @@ import fawadPortrait from '@/assets/fawad-portrait.jpg';
 const missionPoints = [
   {
     title: 'Why I Create Weekly Insights',
-    description: 'When I started in real estate, I noticed most homeowners didn\'t have access to honest, unbiased market information. Everything was filtered through agents with something to sell. So I started creating videos — weekly market updates, educational content, honest analysis. No sales pitches, just real information.',
+    description: 'When I started in real estate, I noticed most homeowners didn\'t have access to honest, unbiased market information, since everything was filtered through agents with something to sell. So I started making videos instead: weekly market updates, educational content, honest analysis, no sales pitches, just real information. I still record something most weeks, because the market shifts and I try to explain it the way I\'d want it explained to me.',
   },
   {
     title: 'How I Help Homeowners Make Smarter Decisions',
-    description: 'Whether you\'re selling your first home or your fifth, my goal is to give you the information you need to make confident decisions. Through my videos, guides, and personalized consultations, I help you understand the market and your options — with zero pressure.',
+    description: 'Whether you\'re selling your first home or your fifth, my goal is to give you the information you need to make confident decisions. Through my videos, guides, and personalized consultations, I help you understand the market and your options, with zero pressure. I work with buyers and sellers across Milton, Mississauga, Oakville and the GTA, and a first-time buyer\'s questions get the same patience as a longtime client\'s fifth transaction.',
   },
   {
     title: 'Data Over Hype',
-    description: 'No sensational predictions or fear tactics. Just real numbers, honest analysis, and practical advice. I believe informed homeowners make better decisions, and that\'s why I create free content every week.',
+    description: 'No sensational predictions or fear tactics, just real numbers, honest analysis, and practical advice. I believe informed homeowners make better decisions, and that\'s why I create free content every week. If I don\'t know the answer to something, I say so and go find out, rather than guess, because real estate is too big a decision for guesswork.',
   },
 ];
 
@@ -44,13 +44,23 @@ export default function About() {
                 <span className="text-accent">Broker & Advisor</span>
               </h1>
               <p className="text-lg text-muted-foreground mb-6">
-                I believe the best real estate decisions come from understanding the market — not 
-                from sales pressure. That's why I create weekly content to help homeowners 
-                make informed choices.
+                I believe the best real estate decisions come from understanding the market, not
+                from sales pressure. That's why I create weekly content to help homeowners
+                make informed choices. I try to keep it specific to Milton and the surrounding
+                area, not generic advice pulled from national headlines.
+              </p>
+              <p className="text-lg text-muted-foreground mb-6">
+                I'm a real estate broker with HouseSigma Inc., Brokerage, based in Milton. I've
+                spent over a decade in real estate, starting at RE/MAX, then moving to eXp Realty
+                before joining HouseSigma. That path gave me a close look at a few different ways
+                of doing business, and I've kept what actually helps clients and left the rest.
               </p>
               <p className="text-lg text-muted-foreground mb-8">
                 For over a decade, I've helped families across Milton, Mississauga, Oakville
-                and the GTA navigate one of life's biggest financial decisions.
+                and the GTA navigate one of life's biggest financial decisions. About 90% of my
+                business now comes from past clients and their referrals, which is the number I'm
+                actually proud of. It means the people I've worked with trust me enough to send
+                me their friends and family.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button variant="gold" size="lg" asChild>
@@ -117,14 +127,43 @@ export default function About() {
         </div>
       </SectionWrapper>
 
-      {/* Stats */}
+      {/* Background */}
       <SectionWrapper variant="muted">
+        <div className="max-w-3xl mx-auto">
+          <h2 className="font-serif text-3xl lg:text-4xl font-bold mb-6 text-center">
+            My Background
+          </h2>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            I've been in real estate for over a decade. I got my start at RE/MAX, then moved to
+            eXp Realty, before joining HouseSigma Inc., Brokerage, where I am today. Each stop
+            taught me something about how this business works, and about how it should work for
+            the client.
+          </p>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Roughly 90% of my business now comes from past clients and the people they refer to
+            me. I don't chase cold leads to hit a number. I'd rather do right by the people I've
+            already worked with and let that relationship bring in the next one.
+          </p>
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            I live and work in Milton, and most of my business is centered here, though I also
+            work regularly with buyers and sellers in Mississauga, Oakville and across the GTA.
+          </p>
+          <p className="text-muted-foreground leading-relaxed">
+            If you're thinking about buying or selling in Milton, Mississauga, Oakville or
+            anywhere else in the GTA, I'm happy to talk it through with you, no pressure and no
+            obligation. That conversation has been the start of most of my client relationships.
+          </p>
+        </div>
+      </SectionWrapper>
+
+      {/* Stats */}
+      <SectionWrapper>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto text-center">
           {[
             { stat: '10+', label: 'Years Experience' },
-            { stat: '500+', label: 'Videos Published' },
-            { stat: '1000+', label: 'Families Helped' },
-            { stat: '100%', label: 'Cancel Anytime' },
+            { stat: '73', label: 'Videos Published' },
+            { stat: '90%', label: 'Past Clients & Referrals' },
+            { stat: 'Milton', label: 'Based & Working Here' },
           ].map((item, index) => (
             <div key={index}>
               <p className="text-4xl lg:text-5xl font-serif font-bold text-accent mb-2">{item.stat}</p>
@@ -141,16 +180,17 @@ export default function About() {
             Weekly Content
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Every week I publish new videos covering market updates, seller tips, buyer advice, 
-            and honest analysis of the GTA real estate market.
+            Every week I publish new videos covering market updates, seller tips, buyer advice,
+            and honest analysis of the GTA real estate market. It's the same information I'd
+            want if I were the one buying or selling.
           </p>
         </div>
 
         <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
           {[
-            { icon: Video, title: 'Market Updates', desc: 'Weekly analysis of what\'s happening in GTA communities' },
-            { icon: Youtube, title: 'Seller Tips', desc: 'Strategies to maximize your home\'s value and sell faster' },
-            { icon: Play, title: 'Buyer Advice', desc: 'Guidance for navigating the buying process confidently' },
+            { icon: Video, title: 'Market Updates', desc: 'Weekly analysis of what\'s happening in Milton, Mississauga, Oakville and the wider GTA' },
+            { icon: Youtube, title: 'Seller Tips', desc: 'Strategies to maximize your home\'s value and sell with less stress' },
+            { icon: Play, title: 'Buyer Advice', desc: 'Guidance for navigating the buying process with confidence, from your first search to closing day' },
           ].map((item, index) => (
             <div key={index} className="text-center p-6 bg-card rounded-xl border border-border">
               <div className="w-14 h-14 rounded-full bg-accent/10 flex items-center justify-center mx-auto mb-4">
@@ -177,7 +217,7 @@ export default function About() {
         <CTABlock
           variant="dark"
           title="Let's Connect"
-          subtitle="Whether you have questions about the market or are thinking about selling, I'm here to help — no pressure, just honest advice."
+          subtitle="Whether you have questions about the market or are thinking about selling, I'm here to help, no pressure, just honest advice."
           primaryCta={{ text: "Book a Call", href: "https://calendly.com/fawadnissari" }}
           secondaryCta={{ text: "Download Seller Guide", href: "/seller-guide" }}
         />
