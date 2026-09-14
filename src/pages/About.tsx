@@ -161,9 +161,9 @@ export default function About() {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto text-center">
           {[
             { stat: '10+', label: 'Years Experience' },
-            { stat: '73', label: 'Videos Published' },
+            { stat: '2,000+', label: 'Homes Toured' },
+            { stat: '100', label: 'Families Helped' },
             { stat: '90%', label: 'Past Clients & Referrals' },
-            { stat: 'Milton', label: 'Based & Working Here' },
           ].map((item, index) => (
             <div key={index}>
               <p className="text-4xl lg:text-5xl font-serif font-bold text-accent mb-2">{item.stat}</p>
