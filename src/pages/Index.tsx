@@ -161,19 +161,6 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Credibility Row — real platform presence, plain text marks (no assets to source logos from) */}
-      <div className="border-b border-border bg-muted/30">
-        <div className="container-wide mx-auto px-4 sm:px-6 lg:px-8 py-5">
-          <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-3 text-sm font-semibold tracking-wide text-muted-foreground/80 uppercase">
-            <span>HouseSigma</span>
-            <span>Google Reviews</span>
-            <span>YouTube</span>
-            <span>Instagram</span>
-            <span>TikTok</span>
-          </div>
-        </div>
-      </div>
-
       {/* Google Reviews — only real, fetched live */}
       {realReviews.length > 0 && (
         <SectionWrapper variant="muted" className="py-12 lg:py-16">
