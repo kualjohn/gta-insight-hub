@@ -50,10 +50,10 @@ export default function About() {
                 area, not generic advice pulled from national headlines.
               </p>
               <p className="text-lg text-muted-foreground mb-6">
-                I'm a real estate broker with HouseSigma Inc., Brokerage, based in Milton. I've
-                spent over a decade in real estate, starting at RE/MAX, then moving to eXp Realty
-                before joining HouseSigma. That path gave me a close look at a few different ways
-                of doing business, and I've kept what actually helps clients and left the rest.
+                I'm a real estate broker based in Milton. I've spent over a decade in real
+                estate, starting at RE/MAX, then moving to eXp Realty, before landing where I am
+                today. That path gave me a close look at a few different ways of doing business,
+                and I've kept what actually helps clients and left the rest.
               </p>
               <p className="text-lg text-muted-foreground mb-8">
                 For over a decade, I've helped families across Milton, Mississauga, Oakville
@@ -135,9 +135,8 @@ export default function About() {
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-4">
             I've been in real estate for over a decade. I got my start at RE/MAX, then moved to
-            eXp Realty, before joining HouseSigma Inc., Brokerage, where I am today. Each stop
-            taught me something about how this business works, and about how it should work for
-            the client.
+            eXp Realty, before landing where I am today. Each stop taught me something about how
+            this business works, and about how it should work for the client.
           </p>
           <p className="text-muted-foreground leading-relaxed mb-4">
             Roughly 90% of my business now comes from past clients and the people they refer to

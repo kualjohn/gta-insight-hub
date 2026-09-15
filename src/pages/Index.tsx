@@ -121,7 +121,7 @@ const Index = () => {
             {/* Left: Text Content */}
             <div className="animate-fade-in">
               <span className="inline-block brand-label text-accent mb-3">
-                HouseSigma Inc., Brokerage
+                Real Estate Broker
               </span>
               <h1 className="font-serif text-4xl sm:text-5xl lg:text-5xl xl:text-6xl font-bold mb-5 leading-tight text-foreground">
                 Milton Real Estate Agent
