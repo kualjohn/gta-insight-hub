@@ -121,6 +121,13 @@ function generateSitemap(entries: SitemapEntry[]) {
   ].join("\n");
 }
 
+async function portfolioRoutes(): Promise<SitemapEntry[]> {
+  const slugs = await fetchSlugs("property_websites?select=slug&published=eq.true");
+  return slugs
+    .map((slug) => ({ path: `/portfolio/${slug}`, changefreq: "weekly" as const, priority: "0.7" }))
+    .sort((a, b) => a.path.localeCompare(b.path));
+}
+
 const areaEntries = discoverAreaRoutes();
 const miltonEntries = miltonNeighbourhoodRoutes();
 // Mississauga neighbourhood sub-pages are noindex, follow — excluded from the sitemap.
