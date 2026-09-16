@@ -262,7 +262,6 @@ export function RouteHead() {
   // Thin / duplicate-intent pages: keep them live and crawlable for links,
   // but out of the index.
   const isNoindexFollow =
-    /^\/portfolio\/[^/]+$/.test(path) ||
     /^\/areas\/mississauga\/[^/]+$/.test(path) ||
     path === '/areas/hamilton' ||
     path === '/areas/burlington';
