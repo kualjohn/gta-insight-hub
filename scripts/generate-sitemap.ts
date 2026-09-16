@@ -121,11 +121,19 @@ function generateSitemap(entries: SitemapEntry[]) {
   ].join("\n");
 }
 
+async function portfolioRoutes(): Promise<SitemapEntry[]> {
+  const slugs = await fetchSlugs("property_websites?select=slug&published=eq.true");
+  return slugs
+    .map((slug) => ({ path: `/portfolio/${slug}`, changefreq: "weekly" as const, priority: "0.7" }))
+    .sort((a, b) => a.path.localeCompare(b.path));
+}
+
 const areaEntries = discoverAreaRoutes();
 const miltonEntries = miltonNeighbourhoodRoutes();
 // Mississauga neighbourhood sub-pages are noindex, follow — excluded from the sitemap.
 const blogEntries = await blogPostRoutes();
-// Individual /portfolio/:slug pages are noindex, follow — excluded from the sitemap.
+// Portfolio listing pages are indexable — one entry per published listing.
+const portfolioEntries = await portfolioRoutes();
 // Admin routes (/admin, /admin/login, /admin/**) are intentionally excluded:
 // they are private, non-indexable, and disallowed in robots.txt.
 const entries = [
@@ -133,6 +141,7 @@ const entries = [
   ...areaEntries,
   ...miltonEntries,
   ...blogEntries,
+  ...portfolioEntries,
 ];
 
 writeFileSync(resolve("public/sitemap.xml"), generateSitemap(entries));
