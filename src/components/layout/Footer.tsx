@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { Youtube, Mail, Phone, MapPin, Instagram, Linkedin } from 'lucide-react';
 import { NewsletterSignup } from '@/components/forms/NewsletterSignup';
+import { PreferredSourceButton } from '@/components/PreferredSourceButton';
 
 const areas = [
   'Milton',
@@ -160,6 +161,9 @@ export function Footer() {
       {/* Bottom Bar */}
       <div className="border-t border-charcoal-light">
         <div className="container-wide mx-auto px-4 sm:px-6 lg:px-8 py-6">
+          <div className="mb-6">
+            <PreferredSourceButton />
+          </div>
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-primary-foreground/50">
             <p>© 2024 Fawad Nissari Real Estate. All rights reserved.</p>
             <div className="flex items-center gap-6">
