@@ -7,6 +7,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { Button } from "@/components/ui/button";
 import { SEOHead } from "@/components/seo/SEOHead";
 import { ShareButtons } from "@/components/blog/ShareButtons";
+import { PreferredSourceButton } from "@/components/PreferredSourceButton";
 
 const MILTON_RELOCATION_SLUGS = [
   "Is-Milton-a-Good-Area-to-Live--A-Comprehensive-Milton-Real-Estate-Guide",
@@ -181,6 +182,13 @@ export default function BlogPostPage() {
           url={typeof window !== "undefined" ? window.location.href : `https://fawadnissari.ca/blog/${slug}`}
           excerpt={post.excerpt || undefined}
         />
+
+        <div className="mt-10">
+          <p className="mb-3 text-sm text-muted-foreground">
+            Want my market updates in your Google results? Add me as a preferred source.
+          </p>
+          <PreferredSourceButton />
+        </div>
       </article>
     </Layout>
   );
