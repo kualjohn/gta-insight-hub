@@ -9,7 +9,7 @@ import { SellerUSPBlock } from '@/components/sections/SellerUSPBlock';
 import { CTABlock } from '@/components/sections/CTABlock';
 import { Layout } from '@/components/layout/Layout';
 import { useYouTubeVideos } from '@/hooks/useYouTubeVideos';
-import { useProperties } from '@/hooks/useProperties';
+import { useProperties, activeRank } from '@/hooks/useProperties';
 import { useGoogleReviews } from '@/hooks/useGoogleReviews';
 import PortfolioCard from '@/components/portfolio/PortfolioCard';
 import { Skeleton } from '@/components/ui/skeleton';
