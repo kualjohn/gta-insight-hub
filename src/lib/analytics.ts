@@ -90,12 +90,29 @@ export function trackPageView(path: string, title?: string) {
     gtag("event", "page_view", { ...payload, send_to: measurementId });
   }
 
+  // Meta Pixel: PageView on every SPA route change (and first load).
+  fbq("track", "PageView");
+
   // Always emit to dataLayer so GTM triggers work on SPA route changes.
   window.dataLayer = window.dataLayer || [];
   window.dataLayer.push({ event: "page_view", ...payload });
 }
 
+// Map internal event names to Meta Pixel events.
+const META_EVENT_MAP: Record<string, { event: string; custom?: boolean }> = {
+  book_a_call: { event: "Lead" },
+  phone_click: { event: "PhoneClick", custom: true },
+  email_click: { event: "EmailClick", custom: true },
+};
+
 export function trackEvent(name: string, params: Record<string, unknown> = {}) {
   gtag("event", name, params);
   window.dataLayer?.push({ event: name, ...params });
+
+  const mapped = META_EVENT_MAP[name];
+  if (mapped && !mapped.custom) {
+    fbq("track", mapped.event, { page_path: params.page_path });
+  } else {
+    fbq("trackCustom", mapped?.event ?? name, params);
+  }
 }
