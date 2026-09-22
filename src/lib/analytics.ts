@@ -1,9 +1,10 @@
-// Google Analytics 4 (gtag.js) + optional Google Tag Manager loader
+// Google Analytics 4 (gtag.js) + optional Google Tag Manager loader + Meta Pixel
 
 declare global {
   interface Window {
     dataLayer: unknown[];
     gtag?: (...args: unknown[]) => void;
+    fbq?: (...args: unknown[]) => void;
   }
 }
 
@@ -12,6 +13,15 @@ const measurementId = import.meta.env
 
 // Optional: set a GTM container id (GTM-XXXXXXX) to also load Tag Manager.
 const gtmId = import.meta.env.VITE_GTM_CONTAINER_ID as string | undefined;
+
+// Meta (Facebook) Pixel — base code lives in index.html; we only forward events.
+export const metaPixelId = "274236726432965";
+
+export function fbq(...args: unknown[]) {
+  if (typeof window !== "undefined" && typeof window.fbq === "function") {
+    window.fbq(...args);
+  }
+}
 
 let initialized = false;
 
