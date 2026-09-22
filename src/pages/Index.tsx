@@ -62,7 +62,11 @@ const Index = () => {
   const { videos, isLoading, error, channelUrl } = useYouTubeVideos(6);
   const { data: properties = [] } = useProperties();
   const featuredProperties = [...properties]
-    .sort((a, b) => cityTier(a.city) - cityTier(b.city))
+    .sort(
+      (a, b) =>
+        activeRank(a.status) - activeRank(b.status) ||
+        cityTier(a.city) - cityTier(b.city)
+    )
     .slice(0, 3);
   const { data: googleData } = useGoogleReviews();
 
